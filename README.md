@@ -25,7 +25,7 @@ GitHub Pages only serves static files. It cannot run these API routes, ChatGPT s
 - `public/`: brand assets, fonts, styles, and interactive storefront scripts
 - `lib/seed.json`: default store/editor content
 - `scripts/`, `build/`, and `vite.config.ts`: Vinext/Cloudflare build support
-- `.openai/hosting.json`: original Sites binding names and project metadata
+- `.openai/hosting.json`: sanitized D1/R2 binding names; the original Site project ID is removed
 
 ## Notes
 
