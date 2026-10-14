@@ -224,3 +224,12 @@ html.chamea-pattern-on #main .builder-block.type-quiz::before,
 html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
 html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
 html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
+
+/* Keep each complete monogram inside its repeat tile; slightly stronger visibility. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.31!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.50!important}
+html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.31!important}
