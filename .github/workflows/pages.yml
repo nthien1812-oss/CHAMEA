@@ -42,7 +42,7 @@ jobs:
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="./assets/fonts.css">
-          <link rel="stylesheet" href="./style.css"></head>
+          <link rel="stylesheet" href="./style.css?v=${{ github.run_id }}"></head>
           <body><a class="skip" href="#main">Chuyển đến nội dung</a>
           <div class="announcement">CHAMÉA — Chạm đúng người · Trao đúng quà</div>
           <header id="header"></header><main id="main" tabindex="-1" aria-live="polite">
@@ -51,7 +51,7 @@ jobs:
           <dialog id="zoom" aria-label="Phóng to ảnh sản phẩm"></dialog>
           <div id="toast" role="status" aria-live="polite"></div>
           <script src="./data.js"></script><script src="./editor-defaults.js"></script>
-          <script src="./app.js" defer></script></body></html>''')
+          <script src="./app.js?v=${{ github.run_id }}" defer></script></body></html>''')
           (root/'.nojekyll').touch()
           PY
       - uses: actions/configure-pages@v5
