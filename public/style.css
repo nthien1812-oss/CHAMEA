@@ -177,3 +177,12 @@ html.chamea-pattern-on .chamea-pattern{
  html.chamea-pattern-on.chamea-inner-page #main::before{background-size:135px 135px!important}
  html.chamea-pattern-on footer::before{background-size:100px 100px!important}
 }
+
+/* CHAMÉA brand-book monogram pattern (C + ribbon + star), 20% background / 40% footer. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
+html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
