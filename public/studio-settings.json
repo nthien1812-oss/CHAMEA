@@ -325,11 +325,11 @@
       "cod",
       "qr"
     ],
-    "qrImage": "",
+    "qrImage": "payment-qr.png",
     "bank": "",
     "account": "",
     "holder": "",
-    "instructions": "Chưa cấu hình thông tin QR. Đây là đơn hàng mô phỏng; không chuyển tiền."
+    "instructions": "Quét mã QR hiển thị để xem thông tin thanh toán. Website hiện là bản trải nghiệm: đơn hàng mẫu chưa được gửi tới cửa hàng và không tự xác nhận giao dịch. Chỉ chuyển tiền sau khi xác minh thông tin người nhận với CHAMÉA."
   },
   "pages": {},
   "site": {
