@@ -30,3 +30,7 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 .muted,.demo-note,.product-type,.color-caption,.crumb,.article-card p{color:#51434b}
 .eyebrow{color:#6c4c38;font-weight:700}
 .nav a{font-weight:600;color:#382733}
+
+/* Align wishlist heart vertically with search and shopping bag in header */
+.head-tools > .icon-btn { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
+.head-tools > .icon-btn svg { display: block; flex-shrink: 0; }
