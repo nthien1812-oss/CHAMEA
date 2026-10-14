@@ -331,5 +331,10 @@
     "holder": "",
     "instructions": "Chưa cấu hình thông tin QR. Đây là đơn hàng mô phỏng; không chuyển tiền."
   },
-  "pages": {}
+  "pages": {},
+  "site": {
+    "patternImage": "chamea-signature-pattern.svg",
+    "patternOpacity": 20,
+    "patternEnabled": 1
+  }
 }
