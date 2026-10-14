@@ -1,0 +1,188 @@
+[
+  {
+    "id": "aline",
+    "code": "CM-A01",
+    "name": "Aline · Nét thanh lịch",
+    "price": 890000,
+    "color": "Kem",
+    "hex": "#ded0b7",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Tối giản",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi chơi"
+    ],
+    "image": "aline-views.webp",
+    "gallery": "aline-views.webp",
+    "source": "hero.jpg",
+    "desc": "Phom túi gọn, quai xách cong và điểm nhấn khóa dọc. Sắc kem dễ kết hợp cùng trang phục tông trung tính."
+  },
+  {
+    "id": "lune",
+    "code": "CM-L02",
+    "name": "Lune · Sắc mận",
+    "price": 1090000,
+    "color": "Tím mận",
+    "hex": "#57323f",
+    "shape": "Túi đeo vai",
+    "styles": [
+      "Nổi bật",
+      "Tối giản"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi chơi"
+    ],
+    "image": "lune-views.webp",
+    "gallery": "lune-views.webp",
+    "source": "hero.jpg",
+    "desc": "Dáng túi đeo vai với đường cong mềm và chi tiết khóa nổi bật. Một gợi ý cho trang phục thường ngày cần thêm điểm nhấn."
+  },
+  {
+    "id": "rose",
+    "code": "CM-R03",
+    "name": "Rosé · Chạm dịu dàng",
+    "price": 950000,
+    "color": "Hồng phấn",
+    "hex": "#c39891",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Dự tiệc"
+    ],
+    "image": "rose-views.webp",
+    "gallery": "rose-views.webp",
+    "source": "hero.jpg",
+    "desc": "Tông hồng phấn, nắp túi ngang và chi tiết khóa dọc. Gợi ý phối cùng trang phục mềm mại cho buổi hẹn hoặc dịp đặc biệt."
+  },
+  {
+    "id": "ivoire",
+    "code": "CM-I04",
+    "name": "Ivoire · Nắng nhẹ",
+    "price": 850000,
+    "color": "Kem",
+    "hex": "#ded0b7",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Tối giản",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi chơi"
+    ],
+    "image": "ivoire-views.webp",
+    "gallery": "ivoire-views.webp",
+    "source": "poster.jpg",
+    "desc": "Nắp túi bo mềm, quai xách cong và thẻ trang trí nhìn thấy trong ảnh chiến dịch. Sắc kem nhẹ nhàng cho cách phối đồ thanh lịch."
+  },
+  {
+    "id": "prune",
+    "code": "CM-P05",
+    "name": "Prune · Dấu ấn riêng",
+    "price": 990000,
+    "color": "Tím mận",
+    "hex": "#57323f",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Nổi bật"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Dự tiệc"
+    ],
+    "image": "prune-views.webp",
+    "gallery": "prune-views.webp",
+    "source": "poster.jpg",
+    "desc": "Túi xách tay sắc mận, nắp cong và chi tiết khóa chữ cách điệu. Phom túi khác với dáng đeo vai Lune."
+  },
+  {
+    "id": "petale",
+    "code": "CM-P06",
+    "name": "Pétale · Cánh hồng",
+    "price": 920000,
+    "color": "Hồng phấn",
+    "hex": "#c39891",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Dự tiệc"
+    ],
+    "image": "petale-views.webp",
+    "gallery": "petale-views.webp",
+    "source": "poster.jpg",
+    "desc": "Dáng túi xách tay với nắp cong và khóa vuông. Tông hồng ấm tạo điểm nhấn dịu dàng cho một cuộc hẹn."
+  },
+  {
+    "id": "perle",
+    "code": "CM-P07",
+    "name": "Perle · Ánh ngà",
+    "price": 790000,
+    "color": "Kem",
+    "hex": "#ded0b7",
+    "shape": "Túi đeo vai",
+    "styles": [
+      "Nữ tính",
+      "Nổi bật"
+    ],
+    "uses": [
+      "Dự tiệc",
+      "Đi chơi"
+    ],
+    "image": "perle-views.webp",
+    "gallery": "perle-views.webp",
+    "source": "gift.jpg",
+    "desc": "Bề mặt có họa tiết hình thoi và dây dạng chuỗi nhìn thấy trong ảnh. Gợi ý phong cách cho những dịp muốn tạo điểm nhấn."
+  },
+  {
+    "id": "muse",
+    "code": "CM-M08",
+    "name": "Muse · Lời thương",
+    "price": 890000,
+    "color": "Hồng đất",
+    "hex": "#b2877c",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Nữ tính",
+      "Tối giản"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi chơi"
+    ],
+    "image": "muse-views.webp",
+    "gallery": "muse-views.webp",
+    "source": "gift.jpg",
+    "desc": "Dáng túi xách tay với khóa trang trí giữa nắp. Sắc hồng đất ấm và tiết chế, gợi ý cho trang phục hằng ngày."
+  },
+  {
+    "id": "tendre",
+    "code": "CM-T09",
+    "name": "Tendre · Bình yên",
+    "price": 750000,
+    "color": "Hồng đất",
+    "hex": "#b2877c",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Tối giản",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi chơi"
+    ],
+    "image": "tendre-views.webp",
+    "gallery": "tendre-views.webp",
+    "source": "gift.jpg",
+    "desc": "Nắp túi gọn, quai xách cong và mặt trước tối giản. Một gợi ý nhẹ nhàng khi bạn thích ít chi tiết trang trí."
+  }
+]
