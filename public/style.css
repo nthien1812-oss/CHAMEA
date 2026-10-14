@@ -452,3 +452,12 @@ html body #main section.builder-block.type-story .builder-copy{
 .chamea-variant-links .swatch{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #d3c2c5}
 .product-visual img{object-position:center center!important}
 .gallery-main img,.thumb img{object-fit:contain;background:#f6eee8}
+
+/* Homepage featured handbags: 3 visible cards and a clear horizontal drag scrollbar. */
+#main .builder-block.type-products .chamea-product-rail{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;gap:20px!important;padding-bottom:24px!important;scrollbar-width:auto!important;scrollbar-color:#765167 #eadde2!important;scroll-snap-type:x proximity}
+#main .builder-block.type-products .chamea-product-rail>.product{flex:0 0 calc((100% - 40px)/3)!important;min-width:0;scroll-snap-align:start}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar{height:12px}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-track{background:#eadde2;border-radius:20px}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-thumb{background:#765167;border-radius:20px;border:2px solid #eadde2}
+@media(max-width:800px){#main .builder-block.type-products .chamea-product-rail>.product{flex-basis:calc((100% - 18px)/2)!important}}
+@media(max-width:520px){#main .builder-block.type-products .chamea-product-rail>.product{flex-basis:82%!important}}
