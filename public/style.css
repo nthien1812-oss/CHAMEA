@@ -303,3 +303,38 @@ html.chamea-pattern-on #main .builder-block.type-quiz::before{
  mask-image:linear-gradient(to bottom,transparent 0,black 65px,black calc(100% - 65px),transparent 100%)!important;
  background-position:center center!important;
 }
+
+/* CHAMÉA readability: dark-plum campaign uses clear white headings like its body copy. */
+#main .builder-block.type-image[style*="#3C2535"] .builder-copy,
+#main .builder-block.type-image[style*="#3c2535"] .builder-copy,
+#main .builder-block.type-banner[style*="#3C2535"] .builder-copy,
+#main .builder-block.type-story[style*="#3C2535"] .builder-copy{
+ color:#fefbfd!important;
+}
+#main .builder-block.type-image[style*="#3C2535"] .builder-copy h2,
+#main .builder-block.type-image[style*="#3c2535"] .builder-copy h2,
+#main .builder-block.type-banner[style*="#3C2535"] .builder-copy h2,
+#main .builder-block.type-story[style*="#3C2535"] .builder-copy h2{
+ color:#fefbfd!important;
+ opacity:1!important;
+ -webkit-text-fill-color:#fefbfd!important;
+}
+#main .builder-block.type-image[style*="#3C2535"] .builder-copy .eyebrow,
+#main .builder-block.type-image[style*="#3c2535"] .builder-copy .eyebrow{color:#fefbfd!important;opacity:.85!important}
+/* Spacious white text panels: padding belongs inside the panel, not flush against its edge. */
+html.chamea-pattern-on #main .builder-block.type-story .builder-copy,
+html.chamea-pattern-on #main .builder-block.type-articles .article-card,
+html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{
+ padding:clamp(22px,3vw,44px)!important;
+ box-sizing:border-box;
+}
+#main .builder-block .builder-copy[style*="background"],
+#main .builder-block .builder-copy.panel{
+ padding:clamp(22px,3vw,44px)!important;
+ box-sizing:border-box;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on #main .builder-block.type-story .builder-copy,
+ html.chamea-pattern-on #main .builder-block.type-articles .article-card,
+ html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{padding:22px!important}
+}
