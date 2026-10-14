@@ -1,30 +1,5 @@
 [
   {
-    "id": "aline",
-    "code": "CM-A01",
-    "name": "Aline · Nét thanh lịch",
-    "price": 890000,
-    "color": "Kem",
-    "hex": "#ded0b7",
-    "shape": "Túi xách tay",
-    "styles": [
-      "Tối giản",
-      "Nữ tính"
-    ],
-    "uses": [
-      "Đi làm",
-      "Đi chơi"
-    ],
-    "image": "1791965920391-Avatar.png",
-    "gallery": [
-      "",
-      "",
-      ""
-    ],
-    "source": "hero.jpg",
-    "desc": "Phom túi gọn, quai xách cong và điểm nhấn khóa dọc. Sắc kem dễ kết hợp cùng trang phục tông trung tính."
-  },
-  {
     "id": "lune",
     "code": "CM-L02",
     "name": "Lune · Sắc mận",
