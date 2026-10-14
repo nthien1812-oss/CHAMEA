@@ -444,3 +444,11 @@ html body #main section.builder-block.type-story .builder-copy{
 #qr-details{text-align:center;padding:26px 20px}
 #qr-details .chamea-payment-qr-image{display:block;width:min(100%,360px);height:auto;margin:0 auto 18px;object-fit:contain;border-radius:10px}
 #qr-details p{line-height:1.7}
+
+/* New five-collection product gallery */
+.chamea-variant-links{display:flex;flex-wrap:wrap;gap:10px;margin:13px 0 22px}
+.chamea-variant-links a{display:inline-flex;align-items:center;gap:8px;border:1px solid #ddcbd0;padding:10px 14px;color:#3c2535;text-decoration:none;font-size:12px}
+.chamea-variant-links a:hover{border-color:#3c2535;background:#f5ebee}
+.chamea-variant-links .swatch{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #d3c2c5}
+.product-visual img{object-position:center center!important}
+.gallery-main img,.thumb img{object-fit:contain;background:#f6eee8}
