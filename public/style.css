@@ -34,3 +34,6 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 /* Align wishlist heart vertically with search and shopping bag in header */
 .head-tools > .icon-btn { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
 .head-tools > .icon-btn svg { display: block; flex-shrink: 0; }
+
+/* CHAMÉA Studio: brand pattern, service information and responsive grids */
+.chamea-extras{max-width:1320px;margin:38px auto;padding:0 24px}.chamea-pattern{height:125px;background-position:center;background-size:contain;background-repeat:repeat-x;pointer-events:none}.chamea-benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 45px;padding:26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.chamea-benefits strong{font-family:Georgia,serif;font-size:19px}.chamea-benefits p{margin:8px 0}.chamea-benefits small{font-weight:700}.product-grid{grid-template-columns:repeat(var(--chamea-desktop-cols,3),minmax(0,1fr))}@media(max-width:1024px){.product-grid{grid-template-columns:repeat(var(--chamea-tablet-cols,2),minmax(0,1fr))}}@media(max-width:600px){.product-grid{grid-template-columns:repeat(var(--chamea-mobile-cols,2),minmax(0,1fr))}.chamea-benefits{grid-template-columns:1fr;gap:14px}.chamea-pattern{height:75px}}
