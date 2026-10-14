@@ -233,3 +233,62 @@ html.chamea-pattern-on #main .builder-block.type-quiz::before,
 html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.31!important}
 html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.50!important}
 html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=complete5")!important;opacity:.31!important}
+
+/* CHAMÉA seamless pattern: use the same monogram scale across all surfaces.
+   Repeat tiles are complete; viewport/section boundaries may naturally crop the pattern. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before{
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=seamless6")!important;
+ background-size:205px 205px!important;
+ background-position:0 0!important;
+ background-repeat:repeat!important;
+ opacity:.31!important;
+}
+/* Put the watermark across the ENTIRE plum footer instead of a narrow 100px strip. */
+html.chamea-pattern-on footer{
+ position:relative!important;
+ isolation:isolate!important;
+}
+html.chamea-pattern-on footer::before{
+ content:""!important;
+ display:block!important;
+ position:absolute!important;
+ inset:0!important;
+ width:100%!important;
+ height:100%!important;
+ max-width:none!important;
+ margin:0!important;
+ border:0!important;
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=seamless6")!important;
+ background-size:205px 205px!important;
+ background-position:0 0!important;
+ background-repeat:repeat!important;
+ opacity:.50!important;
+ pointer-events:none!important;
+ z-index:0!important;
+}
+html.chamea-pattern-on footer > *{
+ position:relative;
+ z-index:1;
+}
+html.chamea-pattern-on .chamea-pattern{
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=seamless6")!important;
+ background-size:205px 205px!important;
+ background-repeat:repeat!important;
+ background-position:0 0!important;
+ opacity:.31!important;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on #main .builder-block.type-categories::before,
+ html.chamea-pattern-on #main .builder-block.type-story::before,
+ html.chamea-pattern-on #main .builder-block.type-articles::before,
+ html.chamea-pattern-on #main .builder-block.type-quiz::before,
+ html.chamea-pattern-on.chamea-inner-page #main::before,
+ html.chamea-pattern-on footer::before,
+ html.chamea-pattern-on .chamea-pattern{
+  background-size:150px 150px!important;
+ }
+}
