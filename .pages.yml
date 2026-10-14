@@ -1,0 +1,58 @@
+media:
+  input: public/assets
+  output: /CHAMEA/assets
+  categories: [image]
+content:
+  - name: products
+    label: "Sản phẩm CHAMÉA"
+    type: file
+    path: public/products.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: id
+        label: "Mã định danh (không trùng)"
+        type: string
+        required: true
+      - name: code
+        label: "Mã sản phẩm"
+        type: string
+      - name: name
+        label: "Tên sản phẩm"
+        type: string
+        required: true
+      - name: price
+        label: "Giá bán (VND)"
+        type: number
+        required: true
+      - name: color
+        label: "Màu sắc"
+        type: string
+      - name: hex
+        label: "Mã màu"
+        type: string
+      - name: shape
+        label: "Kiểu túi"
+        type: string
+      - name: styles
+        label: "Phong cách"
+        type: string
+        list: true
+      - name: uses
+        label: "Mục đích sử dụng"
+        type: string
+        list: true
+      - name: image
+        label: "Ảnh chính"
+        type: image
+      - name: gallery
+        label: "Ảnh chi tiết"
+        type: image
+      - name: source
+        label: "Ảnh nguồn"
+        type: image
+      - name: desc
+        label: "Mô tả"
+        type: text
