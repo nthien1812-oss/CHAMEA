@@ -121,3 +121,20 @@ html.chamea-pattern-on footer::before{opacity:.40!important}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.20!important}html.chamea-pattern-on footer::before{opacity:.40!important}}
 
 /* CHAMÉA GitHub access restored. */
+
+/* CHAMÉA product 3-angle hover preview */
+.chamea-angle-card{position:relative}.chamea-angle-card img{transition:opacity .2s ease,transform .35s ease}.chamea-angle-indicator{position:absolute;bottom:12px;right:12px;padding:5px 9px;background:rgba(255,250,251,.87);color:#50374a;font-size:10px;letter-spacing:.12em;opacity:0;transition:opacity .2s}.chamea-angle-card.angle-active .chamea-angle-indicator{opacity:1}
+@media(prefers-reduced-motion:reduce){.chamea-angle-card img{transition:none}}
+/* CHAMÉA horizontal product slider */
+#main .chamea-product-rail{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#8c6b7d #ebdfe3;gap:20px;padding:0 0 22px;cursor:grab;overscroll-behavior-x:contain}
+#main .chamea-product-rail>.product{flex:0 0 clamp(205px,26vw,310px);scroll-snap-align:start}
+#main .chamea-product-rail.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+#main .chamea-product-rail::-webkit-scrollbar{height:8px}
+#main .chamea-product-rail::-webkit-scrollbar-thumb{background:#8c6b7d;border-radius:8px}
+#main .chamea-product-rail::-webkit-scrollbar-track{background:#ebdfe3;border-radius:8px}
+@media(max-width:700px){#main .chamea-product-rail>.product{flex-basis:70vw}}
+/* Sitewide CHAMÉA motif on inner pages, subtle and behind content */
+html.chamea-pattern-on.chamea-inner-page #main{position:relative;isolation:isolate}
+html.chamea-pattern-on.chamea-inner-page #main::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url("./assets/chamea-sparkle-pattern-v2.svg");background-size:260px 260px;background-repeat:repeat;opacity:.20}
+html.chamea-pattern-on.chamea-inner-page #main .product-visual{background:var(--cream)}
+@media(max-width:700px){html.chamea-pattern-on.chamea-inner-page #main::before{background-size:190px 190px}}
