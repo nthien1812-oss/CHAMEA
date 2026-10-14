@@ -61,7 +61,7 @@ function applyDesign(){const e=editor(),t=e.theme,root=document.documentElement;
  document.querySelector('meta[name=description]')?.setAttribute('content',D.description);
 }
 function applyOverrides(){const map=editor().textOverrides||{};for(const el of $$('h1,h2,h3,p,a,button,label,span,summary')){const value=map[el.textContent.trim()];if(value!==undefined)el.textContent=value}}
-function paymentInfo(){const p=editor().payment;return `<div id="qr-details" class="info-box" hidden>${p.qrImage?`<img src="${asset(p.qrImage)}" alt="Mã QR do cửa hàng cung cấp" style="width:220px;max-width:100%;height:auto"><p>${esc(p.bank)} · ${esc(p.holder)}<br>${esc(p.account)}</p>`:'<p>QR đang cập nhật. Chưa có mã nhận tiền.</p>'}<p>${esc(p.instructions)}</p><strong>Đơn mẫu không yêu cầu chuyển tiền và không xác nhận thanh toán thật.</strong></div>`}
+function paymentInfo(){const p=editor().payment;return `<div id="qr-details" class="info-box" hidden>${p.qrImage?`<img src="${asset(p.qrImage)}" alt="Mã QR do cửa hàng cung cấp" class="chamea-payment-qr-image"><p>${esc(p.bank)} · ${esc(p.holder)}<br>${esc(p.account)}</p>`:'<p>QR đang cập nhật. Chưa có mã nhận tiền.</p>'}<p>${esc(p.instructions)}</p><strong>Đơn mẫu không yêu cầu chuyển tiền và không xác nhận thanh toán thật.</strong></div>`}
 
 function consult(){return `<section class="consult"><p class="eyebrow">CHAMÉA Ở ĐÂY ĐỂ LẮNG NGHE</p><h2>Chưa biết chọn mẫu nào?</h2><p>CHAMÉA giúp bạn cân nhắc theo phong cách, nhu cầu và ngân sách.</p>${link('/lien-he','Nhận tư vấn chọn túi '+icon('arrow'))}</section>`}
 function pageHead(title,desc='',eyebrow='CHAMÉA'){return `<section class="page-head"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1>${desc?`<p>${desc}</p>`:''}</section>`}
