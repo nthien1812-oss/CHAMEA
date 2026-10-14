@@ -292,3 +292,14 @@ html.chamea-pattern-on .chamea-pattern{
   background-size:150px 150px!important;
  }
 }
+
+/* Avoid half-monograms at the top/bottom edges of patterned content sections.
+   Fade the repeating motif at section boundaries instead of hard-clipping the C. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{
+ -webkit-mask-image:linear-gradient(to bottom,transparent 0,black 65px,black calc(100% - 65px),transparent 100%)!important;
+ mask-image:linear-gradient(to bottom,transparent 0,black 65px,black calc(100% - 65px),transparent 100%)!important;
+ background-position:center center!important;
+}
