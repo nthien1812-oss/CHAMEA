@@ -1,0 +1,62 @@
+name: Publish CHAMEA storefront to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare static storefront
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp -R public/. _site/
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('_site')
+          js=root/'app.js'
+          s=js.read_text()
+          s=s.replace("name:'/assets/'+name", "name:'/CHAMEA/assets/'+name")
+          s=s.replace("name.startsWith('/media/')?name", "name.startsWith('/media/')?'/CHAMEA'+name")
+          js.write_text(s)
+          (root/'index.html').write_text('''<!doctype html>
+          <html lang="vi"><head><meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <meta name="theme-color" content="#3c2535">
+          <title>CHAMÉA — Chạm đúng người · Trao đúng quà</title>
+          <meta name="description" content="Khám phá túi xách CHAMÉA và tìm món quà vừa vặn.">
+          <link rel="icon" href="./favicon.svg">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+          <link rel="stylesheet" href="./assets/fonts.css">
+          <link rel="stylesheet" href="./style.css"></head>
+          <body><a class="skip" href="#main">Chuyển đến nội dung</a>
+          <div class="announcement">CHAMÉA — Chạm đúng người · Trao đúng quà</div>
+          <header id="header"></header><main id="main" tabindex="-1" aria-live="polite">
+          <div class="container section"><p>Đang tải CHAMÉA…</p></div></main>
+          <footer id="footer"></footer><dialog id="panel" aria-labelledby="panel-title"></dialog>
+          <dialog id="zoom" aria-label="Phóng to ảnh sản phẩm"></dialog>
+          <div id="toast" role="status" aria-live="polite"></div>
+          <script src="./data.js"></script><script src="./editor-defaults.js"></script>
+          <script src="./app.js" defer></script></body></html>''')
+          (root/'.nojekyll').touch()
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
