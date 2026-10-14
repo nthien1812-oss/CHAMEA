@@ -40,3 +40,8 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 
 /* CHAMÉA signature motif: quiet curves inspired by bag handles and connection. */
 .chamea-extras{position:relative;isolation:isolate;margin:42px auto 50px;padding:0 24px;max-width:1320px}.chamea-pattern{height:90px;max-width:100%;background-repeat:repeat-x;background-size:320px 110px;background-position:center;pointer-events:none;mix-blend-mode:multiply}.chamea-extras .chamea-benefits{background:linear-gradient(120deg,#fcf8f8,#f8f1f2);border-color:#e6d8dc;border-radius:3px}.chamea-extras .chamea-benefits strong{color:#452c3c}footer{position:relative}footer::before{content:"";display:block;height:55px;margin:0 auto 20px;max-width:1200px;background-image:url("./assets/chamea-signature-pattern.svg");background-size:240px 83px;background-position:center;background-repeat:repeat-x;opacity:.11;pointer-events:none}@media(max-width:600px){.chamea-extras{margin:22px auto 28px;padding:0 16px}.chamea-pattern{height:56px;background-size:200px 69px}footer::before{height:38px;background-size:170px 58px}}
+
+/* Ensure CHAMÉA motif is legible without competing with product photography */
+.chamea-extras:has(.chamea-pattern){margin-top:24px;margin-bottom:35px;padding:14px 20px;background:linear-gradient(90deg,rgba(246,240,233,.2),rgba(246,240,233,.72),rgba(246,240,233,.2))}
+.chamea-extras .chamea-pattern{height:112px;background-size:320px 110px;opacity:.72;mix-blend-mode:normal}
+@media(max-width:600px){.chamea-extras:has(.chamea-pattern){padding:8px 12px}.chamea-extras .chamea-pattern{height:74px;background-size:210px 74px}}
