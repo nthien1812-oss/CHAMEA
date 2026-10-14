@@ -372,3 +372,13 @@ html body #main section.builder-block.type-story .builder-copy .builder-button{
 @media(max-width:700px){
  html body #main section.builder-block.type-story .builder-copy{padding:22px!important}
 }
+
+/* Story card: increase INNER whitespace, not the outside gap. */
+html body #main section.builder-block.type-story .builder-copy{
+ padding:clamp(32px,4.5vw,64px)!important;
+}
+@media(max-width:700px){
+ html body #main section.builder-block.type-story .builder-copy{
+  padding:28px!important;
+ }
+}
