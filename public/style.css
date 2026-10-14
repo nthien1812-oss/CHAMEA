@@ -111,3 +111,11 @@ html.chamea-pattern-on #main .builder-block.type-articles::before,
 html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.27!important}
 html.chamea-pattern-on footer::before{opacity:.40!important}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.27!important}html.chamea-pattern-on footer::before{opacity:.40!important}}
+
+/* CHAMÉA pattern opacity: website 20%, footer 40% (desktop and mobile) */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.20!important}
+html.chamea-pattern-on footer::before{opacity:.40!important}
+@media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.20!important}html.chamea-pattern-on footer::before{opacity:.40!important}}
