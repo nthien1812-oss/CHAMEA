@@ -39,7 +39,7 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 .chamea-extras{max-width:1320px;margin:38px auto;padding:0 24px}.chamea-pattern{height:125px;background-position:center;background-size:contain;background-repeat:repeat-x;pointer-events:none}.chamea-benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 45px;padding:26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.chamea-benefits strong{font-family:Georgia,serif;font-size:19px}.chamea-benefits p{margin:8px 0}.chamea-benefits small{font-weight:700}.product-grid{grid-template-columns:repeat(var(--chamea-desktop-cols,3),minmax(0,1fr))}@media(max-width:1024px){.product-grid{grid-template-columns:repeat(var(--chamea-tablet-cols,2),minmax(0,1fr))}}@media(max-width:600px){.product-grid{grid-template-columns:repeat(var(--chamea-mobile-cols,2),minmax(0,1fr))}.chamea-benefits{grid-template-columns:1fr;gap:14px}.chamea-pattern{height:75px}}
 
 /* CHAMÉA signature motif: quiet curves inspired by bag handles and connection. */
-.chamea-extras{position:relative;isolation:isolate;margin:42px auto 50px;padding:0 24px;max-width:1320px}.chamea-pattern{height:90px;max-width:100%;background-repeat:repeat-x;background-size:320px 110px;background-position:center;pointer-events:none;mix-blend-mode:multiply}.chamea-extras .chamea-benefits{background:linear-gradient(120deg,#fcf8f8,#f8f1f2);border-color:#e6d8dc;border-radius:3px}.chamea-extras .chamea-benefits strong{color:#452c3c}footer{position:relative}footer::before{content:"";display:block;height:55px;margin:0 auto 20px;max-width:1200px;background-image:url("./assets/chamea-signature-pattern.svg");background-size:240px 83px;background-position:center;background-repeat:repeat-x;opacity:.11;pointer-events:none}@media(max-width:600px){.chamea-extras{margin:22px auto 28px;padding:0 16px}.chamea-pattern{height:56px;background-size:200px 69px}footer::before{height:38px;background-size:170px 58px}}
+.chamea-extras{position:relative;isolation:isolate;margin:42px auto 50px;padding:0 24px;max-width:1320px}.chamea-pattern{height:90px;max-width:100%;background-repeat:repeat-x;background-size:320px 110px;background-position:center;pointer-events:none;mix-blend-mode:multiply}.chamea-extras .chamea-benefits{background:linear-gradient(120deg,#fcf8f8,#f8f1f2);border-color:#e6d8dc;border-radius:3px}.chamea-extras .chamea-benefits strong{color:#452c3c}footer{position:relative}footer::before{content:"";display:block;height:55px;margin:0 auto 20px;max-width:1200px;background-image:url("./assets/chamea-sparkle-pattern-v2.svg");background-size:240px 83px;background-position:center;background-repeat:repeat-x;opacity:.11;pointer-events:none}@media(max-width:600px){.chamea-extras{margin:22px auto 28px;padding:0 16px}.chamea-pattern{height:56px;background-size:200px 69px}footer::before{height:38px;background-size:170px 58px}}
 
 /* Ensure CHAMÉA motif is legible without competing with product photography */
 .chamea-extras:has(.chamea-pattern){margin-top:24px;margin-bottom:35px;padding:14px 20px;background:linear-gradient(90deg,rgba(246,240,233,.2),rgba(246,240,233,.72),rgba(246,240,233,.2))}
@@ -69,7 +69,7 @@ html.chamea-pattern-on #main .builder-block .builder-inner{position:relative;z-i
 html.chamea-pattern-on #main .builder-block.type-categories::before,
 html.chamea-pattern-on #main .builder-block.type-story::before,
 html.chamea-pattern-on #main .builder-block.type-articles::before,
-html.chamea-pattern-on #main .builder-block.type-quiz::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:url("./assets/chamea-signature-pattern.svg");background-repeat:repeat;background-size:190px 190px;opacity:.20}
+html.chamea-pattern-on #main .builder-block.type-quiz::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:url("./assets/chamea-sparkle-pattern-v2.svg");background-repeat:repeat;background-size:190px 190px;opacity:.20}
 html.chamea-pattern-on #main .builder-block.type-categories,
 html.chamea-pattern-on #main .builder-block.type-story,
 html.chamea-pattern-on #main .builder-block.type-articles,
@@ -80,7 +80,7 @@ html.chamea-pattern-on #main .builder-block.type-articles .article-card,
 html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{position:relative;background-color:#fefbfd}
 html.chamea-pattern-on #main .builder-block.type-products::before,
 html.chamea-pattern-on #main .builder-block.type-banner::before{content:none!important}
-html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-signature-pattern.svg");background-repeat:repeat;background-size:130px 130px!important;background-position:center;opacity:.32!important;height:100px!important;max-width:none;margin:0 0 20px}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-sparkle-pattern-v2.svg");background-repeat:repeat;background-size:130px 130px!important;background-position:center;opacity:.32!important;height:100px!important;max-width:none;margin:0 0 20px}
 html:not(.chamea-pattern-on) footer::before{display:none}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:135px 135px;opacity:.17}html.chamea-pattern-on footer::before{background-size:100px 100px!important;height:72px!important}}
 
@@ -88,10 +88,10 @@ html:not(.chamea-pattern-on) footer::before{display:none}
 html.chamea-pattern-on #main .builder-block.type-categories::before,
 html.chamea-pattern-on #main .builder-block.type-story::before,
 html.chamea-pattern-on #main .builder-block.type-articles::before,
-html.chamea-pattern-on #main .builder-block.type-quiz::before{background-image:url("./assets/chamea-signature-pattern.svg")!important;background-size:260px 260px!important;background-repeat:repeat!important;opacity:.63!important}
+html.chamea-pattern-on #main .builder-block.type-quiz::before{background-image:url("./assets/chamea-sparkle-pattern-v2.svg")!important;background-size:260px 260px!important;background-repeat:repeat!important;opacity:.63!important}
 html.chamea-pattern-on #main .builder-block.type-categories,
 html.chamea-pattern-on #main .builder-block.type-story,
 html.chamea-pattern-on #main .builder-block.type-articles,
 html.chamea-pattern-on #main .builder-block.type-quiz{background-color:#f9f0ef!important}
-html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-signature-pattern.svg")!important;background-size:180px 180px!important;opacity:.55!important;height:96px!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-sparkle-pattern-v2.svg")!important;background-size:180px 180px!important;opacity:.55!important;height:96px!important}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:190px 190px!important;opacity:.55!important}html.chamea-pattern-on footer::before{background-size:135px 135px!important;height:65px!important}}
