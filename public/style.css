@@ -399,3 +399,25 @@ html body #main section.builder-block.type-story .builder-copy{
 @media(max-width:420px){
  #main .builder-block[data-home-block="gift"] .chamea-heading-phrase{white-space:normal}
 }
+
+/* Boutique catalog: vertical plum-highlighted filter sidebar. */
+.chamea-catalog-layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:38px;align-items:start;padding-top:28px}
+.chamea-catalog-results{min-width:0}
+.chamea-filter-sidebar{padding:10px 0 26px;position:sticky;top:110px;align-self:start;background:rgba(254,251,253,.96)}
+.chamea-filter-heading{font-size:11px;font-weight:700;letter-spacing:.13em;color:var(--plum);margin-bottom:22px}
+.chamea-filter-group{border:0;border-bottom:1px solid var(--line);padding:0 0 19px;margin:0 0 21px;min-width:0}
+.chamea-filter-group legend{font-size:10px;letter-spacing:.13em;font-weight:700;color:var(--plum);padding:0;margin-bottom:10px}
+.chamea-filter-option{display:block;position:relative;margin:3px 0;cursor:pointer;font-size:12px;line-height:1.45;color:#755f6a}
+.chamea-filter-option input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.chamea-filter-option span{display:block;padding:9px 12px;transition:background .15s,color .15s}
+.chamea-filter-option:hover span{background:#f0e6e9;color:var(--plum)}
+.chamea-filter-option.is-selected span,.chamea-filter-option input:checked+span{background:var(--plum);color:#fff;font-weight:600}
+.chamea-filter-option input:focus-visible+span{outline:2px solid #b79574;outline-offset:2px}
+.chamea-filter-reset{margin-top:2px;font-size:12px}
+.chamea-catalog-results .results-bar{margin:0 0 24px;padding-bottom:15px;border-bottom:1px solid var(--line)}
+@media(max-width:850px){
+ .chamea-catalog-layout{display:block;padding-top:18px}
+ .chamea-filter-sidebar{display:none}
+ .chamea-catalog-results .results-bar{margin:0 0 18px}
+ .chamea-catalog-results .mobile-filter{display:inline-flex}
+}
