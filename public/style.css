@@ -83,3 +83,15 @@ html.chamea-pattern-on #main .builder-block.type-banner::before{content:none!imp
 html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-signature-pattern.svg");background-repeat:repeat;background-size:130px 130px!important;background-position:center;opacity:.32!important;height:100px!important;max-width:none;margin:0 0 20px}
 html:not(.chamea-pattern-on) footer::before{display:none}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:135px 135px;opacity:.17}html.chamea-pattern-on footer::before{background-size:100px 100px!important;height:72px!important}}
+
+/* CHAMÉA 2026 refined four-point sparkle identity: delicate, structured and integrated */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{background-image:url("./assets/chamea-signature-pattern.svg")!important;background-size:260px 260px!important;background-repeat:repeat!important;opacity:.63!important}
+html.chamea-pattern-on #main .builder-block.type-categories,
+html.chamea-pattern-on #main .builder-block.type-story,
+html.chamea-pattern-on #main .builder-block.type-articles,
+html.chamea-pattern-on #main .builder-block.type-quiz{background-color:#f9f0ef!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-signature-pattern.svg")!important;background-size:180px 180px!important;opacity:.55!important;height:96px!important}
+@media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:190px 190px!important;opacity:.55!important}html.chamea-pattern-on footer::before{background-size:135px 135px!important;height:65px!important}}
