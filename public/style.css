@@ -45,3 +45,9 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 .chamea-extras:has(.chamea-pattern){margin-top:24px;margin-bottom:35px;padding:14px 20px;background:linear-gradient(90deg,rgba(246,240,233,.2),rgba(246,240,233,.72),rgba(246,240,233,.2))}
 .chamea-extras .chamea-pattern{height:112px;background-size:320px 110px;opacity:.72;mix-blend-mode:normal}
 @media(max-width:600px){.chamea-extras:has(.chamea-pattern){padding:8px 12px}.chamea-extras .chamea-pattern{height:74px;background-size:210px 74px}}
+
+/* CHAMÉA pattern contrast boost — stronger plum lines, fully visible */
+.chamea-extras:has(.chamea-pattern){background:#f6ecee!important;border-top:1px solid #dbc7ce;border-bottom:1px solid #dbc7ce}
+.chamea-extras .chamea-pattern{opacity:1!important;mix-blend-mode:normal!important;filter:contrast(1.5)!important;height:140px!important;background-size:370px 128px!important}
+footer::before{opacity:.45!important;height:76px!important;background-size:280px 96px!important}
+@media(max-width:600px){.chamea-extras .chamea-pattern{height:92px!important;background-size:245px 85px!important}footer::before{height:54px!important;background-size:200px 70px!important}}
