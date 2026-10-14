@@ -81,7 +81,7 @@
     {
       "id": "products",
       "type": "products",
-      "title": "Những thiết kế dành cho bạn",
+      "title": "Những thiết kế nổi bật",
       "subtitle": "",
       "eyebrow": "MỖI THIẾT KẾ, MỘT NÉT RIÊNG",
       "image": "",
@@ -101,7 +101,7 @@
       "bg": "#FEFBFD",
       "color": "#3C2535",
       "columns": 3,
-      "limit": 3,
+      "limit": 10,
       "showText": true,
       "autoplay": false,
       "loop": false,
