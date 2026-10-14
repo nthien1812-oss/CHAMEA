@@ -439,3 +439,8 @@ html body #main section.builder-block.type-story .builder-copy{
 .chamea-about-closing{text-align:center;background:#f2e7e5;padding:100px 0}.chamea-about-closing .container{max-width:850px}.chamea-about-closing p:not(.eyebrow){max-width:670px;margin:0 auto 28px;line-height:1.9}.chamea-about-closing-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
 @media(max-width:850px){.chamea-about-hero-inner,.chamea-about-intro-grid,.chamea-about-design{grid-template-columns:1fr;gap:35px}.chamea-about-hero{padding:45px 0}.chamea-about-intro,.chamea-about-values,.chamea-about-design,.chamea-about-guide,.chamea-about-selection,.chamea-about-closing{padding-top:65px;padding-bottom:65px}.chamea-about-value-grid{grid-template-columns:1fr}.chamea-about-value-grid article{min-height:0}.chamea-about-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.chamea-about-hero-copy h1{font-size:47px}.chamea-about-guide-grid{grid-template-columns:1fr;gap:8px}.chamea-about-products{grid-template-columns:1fr;gap:20px}.chamea-about-hero-art{padding:12px 12px 30px}.chamea-about-intro h2,.chamea-about-section-heading h2,.chamea-about-design h2,.chamea-about-closing h2{font-size:35px}}
+
+/* Payment QR image display */
+#qr-details{text-align:center;padding:26px 20px}
+#qr-details .chamea-payment-qr-image{display:block;width:min(100%,360px);height:auto;margin:0 auto 18px;object-fit:contain;border-radius:10px}
+#qr-details p{line-height:1.7}
