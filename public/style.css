@@ -138,3 +138,9 @@ html.chamea-pattern-on.chamea-inner-page #main{position:relative;isolation:isola
 html.chamea-pattern-on.chamea-inner-page #main::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url("./assets/chamea-sparkle-pattern-v2.svg");background-size:260px 260px;background-repeat:repeat;opacity:.20}
 html.chamea-pattern-on.chamea-inner-page #main .product-visual{background:var(--cream)}
 @media(max-width:700px){html.chamea-pattern-on.chamea-inner-page #main::before{background-size:190px 190px}}
+
+/* CHAMÉA secondary pages: render motif above the background, below all content. */
+html.chamea-pattern-on.chamea-inner-page #main{position:relative;isolation:isolate}
+html.chamea-pattern-on.chamea-inner-page #main::before{z-index:0!important;opacity:.20!important}
+html.chamea-pattern-on.chamea-inner-page #main>*{position:relative;z-index:1}
+html.chamea-pattern-on footer::before{opacity:.40!important}
