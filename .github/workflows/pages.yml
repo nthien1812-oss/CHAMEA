@@ -52,6 +52,9 @@ jobs:
           <div id="toast" role="status" aria-live="polite"></div>
           <script src="./data.js"></script><script src="./editor-defaults.js"></script>
           <script src="./app.js?v=${{ github.run_id }}" defer></script></body></html>''')
+          # Serve client-side routes via GitHub Pages fallback, using the project base path.
+          index=(root/'index.html').read_text()
+          (root/'404.html').write_text(index.replace('<head>', '<head><base href="/CHAMEA/">'))
           (root/'.nojekyll').touch()
           PY
       - uses: actions/configure-pages@v5
