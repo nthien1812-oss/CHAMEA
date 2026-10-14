@@ -382,3 +382,20 @@ html body #main section.builder-block.type-story .builder-copy{
   padding:28px!important;
  }
 }
+
+/* Intentional Vietnamese heading line breaks; avoid orphaned final words. */
+#main .builder-block .builder-copy h2,
+#main .page-head h1,
+#main .section h2,
+#main .builder-block h2{
+ text-wrap:balance;
+ overflow-wrap:normal;
+ word-break:normal;
+}
+#main .builder-block[data-home-block="gift"] .chamea-heading-phrase{
+ display:inline-block;
+ white-space:nowrap;
+}
+@media(max-width:420px){
+ #main .builder-block[data-home-block="gift"] .chamea-heading-phrase{white-space:normal}
+}
