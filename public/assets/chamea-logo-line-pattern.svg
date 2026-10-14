@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
 <defs>
-<g id="logo" transform="translate(-225 -191) scale(.42)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<g id="logo" transform="translate(-91 -81) scale(.42)" fill="none" stroke-linecap="round" stroke-linejoin="round">
 <!-- CHAMÉA C: a single elegant continuous outline, not doubled traced contours -->
 <path d="M398 78 C382 46 343 24 302 24 C222 24 151 80 119 154 C93 215 113 279 160 320 C211 364 276 369 327 345 C370 325 401 285 412 251" stroke="#b98e98" stroke-width="3.6"/>
 <!-- Only ONE sweeping ribbon line across the C -->
