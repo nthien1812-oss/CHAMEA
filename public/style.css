@@ -215,3 +215,12 @@ html.chamea-pattern-on .chamea-pattern{
  html.chamea-pattern-on.chamea-inner-page #main::before{background-size:150px 150px!important}
  html.chamea-pattern-on footer::before{background-size:112px 112px!important}
 }
+
+/* Exact silhouette contours traced from CHAMÉA official brand-book logo, not an invented C. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
+html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=official-contours4")!important}
