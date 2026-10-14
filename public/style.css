@@ -51,3 +51,9 @@ h1,h2,h3,.builder-block .builder-copy h2,.logo-word{font-family:"Playfair Displa
 .chamea-extras .chamea-pattern{opacity:1!important;mix-blend-mode:normal!important;filter:contrast(1.5)!important;height:140px!important;background-size:370px 128px!important}
 footer::before{opacity:.45!important;height:76px!important;background-size:280px 96px!important}
 @media(max-width:600px){.chamea-extras .chamea-pattern{height:92px!important;background-size:245px 85px!important}footer::before{height:54px!important;background-size:200px 70px!important}}
+
+/* CHAMÉA signature motif — high contrast, clearly visible */
+.chamea-extras .chamea-pattern{opacity:1!important;mix-blend-mode:normal!important;background-size:320px 110px!important;filter:contrast(1.35)}
+.chamea-extras:has(.chamea-pattern){background:#f7edf0!important;border-top:1px solid #e3d1d9;border-bottom:1px solid #e3d1d9}
+footer::before{opacity:.46!important}
+@media(max-width:600px){.chamea-extras .chamea-pattern{background-size:210px 74px!important}}
