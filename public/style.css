@@ -322,7 +322,6 @@ html.chamea-pattern-on #main .builder-block.type-quiz::before{
 #main .builder-block.type-image[style*="#3C2535"] .builder-copy .eyebrow,
 #main .builder-block.type-image[style*="#3c2535"] .builder-copy .eyebrow{color:#fefbfd!important;opacity:.85!important}
 /* Spacious white text panels: padding belongs inside the panel, not flush against its edge. */
-html.chamea-pattern-on #main .builder-block.type-story .builder-copy,
 html.chamea-pattern-on #main .builder-block.type-articles .article-card,
 html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{
  padding:clamp(22px,3vw,44px)!important;
@@ -334,7 +333,12 @@ html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{
  box-sizing:border-box;
 }
 @media(max-width:700px){
- html.chamea-pattern-on #main .builder-block.type-story .builder-copy,
- html.chamea-pattern-on #main .builder-block.type-articles .article-card,
+  html.chamea-pattern-on #main .builder-block.type-articles .article-card,
  html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{padding:22px!important}
 }
+
+/* Restore original story panel layout, typography and button styling. */
+html.chamea-pattern-on #main .builder-block.type-story .builder-copy{padding:24px 0!important;color:var(--plum)!important}
+html.chamea-pattern-on #main .builder-block.type-story .builder-copy h2{color:var(--plum)!important;-webkit-text-fill-color:var(--plum)!important}
+html.chamea-pattern-on #main .builder-block.type-story .builder-button{background:transparent!important;color:var(--plum)!important;border-color:currentColor!important}
+@media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-story .builder-copy{padding:15px 0!important}}
