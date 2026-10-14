@@ -1,4 +1,4 @@
-(async()=>{if(location.pathname==='/studio')return;try{const response=await fetch('/api/content',{cache:'no-store'});if(response.ok){const live=await response.json();if(live?.store&&live?.editor){window.CHAMEA=live.store;window.EDITOR_DEFAULTS=live.editor}}}catch(e){}if(!window.CHAMEA){document.getElementById('main').innerHTML='<p style="padding:40px">Không tải được nội dung. Vui lòng tải lại trang.</p>';return;}
+(async()=>{if(location.pathname==='/studio')return;try{const response=await fetch('/api/content',{cache:'no-store'});if(response.ok){const live=await response.json();if(live?.store&&live?.editor){window.CHAMEA=live.store;window.EDITOR_DEFAULTS=live.editor}}}catch(e){}try{const catalog=await fetch('./products.json',{cache:'no-store'});if(catalog.ok){const items=await catalog.json();if(Array.isArray(items)&&window.CHAMEA)window.CHAMEA.products=items}}catch(e){}if(!window.CHAMEA){document.getElementById('main').innerHTML='<p style="padding:40px">Không tải được nội dung. Vui lòng tải lại trang.</p>';return;}
 'use strict';
 let D=window.CHAMEA;
 const $=(s,r=document)=>r.querySelector(s);
@@ -7,7 +7,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const money=n=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(n);
 const product=id=>D.products.find(p=>p.id===id);
 const price=p=>Math.round(p.price*(D.campaign.enabled?1-D.campaign.discount:1));
-const asset=name=>name.startsWith('/media/')?name:'/assets/'+name;
+const asset=name=>name.startsWith('/CHAMEA/assets/')?name:name.startsWith('/media/')?name:'/assets/'+name;
 function stored(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 function persist(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{toast('Trình duyệt không cho lưu dữ liệu. Giỏ hàng chỉ được giữ trong phiên này.')}}
 let rawCart=stored('chamea-cart-v1',[]),rawFav=stored('chamea-favs-v1',[]);
