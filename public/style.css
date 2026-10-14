@@ -342,3 +342,33 @@ html.chamea-pattern-on #main .builder-block.type-story .builder-copy{padding:24p
 html.chamea-pattern-on #main .builder-block.type-story .builder-copy h2{color:var(--plum)!important;-webkit-text-fill-color:var(--plum)!important}
 html.chamea-pattern-on #main .builder-block.type-story .builder-button{background:transparent!important;color:var(--plum)!important;border-color:currentColor!important}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-story .builder-copy{padding:15px 0!important}}
+
+/* Targeted story recovery: guarantee readable content in the pale story card. */
+html body #main section.builder-block.type-story .builder-copy{
+ color:#3c2535!important;
+ background-color:#fefbfd!important;
+ padding:clamp(24px,3vw,42px)!important;
+ opacity:1!important;
+ visibility:visible!important;
+}
+html body #main section.builder-block.type-story .builder-copy h2,
+html body #main section.builder-block.type-story .builder-copy p,
+html body #main section.builder-block.type-story .builder-copy .builder-paragraph,
+html body #main section.builder-block.type-story .builder-copy .eyebrow{
+ color:#3c2535!important;
+ -webkit-text-fill-color:#3c2535!important;
+ opacity:1!important;
+ visibility:visible!important;
+}
+html body #main section.builder-block.type-story .builder-copy .builder-button{
+ display:inline-flex!important;
+ color:#3c2535!important;
+ -webkit-text-fill-color:#3c2535!important;
+ background:transparent!important;
+ border:1px solid #3c2535!important;
+ opacity:1!important;
+ visibility:visible!important;
+}
+@media(max-width:700px){
+ html body #main section.builder-block.type-story .builder-copy{padding:22px!important}
+}
