@@ -62,3 +62,24 @@ footer::before{opacity:.46!important}
 .chamea-extras .chamea-pattern{display:flex!important;align-items:center;justify-content:center;width:100%;height:155px!important;overflow:hidden;background:none!important;filter:none!important;opacity:1!important}
 .chamea-extras .chamea-motif-svg{display:block;width:100%;height:155px;min-width:650px;overflow:visible}
 @media(max-width:600px){.chamea-extras .chamea-pattern{height:115px!important}.chamea-extras .chamea-motif-svg{height:115px;min-width:580px}}
+
+/* CHAMÉA brand pattern system: repeat across site, not an isolated decorative banner. */
+html.chamea-pattern-on #main .builder-block{position:relative;isolation:isolate}
+html.chamea-pattern-on #main .builder-block .builder-inner{position:relative;z-index:1}
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:url("./assets/chamea-signature-pattern.svg");background-repeat:repeat;background-size:190px 190px;opacity:.20}
+html.chamea-pattern-on #main .builder-block.type-categories,
+html.chamea-pattern-on #main .builder-block.type-story,
+html.chamea-pattern-on #main .builder-block.type-articles,
+html.chamea-pattern-on #main .builder-block.type-quiz{background-color:#faf3f5!important}
+html.chamea-pattern-on #main .builder-block.type-categories .category,
+html.chamea-pattern-on #main .builder-block.type-story .builder-copy,
+html.chamea-pattern-on #main .builder-block.type-articles .article-card,
+html.chamea-pattern-on #main .builder-block.type-quiz #quiz-host{position:relative;background-color:#fefbfd}
+html.chamea-pattern-on #main .builder-block.type-products::before,
+html.chamea-pattern-on #main .builder-block.type-banner::before{content:none!important}
+html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-signature-pattern.svg");background-repeat:repeat;background-size:130px 130px!important;background-position:center;opacity:.32!important;height:100px!important;max-width:none;margin:0 0 20px}
+html:not(.chamea-pattern-on) footer::before{display:none}
+@media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:135px 135px;opacity:.17}html.chamea-pattern-on footer::before{background-size:100px 100px!important;height:72px!important}}
