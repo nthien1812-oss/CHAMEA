@@ -95,3 +95,11 @@ html.chamea-pattern-on #main .builder-block.type-articles,
 html.chamea-pattern-on #main .builder-block.type-quiz{background-color:#f9f0ef!important}
 html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-sparkle-pattern-v2.svg")!important;background-size:180px 180px!important;opacity:.55!important;height:96px!important}
 @media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{background-size:190px 190px!important;opacity:.55!important}html.chamea-pattern-on footer::before{background-size:135px 135px!important;height:65px!important}}
+
+/* Softer CHAMÉA sparkle pattern — preserve shape, reduce contrast */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.34!important}
+html.chamea-pattern-on footer::before{opacity:.27!important}
+@media(max-width:700px){html.chamea-pattern-on #main .builder-block.type-categories::before,html.chamea-pattern-on #main .builder-block.type-story::before,html.chamea-pattern-on #main .builder-block.type-articles::before,html.chamea-pattern-on #main .builder-block.type-quiz::before{opacity:.30!important}html.chamea-pattern-on footer::before{opacity:.24!important}}
