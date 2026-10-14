@@ -186,3 +186,32 @@ html.chamea-pattern-on #main .builder-block.type-quiz::before,
 html.chamea-pattern-on.chamea-inner-page #main::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
 html.chamea-pattern-on footer::before{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
 html.chamea-pattern-on .chamea-pattern{background-image:url("./assets/chamea-logo-line-pattern.svg?v=brandbook2")!important}
+
+/* Equal-size CHAMÉA monograms, slightly larger and stronger without changing layout. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before{
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=uniform3")!important;
+ background-size:205px 205px!important;
+ opacity:.26!important;
+}
+html.chamea-pattern-on footer::before{
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=uniform3")!important;
+ background-size:145px 145px!important;
+ opacity:.46!important;
+}
+html.chamea-pattern-on .chamea-pattern{
+ background-image:url("./assets/chamea-logo-line-pattern.svg?v=uniform3")!important;
+ background-size:145px 145px!important;
+ opacity:.26!important;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on #main .builder-block.type-categories::before,
+ html.chamea-pattern-on #main .builder-block.type-story::before,
+ html.chamea-pattern-on #main .builder-block.type-articles::before,
+ html.chamea-pattern-on #main .builder-block.type-quiz::before,
+ html.chamea-pattern-on.chamea-inner-page #main::before{background-size:150px 150px!important}
+ html.chamea-pattern-on footer::before{background-size:112px 112px!important}
+}
