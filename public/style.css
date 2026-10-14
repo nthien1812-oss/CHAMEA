@@ -144,11 +144,3 @@ html.chamea-pattern-on.chamea-inner-page #main{position:relative;isolation:isola
 html.chamea-pattern-on.chamea-inner-page #main::before{z-index:0!important;opacity:.20!important}
 html.chamea-pattern-on.chamea-inner-page #main>*{position:relative;z-index:1}
 html.chamea-pattern-on footer::before{opacity:.40!important}
-
-/* CHAMÉA verified: two truly different collage frames, not object-position on same image */
-.chamea-angle-card[data-collage="1"].angle-active::before{content:"";position:absolute;inset:22px;z-index:1;pointer-events:none;background-image:var(--chamea-angle-image);background-size:300% 100%;background-position:var(--chamea-angle-position,0%) center;background-repeat:no-repeat}
-.chamea-angle-card[data-collage="1"].angle-active .chamea-angle-indicator{z-index:2}
-/* Pattern remains visible on secondary pages even when their section backgrounds are opaque */
-html.chamea-pattern-on.chamea-inner-page #main::before{z-index:4!important;opacity:.20!important;background-size:260px 260px;mix-blend-mode:multiply}
-html.chamea-pattern-on.chamea-inner-page #main>*{z-index:auto}
-html.chamea-pattern-on.chamea-inner-page #main .product-visual,html.chamea-pattern-on.chamea-inner-page #main img{position:relative;z-index:5}
