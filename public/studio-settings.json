@@ -334,7 +334,7 @@
   "pages": {},
   "site": {
     "patternImage": "chamea-signature-pattern.svg",
-    "patternOpacity": 72,
+    "patternOpacity": 100,
     "patternEnabled": 1
   }
 }
