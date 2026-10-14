@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520"><defs><g id="logo" transform="translate(-225 -191) scale(.42)"><path d="M422,239 396,267 374,306 351,331 333,344 303,355 286,356 268,353 234,336 200,302 180,268 133,295 151,315 167,328 206,349 251,360 285,361 310,358 347,344 369,329 386,313 409,280 417,261Z" fill="none" stroke="#b98e98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M402,162 386,148 366,139 352,136 327,136 313,139 285,151 265,164 204,220 233,221 291,167 311,154 328,147 345,144 366,145 389,154 401,164Z" fill="none" stroke="#b98e98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M392,57 376,42 354,30 329,23 291,21 256,26 226,35 196,49 169,68 148,89 129,115 114,144 106,168 102,194 103,223 109,250 121,277 148,263 172,246 168,221 168,191 177,143 188,115 203,89 219,68 241,47 259,35 277,28 311,24 341,29 370,42 391,61 403,81 403,75Z" fill="none" stroke="#b98e98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M380,177 378,189 371,204 359,212 342,216 360,221 372,230 381,256 390,229 404,220 419,216 393,207 386,197Z" fill="none" stroke="#c6a083" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M132,109 98,131 62,161 34,192 19,216 12,237 14,262 24,279 43,293 62,299 91,301 135,292 178,269 232,222 203,221 156,259 120,279 101,286 81,290 59,290 44,285 32,274 26,260 25,242 29,226 39,206 68,170 96,143 123,122Z" fill="none" stroke="#c6a083" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g></defs><use href="#logo" transform="translate(130 130)"/><use href="#logo" transform="translate(390 130)"/><use href="#logo" transform="translate(130 390)"/><use href="#logo" transform="translate(390 390)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+<defs>
+<g id="logo" transform="translate(-225 -191) scale(.42)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<!-- CHAMÉA C: a single elegant continuous outline, not doubled traced contours -->
+<path d="M398 78 C382 46 343 24 302 24 C222 24 151 80 119 154 C93 215 113 279 160 320 C211 364 276 369 327 345 C370 325 401 285 412 251" stroke="#b98e98" stroke-width="3.6"/>
+<!-- Only ONE sweeping ribbon line across the C -->
+<path d="M127 115 C94 137 49 180 25 222 C9 250 17 278 42 291 C83 314 140 278 194 231 C239 193 283 143 326 141 C361 136 385 147 401 163" stroke="#c6a083" stroke-width="3.5"/>
+<!-- Original four-point CHAMÉA sparkle -->
+<path d="M381 181 C379 205 367 214 344 217 C367 221 378 232 381 255 C384 231 396 220 417 217 C395 214 384 204 381 181Z" stroke="#c6a083" stroke-width="2.9"/>
+</g>
+</defs>
+<use href="#logo" transform="translate(130 130)"/>
+<use href="#logo" transform="translate(390 130)"/>
+<use href="#logo" transform="translate(130 390)"/>
+<use href="#logo" transform="translate(390 390)"/>
+</svg>
