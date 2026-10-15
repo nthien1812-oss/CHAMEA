@@ -653,3 +653,63 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
   .nav { font-size: 14px !important; font-weight: 600 !important; letter-spacing: .7px !important; gap: clamp(12px, 1.8vw, 26px) !important; }
   .nav a { font-size: inherit !important; }
 }
+
+/* CHAMÉA / About — premium editorial brand story */
+#main .chamea-story{color:#3b2834;overflow:hidden;background:#fffdfb}
+#main .chamea-story h1,#main .chamea-story h2,#main .chamea-story h3{font-family:'Playfair Display',Georgia,serif!important;font-weight:700!important}
+.chamea-story-kicker{display:block;font-family:Montserrat,Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2.8px;text-transform:uppercase;color:#866878;line-height:1.8}
+.chamea-story-hero{min-height:640px;display:grid;grid-template-columns:52% 48%;background:linear-gradient(120deg,#f9f4ef,#f2e6e3)}
+.chamea-story-hero-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(45px,7vw,125px) clamp(28px,7vw,120px);position:relative}
+.chamea-story-rule{display:block;width:66px;height:1px;background:#a77e8d;margin:25px 0 30px}
+#main .chamea-story-hero h1{font-size:clamp(45px,5.3vw,86px);line-height:1.12;letter-spacing:-1.8px;margin:0 0 27px}
+#main .chamea-story h1 em,#main .chamea-story h2 em,.chamea-story-manifesto em{font-weight:400;color:#9e697f}
+.chamea-story-hero-copy>p{font-size:15px;line-height:2;max-width:510px;color:#66535d;margin:0 0 32px}
+.chamea-story-text-link{font-size:12px;letter-spacing:1px;font-weight:700;color:#583949;text-decoration:none;border-bottom:1px solid #583949;padding-bottom:9px}
+.chamea-story-text-link span{margin-left:12px}
+.chamea-story-hero-visual{position:relative;min-height:580px;overflow:hidden;background:#eadbd6}
+.chamea-story-hero-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center}
+.chamea-story-vertical{position:absolute;right:22px;top:38px;writing-mode:vertical-rl;font-size:10px;letter-spacing:3px;font-weight:700;color:#553a47}
+.chamea-story-image-index{position:absolute;left:30px;bottom:28px;font-size:10px;font-weight:700;letter-spacing:2px;color:#553a47;background:#f9f3ede0;padding:10px 14px}
+.chamea-story-manifesto{text-align:center;padding-top:clamp(95px,12vw,165px);padding-bottom:clamp(95px,12vw,165px);max-width:980px}
+#main .chamea-story-manifesto>p{font-family:'Playfair Display',Georgia,serif;font-size:clamp(30px,3.5vw,53px);font-weight:700;line-height:1.4;margin:26px auto}
+.chamea-story-manifesto-sign{font-size:10px;letter-spacing:2.2px;font-weight:700;color:#9d7b8b}
+.chamea-story-chapter{display:grid;grid-template-columns:1fr 1fr;gap:clamp(45px,8vw,135px);align-items:center;padding-bottom:clamp(95px,12vw,170px)}
+.chamea-story-chapter-photo{position:relative;background:#f1e8e2;min-height:540px}
+.chamea-story-chapter-photo img{display:block;width:100%;height:100%;min-height:540px;object-fit:cover}
+.chamea-story-chapter-photo>span{position:absolute;bottom:24px;left:24px;background:#fffaf4;padding:12px 17px;font-size:10px;font-weight:700;letter-spacing:2px}
+#main .chamea-story-chapter h2,#main .chamea-story-section-head h2,#main .chamea-story-finale h2{font-size:clamp(35px,4.1vw,63px);line-height:1.2;letter-spacing:-.6px;margin:20px 0 25px}
+.chamea-story-chapter-copy>p,.chamea-story-finale-copy>p{font-size:14px;line-height:2.05;color:#675862;margin:0 0 17px}
+.chamea-story-quote{border-left:2px solid #b18a99;padding:13px 0 13px 24px;margin-top:33px;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:22px;color:#7b5266}
+.chamea-story-values{background:#392633;color:#fff8f4;padding:clamp(80px,10vw,135px) 0}
+.chamea-story-values .chamea-story-kicker{color:#d7b7c3}
+.chamea-story-section-head{text-align:center;max-width:800px;margin:0 auto 55px}
+.chamea-story-section-head>p{font-size:14px;line-height:1.9;color:#77656f;max-width:650px;margin:0 auto}
+.chamea-story-values .chamea-story-section-head>p{color:#e4d4db}
+#main .chamea-story-values h2,#main .chamea-story-values h3{color:#fff8f4}
+.chamea-story-values-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #765b6a}
+.chamea-story-values-grid article{padding:44px 36px 10px;border-right:1px solid #765b6a}
+.chamea-story-values-grid article:last-child{border-right:0}
+.chamea-story-values-grid article>span{color:#d6b1c0;font-size:11px;letter-spacing:2px}
+#main .chamea-story-values-grid h3{font-size:30px;margin:24px 0 14px}
+.chamea-story-values-grid p{font-size:13px;line-height:1.9;color:#e4d4db}
+.chamea-story-collections{padding-top:clamp(85px,11vw,155px);padding-bottom:clamp(85px,11vw,155px)}
+.chamea-story-collections-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.chamea-story-collection{display:block;color:inherit;text-decoration:none;background:#f8f1ed;transition:transform .25s ease,box-shadow .25s ease}
+.chamea-story-collection:hover{transform:translateY(-5px);box-shadow:0 18px 45px #3a26301c}
+.chamea-story-collection.steel{background:#eee9e7}
+.chamea-story-collection-image{aspect-ratio:1.25;overflow:hidden}
+.chamea-story-collection-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.chamea-story-collection:hover img{transform:scale(1.035)}
+.chamea-story-collection-info{padding:30px 35px 38px}
+.chamea-story-collection-info>span{font-size:10px;letter-spacing:2px;font-weight:700;color:#8c6576}
+#main .chamea-story-collection-info h3{font-size:35px;margin:12px 0}
+.chamea-story-collection-info p{font-size:13px;line-height:1.85;color:#6c5963;margin:0 0 20px}
+.chamea-story-collection-info strong{font-size:12px;letter-spacing:.5px;border-bottom:1px solid;padding-bottom:5px}
+.chamea-story-finale{display:grid;grid-template-columns:45% 55%;background:#f3e7e5;min-height:510px}
+.chamea-story-finale-image{min-height:500px;background:#e5d9d4}
+.chamea-story-finale-image img{width:100%;height:100%;object-fit:cover}
+.chamea-story-finale-copy{align-self:center;padding:clamp(40px,7vw,120px)}
+.chamea-story-button{display:inline-flex;gap:25px;align-items:center;margin-top:20px;background:#442b3b;color:#fff!important;padding:17px 25px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.5px;transition:background .2s}
+.chamea-story-button:hover{background:#70465d}
+@media(max-width:900px){.chamea-story-hero{grid-template-columns:1fr}.chamea-story-hero-copy{padding:75px 7vw}.chamea-story-hero-visual{min-height:460px}.chamea-story-chapter{gap:35px}.chamea-story-chapter-photo,.chamea-story-chapter-photo img{min-height:420px}.chamea-story-values-grid article{padding:30px 18px}.chamea-story-finale-copy{padding:45px}}
+@media(max-width:650px){.chamea-story-hero-copy{padding:65px 22px 55px}#main .chamea-story-hero h1{font-size:clamp(42px,11vw,62px)}.chamea-story-hero-visual{min-height:390px}.chamea-story-manifesto{padding:80px 22px}.chamea-story-chapter{grid-template-columns:1fr;padding-bottom:85px}.chamea-story-chapter-photo{order:2}.chamea-story-chapter-copy{order:1}.chamea-story-chapter-photo,.chamea-story-chapter-photo img{min-height:350px}.chamea-story-values-grid{grid-template-columns:1fr}.chamea-story-values-grid article{border-right:0;border-bottom:1px solid #765b6a;padding:26px 4px}.chamea-story-values-grid article:last-child{border-bottom:0}.chamea-story-collections-grid{grid-template-columns:1fr;gap:22px}.chamea-story-section-head{margin-bottom:35px}.chamea-story-collection-info{padding:25px}.chamea-story-finale{grid-template-columns:1fr}.chamea-story-finale-image{min-height:350px;max-height:440px}.chamea-story-finale-copy{padding:55px 24px 70px}.chamea-story-kicker{font-size:9px;letter-spacing:1.9px}}
