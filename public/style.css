@@ -484,3 +484,13 @@ html body #main section.builder-block.type-story .builder-copy{
 #main .product-layout .buy-info .chamea-detail-price .chamea-sale-saving{display:inline-flex!important;align-items:center;padding:8px 12px;background:#f8e8ed;color:#873b58;border-radius:4px;font-size:12px;font-weight:700;line-height:1.4}
 #main .product-layout .buy-info .chamea-detail-price + .small{margin-top:12px}
 @media(max-width:700px){#main .product-layout .buy-info .chamea-detail-discount{font-size:13px;padding:9px 12px}#main .product-layout .buy-info .chamea-detail-price .chamea-current-price{font-size:27px!important}#main .product-layout .buy-info .chamea-detail-price .chamea-sale-saving{font-size:11px}}
+
+/* Refined editorial sale label: compact, quiet luxury, without covering the bag. */
+#main .product .product-visual .chamea-sale-badge{top:11px!important;left:11px!important;min-width:0!important;min-height:0!important;width:auto!important;height:auto!important;display:inline-flex!important;flex-direction:row!important;align-items:center!important;gap:5px!important;padding:6px 9px!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:2px!important;background:#67364d!important;box-shadow:0 2px 7px rgba(60,37,53,.12)!important;line-height:1!important;white-space:nowrap!important}
+#main .product .chamea-sale-kicker{font-size:8px!important;font-weight:600!important;letter-spacing:.08em!important;color:#f4dce5!important}
+#main .product .chamea-sale-badge strong{font-size:13px!important;font-weight:750!important;letter-spacing:-.015em!important;line-height:1!important}
+#main .product .chamea-sale-price{gap:3px 8px!important;margin:7px 0 3px!important}
+#main .product .chamea-sale-price .chamea-current-price{font-size:clamp(15px,1.25vw,19px)!important;font-weight:750!important}
+#main .product .chamea-sale-price del{font-size:10px!important}
+#main .product .chamea-sale-saving{padding:3px 6px!important;border-radius:2px!important;font-size:9px!important;background:#f7ebef!important;font-weight:600!important}
+@media(max-width:700px){#main .product .product-visual .chamea-sale-badge{top:8px!important;left:8px!important;padding:5px 7px!important;gap:4px!important}#main .product .chamea-sale-kicker{font-size:7px!important}#main .product .chamea-sale-badge strong{font-size:12px!important}#main .product .chamea-sale-price .chamea-current-price{font-size:16px!important}#main .product .chamea-sale-saving{font-size:8px!important}}
