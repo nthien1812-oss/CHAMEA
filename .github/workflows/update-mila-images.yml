@@ -1,0 +1,43 @@
+name: Replace Mila ivory gallery from uploaded ZIP
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-mila-images.yml'
+permissions:
+  contents: write
+jobs:
+  replace-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Extract and replace five Mila ivory photos
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          root=Path('public/assets')
+          z=zipfile.ZipFile(root/'Trang [15-10-2026 14_05].zip')
+          source={name[:18]:name for name in z.namelist()}
+          mapping={
+            'mila_kem-nga_01_chinh-dien.jpeg':'2aobor5eayprgz8x0igudjzcvgw5zhis1asmuwqi1.jpg',
+            'mila_kem-nga_02_nghieng-trai.jpeg':'2aobor5eazewwl6wmehdiaetq08e1phnza7e5yfo2.jpg',
+            'mila_kem-nga_03_mat-sau.jpeg':'2aobor5eazp7kbksgihddb474xnh5rptvvcvlfic3.jpg',
+            'mila_kem-nga_04_can-chi-tiet.jpeg':'2aobor5eb02ls70nqyrhotipyf3qwvvbxzs0rc0g4.jpg',
+            'mila_kem-nga_05_hop-qua.jpeg':'2aobor5eb0gqq2gibf2bac2yobchesbbgukj9iwm5.jpg'
+          }
+          for dest,src in mapping.items():
+              (root/dest).write_bytes(z.read(src))
+              print('Replaced',dest)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/mila_kem-nga_*.jpeg
+          if ! git diff --cached --quiet; then
+            git commit -m "Replace Mila Kem Nga gallery with five new photos"
+            git push
+          fi
