@@ -461,3 +461,14 @@ html body #main section.builder-block.type-story .builder-copy{
 #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-thumb{background:#765167;border-radius:20px;border:2px solid #eadde2}
 @media(max-width:800px){#main .builder-block.type-products .chamea-product-rail>.product{flex-basis:calc((100% - 18px)/2)!important}}
 @media(max-width:520px){#main .builder-block.type-products .chamea-product-rail>.product{flex-basis:82%!important}}
+
+/* CHAMÉA promotional product cards — premium plum / rose-gold campaign treatment. */
+#main .product .product-visual .chamea-sale-badge{position:absolute!important;top:14px!important;left:14px!important;z-index:5!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:82px;min-height:65px;padding:9px 13px!important;border:1px solid rgba(255,231,219,.65);border-radius:5px;background:#6a3049!important;color:#fff!important;box-shadow:0 5px 16px rgba(60,37,53,.23);line-height:1.1;text-align:center;letter-spacing:0}
+#main .product .chamea-sale-kicker{font-family:Montserrat,Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;color:#f9d7c4}
+#main .product .chamea-sale-badge strong{font-family:Montserrat,Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-.045em;color:#fff}
+#main .product .chamea-sale-price{display:flex!important;align-items:baseline;flex-wrap:wrap;column-gap:10px;row-gap:4px;margin:9px 0 4px;font-size:inherit}
+#main .product .chamea-sale-price .chamea-current-price{font-size:clamp(17px,1.5vw,23px)!important;line-height:1.3;font-weight:800!important;color:#842d4d!important;letter-spacing:-.025em}
+#main .product .chamea-sale-price del{font-size:12px!important;font-weight:400!important;color:#8b7d84!important;padding:0!important;display:inline!important}
+#main .product .chamea-sale-saving{display:inline-flex;align-items:center;padding:4px 9px;border-radius:3px;background:#f8e8ed;color:#873b58;font-size:10px;font-weight:700;line-height:1.4;white-space:nowrap}
+#main .product .product-info h3{font-weight:650}
+@media(max-width:700px){#main .product .product-visual .chamea-sale-badge{top:9px!important;left:9px!important;min-width:65px;min-height:53px;padding:6px 9px!important}#main .product .chamea-sale-badge strong{font-size:20px}#main .product .chamea-sale-kicker{font-size:8px}#main .product .chamea-sale-price .chamea-current-price{font-size:18px!important}#main .product .chamea-sale-saving{font-size:9px}}
