@@ -520,3 +520,19 @@ html body #main section.builder-block.type-story .builder-copy{
 #main .chamea-review-form textarea{resize:vertical}
 #main .chamea-review-form .chamea-review-disclaimer{font-size:11px;line-height:1.6}
 @media(max-width:720px){#main .chamea-review-head{align-items:flex-start;flex-direction:column}#main .chamea-review-overview{text-align:left}#main .chamea-review-layout{grid-template-columns:1fr}#main .chamea-reviews{padding-top:30px}}
+
+/* Home featured designs: five refined cards visible before horizontal scrolling. */
+@media(min-width:1101px){
+ #main .builder-block.type-products .chamea-product-rail>.product{
+  flex:0 0 calc((100% - 64px)/5)!important;
+  width:calc((100% - 64px)/5)!important;
+  min-width:0!important;
+ }
+ #main .builder-block.type-products .chamea-product-rail{gap:16px!important}
+ #main .builder-block.type-products .chamea-product-rail .product-info{min-width:0}
+ #main .builder-block.type-products .chamea-product-rail .product-name{overflow-wrap:anywhere}
+}
+@media(min-width:801px) and (max-width:1100px){
+ #main .builder-block.type-products .chamea-product-rail>.product{flex:0 0 calc((100% - 54px)/4)!important;min-width:0!important}
+ #main .builder-block.type-products .chamea-product-rail{gap:18px!important}
+}
