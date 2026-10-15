@@ -7,7 +7,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const money=n=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(n);
 const product=id=>D.products.find(p=>p.id===id);
 const price=p=>Math.round((p.price||0)*(D.campaign.enabled?1-D.campaign.discount:1));
-const asset=name=>name.startsWith('/CHAMEA/assets/')?name:name.startsWith('/media/')?name:'/assets/'+name;
+const asset=name=>{const path=name.startsWith('/CHAMEA/assets/')?name:name.startsWith('/media/')?name:'/assets/'+name;return /mila_kem-nga_0[1-5]_/.test(name)?path+(path.includes('?')?'&':'?')+'v=mila-20261015-new':path};
 function stored(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 function persist(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{toast('Trình duyệt không cho lưu dữ liệu. Giỏ hàng chỉ được giữ trong phiên này.')}}
 let rawCart=stored('chamea-cart-v1',[]),rawFav=stored('chamea-favs-v1',[]);
