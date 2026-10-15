@@ -644,3 +644,6 @@ html body #main section.builder-block.type-story .builder-copy{
 /* Unified CHAMÉA display type: Playfair Display SemiBold */
 :root{--chamea-heading-font:'Playfair Display',Georgia,serif}
 h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-copy h2,.chamea-about-simple h1,.chamea-about-simple h2,.chamea-2010 h1,.chamea-2010 h2{font-family:var(--chamea-heading-font)!important;font-weight:700!important}
+
+/* Slightly larger desktop navigation labels, preserving mobile menu layout. */
+@media(min-width:701px){.nav{font-size:11.5px!important;letter-spacing:1.05px!important;gap:clamp(14px,2vw,30px)!important}.nav a{font-size:inherit!important}}
