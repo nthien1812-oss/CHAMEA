@@ -594,3 +594,17 @@ html body #main section.builder-block.type-story .builder-copy{
 #main .chamea-about-promise h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(30px,3.4vw,50px);line-height:1.25}
 #main .chamea-about-promise-grid>div:last-child p{line-height:2;margin:0 0 22px}
 @media(max-width:720px){#main .chamea-about-duo-grid,#main .chamea-about-promise-grid{grid-template-columns:1fr}#main .chamea-about-duo-copy p{min-height:0}#main .chamea-about-manifesto{padding:70px 16px}}
+
+/* Contrast fix: section headings and subtitles on dark CHAMÉA backgrounds */
+#main .chamea-about-manifesto,
+#main .chamea-about-manifesto h1,
+#main .chamea-about-manifesto h2,
+#main .chamea-about-manifesto h3,
+#main .chamea-about-manifesto blockquote{color:#fff!important}
+#main .chamea-about-manifesto .eyebrow{color:#f6e8ed!important}
+#main .chamea-about-manifesto p:last-child{color:#f6e8ed!important}
+#main .chamea-2010-hero h1,
+#main .chamea-2010-hero h2{color:#542c41!important}
+#main .chamea-2010-hero .eyebrow{color:#542c41!important}
+#main .chamea-2010-hero p:not(.eyebrow){color:#503848!important}
+#main .chamea-2010-hero .chamea-2010-dark{color:#fff!important}
