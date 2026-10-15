@@ -568,3 +568,29 @@ html body #main section.builder-block.type-story .builder-copy{
 .chamea-card-variants a:hover,.chamea-card-variants a:focus-visible{outline:2px solid #7d4b66;outline-offset:2px}
 .chamea-card-variants .swatch{display:block;width:14px;height:14px;border-radius:50%}
 .chamea-card-variants small{font-size:10px;white-space:nowrap}
+
+/* Editorial chapters for the restored About CHAMÉA page */
+#main .chamea-about-manifesto{background:#392332;color:#fff6f4;position:relative;overflow:hidden;padding:clamp(74px,9vw,130px) 20px;text-align:center}
+#main .chamea-about-manifesto-inner{max-width:850px;position:relative}
+#main .chamea-about-manifesto-mark{position:absolute;inset:-120px 0 auto;font-family:'Playfair Display',Georgia,serif;font-size:clamp(270px,42vw,550px);line-height:1;color:rgba(255,255,255,.045);pointer-events:none}
+#main .chamea-about-manifesto .eyebrow{color:#e5c8d4;letter-spacing:.2em}
+#main .chamea-about-manifesto blockquote{border:0;margin:32px auto 28px;padding:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,3.5vw,48px);line-height:1.45;font-weight:500}
+#main .chamea-about-manifesto p:last-child{max-width:600px;margin:auto;line-height:2;color:#e6d9de}
+#main .chamea-about-duo{padding-top:clamp(70px,8vw,115px);padding-bottom:clamp(70px,8vw,115px)}
+#main .chamea-about-duo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:40px}
+#main .chamea-about-duo-card{background:#f6eded}
+#main .chamea-about-duo-card.steel{background:#efeaeb}
+#main .chamea-about-duo-card a{text-decoration:none;color:#3c2535;display:block;height:100%}
+#main .chamea-about-duo-image{height:clamp(260px,32vw,440px);display:flex;justify-content:center;align-items:center;overflow:hidden}
+#main .chamea-about-duo-image img{width:100%;height:100%;object-fit:contain;transition:transform .6s ease}
+#main .chamea-about-duo-card:hover img{transform:scale(1.035)}
+#main .chamea-about-duo-copy{padding:clamp(22px,3vw,40px)}
+#main .chamea-about-duo-copy span{font-size:10px;letter-spacing:.22em;font-weight:700}
+#main .chamea-about-duo-copy h3{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:12px 0}
+#main .chamea-about-duo-copy p{line-height:1.9;font-size:13px;min-height:96px}
+#main .chamea-about-duo-copy strong{display:inline-block;margin-top:16px;font-size:12px;border-bottom:1px solid;padding-bottom:5px}
+#main .chamea-about-promise{background:#f8f2f1;padding:clamp(65px,8vw,110px) 20px}
+#main .chamea-about-promise-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,6vw,100px)}
+#main .chamea-about-promise h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(30px,3.4vw,50px);line-height:1.25}
+#main .chamea-about-promise-grid>div:last-child p{line-height:2;margin:0 0 22px}
+@media(max-width:720px){#main .chamea-about-duo-grid,#main .chamea-about-promise-grid{grid-template-columns:1fr}#main .chamea-about-duo-copy p{min-height:0}#main .chamea-about-manifesto{padding:70px 16px}}
