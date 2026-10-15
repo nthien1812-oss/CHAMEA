@@ -650,6 +650,6 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 
 /* CHAMÉA desktop menu: larger, readable labels while preserving mobile layout */
 @media (min-width: 701px) {
-  .nav { font-size: 14px !important; font-weight: 600 !important; letter-spacing: .7px !important; gap: clamp(12px, 1.8vw, 26px) !important; }
+  .nav { font-size: 16px !important; font-weight: 600 !important; letter-spacing: .7px !important; gap: clamp(12px, 1.8vw, 26px) !important; }
   .nav a { font-size: inherit !important; }
 }
