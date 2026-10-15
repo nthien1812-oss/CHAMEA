@@ -713,3 +713,20 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 .chamea-story-button:hover{background:#70465d}
 @media(max-width:900px){.chamea-story-hero{grid-template-columns:1fr}.chamea-story-hero-copy{padding:75px 7vw}.chamea-story-hero-visual{min-height:460px}.chamea-story-chapter{gap:35px}.chamea-story-chapter-photo,.chamea-story-chapter-photo img{min-height:420px}.chamea-story-values-grid article{padding:30px 18px}.chamea-story-finale-copy{padding:45px}}
 @media(max-width:650px){.chamea-story-hero-copy{padding:65px 22px 55px}#main .chamea-story-hero h1{font-size:clamp(42px,11vw,62px)}.chamea-story-hero-visual{min-height:390px}.chamea-story-manifesto{padding:80px 22px}.chamea-story-chapter{grid-template-columns:1fr;padding-bottom:85px}.chamea-story-chapter-photo{order:2}.chamea-story-chapter-copy{order:1}.chamea-story-chapter-photo,.chamea-story-chapter-photo img{min-height:350px}.chamea-story-values-grid{grid-template-columns:1fr}.chamea-story-values-grid article{border-right:0;border-bottom:1px solid #765b6a;padding:26px 4px}.chamea-story-values-grid article:last-child{border-bottom:0}.chamea-story-collections-grid{grid-template-columns:1fr;gap:22px}.chamea-story-section-head{margin-bottom:35px}.chamea-story-collection-info{padding:25px}.chamea-story-finale{grid-template-columns:1fr}.chamea-story-finale-image{min-height:350px;max-height:440px}.chamea-story-finale-copy{padding:55px 24px 70px}.chamea-story-kicker{font-size:9px;letter-spacing:1.9px}}
+
+/* Restore visible horizontal product scrolling on desktop: show 4 of 5 bags. */
+@media(min-width:1101px){
+ #main .builder-block.type-products .chamea-product-rail{
+  display:flex!important;flex-wrap:nowrap!important;overflow-x:scroll!important;overflow-y:hidden!important;
+  gap:16px!important;padding-bottom:22px!important;scrollbar-width:auto!important;
+  scrollbar-color:#765167 #eadde2!important;
+ }
+ #main .builder-block.type-products .chamea-product-rail>.product{
+  flex:0 0 calc((100% - 48px)/4)!important;
+  width:calc((100% - 48px)/4)!important;
+  min-width:0!important;
+ }
+ #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar{height:12px!important;display:block!important}
+ #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-track{background:#eadde2!important;border-radius:20px!important}
+ #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-thumb{background:#765167!important;border:2px solid #eadde2!important;border-radius:20px!important}
+}
