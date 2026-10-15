@@ -562,3 +562,9 @@ html body #main section.builder-block.type-story .builder-copy{
 .chamea-2010-images span{display:block;text-align:center;padding:10px}
 @media(max-width:800px){.chamea-collection-duo,.chamea-2010-gift{grid-template-columns:1fr}.chamea-collection-tile>a{min-height:260px}.chamea-2010-hero{padding:65px 0}}
 @media(max-width:480px){.chamea-collection-tile>a{grid-template-columns:1fr}.chamea-collection-tile img{max-height:280px}.chamea-collection-tile>a>div{padding:22px}.chamea-2010-images{gap:5px}}
+
+.chamea-card-variants{display:flex;align-items:center;gap:8px}
+.chamea-card-variants a{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #cbbfc4;border-radius:50%;padding:3px}
+.chamea-card-variants a:hover,.chamea-card-variants a:focus-visible{outline:2px solid #7d4b66;outline-offset:2px}
+.chamea-card-variants .swatch{display:block;width:14px;height:14px;border-radius:50%}
+.chamea-card-variants small{font-size:10px;white-space:nowrap}
