@@ -19,7 +19,7 @@ function campaignLanding(){
  return `<section class="chamea-2010 chamea-2010-shop">
  <div class="container chamea-2010-shop-intro"><p class="eyebrow">CHAMÉA · QUÀ TẶNG 20/10</p><h1>CHAMÉA – Những thiết kế dành riêng cho nàng</h1><p>Tháng Mười là dịp để trao gửi những điều dịu dàng. Khám phá những thiết kế túi xách CHAMÉA được tuyển chọn cho mùa quà tặng 20/10 – nơi mỗi đường nét, sắc màu và chi tiết đều mang theo một lời nhắn gửi tinh tế.</p><a class="btn" href="#chamea-2010-products">Khám phá bộ sưu tập ↗</a></div>
  <div class="container chamea-2010-shop-products" id="chamea-2010-products"><p class="eyebrow">THE 20/10 EDIT</p><h2>Chọn một thiết kế, gửi một lời thương</h2><div class="chamea-2010-shop-grid">${featured.map(p=>card(p)).join('')}</div>
- <p class="chamea-2010-price-note">Giá và thông số đang hiển thị là mức đề xuất tham khảo; cửa hàng sẽ xác nhận trước khi bán chính thức.</p></div>
+ <p class="chamea-2010-price-note">Giá niêm yết là mức đề xuất tham khảo; tất cả sản phẩm áp dụng ưu đãi 20% khi chương trình đang bật. Cửa hàng sẽ xác nhận trước khi bán chính thức.</p></div>
  <div class="container chamea-2010-shop-souls"><div><p class="eyebrow">TWO SHADES · ONE STORY</p><h2>CHAMÉA Souls</h2><p>Một thiết kế, hai sắc thái. Khám phá phiên bản hồng dịu dàng và nâu ấm áp.</p><div class="chamea-2010-souls-links">${souls.map(p=>`<a href="/san-pham/${p.id}"><span class="swatch" style="background:${p.hex}"></span>${esc(p.color)} ↗</a>`).join('')}</div></div><img src="${asset(souls[0]?.gallery?.[4]||featured[0]?.image||'')}" alt="CHAMÉA Souls cùng hộp quà" loading="lazy"></div>
  <div class="container chamea-2010-shop-gift"><p class="eyebrow">THE ART OF GIFTING</p><h2>Một món quà – Ngàn lời yêu thương</h2><p>Chọn một chiếc túi phù hợp với cá tính người nhận, và để những chi tiết nhỏ thay lời muốn nói.</p><a href="/goi-y-chon-qua" class="btn outline">Tìm món quà phù hợp ↗</a></div>
  </section>`;
@@ -32,7 +32,7 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(n);
 const product=id=>D.products.find(p=>p.id===id);
-const hasDiscount=p=>Boolean(D.campaign.enabled&&!p.collectionTote&&!p.collection20&&p.priceStatus!=="pending");
+const hasDiscount=p=>Boolean(D.campaign.enabled&&p.priceStatus!=="pending"&&Number(p.price)>0);
 const price=p=>Math.round((p.price||0)*(hasDiscount(p)?1-D.campaign.discount:1));
 const asset=name=>{const path=name.startsWith('/CHAMEA/assets/')?name:name.startsWith('/media/')?name:'/assets/'+name;return /mila_kem-nga_0[1-5]_/.test(name)?path+(path.includes('?')?'&':'?')+'v=mila-20261015-new':path};
 function stored(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
