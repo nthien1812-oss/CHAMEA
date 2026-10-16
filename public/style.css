@@ -764,3 +764,14 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 #main .builder-block .text-link,#main .section-head .text-link,#main .category a span,#main .categories .category span{color:#522c40!important;font-size:14px!important;font-weight:700!important;letter-spacing:.01em;text-decoration:none;text-underline-offset:5px;border-bottom:2px solid #a47b8e!important;padding-bottom:6px;transition:color .2s,border-color .2s}
 #main .builder-block .text-link:hover,#main .section-head .text-link:hover,#main .categories .category:hover span{color:#913e64!important;border-bottom-color:#913e64!important}
 @media(max-width:600px){#main .checkout-grid label,#main .form-grid label{font-size:13px!important}#main .builder-block .text-link,#main .section-head .text-link{font-size:13px!important}}
+
+
+/* CHAMÉA customer-care policy pages */
+#main .chamea-policy-detail{max-width:960px;margin:48px auto 100px;padding:0 28px;color:#4b3541}
+#main .chamea-policy-detail h2{font-size:clamp(22px,2.3vw,30px);color:#46293b;margin:36px 0 14px;padding-bottom:11px;border-bottom:1px solid #e5d2d8;line-height:1.35}
+#main .chamea-policy-detail p{font-size:15px;line-height:1.95;color:#594450;margin:12px 0 20px}
+#main .chamea-policy-detail a{color:#783f5c;text-decoration:underline;text-underline-offset:3px;font-weight:650}
+#main .chamea-policy-detail strong{color:#442638}
+#main .chamea-policy-notice{background:#f8eeed;border-left:4px solid #8a526e;padding:19px 22px;font-size:14px;line-height:1.85;color:#5e4150}
+#main .chamea-policy-detail .btn{margin-top:8px;text-decoration:none}
+@media(max-width:600px){#main .chamea-policy-detail{margin:30px auto 65px;padding:0 20px}#main .chamea-policy-detail p{font-size:14px}#main .chamea-policy-notice{padding:16px}}
