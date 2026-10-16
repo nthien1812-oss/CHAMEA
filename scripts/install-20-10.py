@@ -115,3 +115,5 @@ if start in css:
 else:css+="\n"+style+"\n"
 css_file.write_text(css,encoding="utf-8")
 print("Integrated 25 image files, 5 color variants, 4 featured designs and campaign page.")
+
+# Trigger installation for the uploaded numbered ZIP archive.
