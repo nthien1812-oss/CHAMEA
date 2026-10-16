@@ -5,7 +5,7 @@ from zipfile import ZipFile
 import json, re
 
 root=Path(__file__).resolve().parents[1]
-bundle=root/"uploads/chamea-20-10.zip"
+bundle=next(iter(sorted((root/"uploads").glob("chamea-20-10*.zip"))),root/"uploads/chamea-20-10.zip")
 assets=root/"public/assets/20-10"
 products_file=root/"public/products.json"
 app_file=root/"public/app.js"
