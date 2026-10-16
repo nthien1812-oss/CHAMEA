@@ -4,7 +4,7 @@ from pathlib import Path
 from zipfile import ZipFile
 import json,re
 root=Path(__file__).resolve().parents[1]
-archives=sorted((root/'uploads').glob('*Tote*.zip'))+sorted((root/'uploads').glob('*tote*.zip'))
+archives=sorted((root/'uploads').glob('chamea-tote-50-anh*.zip'))+sorted((root/'uploads').glob('*Tote*.zip'))+sorted((root/'uploads').glob('*tote*.zip'))
 if not archives:raise SystemExit('Upload the original BST Túi Tote ZIP into uploads/')
 archive=archives[0]
 families={
@@ -18,8 +18,8 @@ dest=root/'public/assets/tote'
 items=json.loads((root/'public/products.json').read_text(encoding='utf-8'))
 items=[p for p in items if p.get('collectionTote')!='tui-tote']
 with ZipFile(archive) as z:
-    photos=[x for x in z.namelist() if not x.endswith('/') and x.lower().endswith('.png')]
-    if len(photos)!=50:raise SystemExit(f'Expected 50 PNG photos, got {len(photos)}')
+    photos=[x for x in z.namelist() if not x.endswith('/') and x.lower().endswith('.jpg')]
+    if len(photos)!=50:raise SystemExit(f'Expected 50 JPG photos, got {len(photos)}')
     for family,variants in families.items():
         files=[p for p in photos if ('chaméa_'+family+'/').casefold() in p.casefold()]
         if len(files)!=10:raise SystemExit(f'{family}: expected 10, got {len(files)}')
@@ -30,7 +30,7 @@ with ZipFile(archive) as z:
             for index in range(1,6):
                 matched=[p for p in chosen if re.search(r'(?<!\d)0'+str(index)+r'(?!\d)',Path(p).stem)]
                 if len(matched)!=1:raise SystemExit(f'{family}/{color} photo {index}: {matched}')
-                relative=f'tote/{family}/{color}/{index:02d}.png'
+                relative=f'tote/{family}/{color}/{index:02d}.jpg'
                 output=root/'public/assets'/relative
                 output.parent.mkdir(parents=True,exist_ok=True)
                 output.write_bytes(z.read(matched[0]))
