@@ -1,0 +1,35 @@
+name: Install CHAMÉA 20-10 collection
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'uploads/chamea-20-10.zip'
+      - 'scripts/install-20-10.py'
+      - '.github/workflows/install-20-10.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install collection and validate
+        run: |
+          python scripts/install-20-10.py
+          python -m json.tool public/products.json >/dev/null
+          test "$(find public/assets/20-10 -type f -name '*.jpg' | wc -l)" -eq 25
+      - name: Commit generated assets and storefront
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/app.js public/style.css public/products.json public/assets/20-10/
+          if ! git diff --cached --quiet; then
+            git commit -m "Install CHAMÉA 20/10 campaign and 25 product photos"
+            git push
+          fi
