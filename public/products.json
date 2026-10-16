@@ -603,5 +603,415 @@
       "extras": "Có ảnh sản phẩm kèm hộp quà",
       "care": "Đang cập nhật"
     }
+  },
+  {
+    "id": "tote-iconic-grey",
+    "code": "CM-TOTE-ICONIC-GREY",
+    "name": "Iconic · Xám",
+    "family": "Iconic",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Xám",
+    "hex": "#929395",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/iconic/grey/01.jpg",
+    "gallery": [
+      "tote/iconic/grey/01.jpg",
+      "tote/iconic/grey/02.jpg",
+      "tote/iconic/grey/03.jpg",
+      "tote/iconic/grey/04.jpg",
+      "tote/iconic/grey/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Iconic, phiên bản xám. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-iconic-pink",
+    "code": "CM-TOTE-ICONIC-PINK",
+    "name": "Iconic · Hồng",
+    "family": "Iconic",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng",
+    "hex": "#c89ba9",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/iconic/pink/01.jpg",
+    "gallery": [
+      "tote/iconic/pink/01.jpg",
+      "tote/iconic/pink/02.jpg",
+      "tote/iconic/pink/03.jpg",
+      "tote/iconic/pink/04.jpg",
+      "tote/iconic/pink/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Iconic, phiên bản hồng. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-velvet-beige",
+    "code": "CM-TOTE-VELVET-BEIGE",
+    "name": "Velvet · Be",
+    "family": "Velvet",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Be",
+    "hex": "#d5c2a7",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/velvet/beige/01.jpg",
+    "gallery": [
+      "tote/velvet/beige/01.jpg",
+      "tote/velvet/beige/02.jpg",
+      "tote/velvet/beige/03.jpg",
+      "tote/velvet/beige/04.jpg",
+      "tote/velvet/beige/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Velvet, phiên bản be. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-velvet-burgundy",
+    "code": "CM-TOTE-VELVET-BURGUNDY",
+    "name": "Velvet · Đỏ burgundy",
+    "family": "Velvet",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Đỏ burgundy",
+    "hex": "#713142",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/velvet/burgundy/01.jpg",
+    "gallery": [
+      "tote/velvet/burgundy/01.jpg",
+      "tote/velvet/burgundy/02.jpg",
+      "tote/velvet/burgundy/03.jpg",
+      "tote/velvet/burgundy/04.jpg",
+      "tote/velvet/burgundy/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Velvet, phiên bản đỏ burgundy. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-heritage-pink",
+    "code": "CM-TOTE-HERITAGE-PINK",
+    "name": "Heritage · Hồng",
+    "family": "Heritage",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng",
+    "hex": "#d2a1ad",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/heritage/pink/01.jpg",
+    "gallery": [
+      "tote/heritage/pink/01.jpg",
+      "tote/heritage/pink/02.jpg",
+      "tote/heritage/pink/03.jpg",
+      "tote/heritage/pink/04.jpg",
+      "tote/heritage/pink/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Heritage, phiên bản hồng. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-heritage-burgundy",
+    "code": "CM-TOTE-HERITAGE-BURGUNDY",
+    "name": "Heritage · Đỏ burgundy",
+    "family": "Heritage",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Đỏ burgundy",
+    "hex": "#713142",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/heritage/burgundy/01.jpg",
+    "gallery": [
+      "tote/heritage/burgundy/01.jpg",
+      "tote/heritage/burgundy/02.jpg",
+      "tote/heritage/burgundy/03.jpg",
+      "tote/heritage/burgundy/04.jpg",
+      "tote/heritage/burgundy/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Heritage, phiên bản đỏ burgundy. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-allure-cream",
+    "code": "CM-TOTE-ALLURE-CREAM",
+    "name": "Allure · Kem",
+    "family": "Allure",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Kem",
+    "hex": "#e5d9c5",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/allure/cream/01.jpg",
+    "gallery": [
+      "tote/allure/cream/01.jpg",
+      "tote/allure/cream/02.jpg",
+      "tote/allure/cream/03.jpg",
+      "tote/allure/cream/04.jpg",
+      "tote/allure/cream/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Allure, phiên bản kem. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-allure-burgundy",
+    "code": "CM-TOTE-ALLURE-BURGUNDY",
+    "name": "Allure · Đỏ burgundy",
+    "family": "Allure",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Đỏ burgundy",
+    "hex": "#713142",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/allure/burgundy/01.jpg",
+    "gallery": [
+      "tote/allure/burgundy/01.jpg",
+      "tote/allure/burgundy/02.jpg",
+      "tote/allure/burgundy/03.jpg",
+      "tote/allure/burgundy/04.jpg",
+      "tote/allure/burgundy/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Allure, phiên bản đỏ burgundy. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-muse-cream",
+    "code": "CM-TOTE-MUSE-CREAM",
+    "name": "Muse · Kem",
+    "family": "Muse",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Kem",
+    "hex": "#e5d9c5",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/muse/cream/01.jpg",
+    "gallery": [
+      "tote/muse/cream/01.jpg",
+      "tote/muse/cream/02.jpg",
+      "tote/muse/cream/03.jpg",
+      "tote/muse/cream/04.jpg",
+      "tote/muse/cream/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Muse, phiên bản kem. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "tote-muse-pink",
+    "code": "CM-TOTE-MUSE-PINK",
+    "name": "Muse · Hồng",
+    "family": "Muse",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng",
+    "hex": "#d2a1ad",
+    "shape": "Túi tote",
+    "styles": [
+      "Thanh lịch",
+      "Hiện đại"
+    ],
+    "uses": [
+      "Đi làm",
+      "Đi học",
+      "Đi chơi"
+    ],
+    "image": "tote/muse/pink/01.jpg",
+    "gallery": [
+      "tote/muse/pink/01.jpg",
+      "tote/muse/pink/02.jpg",
+      "tote/muse/pink/03.jpg",
+      "tote/muse/pink/04.jpg",
+      "tote/muse/pink/05.jpg"
+    ],
+    "collectionTote": "tui-tote",
+    "desc": "Túi tote CHAMÉA Muse, phiên bản hồng. Bộ ảnh gồm chính diện, góc nghiêng, mặt sau, cận chi tiết và hộp quà. Giá và thông số kỹ thuật đang cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
   }
 ]
