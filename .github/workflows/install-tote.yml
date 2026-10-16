@@ -1,0 +1,33 @@
+name: Install CHAMEA Tote collection
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'uploads/*Tote*.zip'
+      - 'uploads/*tote*.zip'
+      - 'scripts/install-tote.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import 50 product photos and validate catalog
+        run: |
+          python scripts/install-tote.py
+          python -m json.tool public/products.json >/dev/null
+          test "$(find public/assets/tote -type f -name '*.png' | wc -l)" -eq 50
+      - name: Commit tote collection and trigger Pages deploy
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/products.json public/assets/tote/
+          if ! git diff --cached --quiet; then
+            git commit -m "Add CHAMEA tote products and 50 photo assets"
+            git push
+          fi
