@@ -398,5 +398,210 @@
       "extras": "Tùy chọn thiệp chúc mừng và gói quà theo yêu cầu",
       "care": "Tránh ma sát mạnh trên bề mặt chần; lau bằng khăn mềm, giữ dây xích khô ráo và bảo quản riêng để hạn chế trầy xước."
     }
+  },
+  {
+    "id": "blush-theory",
+    "code": "CM-2010-BLUSH-THEORY",
+    "name": "Blush Theory · Hồng pastel",
+    "family": "Blush Theory",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng pastel",
+    "hex": "#d8a1b0",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Thanh lịch",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Hẹn hò",
+      "Quà tặng"
+    ],
+    "image": "20-10/blushtheory/01_ChinhDien.jpg",
+    "gallery": [
+      "20-10/blushtheory/01_ChinhDien.jpg",
+      "20-10/blushtheory/02_GocNghiengTrai.jpg",
+      "20-10/blushtheory/03_MatSau.jpg",
+      "20-10/blushtheory/04_CanChiTiet.jpg",
+      "20-10/blushtheory/05_HopQua_20-10.jpg"
+    ],
+    "collection20": "20-10",
+    "desc": "Thiết kế CHAMÉA Blush Theory trong bộ sưu tập quà tặng 20/10. Hình ảnh gồm năm góc chụp; thông số và giá bán đang được cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh sản phẩm kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "her-rules",
+    "code": "CM-2010-HER-RULES",
+    "name": "Her Rules · Hồng dusty rose",
+    "family": "Her Rules",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng dusty rose",
+    "hex": "#bb8b98",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Thanh lịch",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Hẹn hò",
+      "Quà tặng"
+    ],
+    "image": "20-10/herrules/01_ChinhDien.jpg",
+    "gallery": [
+      "20-10/herrules/01_ChinhDien.jpg",
+      "20-10/herrules/02_GocNghiengTrai.jpg",
+      "20-10/herrules/03_MatSau.jpg",
+      "20-10/herrules/04_CanChiTiet.jpg",
+      "20-10/herrules/05_HopQua_20-10.jpg"
+    ],
+    "collection20": "20-10",
+    "desc": "Thiết kế CHAMÉA Her Rules trong bộ sưu tập quà tặng 20/10. Hình ảnh gồm năm góc chụp; thông số và giá bán đang được cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh sản phẩm kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "pastel-core",
+    "code": "CM-2010-PASTEL-CORE",
+    "name": "Pastel Core · Kem hồng",
+    "family": "Pastel Core",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Kem hồng",
+    "hex": "#e5c8bd",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Thanh lịch",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Hẹn hò",
+      "Quà tặng"
+    ],
+    "image": "20-10/pastelcore/01_ChinhDien.jpg",
+    "gallery": [
+      "20-10/pastelcore/01_ChinhDien.jpg",
+      "20-10/pastelcore/02_GocNghiengTrai.jpg",
+      "20-10/pastelcore/03_MatSau.jpg",
+      "20-10/pastelcore/04_CanChiTiet.jpg",
+      "20-10/pastelcore/05_HopQua_20-10.jpg"
+    ],
+    "collection20": "20-10",
+    "desc": "Thiết kế CHAMÉA Pastel Core trong bộ sưu tập quà tặng 20/10. Hình ảnh gồm năm góc chụp; thông số và giá bán đang được cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh sản phẩm kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "souls-hong",
+    "code": "CM-2010-SOULS-HONG",
+    "name": "Souls · Hồng",
+    "family": "Souls",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Hồng",
+    "hex": "#cfa5ac",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Thanh lịch",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Hẹn hò",
+      "Quà tặng"
+    ],
+    "image": "20-10/souls/01_Mau1_Hong_ChinhDien.jpg",
+    "gallery": [
+      "20-10/souls/01_Mau1_Hong_ChinhDien.jpg",
+      "20-10/souls/02_Mau1_Hong_GocNghiengTrai.jpg",
+      "20-10/souls/03_Mau1_Hong_MatSau.jpg",
+      "20-10/souls/04_Mau1_Hong_CanChiTiet.jpg",
+      "20-10/souls/05_Mau1_Hong_HopQua_20-10.jpg"
+    ],
+    "collection20": "20-10",
+    "desc": "Thiết kế CHAMÉA Souls trong bộ sưu tập quà tặng 20/10. Hình ảnh gồm năm góc chụp; thông số và giá bán đang được cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh sản phẩm kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
+  },
+  {
+    "id": "souls-nau",
+    "code": "CM-2010-SOULS-NAU",
+    "name": "Souls · Nâu",
+    "family": "Souls",
+    "price": 0,
+    "priceStatus": "pending",
+    "color": "Nâu",
+    "hex": "#806052",
+    "shape": "Túi xách tay",
+    "styles": [
+      "Thanh lịch",
+      "Nữ tính"
+    ],
+    "uses": [
+      "Đi chơi",
+      "Hẹn hò",
+      "Quà tặng"
+    ],
+    "image": "20-10/souls/08_Mau2_Nau_ChinhDien.jpg",
+    "gallery": [
+      "20-10/souls/08_Mau2_Nau_ChinhDien.jpg",
+      "20-10/souls/09_Mau2_Nau_GocNghiengTrai.jpg",
+      "20-10/souls/07_Mau2_Nau_MatSau.jpg",
+      "20-10/souls/06_Mau2_Nau_CanChiTiet.jpg",
+      "20-10/souls/10_Mau2_Nau_HopQua_20-10.jpg"
+    ],
+    "collection20": "20-10",
+    "desc": "Thiết kế CHAMÉA Souls trong bộ sưu tập quà tặng 20/10. Hình ảnh gồm năm góc chụp; thông số và giá bán đang được cập nhật.",
+    "details": {
+      "body": "Đang cập nhật",
+      "lining": "Đang cập nhật",
+      "hardware": "Đang cập nhật",
+      "handle": "Đang cập nhật",
+      "size": "Đang cập nhật",
+      "weight": "Đang cập nhật",
+      "included": "Đang cập nhật",
+      "extras": "Có ảnh sản phẩm kèm hộp quà",
+      "care": "Đang cập nhật"
+    }
   }
 ]

@@ -11,7 +11,18 @@ D.collections=CHAMEA_COLLECTIONS.map(c=>({...c,ids:D.products.filter(p=>c.famili
 const variantsFor=p=>D.products.filter(x=>x.family===p.family);
 const uniqueDesigns=ps=>ps.filter((p,i)=>ps.findIndex(x=>x.family===p.family)===i);
 const campaignDesigns=()=>[];
-function campaignLanding(){return `<div class="chamea-2010 chamea-empty-collection"><div class="container section"><h1>CHAMÉA 20/10</h1></div></div>`}
+function campaignLanding(){
+ const families=['Blush Theory','Her Rules','Pastel Core','Souls'];
+ const featured=families.map(f=>D.products.find(p=>p.family===f&&p.collection20==='20-10')).filter(Boolean);
+ const souls=D.products.filter(p=>p.family==='Souls'&&p.collection20==='20-10');
+ return `<section class="chamea-2010 chamea-2010-shop">
+ <div class="container chamea-2010-shop-intro"><p class="eyebrow">CHAMÉA · QUÀ TẶNG 20/10</p><h1>CHAMÉA – Những thiết kế dành riêng cho nàng</h1><p>Tháng Mười là dịp để trao gửi những điều dịu dàng. Khám phá những thiết kế túi xách CHAMÉA được tuyển chọn cho mùa quà tặng 20/10 – nơi mỗi đường nét, sắc màu và chi tiết đều mang theo một lời nhắn gửi tinh tế.</p><a class="btn" href="#chamea-2010-products">Khám phá bộ sưu tập ↗</a></div>
+ <div class="container chamea-2010-shop-products" id="chamea-2010-products"><p class="eyebrow">THE 20/10 EDIT</p><h2>Chọn một thiết kế, gửi một lời thương</h2><div class="chamea-2010-shop-grid">${featured.map(p=>card(p)).join('')}</div>
+ <p class="chamea-2010-price-note">Giá bán và thông số đang cập nhật. Những sản phẩm chưa có giá xác nhận sẽ chưa thể đặt mua.</p></div>
+ <div class="container chamea-2010-shop-souls"><div><p class="eyebrow">TWO SHADES · ONE STORY</p><h2>CHAMÉA Souls</h2><p>Một thiết kế, hai sắc thái. Khám phá phiên bản hồng dịu dàng và nâu ấm áp.</p><div class="chamea-2010-souls-links">${souls.map(p=>`<a href="/san-pham/${p.id}"><span class="swatch" style="background:${p.hex}"></span>${esc(p.color)} ↗</a>`).join('')}</div></div><img src="${asset(souls[0]?.gallery?.[4]||featured[0]?.image||'')}" alt="CHAMÉA Souls cùng hộp quà" loading="lazy"></div>
+ <div class="container chamea-2010-shop-gift"><p class="eyebrow">THE ART OF GIFTING</p><h2>Một món quà – Ngàn lời yêu thương</h2><p>Chọn một chiếc túi phù hợp với cá tính người nhận, và để những chi tiết nhỏ thay lời muốn nói.</p><a href="/goi-y-chon-qua" class="btn outline">Tìm món quà phù hợp ↗</a></div>
+ </section>`;
+}
 
 function collectionSpotlight(){return `<section class="container section chamea-collection-spotlight"><p class="eyebrow">HAI TINH THẦN · MỘT NÉT RIÊNG</p><h2>CHAMÉA Sugar &amp; Steel</h2><div class="chamea-collection-duo">${D.collections.filter(c=>c.id!=='20-10').map(c=>`<article class="chamea-collection-tile ${c.id}"><a href="/bo-suu-tap/${c.id}"><img src="${asset(c.image)}" loading="lazy" alt="${esc(c.name)}"><div><p class="eyebrow">${esc(c.kicker)}</p><h3>${esc(c.name)}</h3><p>${esc(c.desc)}</p><span>Khám phá ${c.id==='sugar'?'Sugar':'Steel'} ↗</span></div></a></article>`).join('')}</div></section>`}
 

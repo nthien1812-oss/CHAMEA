@@ -730,3 +730,26 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
  #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-track{background:#eadde2!important;border-radius:20px!important}
  #main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-thumb{background:#765167!important;border:2px solid #eadde2!important;border-radius:20px!important}
 }
+
+/* CHAMEA_2010_PACK_START */
+#main .chamea-2010-shop{background:#fffbf8;color:#442e3c}
+.chamea-2010-shop-intro{padding:clamp(65px,8vw,125px) 20px;text-align:center;background:linear-gradient(125deg,#f8e8e7,#fffaf5);max-width:none}
+.chamea-2010-shop-intro>p:not(.eyebrow){max-width:760px;margin:24px auto 28px;line-height:1.9;color:#745e69}
+#main .chamea-2010-shop h1{font-size:clamp(34px,4.3vw,62px);max-width:850px;line-height:1.2;margin:20px auto}
+#main .chamea-2010-shop h2{font-size:clamp(28px,3.4vw,46px);margin:14px 0 30px}
+.chamea-2010-shop-products{padding-top:75px;padding-bottom:90px}
+.chamea-2010-shop-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.chamea-2010-shop-grid>.product{min-width:0}
+.chamea-2010-shop-grid .product-visual img{aspect-ratio:4/5;object-fit:contain}
+.chamea-2010-price-note{font-size:12px;color:#866c78;margin-top:25px}
+.chamea-2010-shop-souls{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:45px;background:#f4e9e5;padding:40px}
+.chamea-2010-shop-souls>div{padding:20px}
+.chamea-2010-shop-souls>img{width:100%;max-height:520px;object-fit:contain}
+.chamea-2010-souls-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:25px}
+.chamea-2010-souls-links a{display:inline-flex;align-items:center;gap:9px;color:#553847;text-decoration:none;font-weight:700;font-size:13px}
+.chamea-2010-souls-links .swatch{width:17px;height:17px;border-radius:50%;border:1px solid #bda9b1}
+.chamea-2010-shop-gift{text-align:center;padding-top:90px;padding-bottom:100px}
+.chamea-2010-shop-gift>p:not(.eyebrow){max-width:630px;margin:0 auto 28px;line-height:1.9}
+@media(max-width:1000px){.chamea-2010-shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.chamea-2010-shop-grid{gap:12px}.chamea-2010-shop-souls{grid-template-columns:1fr;padding:20px}.chamea-2010-shop-souls>div{padding:12px}.chamea-2010-shop-products{padding-top:45px;padding-bottom:55px}}
+/* CHAMEA_2010_PACK_END */
