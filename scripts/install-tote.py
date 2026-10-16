@@ -28,7 +28,7 @@ with ZipFile(archive) as z:
             if len(chosen)!=5:raise SystemExit(f'{family}/{color}: expected 5, got {len(chosen)}')
             gallery=[]
             for index in range(1,6):
-                matched=[p for p in chosen if re.search(r'(?<!\\d)0'+str(index)+r'(?!\\d)',Path(p).stem)]
+                matched=[p for p in chosen if re.search(r'(?<!\d)0'+str(index)+r'(?!\d)',Path(p).stem)]
                 if len(matched)!=1:raise SystemExit(f'{family}/{color} photo {index}: {matched}')
                 relative=f'tote/{family}/{color}/{index:02d}.png'
                 output=root/'public/assets'/relative
