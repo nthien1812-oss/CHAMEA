@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'uploads/chamea-20-10*.zip'
+      - 'scripts/install-20-10.py'
   workflow_dispatch:
 permissions:
   contents: write
