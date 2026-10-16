@@ -753,3 +753,19 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 @media(max-width:1000px){.chamea-2010-shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.chamea-2010-shop-grid{gap:12px}.chamea-2010-shop-souls{grid-template-columns:1fr;padding:20px}.chamea-2010-shop-souls>div{padding:12px}.chamea-2010-shop-products{padding-top:45px;padding-bottom:55px}}
 /* CHAMEA_2010_PACK_END */
+
+
+/* CHAMÉA extended two-rail boutique product showcase */
+#main .builder-block.type-products .chamea-product-rail{scroll-behavior:smooth;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;padding-bottom:20px!important}
+#main .builder-block.type-products .chamea-product-rail>.product{scroll-snap-align:start}
+#main .builder-block.type-products .chamea-more-edit{margin:55px 0 12px;padding:30px 28px 26px;background:linear-gradient(120deg,#f6e4e8 0%,#fff8ef 52%,#f1e5ef 100%);border-top:3px solid #86526b;border-bottom:1px solid #e2cbd6}
+#main .chamea-more-edit-head{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-bottom:23px}
+#main .chamea-more-edit-head h3{font-size:clamp(25px,2.8vw,38px);margin:6px 0 10px;color:#512d40}
+#main .chamea-more-edit-head p:not(.eyebrow){color:#705463;font-size:13px;line-height:1.7;max-width:550px}
+#main .chamea-rail-head{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#7e5067;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin:14px 0}
+#main .chamea-product-rail-second{margin-top:0}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar{height:13px!important;display:block!important}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-track{background:#ead6df!important;border-radius:20px!important}
+#main .builder-block.type-products .chamea-product-rail::-webkit-scrollbar-thumb{background:#7c4864!important;border:2px solid #ead6df!important;border-radius:20px!important}
+@media(max-width:1100px){#main .builder-block.type-products .chamea-product-rail{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:14px!important}#main .builder-block.type-products .chamea-product-rail>.product{flex:0 0 min(36vw,260px)!important;min-width:190px!important}}
+@media(max-width:600px){#main .builder-block.type-products .chamea-product-rail>.product{flex:0 0 72vw!important;min-width:0!important}#main .builder-block.type-products .chamea-more-edit{margin:35px -8px 8px;padding:22px 15px}#main .chamea-more-edit-head{display:block}#main .chamea-more-edit-head .btn{margin-top:15px}#main .chamea-rail-head{font-size:9px;letter-spacing:.5px}}
