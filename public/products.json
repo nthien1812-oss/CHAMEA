@@ -564,47 +564,6 @@
     }
   },
   {
-    "id": "souls-nau",
-    "code": "CM-2010-SOULS-NAU",
-    "name": "Souls · Nâu",
-    "family": "Souls",
-    "price": 850000,
-    "priceStatus": "estimated",
-    "color": "Nâu",
-    "hex": "#806052",
-    "shape": "Túi xách tay",
-    "styles": [
-      "Thanh lịch",
-      "Nữ tính"
-    ],
-    "uses": [
-      "Đi chơi",
-      "Hẹn hò",
-      "Quà tặng"
-    ],
-    "image": "20-10/souls/08_Mau2_Nau_ChinhDien.jpg",
-    "gallery": [
-      "20-10/souls/08_Mau2_Nau_ChinhDien.jpg",
-      "20-10/souls/09_Mau2_Nau_GocNghiengTrai.jpg",
-      "20-10/souls/07_Mau2_Nau_MatSau.jpg",
-      "20-10/souls/06_Mau2_Nau_CanChiTiet.jpg",
-      "20-10/souls/10_Mau2_Nau_HopQua_20-10.jpg"
-    ],
-    "collection20": "20-10",
-    "desc": "Thiết kế Souls thuộc bộ sưu tập quà tặng CHAMÉA 20/10, nổi bật với phom túi nữ tính và sắc nâu. Phù hợp đi chơi, hẹn hò hoặc làm quà tặng. Giá và thông số là mức đề xuất tham khảo.",
-    "details": {
-      "body": "Da PU cao cấp bề mặt mịn (chất liệu đề xuất, chờ xác nhận từ nhà sản xuất)",
-      "lining": "Vải polyester dệt mịn, dễ vệ sinh (cấu hình đề xuất)",
-      "hardware": "Phụ kiện kim loại tông vàng hoặc bạc đồng điệu thiết kế (cần xác nhận thực tế)",
-      "handle": "Quai xách/đeo đồng bộ thiết kế, chi tiết hoàn thiện tinh tế (cấu hình đề xuất)",
-      "size": "25 × 16 × 8 cm (ước tính, cần đo thực tế)",
-      "weight": "Khoảng 450 g (ước tính)",
-      "included": "01 túi CHAMÉA và vật liệu giữ phom; bao bì giao hàng theo xác nhận của cửa hàng",
-      "extras": "Có thể chọn gói quà và thiệp chúc mừng khi cửa hàng xác nhận dịch vụ",
-      "care": "Lau nhẹ bằng khăn mềm sạch, tránh cồn và chất tẩy mạnh. Không giặt máy hoặc ngâm nước. Để nơi khô thoáng, tránh nắng gắt; nhồi giấy mềm giữ phom khi không sử dụng."
-    }
-  },
-  {
     "id": "tote-iconic-grey",
     "code": "CM-TOTE-ICONIC-GREY",
     "name": "Iconic · Xám",
