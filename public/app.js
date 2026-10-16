@@ -5,7 +5,7 @@ let D=window.CHAMEA;
 const CHAMEA_COLLECTIONS=[
 {id:'sugar',name:'CHAMÉA SUGAR',kicker:'NGỌT NGÀO THEO CÁCH CỦA RIÊNG BẠN',desc:'CHAMÉA Sugar tôn vinh vẻ đẹp nữ tính qua những thiết kế thanh lịch, mềm mại và giàu sức hút. Từ nét duyên dáng của Nina, sự tinh tế của Vera đến điểm nhấn thời trang của Perle, mỗi chiếc túi là một cách thể hiện phong cách riêng.',image:'nina_hong-dat_01_chinh-dien.jpeg',families:['Nina','Vera','Perle']},
 {id:'steel',name:'CHAMÉA STEEL',kicker:'BẢN LĨNH TRONG TỪNG ĐƯỜNG NÉT',desc:'CHAMÉA Steel dành cho những người phụ nữ yêu thích sự tự tin và phong cách hiện đại. Với phom dáng chỉn chu, đường nét tinh giản và điểm nhấn kim loại tinh tế, Mila và Lune mang đến những lựa chọn thanh lịch, dễ ứng dụng trong nhiều hoàn cảnh.',image:'mila_den_01_chinh-dien.jpeg',families:['Mila','Lune']},
-{id:'tui-tote',name:'CHAMÉA TÚI TOTE',kicker:'THE EVERYDAY TOTE EDIT',desc:'Năm thiết kế túi tote CHAMÉA: Iconic, Velvet, Heritage, Allure và Muse. Mỗi thiết kế có hai phiên bản màu và năm góc chụp.',image:'tote/iconic/grey/01.jpg',families:['Iconic','Velvet','Heritage','Allure','Muse']},
+{id:'tui-tote',name:'CHAMÉA TOTE',kicker:'THE EVERYDAY TOTE EDIT',desc:'Năm thiết kế túi tote CHAMÉA: Iconic, Velvet, Heritage, Allure và Muse. Mỗi thiết kế có hai phiên bản màu và năm góc chụp.',image:'tote/iconic/grey/01.jpg',families:['Iconic','Velvet','Heritage','Allure','Muse']},
 {id:'20-10',name:'CHAMÉA 20/10',kicker:'',desc:'',image:'',families:[],ids:[]}
 ];
 D.collections=CHAMEA_COLLECTIONS.map(c=>({...c,ids:D.products.filter(p=>c.families.includes(p.family)).map(p=>p.id)}));
