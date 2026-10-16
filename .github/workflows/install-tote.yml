@@ -5,6 +5,7 @@ on:
     paths:
       - 'uploads/*Tote*.zip'
       - 'uploads/*tote*.zip'
+      - 'uploads/chamea-tote-50-anh*.zip'
       - 'scripts/install-tote.py'
   workflow_dispatch:
 permissions:
@@ -21,7 +22,7 @@ jobs:
         run: |
           python scripts/install-tote.py
           python -m json.tool public/products.json >/dev/null
-          test "$(find public/assets/tote -type f -name '*.png' | wc -l)" -eq 50
+          test "$(find public/assets/tote -type f -name '*.jpg' | wc -l)" -eq 50
       - name: Commit tote collection and trigger Pages deploy
         run: |
           git config user.name "github-actions[bot]"
