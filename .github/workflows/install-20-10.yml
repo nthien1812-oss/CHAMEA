@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'uploads/chamea-20-10.zip'
+      - 'uploads/chamea-20-10*.zip'
   workflow_dispatch:
 permissions:
   contents: write
