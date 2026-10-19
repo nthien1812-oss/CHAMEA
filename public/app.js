@@ -16,24 +16,12 @@ function campaignLanding(){
  const families=['Blush Theory','Her Rules','Pastel Core','Souls'];
  const featured=families.map(f=>D.products.find(p=>p.family===f&&p.collection20==='20-10')).filter(Boolean);
  const souls=featured.find(p=>p.family==='Souls');
- const campaignCard=p=>`<article class="chamea-2010-single-card">
-   <a class="chamea-2010-single-image" href="/san-pham/${p.id}" aria-label="Xem chi tiết ${esc(p.name)}">
-    <img src="${asset(p.image)}" alt="${esc(p.name)}" loading="lazy">
-    ${hasDiscount(p)?`<span class="chamea-2010-offer">ƯU ĐÃI −${Math.round(D.campaign.discount*100)}%</span>`:''}
-   </a>
-   <div class="chamea-2010-single-info">
-    <p class="chamea-2010-single-eyebrow">CHAMÉA 20/10 · PHIÊN BẢN ĐỘC QUYỀN</p>
-    <h3><a href="/san-pham/${p.id}">${esc(p.family)}</a></h3>
-    <p class="chamea-2010-single-color">Sắc màu ${esc(p.color)} · Một thiết kế, một dấu ấn</p>
-    <div class="chamea-2010-single-price"><strong>${money(price(p))}</strong>${hasDiscount(p)?`<del>${money(p.price)}</del>`:''}</div>
-    <a class="chamea-2010-single-cta" href="/san-pham/${p.id}">Khám phá thiết kế <span aria-hidden="true">↗</span></a>
-   </div>
- </article>`;
+
  return `<section class="chamea-2010 chamea-2010-shop">
   <div class="container chamea-2010-shop-intro"><p class="eyebrow">CHAMÉA · QUÀ TẶNG 20/10</p><h1>CHAMÉA – Những thiết kế dành riêng cho nàng</h1><p>Tháng Mười là dịp để trao gửi những điều dịu dàng. Bốn thiết kế, bốn sắc màu riêng biệt — mỗi chiếc túi là một lời nhắn gửi tinh tế.</p><a class="btn" href="#chamea-2010-products">Khám phá bộ sưu tập ↗</a></div>
   <div class="container chamea-2010-shop-products" id="chamea-2010-products">
    <div class="chamea-2010-products-heading"><div><p class="eyebrow">THE 20/10 EDIT · FOUR SIGNATURE PIECES</p><h2>Chọn một thiết kế, gửi một lời thương</h2><p>Mỗi mẫu túi có một sắc màu đặc trưng, được tuyển chọn cho mùa quà tặng. Không cần chọn phiên bản màu — chỉ cần chọn thiết kế phù hợp với nàng.</p></div><span class="chamea-2010-count">04 THIẾT KẾ · 04 SẮC MÀU</span></div>
-   <div class="chamea-2010-single-grid">${featured.map(campaignCard).join('')}</div>
+   <div class="chamea-2010-shop-grid chamea-2010-standard-cards">${featured.map(p=>card(p)).join('')}</div>
    <p class="chamea-2010-price-note">Giá niêm yết là mức đề xuất tham khảo; ưu đãi 20% áp dụng khi chương trình đang bật. Cửa hàng sẽ xác nhận trước khi bán chính thức.</p>
   </div>
   <div class="container chamea-2010-gift-editorial">
