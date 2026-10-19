@@ -1045,3 +1045,9 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
   #main .journal-cover.journal-photo-stage,
   #main .journal-group-photo.journal-photo-stage{width:100%}
 }
+
+
+/* Featured blog thumbnail: show model's face instead of center-cropping it */
+#main .journal-featured-item img{
+  object-position:center 12%!important;
+}
