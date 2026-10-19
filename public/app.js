@@ -221,7 +221,7 @@ function gift2010Journal(){
   const level=i===0||i===8?2:3;
   body+='<h'+level+' id="'+ids[i]+'">'+esc(s.title)+'</h'+level+'>';
   body+=renderPart(s.content);
-  if(i===2)body+='<aside class="journal-product"><img src="'+fallback+'" alt="Túi CHAMÉA"><div><span>KHÁM PHÁ THIẾT KẾ</span><strong>Bộ sưu tập 20/10 CHAMÉA</strong><a href="/qua-tang-20-10">Xem sản phẩm ↗</a></div></aside>';
+  if(i===2)body+='<aside class="journal-product"><a href="/qua-tang-20-10" aria-label="Xem bộ sưu tập 20/10 CHAMÉA"><img src="'+fallback+'" alt="Bộ sưu tập 20/10 CHAMÉA"></a><div><span>KHÁM PHÁ THIẾT KẾ</span><strong><a href="/qua-tang-20-10">Bộ sưu tập 20/10 CHAMÉA</a></strong><a href="/qua-tang-20-10">Xem bộ sưu tập ↗</a></div></aside>';
  });
  const toc=sourceSections.map((s,i)=>'<a class="'+(i===0||i===8?'journal-toc-major':'journal-toc-sub')+'" href="#'+ids[i]+'">'+esc(s.title)+'</a>').join('');
  const holder=document.createElement('div');holder.innerHTML=body;
