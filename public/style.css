@@ -994,3 +994,54 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-group-photo.journal-photo-stage,#main .journal-cover.journal-photo-stage{background:#ede3e1}
 #main .journal-photo-stage figcaption{position:relative;z-index:2;background:#fff9f7}
 @media(max-width:760px){#main .journal-figure .journal-photo-stage img,#main .journal-group-photo.journal-photo-stage img,#main .journal-cover.journal-photo-stage img{height:auto;max-height:none;aspect-ratio:auto}#main .journal-photo-stage::before{filter:blur(15px) brightness(.9)}}
+
+
+/* CHAMÉA Journal: natural editorial portrait treatment, no artificial blurred wings */
+#main .journal-photo-stage,
+#main .journal-group-photo.journal-photo-stage,
+#main .journal-cover.journal-photo-stage{
+  background:transparent!important;
+  overflow:visible;
+  isolation:auto;
+}
+#main .journal-photo-stage::before,
+#main .journal-photo-stage::after{content:none!important;display:none!important}
+#main .journal-figure{background:transparent!important;text-align:center}
+#main .journal-figure .journal-photo-stage{
+  width:fit-content;
+  max-width:100%;
+  margin:0 auto;
+  display:block;
+}
+#main .journal-figure .journal-photo-stage img,
+#main .journal-group-photo.journal-photo-stage img,
+#main .journal-cover.journal-photo-stage img{
+  display:block;
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:720px!important;
+  object-fit:contain!important;
+  margin:0 auto;
+  background:transparent!important;
+  border-radius:3px;
+}
+#main .journal-cover.journal-photo-stage,
+#main .journal-group-photo.journal-photo-stage{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:center}
+#main .journal-cover.journal-photo-stage img,
+#main .journal-group-photo.journal-photo-stage img{max-height:650px!important}
+#main .journal-figure figcaption,
+#main .journal-photo-stage figcaption{background:transparent!important;max-width:620px;margin:12px auto 0}
+@media(min-width:900px){
+  #main .journal-figure .journal-photo-stage img,
+  #main .journal-group-photo.journal-photo-stage img,
+  #main .journal-cover.journal-photo-stage img{max-width:min(100%,680px)!important}
+}
+@media(max-width:760px){
+  #main .journal-figure .journal-photo-stage img,
+  #main .journal-group-photo.journal-photo-stage img,
+  #main .journal-cover.journal-photo-stage img{width:100%!important;max-height:none!important}
+  #main .journal-figure .journal-photo-stage,
+  #main .journal-cover.journal-photo-stage,
+  #main .journal-group-photo.journal-photo-stage{width:100%}
+}
