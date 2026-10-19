@@ -585,7 +585,21 @@ document.addEventListener('click',e=>{
  if(action==='journal-toc-toggle'||action==='journal-toc-close'){const pop=document.getElementById('journal-toc-popover'),toggle=document.querySelector('.journal-toc-toggle');if(pop&&toggle){pop.hidden=action==='journal-toc-close'?true:!pop.hidden;toggle.setAttribute('aria-expanded',String(!pop.hidden))}}
  if(action==='journal-copy-link'){if(navigator.clipboard?.writeText){navigator.clipboard.writeText(location.href).then(()=>toast('Đã sao chép liên kết bài viết')).catch(()=>toast('Hãy sao chép đường dẫn trên thanh địa chỉ'))}else toast('Hãy sao chép đường dẫn trên thanh địa chỉ')}
  if(action==='hero-cta')go('/bo-suu-tap/qua-tang-20-10');
- if(action==='menu')openPanel('Khám phá CHAMÉA',`<nav class="panel-nav" aria-label="Menu điện thoại">${[['/','Trang chủ'],['/tui-xach','Túi xách'],...([...new Set(D.products.map(p=>p.shape))].map(s=>['/tui-xach?dang='+encodeURIComponent(s),s])),['/bo-suu-tap','Bộ sưu tập'],...D.collections.map(c=>['/bo-suu-tap/'+c.id,c.name]),['/goi-y-chon-qua','Gợi ý chọn quà'],['/goc-chon-qua','Blog'],['/ve-chamea','Về CHAMÉA'],['/lien-he','Liên hệ'],['/yeu-thich','Túi yêu thích']].map(([u,t])=>link(u,t,'')).join('')}</nav>`);
+ if(action==='menu'){
+  const shapes=[...new Set(D.products.map(p=>p.shape))];
+  const collections=D.collections.map(c=>[c.id==='20-10'?'/qua-tang-20-10':'/bo-suu-tap/'+c.id,c.name]);
+  const nested=(items)=>items.map(([url,label])=>link(url,label,'')).join('');
+  openPanel('Khám phá CHAMÉA',`<nav class="panel-nav chamea-mobile-nav" aria-label="Menu điện thoại">
+   ${link('/','Trang chủ','')}
+   <details class="mobile-nav-group"><summary>Túi xách <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/tui-xach','Tất cả túi xách','')}${nested(shapes.map(s=>['/tui-xach?dang='+encodeURIComponent(s),s]))}</div></details>
+   <details class="mobile-nav-group"><summary>Bộ sưu tập <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/bo-suu-tap','Tất cả bộ sưu tập','')}${nested(collections)}</div></details>
+   ${link('/goi-y-chon-qua','Gợi ý chọn quà','')}
+   ${link('/goc-chon-qua','Blog','')}
+   ${link('/ve-chamea','Về CHAMÉA','')}
+   ${link('/lien-he','Liên hệ','')}
+   ${link('/yeu-thich','Túi yêu thích','')}
+  </nav>`);
+ }
  if(action==='search'){openPanel('Tìm chiếc túi của bạn',`<form class="panel-search" data-form="search"><label class="sr-only" for="search-input">Tên, dáng hoặc màu túi</label><input id="search-input" name="q" type="search" placeholder="Tên, dáng hoặc màu túi…" autocomplete="off"><button aria-label="Tìm kiếm">${icon('search')}</button></form><div id="search-results" aria-live="polite"></div>`);showSearch();$('#search-input').focus()}
  if(action==='close')closePanel();if(action==='cart')cartPanel();
  if(action==='fav'){favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];persist('chamea-favs-v1',favs);header();$$(`[data-action="fav"][data-id="${id}"]`).forEach(el=>{el.setAttribute('aria-pressed',String(favs.includes(id)));el.setAttribute('aria-label',(favs.includes(id)?'Bỏ ':'Thêm ')+product(id).name+(favs.includes(id)?' khỏi':' vào')+' yêu thích')});if(location.pathname==='/yeu-thich'&&!favs.includes(id))render(false);toast(favs.includes(id)?'Đã lưu túi vào danh sách yêu thích.':'Đã bỏ túi khỏi danh sách yêu thích.')}
