@@ -94,7 +94,7 @@ function home(blocks=editor().blocks,native=null){blocks=[...blocks].map(b=>b.id
  else if(b.type==='products')inner=`${copy}<div class="grid builder-products chamea-product-rail" tabindex="0" aria-label="Danh sách túi kéo ngang" style="--block-columns:${b.columns}">${designCards(D.products)}</div>${note}`;
  else if(b.type==='collections')inner=collectionSpotlight();
  else if(b.type==='campaign')inner=campaignLanding();
- else if(b.type==='categories')inner=`${copy}<div class="categories">${[...new Set(D.products.map(p=>p.shape))].map(shape=>{const p=D.products.find(x=>x.shape===shape),image=editor().categoryImages?.[shape]|| (shape==='Túi đeo vai'?'lune.jpg':'aline.jpg');return `<a class="category" href="/tui-xach?dang=${encodeURIComponent(shape)}"><img src="${asset(image)}" alt="${esc(shape)}"><div><h3>${esc(shape)}</h3><span>Khám phá →</span></div></a>`}).join('')}</div>`;
+ else if(b.type==='categories')inner=`${copy}<div class="categories">${[...new Set(D.products.map(p=>p.shape))].map(shape=>{const p=D.products.find(x=>x.shape===shape),image=shape==='Túi tote'?'/CHAMEA/assets/tote/allure/cream/01.jpg':(p?.image||editor().categoryImages?.[shape]||'aline.jpg');return `<a class="category" href="/tui-xach?dang=${encodeURIComponent(shape)}"><img src="${asset(image)}" alt="${esc(shape)}"><div><h3>${esc(shape)}</h3><span>Khám phá →</span></div></a>`}).join('')}</div>`;
  else if(b.type==='articles')inner=copy+`<div class="articles">${articleCards()}</div>`;
  else if(b.type==='quiz')inner=`<div class="builder-split">${copy}<div id="quiz-host">${quizHTML()}</div></div>`;
  else inner=copy;
