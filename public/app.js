@@ -81,7 +81,7 @@ function card(p,reason=''){
 const cards=ps=>ps.map(p=>card(p)).join('');
 function designCards(ps){return uniqueDesigns(ps).map(p=>card(p)).join('')}
 const sectionHead=(eyebrow,title,url,label)=>`<div class="section-head"><div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2></div>${url?link(url,label+' <span>↗</span>','text-link'):''}</div>`;
-function articleCards(){return D.articles.map(a=>`<article class="article-card"><a href="/goc-chon-qua/${a.id}"><img src="${asset(a.image)}" alt="Gợi ý túi CHAMÉA cho bài viết ${esc(a.title)}" loading="lazy"><h3>${a.title}</h3></a><p>${a.summary}</p>${link('/goc-chon-qua/'+a.id,'Đọc tiếp ↗','text-link')}</article>`).join('')}
+function articleCards(){return chameaJournalRelated('').map(a=>`<article class="article-card"><a href="/goc-chon-qua/${a.id}"><img src="${asset(a.image)}" alt="${esc(a.title)}" loading="lazy"><h3>${esc(a.title)}</h3></a><p>${esc(a.summary)}</p>${link('/goc-chon-qua/'+a.id,'Đọc tiếp ↗','text-link')}</article>`).join('')}
 const editor=()=>D.editor||window.EDITOR_DEFAULTS;
 function blockMedia(b){
  if(b.type==='video')return b.video?`<video class="builder-media" controls playsinline preload="metadata" ${b.autoplay?'autoplay muted':''} ${b.muted?'muted':''} ${b.loop?'loop':''} ${b.poster?`poster="${asset(b.poster)}"`:''}><source src="${asset(b.video)}" type="video/mp4"></video>`:'<p class="info-box">Video đang cập nhật.</p>';
