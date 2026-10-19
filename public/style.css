@@ -978,3 +978,9 @@ body > .journal-toc-float .journal-toc-toggle{cursor:grab;touch-action:none;user
 body > .journal-toc-float .journal-toc-toggle:active{cursor:grabbing}
 body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!important;right:59px!important}
 @media(max-width:900px){body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!important;right:54px!important}}
+
+
+/* Clickable product references in CHAMÉA editorial text */
+#main .journal-article a.journal-inline-product,#main .journal-quick a.journal-inline-product{color:#76334f;font-weight:750;text-decoration:underline;text-decoration-color:#c99bad;text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
+#main .journal-article a.journal-inline-product:hover,#main .journal-quick a.journal-inline-product:hover{color:#a33362;text-decoration-color:currentColor}
+#main .journal-article a.journal-inline-product:focus-visible,#main .journal-quick a.journal-inline-product:focus-visible{outline:2px solid #8d4764;outline-offset:3px}
