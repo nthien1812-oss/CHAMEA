@@ -591,11 +591,12 @@ document.addEventListener('click',e=>{
   const nested=(items)=>items.map(([url,label])=>link(url,label,'')).join('');
   openPanel('Khám phá CHAMÉA',`<nav class="panel-nav chamea-mobile-nav" aria-label="Menu điện thoại">
    ${link('/','Trang chủ','')}
+   ${link('/ve-chamea','Về CHAMÉA','')}
    <details class="mobile-nav-group"><summary>Túi xách <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/tui-xach','Tất cả túi xách','')}${nested(shapes.map(s=>['/tui-xach?dang='+encodeURIComponent(s),s]))}</div></details>
    <details class="mobile-nav-group"><summary>Bộ sưu tập <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/bo-suu-tap','Tất cả bộ sưu tập','')}${nested(collections)}</div></details>
+   ${link('/qua-tang-20-10','Quà tặng 20/10','')}
    ${link('/goi-y-chon-qua','Gợi ý chọn quà','')}
    ${link('/goc-chon-qua','Blog','')}
-   ${link('/ve-chamea','Về CHAMÉA','')}
    ${link('/lien-he','Liên hệ','')}
    ${link('/yeu-thich','Túi yêu thích','')}
   </nav>`);
