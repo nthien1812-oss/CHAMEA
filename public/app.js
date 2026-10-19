@@ -472,7 +472,7 @@ function toteJournal(){
  {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
  {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
 ].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
- const featuredList=`<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>${featuredArticles.map((x,i)=>`<a class="journal-featured-item" href="${x.href}"><span class="journal-featured-index">${i+1}</span><img src="${asset(x.image)}" loading="lazy" alt="${esc(x.title)}"><span class="journal-featured-info"><strong>${esc(x.title)}</strong><small>${esc(x.category)}</small></span></a>`).join('')}</section>`;
+ const featuredList=`<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>${featuredArticles.map((x,i)=>`<a class="journal-featured-item" href="${x.href}"><span class="journal-featured-index">${i+1}</span><span class="journal-featured-thumb"><img src="${asset(x.image)}" loading="lazy" alt="${esc(x.title)}"></span><span class="journal-featured-info"><strong>${esc(x.title)}</strong><small>${esc(x.category)}</small></span></a>`).join('')}</section>`;
  // Link every textual mention of a tote design to its actual product page, without nesting anchors.
  const productNames=['Allure','Heritage','Iconic','Muse','Velvet'];
  const linkProductMentions=html=>{
