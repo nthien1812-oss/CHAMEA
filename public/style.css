@@ -1099,3 +1099,8 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-faq-item > summary::before{content:none!important;display:none!important}
 #main .journal-faq-item > summary > span:first-child{display:block!important;flex:1 1 auto!important;min-width:0!important;visibility:visible!important;opacity:1!important;color:#171717!important;font-size:15px!important;font-weight:700!important;text-align:left!important;white-space:normal!important}
 #main .journal-faq-item > summary > .journal-faq-sign{display:block!important;flex:0 0 20px!important;text-align:center!important}
+
+/* Blog listing: use editorial cover images with intentional wide thumbnail cropping. */
+#main .articles .article-card > a > img{width:100%;aspect-ratio:1.55;object-fit:cover;object-position:center 42%;display:block}
+#main .articles .article-card:nth-child(2) > a > img{object-position:center 38%}
+#main .journal-featured-item img{object-position:center 35%}
