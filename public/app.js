@@ -212,8 +212,9 @@ function handbags2026Journal(){
    body+='</div>';return;
   }
   const paras=paragraphs(section.content);
+  const captionIndex=i>=2&&i<=6?paras.findLastIndex(p=>/^(?:Mẫu túi|Mẫu túi xách)/i.test(p)&&!/^Mẫu túi (?:Nina màu|Mila màu)/i.test(p)):-1;
   paras.forEach((p,k)=>{
-   if(i>=2&&i<=6&&/^(?:Mẫu túi|Mẫu túi xách)/i.test(p)){
+   if(k===captionIndex){
     body+=picture(entries[i-2][1],p);
    }else body+=para(p);
   });
