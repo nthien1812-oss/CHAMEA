@@ -1104,3 +1104,7 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .articles .article-card > a > img{width:100%;aspect-ratio:1.55;object-fit:cover;object-position:center top;display:block}
 #main .articles .article-card:nth-child(2) > a > img{object-position:center top}
 #main .journal-featured-item img{object-position:center 35%}
+
+/* Featured blog thumbnails: fill the frame by cropping sides, not the top/bottom. */
+#main .journal-featured-item img{width:75px;height:70px;object-fit:cover;object-position:center center;transform:scale(1.12);transform-origin:center center}
+#main .journal-featured-item{overflow:hidden}
