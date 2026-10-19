@@ -188,7 +188,7 @@ function handbags2026Journal(){
  ];
  const get=n=>D.products.find(p=>p.id===n)||D.products.find(p=>p.id?.startsWith(n+'-'))||D.products.find(p=>p.name?.toLowerCase().includes(n));
  const link=n=>{const p=get(n);return p?'/san-pham/'+encodeURIComponent(p.id):'/tui-xach'};
- const picture=(n,caption)=>{const p=get(n);return p?'<figure class="journal-figure"><a class="journal-photo-stage" href="'+link(n)+'"><img loading="lazy" src="'+asset(p.image)+'" alt="Túi '+esc(n)+' CHAMÉA"></a><figcaption>'+esc(caption)+'</figcaption></figure>':''};
+ const picture=(n,caption)=>{const p=get(n);const originals={lune:'02-lune.png',nina:'03-nina.png',vera:'04-vera.png',mila:'05-mila.png',perle:'06-perle.png'};const original='/CHAMEA/assets/blog-top-5-2026/'+originals[n];const fallback=p?asset(p.image):'';return '<figure class="journal-figure"><a class="journal-photo-stage" href="'+link(n)+'"><img loading="lazy" src="'+original+'" onerror="this.onerror=null;this.src='+String.fromCharCode(39)+fallback+String.fromCharCode(39)+'" alt="Túi '+esc(n)+' CHAMÉA"></a><figcaption>'+esc(caption)+'</figcaption></figure>';};
  const headings=[['1. Xu hướng túi xách nữ 2026 có gì nổi bật?','xu-huong'],['2. TOP 5 kiểu dáng túi xách trendy 2026','top-5'],...entries.map((e,i)=>['2.'+(i+1)+'. Túi '+e[0],e[1]]),['3. Bí quyết lựa chọn kiểu túi xách phù hợp với phong cách','bi-quyet'],['3.1. Lựa chọn theo phong cách thời trang','phong-cach'],['3.2. Chọn kích thước phù hợp với nhu cầu','kich-thuoc'],['3.3. Ưu tiên màu sắc dễ phối đồ','chon-mau'],['4. Những gam màu túi xách đáng chú ý trong năm 2026','gam-mau'],['4.1. Đỏ Burgundy – Sang trọng và cuốn hút','burgundy'],['4.2. Hồng phấn – Dịu dàng và nữ tính','hong-phan'],['4.3. Đỏ cổ điển – Tự tin và nổi bật','do-co-dien'],['4.4. Đen kinh điển – Vẻ đẹp vượt thời gian','den'],['5. Câu hỏi thường gặp khi lựa chọn túi xách nữ','faq'],['6. CHAMÉA – Khi mỗi chiếc túi kể một câu chuyện phong cách','ket']];
  const h=(t,id,sub=false)=>'<h'+(sub?3:2)+' id="'+id+'">'+esc(t)+'</h'+(sub?3:2)+'>';
  const title='Top 5 mẫu túi xách nổi bật 2026 | CHAMÉA';
@@ -212,7 +212,7 @@ function handbags2026Journal(){
   }
   const paras=paragraphs(section.content);
   paras.forEach((p,k)=>{
-   if(i>=2&&i<=6&&/^Mẫu túi|^Mẫu túi xách/i.test(p)){
+   if(i>=2&&i<=6&&/^(?:Mẫu túi|Mẫu túi xách)/i.test(p)){
     body+=picture(entries[i-2][1],p);
    }else body+=para(p);
   });
@@ -228,12 +228,12 @@ function handbags2026Journal(){
  body=body.replace('<h2 id="bi-quyet">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h2 id="bi-quyet">');
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="faq">');
  const cover=get('lune');
- const coverSrc=cover?asset(cover.image):'';
+ const coverSrc='/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png';const coverFallback=cover?asset(cover.image):'';
  return '<div class="container journal-crumb"><a href="/">Trang chủ</a> / <a href="/goc-chon-qua">Blog</a> / Kiến thức túi xách</div>'+
  '<div class="container journal-hero"><p class="eyebrow">CHAMÉA JOURNAL · KIẾN THỨC TÚI XÁCH</p><h1>'+title+'</h1><div class="journal-meta"><span>Biên tập CHAMÉA</span><span>2026</span><span>8 phút đọc</span></div></div>'+
  '<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+toc+'</nav></div>'+
  '<div class="container journal-layout"><main class="journal-main"><div class="journal-quick"><strong>TÓM TẮT NHANH</strong><p>Top 5 kiểu dáng túi xách nổi bật 2026 gồm Baguette, Top Handle, Satchel Mini, Structured và Quilted Chain, mang vẻ đẹp thanh lịch, hiện đại và giàu tính ứng dụng. Xu hướng năm nay nổi bật với các gam màu đỏ Burgundy, hồng phấn, đỏ cổ điển và đen kinh điển. Cùng CHAMÉA khám phá đặc điểm từng kiểu túi, bí quyết phối đồ và cách lựa chọn thiết kế phù hợp với phong cách, cá tính riêng.</p></div>'+
- '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;'+coverSrc+'&quot;)"><img src="'+coverSrc+'" alt="Ảnh bìa Top 5 túi xách CHAMÉA 2026" loading="eager"><figcaption>Khám phá 5 thiết kế túi xách nổi bật của CHAMÉA năm 2026.</figcaption></figure>'+
+ '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;'+coverSrc+'&quot;)"><img src="'+coverSrc+'" onerror="this.onerror=null;this.src=\''+coverFallback+'\'" alt="Ảnh bìa Top 5 túi xách CHAMÉA 2026" loading="eager"><figcaption>Khám phá 5 thiết kế túi xách nổi bật của CHAMÉA năm 2026.</figcaption></figure>'+
  '<div class="journal-article"><p>Năm 2026, xu hướng túi xách nữ tiếp tục ghi dấu ấn với những thiết kế thanh lịch, hiện đại và mang đậm cá tính riêng. Không chỉ là phụ kiện hoàn thiện trang phục, một chiếc túi phù hợp còn giúp phái đẹp thể hiện gu thẩm mỹ và phong cách sống. Từ những phom dáng cổ điển đến các thiết kế thời thượng, mỗi kiểu túi đều sở hữu sức hút riêng. Hãy cùng CHAMÉA khám phá Top 5 mẫu túi xách nổi bật 2026 và tìm kiếm thiết kế phù hợp nhất với phong cách của bạn.</p>'+body+'</div>'+
  '<div class="journal-current-reading">Đang xem: <strong>'+title+'</strong></div>'+
  '<div class="journal-bottom-cta"><p class="eyebrow">CHAMÉA COLLECTION</p><h2>Tìm chiếc túi dành riêng cho nàng</h2><p>Khám phá năm thiết kế với những sắc màu và cá tính riêng.</p><a class="btn" href="/tui-xach">Khám phá CHAMÉA ↗</a></div>'+
