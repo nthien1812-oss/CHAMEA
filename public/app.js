@@ -180,7 +180,7 @@ function blogPage(){return pageHead('Góc chọn quà','Những bài viết nh�
 function toteJournal(){
  const tote=f=>D.products.find(p=>p.family?.toLowerCase()===f.toLowerCase()&&p.collection==='tui-tote')||D.products.find(p=>p.id.startsWith('tote-'+f.toLowerCase()));
  const journalPhotos={Allure:'02-allure.webp',Heritage:'03-heritage.webp',Iconic:'04-iconic.webp',Muse:'05-muse.webp',Velvet:'06-velvet.webp'};
- const image=(f,caption)=>{const p=tote(f);return p?`<figure class="journal-figure"><a href="/san-pham/${p.id}"><img loading="lazy" src="${asset('assets/'+journalPhotos[f])}" alt="Túi tote CHAMÉA ${esc(f)}"></a><figcaption>${esc(caption)}</figcaption></figure>`:''};
+ const image=(f,caption)=>{const p=tote(f);return p?`<figure class="journal-figure"><a href="/san-pham/${p.id}"><img loading="lazy" src="${asset(journalPhotos[f])}" alt="Túi tote CHAMÉA ${esc(f)}"></a><figcaption>${esc(caption)}</figcaption></figure>`:''};
  const sections=[
  ['1. TOP 5 mẫu túi tote CHAMÉA đẹp, tiện dụng đáng sở hữu năm 2026','top-5'],
  ['1.1. Túi Tote Allure – Sang trọng và cuốn hút','allure'],
