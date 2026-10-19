@@ -818,3 +818,59 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 #main .chamea-2010-standard-cards .product-visual img{aspect-ratio:4/5;object-fit:cover}
 @media(max-width:1000px){#main .chamea-2010-standard-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#main .chamea-2010-standard-cards{gap:12px}}
+
+
+/* CHAMÉA Journal — editorial article inspired by fashion-magazine information architecture */
+#main .journal-crumb{padding:22px 0;font-size:12px;color:#876a78}
+#main .journal-crumb a{color:#634357;text-decoration:none}
+#main .journal-hero{max-width:1120px;padding-top:30px;padding-bottom:38px;border-bottom:1px solid #e8d6dc}
+#main .journal-hero h1{font-size:clamp(36px,4.6vw,65px);line-height:1.16;color:#3f2737;max-width:1020px;margin:17px 0 20px;letter-spacing:-.02em}
+#main .journal-hero>p:not(.eyebrow){max-width:850px;font-size:16px;line-height:1.9;color:#695360}
+#main .journal-meta{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 26px;color:#805d70;font-size:12px;letter-spacing:.2px}
+#main .journal-meta span+span:before{content:"✦";font-size:9px;margin-right:17px;color:#bd9aa9}
+#main .journal-layout{display:grid;grid-template-columns:minmax(0,750px) minmax(235px,290px);gap:clamp(28px,5vw,78px);align-items:start;padding-top:50px;padding-bottom:100px}
+#main .journal-main{min-width:0}
+#main .journal-quick{background:#f6ebe9;border-left:4px solid #884b65;padding:24px 30px;margin-bottom:44px}
+#main .journal-quick strong{color:#6d3450;font-size:13px;letter-spacing:1.6px}
+#main .journal-quick p{font-size:15px;line-height:1.85;color:#5f4b55;margin:12px 0 0}
+#main .journal-sidebar{position:sticky;top:95px}
+#main .journal-toc{background:#fff9f7;border:1px solid #ebd9df;padding:25px 22px;max-height:calc(100vh - 125px);overflow-y:auto}
+#main .journal-toc h2{font-size:21px;color:#4a2b3d;border-bottom:1px solid #e6cdd7;padding-bottom:15px;margin:0 0 15px}
+#main .journal-toc a{display:block;text-decoration:none;font-size:12px;line-height:1.55;color:#6e5563;padding:8px 0}
+#main .journal-toc a:hover{color:#9b416a;text-decoration:underline}
+#main .journal-toc .journal-toc-major{font-weight:750;color:#513146}
+#main .journal-toc .journal-toc-sub{padding-left:15px}
+#main .journal-toc-mobile{display:none}
+#main .journal-sidebar-collection{margin-top:22px;padding:28px 24px;background:#472b3e;color:#fdf5f6}
+#main .journal-sidebar-collection span{font-size:10px;letter-spacing:1.4px}
+#main .journal-sidebar-collection h3{font-size:29px;margin:13px 0}
+#main .journal-sidebar-collection p{font-size:13px;line-height:1.7;color:#f1dfe6}
+#main .journal-sidebar-collection a{color:#fff;font-size:13px;font-weight:700;text-underline-offset:5px}
+#main .journal-article{color:#493a43;font-size:15px;line-height:1.92}
+#main .journal-article p{margin:0 0 21px}
+#main .journal-article h2{font-size:clamp(26px,2.7vw,35px);line-height:1.35;color:#482a3b;margin:55px 0 22px;scroll-margin-top:105px}
+#main .journal-article h3{font-size:clamp(21px,2vw,27px);line-height:1.4;color:#583048;margin:38px 0 18px;scroll-margin-top:105px}
+#main .journal-article ul{padding-left:24px;margin:0 0 30px}
+#main .journal-article li{padding:4px 0}
+#main .journal-figure{margin:25px 0 27px;text-align:center}
+#main .journal-figure img{width:100%;max-width:620px;max-height:680px;object-fit:contain;display:block;margin:0 auto;background:#f5ece8}
+#main .journal-figure figcaption{color:#876b78;font-size:12px;font-style:italic;line-height:1.65;margin:13px auto;max-width:630px}
+#main .journal-product{display:flex;align-items:center;gap:19px;padding:15px;background:#f9f0ee;border:1px solid #ead9dc;margin:22px 0 40px}
+#main .journal-product img{width:110px;height:125px;object-fit:cover}
+#main .journal-product div{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+#main .journal-product span{font-size:10px;color:#8d6376;letter-spacing:1px}
+#main .journal-product strong{font-size:21px;color:#4f2c3e;font-family:Georgia,serif}
+#main .journal-product a{font-size:12px;font-weight:750;color:#823e60;text-underline-offset:5px}
+#main .journal-caution{font-size:12px;background:#faf3ef;padding:16px 20px;border-left:3px solid #b48a9a}
+#main .journal-bottom-cta{padding:40px;background:#f1e1e6;margin:50px 0 30px}
+#main .journal-bottom-cta h2{font-size:clamp(25px,3vw,35px);color:#512d42;margin:13px 0}
+#main .journal-bottom-cta p:not(.eyebrow){font-size:14px;color:#695260;margin-bottom:20px}
+#main .journal-share{border-top:1px solid #e5d3da;border-bottom:1px solid #e5d3da;padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:15px;color:#503344}
+#main .journal-share button{border:0;background:none;color:#803c5b;font-weight:700;cursor:pointer}
+#main .journal-related{padding-top:40px}
+#main .journal-related h2{font-size:29px;color:#4d2e40;margin-bottom:20px}
+#main .journal-related .articles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+#main .journal-related .article-card img{aspect-ratio:4/3;object-fit:cover}
+#main .journal-related .article-card h3{font-size:16px;line-height:1.4}
+@media(max-width:900px){#main .journal-layout{grid-template-columns:1fr;gap:0}#main .journal-sidebar{display:none}#main .journal-toc-mobile{display:block;max-height:none;margin:0 0 35px}#main .journal-hero h1{font-size:clamp(31px,6vw,48px)}}
+@media(max-width:580px){#main .journal-hero{padding-top:16px}#main .journal-layout{padding-top:30px}#main .journal-quick{padding:20px}#main .journal-article{font-size:14px}#main .journal-product img{width:88px;height:108px}#main .journal-related .articles{grid-template-columns:1fr}#main .journal-bottom-cta{padding:26px}}
