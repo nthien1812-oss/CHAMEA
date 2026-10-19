@@ -1116,3 +1116,15 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-featured-thumb{width:84px;height:84px;display:block;overflow:hidden;border-radius:3px;background:#f5ebeb}
 #main .journal-featured-thumb img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;transform:none}
 #main .journal-featured-item:has(img[src*="01-anh-bia-chamea"]) .journal-featured-thumb img{transform:scale(1.85);transform-origin:center 38%}
+
+/* Compact mobile navigation: reveal categories and collections on demand. */
+.panel-nav.chamea-mobile-nav > a,
+.panel-nav.chamea-mobile-nav > .mobile-nav-group > summary{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding:14px 3px;border-bottom:1px solid var(--line);font-size:14px;font-weight:500;color:var(--plum);text-decoration:none}
+.panel-nav.chamea-mobile-nav .mobile-nav-group{margin:0;border:0}
+.panel-nav.chamea-mobile-nav .mobile-nav-group > summary{list-style:none;cursor:pointer}
+.panel-nav.chamea-mobile-nav .mobile-nav-group > summary::-webkit-details-marker{display:none}
+.panel-nav.chamea-mobile-nav .mobile-nav-chevron{width:9px;height:9px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .2s ease;margin-right:9px}
+.panel-nav.chamea-mobile-nav .mobile-nav-group[open] .mobile-nav-chevron{transform:rotate(225deg)}
+.panel-nav.chamea-mobile-nav .mobile-nav-children{padding:4px 0 10px 17px;background:rgba(122,72,92,.035)}
+.panel-nav.chamea-mobile-nav .mobile-nav-children a{display:block;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px;color:var(--plum)}
+.panel-nav.chamea-mobile-nav .mobile-nav-children a:last-child{border-bottom:0}
