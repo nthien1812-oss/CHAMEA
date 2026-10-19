@@ -218,7 +218,7 @@ function handbags2026Journal(){
   });
   if(i>=2&&i<=6)body+='<p><a class="journal-inline-product" href="'+link(entries[i-2][1])+'">Khám phá túi CHAMÉA '+entries[i-2][2]+' ↗</a></p>';
  });
- const toc=headings.map((x,i)=>'<a class="'+([0,1,7,11,16,17].includes(i)?'journal-toc-major':'journal-toc-sub')+'" href="#'+x[1]+'">'+esc(x[0])+'</a>').join('')+faqs.map((x,i)=>'<a class="journal-toc-sub" href="#faq-'+(i+1)+'">5.'+(i+1)+'. '+esc(x[0])+'</a>').join('');
+ const toc=headings.map((x,i)=>'<a class="'+([0,1,7,11,16,17].includes(i)?'journal-toc-major':'journal-toc-sub')+'" href="#'+x[1]+'">'+esc(x[0])+'</a>').join('')+sourceSections.slice(17,22).map((x,i)=>'<a class="journal-toc-sub" href="#faq-'+(i+1)+'">5.'+(i+1)+'. '+esc(x.title)+'</a>').join('');
 
  const featuredArticles=[{title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'01-anh-bia-iconic.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},...D.articles.filter(x=>x.id!=='top-5-mau-tui-xach-noi-bat-2026').map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}))].slice(0,5);
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
