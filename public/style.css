@@ -1128,3 +1128,7 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 .panel-nav.chamea-mobile-nav .mobile-nav-children{padding:4px 0 10px 17px;background:rgba(122,72,92,.035)}
 .panel-nav.chamea-mobile-nav .mobile-nav-children a{display:block;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px;color:var(--plum)}
 .panel-nav.chamea-mobile-nav .mobile-nav-children a:last-child{border-bottom:0}
+
+/* Suppress global details +/- indicators inside mobile menu; keep only one chevron. */
+.panel-nav.chamea-mobile-nav .mobile-nav-group > summary::after,.panel-nav.chamea-mobile-nav .mobile-nav-group > summary::before{content:none!important;display:none!important}
+.panel-nav.chamea-mobile-nav .mobile-nav-group > summary{justify-content:space-between}
