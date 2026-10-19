@@ -212,7 +212,7 @@ function handbags2026Journal(){
   }
   const paras=paragraphs(section.content);
   paras.forEach((p,k)=>{
-   if(i>=2&&i<=6&&k===2){
+   if(i>=2&&i<=6&&/^Mẫu túi|^Mẫu túi xách/i.test(p)){
     body+=picture(entries[i-2][1],p);
    }else body+=para(p);
   });
