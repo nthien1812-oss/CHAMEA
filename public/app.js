@@ -197,7 +197,7 @@ function gift2010Journal(){
  const get=n=>D.products.find(p=>p.id===n)||D.products.find(p=>p.id?.startsWith(n+'-'))||D.products.find(p=>p.name?.toLowerCase().includes(n));
  const entries=[['','','Lune'],['','','Nina'],['','','Vera'],['','','Mila'],['','','Perle']];
  const fallback=asset((D.products.find(p=>p.id==='lune')||D.products[0]).image);
- const figure=(file,caption)=>'<figure class="journal-figure journal-photo-stage"><img loading="lazy" src="'+root+file+'" onerror="this.onerror=null;this.style.display='none'" alt="'+esc(caption)+'"><figcaption>'+esc(caption)+'</figcaption></figure>';
+ const figure=(file,caption)=>'<figure class="journal-figure journal-photo-stage"><img loading="lazy" src="'+root+file+'" onerror="this.onerror=null;this.hidden=true" alt="'+esc(caption)+'"><figcaption>'+esc(caption)+'</figcaption></figure>';
  const normalize=s=>s.replace(/\s+/g,' ').trim();
  const renderPart=s=>{
   let html='';
@@ -279,7 +279,7 @@ function gift2010Journal(){
  '<div class="container journal-hero"><p class="eyebrow">CHAMÉA JOURNAL · QUÀ TẶNG 20/10</p><h1>'+title+'</h1><div class="journal-meta"><span>Biên tập CHAMÉA</span><span>2026</span><span>8 phút đọc</span></div></div>'+
  '<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+toc+'</nav></div>'+
  '<div class="container journal-layout"><main class="journal-main"><div class="journal-quick"><strong>TÓM TẮT NHANH</strong><p>'+esc(summary)+'</p></div>'+
- '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;'+coverSrc+'&quot;)"><img src="'+coverSrc+'" onerror="this.onerror=null;this.style.display='none'" alt="Ảnh bìa Top 5 túi xách CHAMÉA 2026" loading="eager"><figcaption>Bí kíp chọn quà 20/10 cùng CHAMÉA.</figcaption></figure>'+
+ '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;'+coverSrc+'&quot;)"><img src="'+coverSrc+'" onerror="this.onerror=null;this.hidden=true" alt="Ảnh bìa Top 5 túi xách CHAMÉA 2026" loading="eager"><figcaption>Bí kíp chọn quà 20/10 cùng CHAMÉA.</figcaption></figure>'+
  '<div class="journal-article"><p>'+esc(intro)+'</p>'+body+'</div>'+
  '<div class="journal-current-reading">Đang xem: <strong>'+title+'</strong></div>'+
  '<div class="journal-bottom-cta"><p class="eyebrow">CHAMÉA COLLECTION</p><h2>Tìm chiếc túi dành riêng cho nàng</h2><p>Khám phá năm thiết kế với những sắc màu và cá tính riêng.</p><a class="btn" href="/qua-tang-20-10">Khám phá CHAMÉA ↗</a></div>'+
