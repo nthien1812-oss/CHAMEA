@@ -1051,3 +1051,15 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-featured-item img{
   object-position:center 12%!important;
 }
+
+
+/* Featured articles: preserve the full portrait in thumbnails, especially the model's face */
+#main .journal-featured-item img{
+  width:75px!important;
+  height:82px!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  background:#f4ece9!important;
+}
+#main .journal-featured-item{grid-template-columns:75px minmax(0,1fr);align-items:start}
+#main .journal-featured-index{top:21px}
