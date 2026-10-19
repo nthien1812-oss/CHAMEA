@@ -228,14 +228,39 @@ function toteJournal(){
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',recommended.slice().reverse())+'<h2 id="faq">');
  const featuredArticles=[{title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:(tote('Iconic')||D.products[0]).image,href:'/goc-chon-qua/top-5-tui-tote-2026'},...D.articles.filter(x=>x.id!=='top-5-tui-tote-2026').map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}))].slice(0,5);
  const featuredList=`<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>${featuredArticles.map((x,i)=>`<a class="journal-featured-item" href="${x.href}"><span class="journal-featured-index">${i+1}</span><img src="${asset(x.image)}" loading="lazy" alt="${esc(x.title)}"><span class="journal-featured-info"><strong>${esc(x.title)}</strong><small>${esc(x.category)}</small></span></a>`).join('')}</section>`;
+ // Link every textual mention of a tote design to its actual product page, without nesting anchors.
+ const productNames=['Allure','Heritage','Iconic','Muse','Velvet'];
+ const linkProductMentions=html=>{
+  const holder=document.createElement('div');holder.innerHTML=html;
+  const walker=document.createTreeWalker(holder,NodeFilter.SHOW_TEXT);
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  const re=/\b(?:CHAMÉA\s+)?(?:Allure|Heritage|Iconic|Muse|Velvet)\b/gi;
+  for(const node of nodes){
+   if(node.parentElement?.closest('a,script,style,button,figcaption'))continue;
+   const raw=node.nodeValue;if(!re.test(raw))continue;re.lastIndex=0;
+   const fragment=document.createDocumentFragment();let last=0,m;
+   while((m=re.exec(raw))!==null){
+    if(m.index>last)fragment.appendChild(document.createTextNode(raw.slice(last,m.index)));
+    const family=productNames.find(n=>m[0].toLowerCase().endsWith(n.toLowerCase()));
+    const product=family&&tote(family);
+    if(product){const link=document.createElement('a');link.href='/san-pham/'+encodeURIComponent(product.id);link.className='journal-inline-product';link.textContent=m[0];link.title='Xem túi '+family;fragment.appendChild(link)}
+    else fragment.appendChild(document.createTextNode(m[0]));
+    last=m.index+m[0].length;
+   }
+   if(last<raw.length)fragment.appendChild(document.createTextNode(raw.slice(last)));
+   node.replaceWith(fragment);
+  }
+  return holder.innerHTML;
+ };
+ body=linkProductMentions(body);
  const intro='Túi tote ngày càng được phái đẹp yêu thích nhờ thiết kế rộng rãi, tiện dụng và dễ dàng kết hợp với nhiều phong cách thời trang. Tại CHAMÉA, nàng có thể lựa chọn 5 mẫu túi tote nổi bật gồm Allure, Heritage, Iconic, Muse và Velvet. Từ những thiết kế thanh lịch dành cho công sở đến kiểu túi mềm mại phù hợp dạo phố, mỗi mẫu đều mang đến sự kết hợp giữa tính thẩm mỹ và khả năng ứng dụng trong cuộc sống hằng ngày.';
  const toc=sections.map(([name,id],i)=>`<a class="${[0,6,12,13,17].includes(i)?'journal-toc-major':'journal-toc-sub'}" href="#${id}">${esc(name)}</a>`).join('');
  const related=D.articles.filter(a=>a.id!=='top-5-tui-tote-2026').slice(0,3);
  return `<div class="container journal-crumb"><a href="/">Trang chủ</a> / <a href="/goc-chon-qua">Blog</a> / Kiến thức túi xách</div>
  <div class="container journal-hero"><p class="eyebrow">CHAMÉA JOURNAL · KIẾN THỨC TÚI XÁCH</p><h1>TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026 – Khám phá cùng CHAMÉA</h1><div class="journal-meta"><span>Biên tập CHAMÉA</span><span>19/10/2026</span><span>10 phút đọc</span></div></div>
- <div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>${toc}</nav></div><div class="container journal-layout"><main class="journal-main"><div class="journal-quick"><strong>TÓM TẮT NHANH</strong><p>${intro}</p></div>
+ <div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>${toc}</nav></div><div class="container journal-layout"><main class="journal-main"><div class="journal-quick"><strong>TÓM TẮT NHANH</strong><p>${linkProductMentions(intro)}</p></div>
  
- <div class="journal-article"><p>Các mẫu túi tote đẹp ngày càng trở thành phụ kiện quen thuộc của phái nữ nhờ sự kết hợp giữa tính thẩm mỹ và công năng sử dụng. Không chỉ có khả năng chứa nhiều vật dụng cần thiết, túi tote còn mang đến vẻ ngoài thanh lịch, phù hợp với nhiều hoàn cảnh. Cùng CHAMÉA khám phá 5 thiết kế tote nổi bật giúp nàng hoàn thiện phong cách mỗi ngày.</p>${body}</div>
+ <div class="journal-article">${body}</div>
  <div class="journal-bottom-cta"><p class="eyebrow">CHAMÉA TOTE COLLECTION</p><h2>Tìm chiếc tote dành riêng cho nàng</h2><p>Khám phá năm thiết kế với những sắc màu và cá tính riêng.</p><a class="btn" href="/bo-suu-tap/tui-tote">Khám phá CHAMÉA Tote ↗</a></div>
  <div class="journal-share"><strong>Chia sẻ bài viết</strong><button data-action="journal-copy-link">Sao chép liên kết ↗</button></div>
  <section class="journal-related"><h2>Bài viết liên quan</h2><div class="articles">${related.map(a=>`<article class="article-card"><a href="/goc-chon-qua/${a.id}"><img loading="lazy" src="${asset(a.image)}" alt="${esc(a.title)}"><h3>${esc(a.title)}</h3></a><p>${esc(a.summary)}</p><a class="text-link" href="/goc-chon-qua/${a.id}">Đọc tiếp ↗</a></article>`).join('')}</div></section>
