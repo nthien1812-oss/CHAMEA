@@ -775,3 +775,36 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 #main .chamea-policy-notice{background:#f8eeed;border-left:4px solid #8a526e;padding:19px 22px;font-size:14px;line-height:1.85;color:#5e4150}
 #main .chamea-policy-detail .btn{margin-top:8px;text-decoration:none}
 @media(max-width:600px){#main .chamea-policy-detail{margin:30px auto 65px;padding:0 20px}#main .chamea-policy-detail p{font-size:14px}#main .chamea-policy-notice{padding:16px}}
+
+
+/* CHAMÉA 20/10 — single-color collection landing, no redundant variant controls */
+#main .chamea-2010-shop-products{padding-top:72px;padding-bottom:64px}
+#main .chamea-2010-products-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}
+#main .chamea-2010-products-heading h2{margin:9px 0 13px;max-width:710px}
+#main .chamea-2010-products-heading p:not(.eyebrow){max-width:640px;color:#715a64;line-height:1.8;font-size:14px}
+#main .chamea-2010-count{flex-shrink:0;font-size:11px;font-weight:750;letter-spacing:1.3px;color:#773e58;border-top:1px solid #b68b9a;border-bottom:1px solid #b68b9a;padding:11px 0}
+#main .chamea-2010-single-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:21px}
+#main .chamea-2010-single-card{min-width:0;background:#fff;border:1px solid #eddfdf;box-shadow:0 10px 30px rgba(69,34,52,.045);transition:transform .2s,box-shadow .2s}
+#main .chamea-2010-single-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(69,34,52,.11)}
+#main .chamea-2010-single-image{display:block;position:relative;overflow:hidden;background:#f6eeea;padding:12px}
+#main .chamea-2010-single-image img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .3s}
+#main .chamea-2010-single-card:hover .chamea-2010-single-image img{transform:scale(1.035)}
+#main .chamea-2010-offer{position:absolute;top:22px;left:22px;background:#642f4a;color:#fff;padding:8px 10px;font-size:10px;font-weight:800;letter-spacing:.6px}
+#main .chamea-2010-single-info{padding:22px 18px 20px}
+#main .chamea-2010-single-eyebrow{font-size:9px;letter-spacing:1.1px;color:#8d6377;font-weight:700}
+#main .chamea-2010-single-info h3{font-size:clamp(23px,2.2vw,32px);line-height:1.2;margin:9px 0;color:#442a38}
+#main .chamea-2010-single-info h3 a{color:inherit;text-decoration:none}
+#main .chamea-2010-single-color{font-size:12px;color:#735b67;line-height:1.5;min-height:37px}
+#main .chamea-2010-single-price{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;margin:15px 0 18px}
+#main .chamea-2010-single-price strong{font-size:21px;color:#8a2f56;font-weight:800}
+#main .chamea-2010-single-price del{font-size:12px;color:#927e87}
+#main .chamea-2010-single-cta{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #ead7df;padding-top:15px;text-decoration:none;color:#62324a;font-size:12px;font-weight:800;letter-spacing:.25px}
+#main .chamea-2010-single-cta:hover{color:#a2446e}
+#main .chamea-2010-gift-editorial{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;background:#f4e7e4;margin-bottom:80px;overflow:hidden}
+#main .chamea-2010-gift-copy{padding:clamp(32px,5vw,78px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+#main .chamea-2010-gift-copy h2{font-size:clamp(28px,3.2vw,44px);line-height:1.2;color:#522b40;margin:14px 0 18px}
+#main .chamea-2010-gift-copy>p:not(.eyebrow){font-size:14px;color:#725564;line-height:1.9;margin-bottom:24px}
+#main .chamea-2010-gift-image{display:block;min-height:360px;background:#ebd8d1}
+#main .chamea-2010-gift-image img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:1050px){#main .chamea-2010-single-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#main .chamea-2010-shop-products{padding-top:45px}#main .chamea-2010-products-heading{display:block}#main .chamea-2010-count{display:inline-block;margin-top:15px}#main .chamea-2010-single-grid{gap:12px}#main .chamea-2010-single-image{padding:7px}#main .chamea-2010-single-info{padding:15px 11px}#main .chamea-2010-single-info h3{font-size:22px}#main .chamea-2010-single-price strong{font-size:17px}#main .chamea-2010-offer{top:12px;left:12px;font-size:9px;padding:6px}#main .chamea-2010-gift-editorial{grid-template-columns:1fr}#main .chamea-2010-gift-image{min-height:270px}}
