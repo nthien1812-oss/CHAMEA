@@ -1063,3 +1063,19 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 }
 #main .journal-featured-item{grid-template-columns:75px minmax(0,1fr);align-items:start}
 #main .journal-featured-index{top:21px}
+
+
+/* Tote 2026 editorial: keep the portrait's top edge and face visible, without cropping. */
+@media (min-width:761px){
+  #main .journal-cover.journal-photo-stage img{
+    object-position:center top!important;
+    object-fit:contain!important;
+    height:auto!important;
+    max-height:none!important;
+    max-width:100%!important;
+  }
+  #main .journal-cover.journal-photo-stage{
+    align-self:start;
+    overflow:visible!important;
+  }
+}
