@@ -271,7 +271,7 @@ function gift2010Journal(){
   return holder.innerHTML;
  };
  body=linkProductMentions(body);
- body=body.replace('<h2 id="chon-qua">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h2 id="chon-qua">');
+ body=body.replace('<h3 id="nuoc-hoa">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h3 id="nuoc-hoa">');
  body=body.replace('<h2 id="trao-yeu-thuong">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="trao-yeu-thuong">');
  const cover=get('lune');
  const coverSrc=root+'01-anh-bia.png';const coverFallback=cover?asset(cover.image):'';
