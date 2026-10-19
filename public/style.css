@@ -984,3 +984,13 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-article a.journal-inline-product,#main .journal-quick a.journal-inline-product{color:#76334f;font-weight:750;text-decoration:underline;text-decoration-color:#c99bad;text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
 #main .journal-article a.journal-inline-product:hover,#main .journal-quick a.journal-inline-product:hover{color:#a33362;text-decoration-color:currentColor}
 #main .journal-article a.journal-inline-product:focus-visible,#main .journal-quick a.journal-inline-product:focus-visible{outline:2px solid #8d4764;outline-offset:3px}
+
+
+/* Blog portrait images: immersive widescreen framing without cropping the bag/model */
+#main .journal-photo-stage{position:relative;isolation:isolate;overflow:hidden;background:#ede3e1;display:block}
+#main .journal-photo-stage::before{content:"";position:absolute;z-index:-1;inset:-25px;background-image:var(--journal-photo);background-position:center;background-size:cover;background-repeat:no-repeat;filter:blur(22px) brightness(.88) saturate(.78);transform:scale(1.04);pointer-events:none}
+#main .journal-photo-stage::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(60,32,47,.10),transparent 28%,transparent 72%,rgba(60,32,47,.10));pointer-events:none}
+#main .journal-figure .journal-photo-stage img,#main .journal-group-photo.journal-photo-stage img,#main .journal-cover.journal-photo-stage img{position:relative;z-index:1;width:100%;height:clamp(370px,44vw,590px);max-height:none;object-fit:contain;object-position:center;background:transparent;display:block}
+#main .journal-group-photo.journal-photo-stage,#main .journal-cover.journal-photo-stage{background:#ede3e1}
+#main .journal-photo-stage figcaption{position:relative;z-index:2;background:#fff9f7}
+@media(max-width:760px){#main .journal-figure .journal-photo-stage img,#main .journal-group-photo.journal-photo-stage img,#main .journal-cover.journal-photo-stage img{height:auto;max-height:none;aspect-ratio:auto}#main .journal-photo-stage::before{filter:blur(15px) brightness(.9)}}
