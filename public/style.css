@@ -808,3 +808,13 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 #main .chamea-2010-gift-image img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:1050px){#main .chamea-2010-single-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){#main .chamea-2010-shop-products{padding-top:45px}#main .chamea-2010-products-heading{display:block}#main .chamea-2010-count{display:inline-block;margin-top:15px}#main .chamea-2010-single-grid{gap:12px}#main .chamea-2010-single-image{padding:7px}#main .chamea-2010-single-info{padding:15px 11px}#main .chamea-2010-single-info h3{font-size:22px}#main .chamea-2010-single-price strong{font-size:17px}#main .chamea-2010-offer{top:12px;left:12px;font-size:9px;padding:6px}#main .chamea-2010-gift-editorial{grid-template-columns:1fr}#main .chamea-2010-gift-image{min-height:270px}}
+
+
+/* Campaign product cards inherit the same component, sizing and interaction as all CHAMÉA collections */
+#main .chamea-2010-standard-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start}
+#main .chamea-2010-standard-cards>.product{min-width:0}
+#main .chamea-2010-standard-cards .chamea-card-variants{display:none!important}
+#main .chamea-2010-standard-cards .product-bottom{justify-content:flex-end}
+#main .chamea-2010-standard-cards .product-visual img{aspect-ratio:4/5;object-fit:cover}
+@media(max-width:1000px){#main .chamea-2010-standard-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#main .chamea-2010-standard-cards{gap:12px}}
