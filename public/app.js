@@ -189,6 +189,7 @@ function handbags2026Journal(){
  const get=n=>D.products.find(p=>p.id===n)||D.products.find(p=>p.id?.startsWith(n+'-'))||D.products.find(p=>p.name?.toLowerCase().includes(n));
  const link=n=>{const p=get(n);return p?'/san-pham/'+encodeURIComponent(p.id):'/tui-xach'};
  const picture=(n,caption)=>{const p=get(n);const originals={lune:'02-lune.png',nina:'03-nina.png',vera:'04-vera.png',mila:'05-mila.png',perle:'06-perle.png'};const original='/CHAMEA/assets/blog-top-5-2026/'+originals[n];const fallback=p?asset(p.image):'';return '<figure class="journal-figure"><a class="journal-photo-stage" href="'+link(n)+'"><img loading="lazy" src="'+original+'" onerror="this.onerror=null;this.src='+String.fromCharCode(39)+fallback+String.fromCharCode(39)+'" alt="Túi '+esc(n)+' CHAMÉA"></a><figcaption>'+esc(caption)+'</figcaption></figure>';};
+ const productCard=n=>{const p=get(n);return p?'<aside class="journal-product"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'"><div><span>KHÁM PHÁ THIẾT KẾ</span><strong>CHAMÉA '+esc(n.charAt(0).toUpperCase()+n.slice(1))+'</strong><a href="/san-pham/'+p.id+'">Xem sản phẩm ↗</a></div></aside>':''};
  const headings=[['1. Xu hướng túi xách nữ 2026 có gì nổi bật?','xu-huong'],['2. TOP 5 kiểu dáng túi xách trendy 2026','top-5'],...entries.map((e,i)=>['2.'+(i+1)+'. Túi '+e[0],e[1]]),['3. Bí quyết lựa chọn kiểu túi xách phù hợp với phong cách','bi-quyet'],['3.1. Lựa chọn theo phong cách thời trang','phong-cach'],['3.2. Chọn kích thước phù hợp với nhu cầu','kich-thuoc'],['3.3. Ưu tiên màu sắc dễ phối đồ','chon-mau'],['4. Những gam màu túi xách đáng chú ý trong năm 2026','gam-mau'],['4.1. Đỏ Burgundy – Sang trọng và cuốn hút','burgundy'],['4.2. Hồng phấn – Dịu dàng và nữ tính','hong-phan'],['4.3. Đỏ cổ điển – Tự tin và nổi bật','do-co-dien'],['4.4. Đen kinh điển – Vẻ đẹp vượt thời gian','den'],['5. Câu hỏi thường gặp khi lựa chọn túi xách nữ','faq'],['6. CHAMÉA – Khi mỗi chiếc túi kể một câu chuyện phong cách','ket']];
  const h=(t,id,sub=false)=>'<h'+(sub?3:2)+' id="'+id+'">'+esc(t)+'</h'+(sub?3:2)+'>';
  const title='Top 5 mẫu túi xách nổi bật 2026 | CHAMÉA';
@@ -216,7 +217,7 @@ function handbags2026Journal(){
     body+=picture(entries[i-2][1],p);
    }else body+=para(p);
   });
-  if(i>=2&&i<=6)body+='<p><a class="journal-inline-product" href="'+link(entries[i-2][1])+'">Khám phá túi CHAMÉA '+entries[i-2][2]+' ↗</a></p>';
+  if(i>=2&&i<=6)body+=productCard(entries[i-2][1]);
  });
  const toc=headings.map((x,i)=>'<a class="'+([0,1,7,11,16,17].includes(i)?'journal-toc-major':'journal-toc-sub')+'" href="#'+x[1]+'">'+esc(x[0])+'</a>').join('')+sourceSections.slice(17,22).map((x,i)=>'<a class="journal-toc-sub" href="#faq-'+(i+1)+'">5.'+(i+1)+'. '+esc(x.title)+'</a>').join('');
 
@@ -224,7 +225,7 @@ function handbags2026Journal(){
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
  const related=D.articles.filter(a=>a.id!=='top-5-mau-tui-xach-noi-bat-2026').slice(0,3);
  const productList=entries.map(e=>get(e[1])).filter(Boolean);
- const recommend=(label,items)=>'<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR’S PICKS</span><h2>'+label+'</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+items.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy"></span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
+ const recommend=(label,items)=>'<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>'+label+'</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+items.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'+(hasDiscount(p)?'<em>−20%</em>':'')+'</span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
  body=body.replace('<h2 id="bi-quyet">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h2 id="bi-quyet">');
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="faq">');
  const cover=get('lune');
