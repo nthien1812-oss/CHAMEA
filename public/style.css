@@ -1132,3 +1132,10 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 /* Suppress global details +/- indicators inside mobile menu; keep only one chevron. */
 .panel-nav.chamea-mobile-nav .mobile-nav-group > summary::after,.panel-nav.chamea-mobile-nav .mobile-nav-group > summary::before{content:none!important;display:none!important}
 .panel-nav.chamea-mobile-nav .mobile-nav-group > summary{justify-content:space-between}
+
+/* Homepage 20/10 banner: preserve every element in the supplied artwork at all widths. */
+#main [data-home-block="hero"]{padding:0!important;overflow:hidden}
+#main [data-home-block="hero"] .builder-inner{width:100%;max-width:none;margin:0;padding:0}
+#main [data-home-block="hero"] picture{display:block;width:100%;overflow:visible}
+#main [data-home-block="hero"] .builder-media{display:block;width:100%;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center center!important}
+@media(max-width:700px){#main [data-home-block="hero"] .builder-inner{padding:0!important}#main [data-home-block="hero"] .builder-media{width:100%;height:auto!important;min-height:0!important}}
