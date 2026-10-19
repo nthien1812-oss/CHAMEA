@@ -970,3 +970,11 @@ body > .journal-toc-float .journal-toc-popover .journal-toc-sub{padding-left:14p
 @media(max-width:1000px){#main .journal-layout{grid-template-columns:minmax(0,1fr) 240px;padding-left:65px;padding-right:25px;gap:24px}#main .journal-hero{padding-left:65px;padding-right:25px}}
 @media(max-width:900px){#main .journal-layout{display:block;padding-left:58px;padding-right:18px}#main .journal-hero{padding-left:58px;padding-right:18px}body > .journal-toc-float{top:auto!important;bottom:20px!important;left:10px!important}body > .journal-toc-float .journal-toc-popover{top:auto;bottom:0;left:54px;max-height:75vh}}
 @media(max-width:520px){#main .journal-layout,#main .journal-hero{padding-left:18px;padding-right:18px}body > .journal-toc-float .journal-toc-popover{left:52px;max-width:calc(100vw - 70px)}}
+
+
+/* Movable, viewport-fixed blog table-of-contents control */
+body > .journal-toc-float{position:fixed!important;z-index:99999!important}
+body > .journal-toc-float .journal-toc-toggle{cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+body > .journal-toc-float .journal-toc-toggle:active{cursor:grabbing}
+body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!important;right:59px!important}
+@media(max-width:900px){body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!important;right:54px!important}}
