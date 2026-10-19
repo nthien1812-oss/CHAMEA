@@ -946,3 +946,27 @@ h1,h2,h3,h4,h5,h6,.section-head h2,.collection-head h1,.page-head h1,.builder-co
 @media(max-width:1160px){#main .journal-layout{grid-template-columns:minmax(0,1fr) 250px}#main .journal-sidebar{display:block}}
 @media(max-width:900px){#main .journal-layout{display:block}#main .journal-sidebar{display:none}#main .journal-toc-float{top:auto;bottom:22px;left:14px}#main .journal-toc-popover{top:auto;bottom:0}#main .journal-mini-product{flex-basis:145px}}
 @media(max-width:480px){#main .journal-toc-toggle{width:43px;height:43px}#main .journal-toc-popover{left:49px;width:calc(100vw - 77px)}#main .journal-mini-image img{height:125px}}
+
+
+/* Floating journal navigation lives outside animated #main, above article content */
+body > .journal-toc-float{position:fixed!important;top:clamp(110px,27vh,260px)!important;left:14px!important;bottom:auto!important;z-index:9999!important;display:block!important;isolation:isolate}
+body > .journal-toc-float .journal-toc-toggle{display:grid;place-items:center;width:48px;height:48px;border:1px solid #d9c5cf;border-radius:9px;background:#fff;color:#4a293b;font-size:26px;cursor:pointer;box-shadow:0 7px 22px rgba(44,20,34,.2)}
+body > .journal-toc-float .journal-toc-toggle:hover,body > .journal-toc-float .journal-toc-toggle[aria-expanded="true"]{background:#f3e5eb}
+body > .journal-toc-float .journal-toc-popover{position:absolute;display:block;top:0;left:59px;bottom:auto;width:340px;max-width:calc(100vw - 88px);height:auto;max-height:min(75vh,650px);overflow-y:auto;overflow-x:hidden;background:#fff;box-shadow:0 15px 45px rgba(36,18,28,.25);border:1px solid #dfccd5;border-radius:9px;padding:0 17px 15px;z-index:10000}
+body > .journal-toc-float .journal-toc-popover[hidden]{display:none!important}
+body > .journal-toc-float .journal-toc-popover-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2;background:#fff;padding:17px 0;border-bottom:1px solid #e6d7dd}
+body > .journal-toc-float .journal-toc-popover-head strong{font-size:14px;color:#362331}
+body > .journal-toc-float .journal-toc-popover-head button{background:transparent;border:0;font-size:27px;cursor:pointer;color:#4b293c}
+body > .journal-toc-float .journal-toc-popover a{display:block;font-size:12px;line-height:1.55;padding:9px 0;text-decoration:none;color:#64364d;overflow-wrap:anywhere}
+body > .journal-toc-float .journal-toc-popover a:hover{text-decoration:underline;color:#9d416a}
+body > .journal-toc-float .journal-toc-popover .journal-toc-major{font-weight:800}
+body > .journal-toc-float .journal-toc-popover .journal-toc-sub{padding-left:14px}
+#main .journal-layout{width:100%;max-width:1540px;grid-template-columns:minmax(0,1fr) minmax(245px,290px);gap:clamp(24px,3vw,48px);padding-left:clamp(55px,6vw,100px);padding-right:clamp(22px,4vw,65px)}
+#main .journal-hero{max-width:1540px;padding-left:clamp(55px,6vw,100px);padding-right:clamp(22px,4vw,65px)}
+#main .journal-main{width:100%;max-width:none}
+#main .journal-article{font-size:16px;line-height:1.95}
+#main .journal-article p{line-height:1.95}
+#main .journal-figure img{height:clamp(350px,42vw,590px)}
+@media(max-width:1000px){#main .journal-layout{grid-template-columns:minmax(0,1fr) 240px;padding-left:65px;padding-right:25px;gap:24px}#main .journal-hero{padding-left:65px;padding-right:25px}}
+@media(max-width:900px){#main .journal-layout{display:block;padding-left:58px;padding-right:18px}#main .journal-hero{padding-left:58px;padding-right:18px}body > .journal-toc-float{top:auto!important;bottom:20px!important;left:10px!important}body > .journal-toc-float .journal-toc-popover{top:auto;bottom:0;left:54px;max-height:75vh}}
+@media(max-width:520px){#main .journal-layout,#main .journal-hero{padding-left:18px;padding-right:18px}body > .journal-toc-float .journal-toc-popover{left:52px;max-width:calc(100vw - 70px)}}
