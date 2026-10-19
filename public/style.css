@@ -1105,6 +1105,9 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .articles .article-card:nth-child(2) > a > img{object-position:center top}
 #main .journal-featured-item img{object-position:center 35%}
 
-/* Featured blog thumbnails: fill the frame by cropping sides, not the top/bottom. */
-#main .journal-featured-item img{width:75px;height:70px;object-fit:cover;object-position:center center;transform:scale(1.12);transform-origin:center center}
-#main .journal-featured-item{overflow:hidden}
+/* Featured articles: tidy square thumbnails, unclipped number badges and readable titles. */
+#main .journal-featured-item{grid-template-columns:84px minmax(0,1fr);gap:13px;overflow:visible;padding:14px 0;align-items:center}
+#main .journal-featured-item img{width:84px;height:84px;aspect-ratio:1;object-fit:cover;object-position:center center;transform:none;display:block;border-radius:3px}
+#main .journal-featured-index{left:-9px;top:20px;width:25px;height:25px;z-index:2}
+#main .journal-featured-info strong{font-size:12px;line-height:1.45;overflow:visible;display:block;-webkit-line-clamp:unset}
+#main .journal-featured{overflow:visible}
