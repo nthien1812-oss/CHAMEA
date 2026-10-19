@@ -1093,3 +1093,9 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-current-reading{border-top:1px solid #333;margin:30px 0 35px;padding-top:22px;font-size:13px;color:#171717}
 #main .journal-current-reading strong{font-weight:600}
 @media(max-width:600px){#main .journal-faq-item summary{font-size:14px;padding:14px 13px}#main .journal-faq-answer{padding:13px}}
+
+/* FAQ accordion: override generic details markers and keep question text visible. */
+#main .journal-faq-item > summary::after{content:none!important;display:none!important}
+#main .journal-faq-item > summary::before{content:none!important;display:none!important}
+#main .journal-faq-item > summary > span:first-child{display:block!important;flex:1 1 auto!important;min-width:0!important;visibility:visible!important;opacity:1!important;color:#171717!important;font-size:15px!important;font-weight:700!important;text-align:left!important;white-space:normal!important}
+#main .journal-faq-item > summary > .journal-faq-sign{display:block!important;flex:0 0 20px!important;text-align:center!important}
