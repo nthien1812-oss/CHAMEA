@@ -211,13 +211,26 @@ function handbags2026Journal(){
    sourceSections.slice(17,22).forEach((faq,j)=>{body+='<details class="journal-faq-item" '+(j===0?'open':'')+'><summary id="faq-'+(j+1)+'"><span>'+esc(faq.title.replace(/^5\.\d\.\s*/,''))+'</span><span class="journal-faq-sign" aria-hidden="true"></span></summary><div class="journal-faq-answer">'+paragraphs(faq.content).map(para).join('')+'</div></details>'});
    body+='</div>';return;
   }
-  const paras=paragraphs(section.content);
-  const captionIndex=i>=2&&i<=6?paras.findLastIndex(p=>/^(?:Mẫu túi|Mẫu túi xách)/i.test(p)&&!/^Mẫu túi (?:Nina màu|Mila màu)/i.test(p)):-1;
-  paras.forEach((p,k)=>{
-   if(k===captionIndex){
+  const captions=[
+   /^Mẫu túi xách Lune của CHAMÉA/,
+   /^Mẫu túi Nina của thương hiệu CHAMÉA/,
+   /^Mẫu túi Vera với màu đỏ nổi bật/,
+   /^Mẫu túi Mila biểu tượng cho sự thanh lịch/,
+   /^Mẫu túi Perle với họa tiết chần trám/
+  ];
+  const captionRe=i>=2&&i<=6?captions[i-2]:null;
+  // Word sometimes puts an image caption immediately after the previous sentence
+  // without a blank line. Separate it before paragraph rendering.
+  const raw=captionRe?section.content.replace(new RegExp('\\n(?='+captionRe.source+')'),'\\n\\n'):section.content;
+  const paras=paragraphs(raw);
+  let inserted=false;
+  paras.forEach(p=>{
+   if(captionRe&&captionRe.test(p)&&!inserted){
     body+=picture(entries[i-2][1],p);
+    inserted=true;
    }else body+=para(p);
   });
+  if(captionRe&&!inserted)body+=picture(entries[i-2][1],'CHAMÉA '+entries[i-2][2]);
   if(i>=2&&i<=6)body+=productCard(entries[i-2][1]);
  });
  const toc=headings.map((x,i)=>'<a class="'+([0,1,7,11,16,17].includes(i)?'journal-toc-major':'journal-toc-sub')+'" href="#'+x[1]+'">'+esc(x[0])+'</a>').join('')+sourceSections.slice(17,22).map((x,i)=>'<a class="journal-toc-sub" href="#faq-'+(i+1)+'">5.'+(i+1)+'. '+esc(x.title)+'</a>').join('');
