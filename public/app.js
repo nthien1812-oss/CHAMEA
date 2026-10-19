@@ -246,6 +246,32 @@ function handbags2026Journal(){
  const related=D.articles.filter(a=>a.id!=='top-5-mau-tui-xach-noi-bat-2026').slice(0,3);
  const productList=entries.map(e=>get(e[1])).filter(Boolean);
  const recommend=(label,items)=>'<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>'+label+'</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+items.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'+(hasDiscount(p)?'<em>−20%</em>':'')+'</span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
+
+ // Auto-link every product name mentioned in editorial copy, as in the tote article.
+ // Avoid adding nested links inside product cards, photos or existing anchors.
+ const linkProductMentions=html=>{
+  const holder=document.createElement('div');holder.innerHTML=html;
+  const walker=document.createTreeWalker(holder,NodeFilter.SHOW_TEXT);
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  const re=/\b(?:CHAMÉA\s+)?(?:Lune|Nina|Vera|Mila|Perle)\b/gi;
+  for(const node of nodes){
+   if(node.parentElement?.closest('a,script,style,button,figcaption,summary'))continue;
+   const raw=node.nodeValue;re.lastIndex=0;if(!re.test(raw))continue;re.lastIndex=0;
+   const fragment=document.createDocumentFragment();let last=0,m;
+   while((m=re.exec(raw))!==null){
+    if(m.index>last)fragment.appendChild(document.createTextNode(raw.slice(last,m.index)));
+    const name=entries.find(e=>m[0].toLowerCase().endsWith(e[2].toLowerCase()));
+    const product=name&&get(name[1]);
+    if(product){const a=document.createElement('a');a.href='/san-pham/'+encodeURIComponent(product.id);a.className='journal-inline-product';a.textContent=m[0];a.title='Xem túi '+name[2];fragment.appendChild(a)}
+    else fragment.appendChild(document.createTextNode(m[0]));
+    last=m.index+m[0].length;
+   }
+   if(last<raw.length)fragment.appendChild(document.createTextNode(raw.slice(last)));
+   node.replaceWith(fragment);
+  }
+  return holder.innerHTML;
+ };
+ body=linkProductMentions(body);
  body=body.replace('<h2 id="bi-quyet">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h2 id="bi-quyet">');
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="faq">');
  const cover=get('lune');
