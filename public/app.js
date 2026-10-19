@@ -272,9 +272,39 @@ function updateCart(){persist('chamea-cart-v1',cart);header();if($('#panel').ope
 function addCart(id,qty){const existing=cart.find(x=>x.id===id);if(existing)existing.qty=Math.min(99,existing.qty+qty);else cart.push({id,qty:Math.min(99,qty)});persist('chamea-cart-v1',cart);header()}
 function refreshQuiz(){const host=$('#quiz-host');if(host)host.innerHTML=quizHTML()}
 function showSearch(q=''){const matches=D.products.filter(p=>normalize(p.name+' '+p.color+' '+p.shape).includes(normalize(q)));$('#search-results').innerHTML=q.trim()?`<p class="small muted">${matches.length} kết quả</p>${matches.map(p=>`<a class="search-result" href="/san-pham/${p.id}"><img src="${asset(p.image)}" alt="${p.name}"><div><p>${p.name}</p>${priceHTML(p)}</div>${icon('arrow')}</a>`).join('')||'<p>Không tìm thấy sản phẩm. Thử “kem”, “tím” hoặc “đeo vai”.</p>'}`:'<p class="small muted">Gợi ý: kem, tím mận, túi đeo vai.</p>'}
+// Journal TOC stays in the viewport while scrolling and can be repositioned by dragging its handle.
+let journalTocDrag=null;
+let journalTocIgnoreClick=false;
+document.addEventListener('pointerdown',e=>{
+ const handle=e.target.closest?.('body > .journal-toc-float .journal-toc-toggle');
+ if(!handle||e.button!==0)return;
+ const root=handle.closest('.journal-toc-float'),rect=root.getBoundingClientRect();
+ journalTocDrag={root,handle,pointerId:e.pointerId,x:e.clientX,y:e.clientY,left:rect.left,top:rect.top,moved:false};
+});
+document.addEventListener('pointermove',e=>{
+ const d=journalTocDrag;if(!d||e.pointerId!==d.pointerId)return;
+ const dx=e.clientX-d.x,dy=e.clientY-d.y;
+ if(!d.moved&&Math.hypot(dx,dy)<7)return;
+ d.moved=true;
+ const left=Math.max(6,Math.min(innerWidth-54,d.left+dx));
+ const top=Math.max(8,Math.min(innerHeight-56,d.top+dy));
+ d.root.style.setProperty('left',left+'px','important');
+ d.root.style.setProperty('top',top+'px','important');
+ d.root.style.setProperty('bottom','auto','important');
+ d.root.classList.toggle('journal-toc-flip',left>innerWidth-390);
+ e.preventDefault();
+},{passive:false});
+function endJournalTocDrag(e){
+ const d=journalTocDrag;if(!d||e.pointerId!==d.pointerId)return;
+ if(d.moved){journalTocIgnoreClick=true;setTimeout(()=>{journalTocIgnoreClick=false},100)}
+ journalTocDrag=null;
+}
+document.addEventListener('pointerup',endJournalTocDrag);
+document.addEventListener('pointercancel',endJournalTocDrag);
 document.addEventListener('click',e=>{
  const hashLink=e.target.closest('a[href^="#"]');if(hashLink&&hashLink.getAttribute('href').length>1){const target=document.getElementById(decodeURIComponent(hashLink.getAttribute('href').slice(1)));if(target){e.preventDefault();history.replaceState({},'',location.pathname+location.search+hashLink.getAttribute('href'));target.scrollIntoView({behavior:'smooth',block:'start'});const pop=document.getElementById('journal-toc-popover');if(pop)pop.hidden=true;const toggle=document.querySelector('.journal-toc-toggle');if(toggle)toggle.setAttribute('aria-expanded','false');return}}
  const a=e.target.closest('a');if(a&&a.getAttribute('href')?.startsWith('/')&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&e.button===0){e.preventDefault();go(a.getAttribute('href'));return}
+ if(journalTocIgnoreClick&&e.target.closest('.journal-toc-toggle')){e.preventDefault();journalTocIgnoreClick=false;return}
  const b=e.target.closest('[data-action]');if(!b||b.disabled)return;const action=b.dataset.action,id=b.dataset.id;
  if(action==='journal-toc-toggle'||action==='journal-toc-close'){const pop=document.getElementById('journal-toc-popover'),toggle=document.querySelector('.journal-toc-toggle');if(pop&&toggle){pop.hidden=action==='journal-toc-close'?true:!pop.hidden;toggle.setAttribute('aria-expanded',String(!pop.hidden))}}
  if(action==='journal-copy-link'){if(navigator.clipboard?.writeText){navigator.clipboard.writeText(location.href).then(()=>toast('Đã sao chép liên kết bài viết')).catch(()=>toast('Hãy sao chép đường dẫn trên thanh địa chỉ'))}else toast('Hãy sao chép đường dẫn trên thanh địa chỉ')}
