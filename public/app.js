@@ -201,7 +201,7 @@ function gift2010Journal(){
  ['Nước hoa – Món quà 20/10 tinh tế, lưu giữ hương thơm và dấu ấn riêng của nàng.','04-nuoc-hoa.png'],
  ['Mỹ phẩm và sản phẩm chăm sóc sắc đẹp – Gợi ý quà tặng 20/10 thiết thực, giúp nàng thêm tự tin và rạng rỡ.','05-my-pham.png'],
  ['Những tấm thiệp hoa mang lời chúc ý nghĩa – món quà nhỏ nhưng đủ để gửi trao yêu thương trong ngày 20/10.','06-thiep-hoa.png'],
- ['Khoảnh khắc trao gửi yêu thương ngày 20/10 cùng túi xách CHAMÉA – món quà tinh tế thay lời cảm ơn dành cho mẹ.','07-trao-yeu-thuong-moi.webp']
+ ['Khoảnh khắc trao gửi yêu thương ngày 20/10 cùng túi xách CHAMÉA – món quà tinh tế thay lời cảm ơn dành cho mẹ.','07-trao-yeu-thuong-3-tui.webp']
  ];
  const root='/CHAMEA/assets/blog-qua-tang-20-10/';
  const get=n=>D.products.find(p=>p.id===n)||D.products.find(p=>p.id?.startsWith(n+'-'))||D.products.find(p=>p.name?.toLowerCase().includes(n));
