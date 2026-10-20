@@ -1207,3 +1207,28 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .chamea-friends-hint{text-align:center;font-size:11px;letter-spacing:.06em;opacity:.65;margin:14px 0 0}
 @media(max-width:700px){#main .type-community{padding:35px 0 30px}#main .chamea-friends-heading{padding:0 20px;margin-bottom:18px}#main .chamea-friends-heading h2{font-size:25px}#main .chamea-friends-track{gap:10px;padding:18px 20px 28px}#main .chamea-friends-photo{width:55vw;height:75vw;max-height:390px}#main .chamea-friends-hint{font-size:10px}}
 @media(prefers-reduced-motion:reduce){#main .chamea-friends-photo{transform:none!important}}
+
+
+/* HAPAS-inspired community gallery: genuinely staggered sizes and lift-on-hover. */
+#main .type-community{overflow:visible}
+#main .chamea-friends-rail{overflow-x:auto;overflow-y:hidden}
+#main .chamea-friends-track{align-items:center;gap:10px;padding-top:100px;padding-bottom:100px}
+#main .chamea-friends-photo{--friend-offset:0px;--friend-lift:0px;position:relative;width:clamp(190px,17vw,275px);height:clamp(275px,26vw,390px);transform:translate3d(0,calc(var(--friend-offset) - var(--friend-lift)),0)!important;transition:transform .42s cubic-bezier(.2,.75,.25,1),filter .35s ease;will-change:transform;z-index:1}
+#main .chamea-friends-photo:nth-child(6n+1){--friend-offset:-42px;height:clamp(300px,27vw,410px)}
+#main .chamea-friends-photo:nth-child(6n+2){--friend-offset:45px;height:clamp(245px,22vw,330px)}
+#main .chamea-friends-photo:nth-child(6n+3){--friend-offset:6px;height:clamp(290px,25vw,380px)}
+#main .chamea-friends-photo:nth-child(6n+4){--friend-offset:52px;height:clamp(235px,21vw,310px)}
+#main .chamea-friends-photo:nth-child(6n+5){--friend-offset:-40px;width:clamp(225px,23vw,350px);height:clamp(335px,32vw,480px)}
+#main .chamea-friends-photo:nth-child(6n){--friend-offset:32px;height:clamp(250px,23vw,340px)}
+@media(hover:hover) and (pointer:fine){
+ #main .chamea-friends-photo:hover{--friend-lift:75px;z-index:3;filter:brightness(1.045)}
+ #main .chamea-friends-rail.is-dragging .chamea-friends-photo:hover{--friend-lift:0px}
+}
+@media(max-width:700px){
+ #main .chamea-friends-track{padding-top:75px;padding-bottom:85px}
+ #main .chamea-friends-photo{width:54vw;height:70vw}
+ #main .chamea-friends-photo:nth-child(6n+1),#main .chamea-friends-photo:nth-child(6n+3),#main .chamea-friends-photo:nth-child(6n+5){height:75vw}
+ #main .chamea-friends-photo:nth-child(6n+2),#main .chamea-friends-photo:nth-child(6n+4),#main .chamea-friends-photo:nth-child(6n){height:61vw}
+ #main .chamea-friends-photo:nth-child(6n+5){width:62vw}
+}
+@media(prefers-reduced-motion:reduce){#main .chamea-friends-photo{transition:none!important;transform:translateY(var(--friend-offset))!important}}
