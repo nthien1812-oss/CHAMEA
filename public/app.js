@@ -539,6 +539,10 @@ let chameaRailDrag=null;
 document.addEventListener('pointerdown',event=>{const rail=event.target.closest?.('.chamea-product-rail');if(!rail||event.pointerType==='touch'||event.button!==0)return;chameaRailDrag={rail,x:event.clientX,left:rail.scrollLeft,moved:false}});
 document.addEventListener('pointermove',event=>{if(!chameaRailDrag)return;const d=event.clientX-chameaRailDrag.x;if(Math.abs(d)>6){chameaRailDrag.moved=true;chameaRailDrag.rail.scrollLeft=chameaRailDrag.left-d;chameaRailDrag.rail.classList.add('is-dragging')}});
 document.addEventListener('pointerup',()=>{if(!chameaRailDrag)return;const rail=chameaRailDrag.rail,moved=chameaRailDrag.moved;rail.classList.remove('is-dragging');chameaRailDrag=null;if(moved){rail.dataset.suppressClick='1';setTimeout(()=>delete rail.dataset.suppressClick,150)}});
+// Explicit per-photo hover state: lift the image and restore its exact staggered position on exit.
+document.addEventListener('pointerover',e=>{if(e.pointerType==='touch')return;const photo=e.target.closest?.('.chamea-friends-photo');if(photo&&!photo.contains(e.relatedTarget))photo.classList.add('is-lifted')});
+document.addEventListener('pointerout',e=>{const photo=e.target.closest?.('.chamea-friends-photo');if(photo&&!photo.contains(e.relatedTarget))photo.classList.remove('is-lifted')});
+document.addEventListener('pointerdown',e=>{const photo=e.target.closest?.('.chamea-friends-photo');if(photo)photo.classList.remove('is-lifted')});
 // Community rail: edge hover auto-scroll, mouse drag and native touch swipe.
 let chameaFriendsDrag=null,chameaFriendsHover=null,chameaFriendsRaf=0;
 function chameaFriendsStop(){chameaFriendsHover=null;if(chameaFriendsRaf){cancelAnimationFrame(chameaFriendsRaf);chameaFriendsRaf=0}}
