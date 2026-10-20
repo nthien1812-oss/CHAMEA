@@ -1185,3 +1185,25 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-sidebar-collection p,
 #main .journal-sidebar-collection a{color:#fff!important}
 #main .journal-sidebar-collection a:hover{color:#fff!important;text-decoration:underline}
+
+
+/* Tri kỉ CHAMÉA: staggered editorial gallery, horizontally draggable and edge-hover scrolling. */
+#main .type-community{overflow:hidden;padding-top:52px;padding-bottom:54px}
+#main .type-community .builder-inner{max-width:none;width:100%;margin:0 auto}
+#main .chamea-friends{width:100%;min-width:0}
+#main .chamea-friends-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;max-width:1320px;margin:0 auto 28px;padding:0 28px}
+#main .chamea-friends-heading h2{font-size:clamp(26px,3vw,42px);font-weight:500;line-height:1.2;margin:0;text-transform:uppercase;letter-spacing:.025em;color:#3c2535}
+#main .chamea-friends-heading a{font-size:13px;white-space:nowrap;color:#3c2535;text-decoration:none;border-bottom:1px solid currentColor;padding-top:12px;padding-bottom:4px}
+#main .chamea-friends-rail{width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y;user-select:none}
+#main .chamea-friends-rail::-webkit-scrollbar{display:none}
+#main .chamea-friends-rail.is-dragging{cursor:grabbing}
+#main .chamea-friends-track{display:flex;align-items:center;gap:14px;padding:16px max(28px,calc((100vw - 1320px)/2)) 28px;width:max-content;min-width:100%}
+#main .chamea-friends-photo{flex:none;width:clamp(175px,18vw,270px);height:clamp(290px,30vw,410px);margin:0;overflow:hidden;background:#e8deda}
+#main .chamea-friends-photo:nth-child(4n+1){transform:translateY(-22px)}
+#main .chamea-friends-photo:nth-child(4n+2){transform:translateY(22px)}
+#main .chamea-friends-photo:nth-child(4n+3){transform:translateY(-5px)}
+#main .chamea-friends-photo:nth-child(4n){transform:translateY(30px)}
+#main .chamea-friends-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;-webkit-user-drag:none}
+#main .chamea-friends-hint{text-align:center;font-size:11px;letter-spacing:.06em;opacity:.65;margin:14px 0 0}
+@media(max-width:700px){#main .type-community{padding:35px 0 30px}#main .chamea-friends-heading{padding:0 20px;margin-bottom:18px}#main .chamea-friends-heading h2{font-size:25px}#main .chamea-friends-track{gap:10px;padding:18px 20px 28px}#main .chamea-friends-photo{width:55vw;height:75vw;max-height:390px}#main .chamea-friends-hint{font-size:10px}}
+@media(prefers-reduced-motion:reduce){#main .chamea-friends-photo{transform:none!important}}
