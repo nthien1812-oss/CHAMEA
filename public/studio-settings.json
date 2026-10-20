@@ -166,6 +166,22 @@
       "muted": false
     },
     {
+      "id": "tri-ki-chamea",
+      "type": "community",
+      "visible": true,
+      "title": "Tri kỉ CHAMÉA",
+      "width": 1440,
+      "padding": 40,
+      "bg": "#f5f1f0",
+      "color": "#3c2535",
+      "align": "left",
+      "layout": "full",
+      "ratio": "auto",
+      "mobileRatio": "auto",
+      "fit": "cover",
+      "showText": false
+    },
+    {
       "id": "quiz",
       "type": "quiz",
       "title": "Bạn đang tìm túi cho ai?",
