@@ -1293,3 +1293,8 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 
 /* Blog sidebar thumbnails: fill their landscape frames without letterboxing. */
 #main .journal-featured-item img{width:75px!important;height:70px!important;aspect-ratio:15/14;object-fit:cover!important;object-position:center center!important;background:transparent!important;max-width:none!important;max-height:none!important}
+
+/* Featured-blog sidebar: thumbnail and its frame share the same landscape dimensions. */
+#main .journal-featured-item{grid-template-columns:84px minmax(0,1fr)!important}
+#main .journal-featured-item .journal-featured-thumb{display:block!important;width:84px!important;height:72px!important;aspect-ratio:7/6!important;overflow:hidden!important;background:transparent!important;border-radius:3px!important}
+#main .journal-featured-item .journal-featured-thumb img{display:block!important;width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 35%!important;background:transparent!important;transform:none!important}
