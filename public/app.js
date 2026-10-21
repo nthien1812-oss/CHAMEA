@@ -178,13 +178,13 @@ function policy(id){
  };
  return pageHead(name,'Hướng dẫn khách hàng và bộ chính sách vận hành đề xuất cho CHAMÉA.','CHAMÉA CARE')+`<article class="policies chamea-policy-detail">${notice}${body[id]||'<p>Nội dung đang cập nhật.</p>'}</article>`;
 }
-function blogPage(){return pageHead('Góc chọn quà','Những bài viết nhỏ giúp bạn chọn đúng chiếc túi và món quà cho người mình trân trọng.','CHAMÉA JOURNAL')+'<div class="container section"><div class="articles">'+[{id:'top-5-tui-tote-2026',title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026 – Khám phá cùng CHAMÉA',summary:'5 thiết kế Allure, Heritage, Iconic, Muse và Velvet cùng bí quyết chọn túi tote phù hợp.',image:'chamea-tote-blog-cover-new.webp'},{id:'bi-kip-chon-qua-20-10',title:'Bí kíp chọn quà 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',summary:'7 gợi ý quà 20/10 ý nghĩa từ CHAMÉA.',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png'},{id:'top-5-mau-tui-xach-noi-bat-2026',title:'Top 5 mẫu túi xách nổi bật 2026 | CHAMÉA',summary:'Baguette, Top Handle, Satchel Mini, Structured và Quilted Chain – 5 kiểu túi nổi bật năm 2026.',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png'},...D.articles.filter(a=>!['20-10-tang-gi-cho-phu-nu','bi-kip-chon-tui-20-10','kham-pha-nhung-mau-tui-chamea'].includes(a.id)&&!/20\/10 tặng gì cho phụ nữ|Bí kíp chọn túi 20\/10|Khám phá những mẫu túi CHAMÉA/i.test(a.title))].map(a=>'<article class="article-card"><a href="/goc-chon-qua/'+a.id+'"><img src="'+asset(a.image)+'" alt="'+esc(a.title)+'" loading="lazy"><h3>'+esc(a.title)+'</h3></a><p>'+esc(a.summary)+'</p><a href="/goc-chon-qua/'+a.id+'" class="text-link">Đọc tiếp ↗</a></article>').join('')+'</div></div>'}
+function blogPage(){return pageHead('Góc chọn quà','Những bài viết nhỏ giúp bạn chọn đúng chiếc túi và món quà cho người mình trân trọng.','CHAMÉA JOURNAL')+'<div class="container section"><div class="articles">'+[{id:'top-5-tui-tote-2026',title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026 – Khám phá cùng CHAMÉA',summary:'5 thiết kế Allure, Heritage, Iconic, Muse và Velvet cùng bí quyết chọn túi tote phù hợp.',image:'chamea-tote-blog-cover-new.webp'},{id:'bi-kip-chon-qua-20-10',title:'Bí kíp chọn quà 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',summary:'7 gợi ý quà 20/10 ý nghĩa từ CHAMÉA.',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp'},{id:'top-5-mau-tui-xach-noi-bat-2026',title:'Top 5 mẫu túi xách nổi bật 2026 | CHAMÉA',summary:'Baguette, Top Handle, Satchel Mini, Structured và Quilted Chain – 5 kiểu túi nổi bật năm 2026.',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png'},...D.articles.filter(a=>!['20-10-tang-gi-cho-phu-nu','bi-kip-chon-tui-20-10','kham-pha-nhung-mau-tui-chamea'].includes(a.id)&&!/20\/10 tặng gì cho phụ nữ|Bí kíp chọn túi 20\/10|Khám phá những mẫu túi CHAMÉA/i.test(a.title))].map(a=>'<article class="article-card"><a href="/goc-chon-qua/'+a.id+'"><img src="'+asset(a.image)+'" alt="'+esc(a.title)+'" loading="lazy"><h3>'+esc(a.title)+'</h3></a><p>'+esc(a.summary)+'</p><a href="/goc-chon-qua/'+a.id+'" class="text-link">Đọc tiếp ↗</a></article>').join('')+'</div></div>'}
 
 
 function chameaJournalRelated(currentId){
  return [
   {id:'top-5-tui-tote-2026',title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',summary:'Khám phá 5 thiết kế túi tote CHAMÉA đẹp, tiện dụng và dễ phối đồ.',image:'chamea-tote-blog-cover-new.webp'},
-  {id:'bi-kip-chon-qua-20-10',title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',summary:'7 gợi ý quà 20/10 ý nghĩa dành cho những người phụ nữ bạn yêu thương.',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png'},
+  {id:'bi-kip-chon-qua-20-10',title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',summary:'7 gợi ý quà 20/10 ý nghĩa dành cho những người phụ nữ bạn yêu thương.',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp'},
   {id:'top-5-mau-tui-xach-noi-bat-2026',title:'Top 5 mẫu túi xách nổi bật 2026',summary:'Khám phá những dáng túi xách nổi bật và gợi ý phối đồ cùng CHAMÉA.',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png'}
  ].filter(a=>a.id!==currentId);
 }
@@ -252,7 +252,7 @@ function gift2010Journal(){
  body=holder.innerHTML;
  const featuredArticles=[
  {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
+ {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
  {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
 ].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><span class="journal-featured-thumb"><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"></span><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
@@ -288,7 +288,7 @@ function gift2010Journal(){
  body=body.replace('<h3 id="nuoc-hoa">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h3 id="nuoc-hoa">');
  body=body.replace('<h2 id="trao-yeu-thuong">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="trao-yeu-thuong">');
  const cover=get('lune');
- const coverSrc=root+'01-anh-bia.png';const coverFallback=cover?asset(cover.image):'';
+ const coverSrc=root+'chamea-blog-20-10-cover-new.webp';const coverFallback=cover?asset(cover.image):'';
  return '<div class="container journal-crumb"><a href="/">Trang chủ</a> / <a href="/goc-chon-qua">Blog</a> / Quà tặng 20/10</div>'+
  '<div class="container journal-hero"><p class="eyebrow">CHAMÉA JOURNAL · QUÀ TẶNG 20/10</p><h1>'+title+'</h1><div class="journal-meta"><span>Biên tập CHAMÉA</span><span>2026</span><span>8 phút đọc</span></div></div>'+
  '<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+toc+'</nav></div>'+
@@ -368,7 +368,7 @@ function handbags2026Journal(){
 
  const featuredArticles=[
  {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
+ {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
  {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
 ].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><span class="journal-featured-thumb"><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"></span><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
@@ -471,7 +471,7 @@ function toteJournal(){
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',recommended.slice().reverse())+'<h2 id="faq">');
  const featuredArticles=[
  {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/01-anh-bia.png',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
+ {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
  {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
 ].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
  const featuredList=`<section class="journal-featured"><h2>Bài viết nổi bật <span aria-hidden="true">⌄</span></h2>${featuredArticles.map((x,i)=>`<a class="journal-featured-item" href="${x.href}"><span class="journal-featured-index">${i+1}</span><span class="journal-featured-thumb"><img src="${asset(x.image)}" loading="lazy" alt="${esc(x.title)}"></span><span class="journal-featured-info"><strong>${esc(x.title)}</strong><small>${esc(x.category)}</small></span></a>`).join('')}</section>`;
