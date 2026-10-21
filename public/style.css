@@ -1290,3 +1290,6 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
  #main .type-community{padding-top:22px!important;padding-bottom:18px!important}
  #main .journal-layout{padding-top:24px;padding-bottom:34px}
 }
+
+/* Blog sidebar thumbnails: fill their landscape frames without letterboxing. */
+#main .journal-featured-item img{width:75px!important;height:70px!important;aspect-ratio:15/14;object-fit:cover!important;object-position:center center!important;background:transparent!important;max-width:none!important;max-height:none!important}
