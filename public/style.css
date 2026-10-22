@@ -1298,3 +1298,14 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .journal-featured-item{grid-template-columns:84px minmax(0,1fr)!important}
 #main .journal-featured-item .journal-featured-thumb{display:block!important;width:84px!important;height:72px!important;aspect-ratio:7/6!important;overflow:hidden!important;background:transparent!important;border-radius:3px!important}
 #main .journal-featured-item .journal-featured-thumb img{display:block!important;width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 35%!important;background:transparent!important;transform:none!important}
+
+/* Unified responsive spacing: remove empty builder-copy bands and double section gaps. */
+#main>.builder-block .builder-copy:empty{display:none!important;padding:0!important;margin:0!important;min-height:0!important}
+#main>.builder-block[data-home-block="hero"] .builder-copy{display:none!important;padding:0!important;margin:0!important}
+#main>.builder-block[data-home-block="hero"] .builder-inner{line-height:0}
+#main>.builder-block[data-home-block="hero"] picture,#main>.builder-block[data-home-block="hero"] img{vertical-align:top}
+#main>.builder-block:not([data-home-block="hero"]){margin-top:0!important;margin-bottom:0!important}
+#main>.builder-block:not([data-home-block="hero"]):not(.type-community){padding-top:clamp(22px,3vw,42px)!important;padding-bottom:clamp(22px,3vw,42px)!important}
+#main>.builder-block .builder-copy{margin-top:0;margin-bottom:0}
+#main>.builder-block .builder-copy> :last-child{margin-bottom:0!important}
+@media(max-width:700px){#main>.builder-block:not([data-home-block="hero"]):not(.type-community){padding-top:20px!important;padding-bottom:20px!important}}
