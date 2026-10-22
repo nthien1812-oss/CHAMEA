@@ -1346,3 +1346,61 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main #chamea-story-why .story-heading-second{font-size:clamp(24px,2.4vw,35px)!important;white-space:nowrap!important;font-style:italic}
 @media(max-width:780px){#main #chamea-story-why{font-size:clamp(24px,5vw,36px)!important}#main #chamea-story-why .story-heading-second{font-size:clamp(20px,4.4vw,32px)!important}}
 @media(max-width:390px){#main #chamea-story-why .story-heading-second{font-size:clamp(18px,4.1vw,22px)!important}}
+
+/* ABOUT CHAMÉA — editorial hierarchy refinement, 2026-10-22 */
+#main .chamea-story{--story-ink:#382433;--story-muted:#74616d}
+#main .chamea-story-hero{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)}
+#main .chamea-story-hero-copy{padding:clamp(48px,6vw,92px) clamp(30px,5vw,84px)}
+#main .chamea-story-hero h1{font-size:clamp(39px,4.25vw,65px);line-height:1.17;letter-spacing:-1.1px;max-width:640px}
+#main .chamea-story-hero-copy>p{font-size:14px;line-height:1.85;max-width:470px}
+#main .chamea-story-hero-visual{min-height:500px}
+#main .chamea-story-manifesto{padding-top:clamp(50px,6vw,88px);padding-bottom:clamp(50px,6vw,88px);max-width:820px}
+#main .chamea-story-manifesto>p{font-size:clamp(25px,2.8vw,39px);line-height:1.42;font-weight:500;max-width:750px}
+#main .chamea-story-chapter{gap:clamp(28px,4vw,62px);padding-bottom:clamp(46px,6vw,84px)}
+#main .chamea-story-chapter-photo,#main .chamea-story-chapter-photo img{min-height:440px}
+#main .chamea-story-chapter h2,#main .chamea-story-section-head h2,#main .chamea-story-finale h2{font-size:clamp(27px,3vw,43px);line-height:1.25;letter-spacing:-.4px;margin:13px 0 19px}
+#main #chamea-story-why{font-size:clamp(26px,2.5vw,37px)!important;line-height:1.25!important}
+#main #chamea-story-why .story-heading-second{font-size:clamp(23px,2.3vw,33px)!important}
+#main .chamea-story-quote{font-size:clamp(17px,1.6vw,21px);margin-top:22px}
+#main .chamea-story-values{padding:clamp(46px,5.5vw,76px) 0}
+#main .chamea-story-section-head{max-width:700px;margin-bottom:32px}
+#main .chamea-story-section-head>p{font-size:13px;line-height:1.8}
+#main .chamea-story-values-grid article{padding:30px 26px 16px}
+#main .chamea-story-values-grid h3{font-size:clamp(21px,2vw,26px);margin:16px 0 10px}
+#main .chamea-story-collections{padding-top:clamp(50px,6vw,85px);padding-bottom:clamp(50px,6vw,85px)}
+#main .chamea-story-collections-grid{gap:22px}
+#main .chamea-story-collection-image{aspect-ratio:1.45}
+#main .chamea-story-collection-info{padding:24px 28px 29px}
+#main .chamea-story-collection-info h3{font-size:clamp(24px,2.4vw,32px);margin:9px 0}
+#main .chamea-story-finale{min-height:400px;grid-template-columns:48% 52%}
+#main .chamea-story-finale-image{min-height:400px}
+#main .chamea-story-finale-copy{padding:clamp(30px,4.5vw,70px)}
+#main .chamea-story-finale h2{max-width:550px;text-wrap:balance}
+@media(max-width:900px){
+ #main .chamea-story-hero{grid-template-columns:1fr}
+ #main .chamea-story-hero-copy{padding:48px 6vw}
+ #main .chamea-story-hero-visual{min-height:380px}
+ #main .chamea-story-finale-copy{padding:36px}
+}
+@media(max-width:780px){
+ #main .chamea-story-chapter{grid-template-columns:1fr}
+ #main #chamea-story-why{font-size:clamp(25px,5vw,34px)!important}
+ #main #chamea-story-why .story-heading-second{font-size:clamp(20px,4.5vw,30px)!important}
+}
+@media(max-width:650px){
+ #main .chamea-story-hero-copy{padding:38px 22px 40px}
+ #main .chamea-story-hero h1{font-size:clamp(35px,9vw,47px);letter-spacing:-.7px}
+ #main .chamea-story-hero-visual{min-height:320px}
+ #main .chamea-story-manifesto{padding:48px 22px}
+ #main .chamea-story-manifesto>p{font-size:clamp(24px,6vw,32px)}
+ #main .chamea-story-chapter{padding-bottom:44px}
+ #main .chamea-story-chapter-photo,#main .chamea-story-chapter-photo img{min-height:300px}
+ #main .chamea-story-section-head h2,#main .chamea-story-finale h2{font-size:clamp(27px,7vw,35px)}
+ #main .chamea-story-values{padding:42px 0}
+ #main .chamea-story-values-grid article{padding:23px 8px}
+ #main .chamea-story-collections{padding-top:48px;padding-bottom:48px}
+ #main .chamea-story-collection-info{padding:21px}
+ #main .chamea-story-finale{grid-template-columns:1fr}
+ #main .chamea-story-finale-image{min-height:300px}
+ #main .chamea-story-finale-copy{padding:32px 24px 40px}
+}
