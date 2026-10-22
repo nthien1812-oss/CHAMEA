@@ -1417,3 +1417,9 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 /* About collection photos: natural full-width image, no cropped bag or side gutters. */
 #main .chamea-story-collection-image{display:block!important;aspect-ratio:auto!important;height:auto!important;background:transparent!important;overflow:visible!important}
 #main .chamea-story-collection-image img{display:block!important;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:initial!important;transform:none!important}
+
+/* About CHAMÉA: readable white typography over dark plum values section. */
+#main .chamea-story-values,#main .chamea-story-values .chamea-story-section-head h2,#main .chamea-story-values .chamea-story-values-grid h3{color:#fffaf7!important}
+#main .chamea-story-values .chamea-story-section-head>p,#main .chamea-story-values .chamea-story-values-grid p{color:#f3e8ee!important}
+#main .chamea-story-values .chamea-story-kicker,#main .chamea-story-values .chamea-story-values-grid article>span{color:#f1d9e4!important}
+#main .chamea-story-values .chamea-story-section-head h2 em{color:#fff1f6!important}
