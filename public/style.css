@@ -1317,3 +1317,10 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .collection-card h2{font-size:clamp(20px,2vw,29px);line-height:1.2;overflow-wrap:break-word}
 @media(max-width:1050px){#main .collection-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#main .collection-cards{grid-template-columns:1fr;gap:28px}#main .collection-card img{aspect-ratio:4/3}}
+
+/* 20/10 heading: balanced line wrapping, no orphaned final word. */
+#main .chamea-2010-products-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:clamp(20px,3vw,44px)}
+#main .chamea-2010-products-heading>div{min-width:0}
+#main .chamea-2010-products-heading h2{max-width:850px;font-size:clamp(27px,2.8vw,39px);line-height:1.23;text-wrap:balance;overflow-wrap:normal;word-break:normal}
+@media(max-width:1050px){#main .chamea-2010-products-heading{grid-template-columns:1fr}#main .chamea-2010-count{justify-self:start;margin-top:10px}}
+@media(max-width:600px){#main .chamea-2010-products-heading h2{font-size:clamp(27px,7vw,35px);line-height:1.25;text-wrap:balance}}
