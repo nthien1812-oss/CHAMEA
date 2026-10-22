@@ -1324,3 +1324,11 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .chamea-2010-products-heading h2{max-width:850px;font-size:clamp(27px,2.8vw,39px);line-height:1.23;text-wrap:balance;overflow-wrap:normal;word-break:normal}
 @media(max-width:1050px){#main .chamea-2010-products-heading{grid-template-columns:1fr}#main .chamea-2010-count{justify-self:start;margin-top:10px}}
 @media(max-width:600px){#main .chamea-2010-products-heading h2{font-size:clamp(27px,7vw,35px);line-height:1.25;text-wrap:balance}}
+
+/* Consistent editorial headings: balance phrases instead of orphaning a final word. */
+#main .chamea-2010-gift-editorial{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)}
+#main .chamea-2010-gift-copy{min-width:0;padding:clamp(24px,3.2vw,52px)}
+#main .chamea-2010-gift-copy h2{max-width:100%;font-size:clamp(26px,2.7vw,38px);line-height:1.24;text-wrap:balance;word-break:normal;overflow-wrap:normal}
+#main h1,#main h2,#main h3{word-break:normal;overflow-wrap:normal;text-wrap:balance}
+#main .journal-hero h1,#main .page-head h1,#main .chamea-about-intro h1{max-width:100%}
+@media(max-width:780px){#main .chamea-2010-gift-editorial{grid-template-columns:1fr}#main .chamea-2010-gift-copy{padding:clamp(24px,5vw,38px)}#main .chamea-2010-gift-copy h2{font-size:clamp(27px,5.5vw,38px)}}
