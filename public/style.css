@@ -1428,3 +1428,6 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 footer .footer-grid h3,footer .footer-grid h3 a,html.chamea-pattern-on footer .footer-grid h3{color:#fffaf7!important;-webkit-text-fill-color:#fffaf7!important;text-shadow:none!important}
 footer .footer-grid a{color:#f1e6ec!important}
 footer .footer-grid h3::selection{color:#fff!important;background:#80526b}
+
+/* Footer: standalone brand emblem instead of cream boxed logo image. */
+footer .footer-logo.footer-emblem{display:block;width:92px!important;height:92px!important;object-fit:contain!important;object-position:center;margin:0 0 18px!important;background:transparent!important;border:0!important;box-shadow:none!important}
