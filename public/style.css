@@ -1442,3 +1442,28 @@ footer .chamea-footer-tagline{display:block;margin-top:8px;color:#fff!important;
 /* Official one-piece CHAMÉA footer logo (brand artwork provided by owner). */
 footer .chamea-footer-brand .footer-logo.footer-official{display:block!important;width:100%!important;max-width:340px!important;height:auto!important;aspect-ratio:320 / 210!important;object-fit:contain!important;margin:0 0 18px!important;background:transparent!important;}
 @media(max-width:650px){footer .chamea-footer-brand .footer-logo.footer-official{max-width:310px!important;}}
+
+/* Footer logo refinement: eliminate overlapping background motif and reduce visual weight. */
+footer .chamea-footer-brand{
+  width:260px!important;
+  max-width:100%!important;
+  display:block!important;
+  margin:0 0 20px!important;
+  padding:10px 8px!important;
+  background:#392633!important;
+  position:relative!important;
+  isolation:isolate!important;
+}
+footer .chamea-footer-brand .footer-logo.footer-official{
+  display:block!important;
+  width:100%!important;
+  max-width:244px!important;
+  height:auto!important;
+  margin:0!important;
+  object-fit:contain!important;
+  filter:brightness(1.23) contrast(1.1)!important;
+}
+@media(max-width:650px){
+  footer .chamea-footer-brand{width:238px!important;margin-left:0!important;}
+  footer .chamea-footer-brand .footer-logo.footer-official{max-width:222px!important;}
+}
