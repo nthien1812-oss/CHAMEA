@@ -1332,3 +1332,10 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main h1,#main h2,#main h3{word-break:normal;overflow-wrap:normal;text-wrap:balance}
 #main .journal-hero h1,#main .page-head h1,#main .chamea-about-intro h1{max-width:100%}
 @media(max-width:780px){#main .chamea-2010-gift-editorial{grid-template-columns:1fr}#main .chamea-2010-gift-copy{padding:clamp(24px,5vw,38px)}#main .chamea-2010-gift-copy h2{font-size:clamp(27px,5.5vw,38px)}}
+
+/* Brand story: avoid orphaning 'bạn.' on a third line. */
+#main .chamea-story-chapter{grid-template-columns:minmax(0,1fr) minmax(0,1.16fr);gap:clamp(24px,4vw,65px)}
+#main .chamea-story-chapter-copy{min-width:0}
+#main .chamea-story-chapter-copy h2{font-size:clamp(30px,3.1vw,45px);line-height:1.22;letter-spacing:-.4px;text-wrap:balance}
+#main .chamea-story-chapter-copy h2 em{display:inline;font-size:inherit}
+@media(max-width:780px){#main .chamea-story-chapter{grid-template-columns:1fr;gap:26px}#main .chamea-story-chapter-copy h2{font-size:clamp(29px,6.5vw,42px)}}
