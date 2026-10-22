@@ -1431,3 +1431,10 @@ footer .footer-grid h3::selection{color:#fff!important;background:#80526b}
 
 /* Footer: standalone brand emblem instead of cream boxed logo image. */
 footer .footer-logo.footer-emblem{display:block;width:92px!important;height:92px!important;object-fit:contain!important;object-position:center;margin:0 0 18px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Footer full white CHAMÉA logo lockup on existing plum background. */
+footer .chamea-footer-brand{display:flex!important;flex-direction:column;align-items:center;justify-content:center;width:min(100%,340px);gap:0;text-decoration:none!important;background:transparent!important;padding:0!important;margin:0 0 20px!important}
+footer .chamea-footer-brand .footer-logo.footer-emblem{width:112px!important;height:112px!important;margin:0 0 2px!important;object-fit:contain!important}
+footer .chamea-footer-wordmark{display:block;font-family:'Playfair Display',Georgia,serif;font-size:clamp(39px,3.8vw,54px);font-weight:700;line-height:1.18;letter-spacing:.06em;color:#fff!important;-webkit-text-fill-color:#fff!important;white-space:nowrap}
+footer .chamea-footer-tagline{display:block;margin-top:8px;color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:clamp(8px,.9vw,11px);font-family:Montserrat,Arial,sans-serif;font-weight:500;letter-spacing:.12em;line-height:1.5;text-align:center;white-space:nowrap}
+@media(max-width:650px){footer .chamea-footer-brand{width:min(100%,310px)}footer .chamea-footer-brand .footer-logo.footer-emblem{width:100px!important;height:100px!important}footer .chamea-footer-wordmark{font-size:42px}footer .chamea-footer-tagline{font-size:9px;letter-spacing:.08em}}
