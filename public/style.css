@@ -1404,3 +1404,7 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
  #main .chamea-story-finale-image{min-height:300px}
  #main .chamea-story-finale-copy{padding:32px 24px 40px}
 }
+
+/* About CTA anchor: land at the beginning of the philosophy section, clear of sticky navigation. */
+#main #chamea-triet-ly{scroll-margin-top:clamp(155px,13vw,195px)!important}
+@media(max-width:700px){#main #chamea-triet-ly{scroll-margin-top:105px!important}}
