@@ -1467,3 +1467,7 @@ footer .chamea-footer-brand .footer-logo.footer-official{
   footer .chamea-footer-brand{width:238px!important;margin-left:0!important;}
   footer .chamea-footer-brand .footer-logo.footer-official{max-width:222px!important;}
 }
+
+/* 20/10 full-width campaign image replacing introductory copy */
+.chamea-2010-shop .chamea-2010-banner{width:100%;margin:0 auto;overflow:hidden;background:#f8ede8}
+.chamea-2010-shop .chamea-2010-banner img{display:block;width:100%;height:auto;object-fit:contain}
