@@ -18,7 +18,7 @@ function campaignLanding(){
  const souls=featured.find(p=>p.family==='Souls');
 
  return `<section class="chamea-2010 chamea-2010-shop">
-  <div class="container chamea-2010-shop-intro"><p class="eyebrow">CHAMÉA · QUÀ TẶNG 20/10</p><h1>CHAMÉA – Những thiết kế dành riêng cho nàng</h1><p>Tháng Mười là dịp để trao gửi những điều dịu dàng. Bốn thiết kế, bốn sắc màu riêng biệt — mỗi chiếc túi là một lời nhắn gửi tinh tế.</p><a class="btn" href="#chamea-2010-products">Khám phá bộ sưu tập ↗</a></div>
+  <div class="chamea-2010-banner"><img src="/CHAMEA/assets/chamea-banner-20-10.png" alt="CHAMÉA — Một chiếc túi, một nét riêng. Quà tặng 20/10, ưu đãi 20% toàn bộ sản phẩm" onerror="this.closest('.chamea-2010-banner').style.display='none'" loading="eager" decoding="async"></div>
   <div class="container chamea-2010-shop-products" id="chamea-2010-products">
    <div class="chamea-2010-products-heading"><div><p class="eyebrow">THE 20/10 EDIT · FOUR SIGNATURE PIECES</p><h2>Chọn một thiết kế, gửi một lời thương</h2><p>Mỗi mẫu túi có một sắc màu đặc trưng, được tuyển chọn cho mùa quà tặng. Không cần chọn phiên bản màu — chỉ cần chọn thiết kế phù hợp với nàng.</p></div><span class="chamea-2010-count">04 THIẾT KẾ · 04 SẮC MÀU</span></div>
    <div class="chamea-2010-shop-grid chamea-2010-standard-cards">${featured.map(p=>card(p)).join('')}</div>
