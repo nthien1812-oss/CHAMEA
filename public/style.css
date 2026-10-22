@@ -1423,3 +1423,8 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main .chamea-story-values .chamea-story-section-head>p,#main .chamea-story-values .chamea-story-values-grid p{color:#f3e8ee!important}
 #main .chamea-story-values .chamea-story-kicker,#main .chamea-story-values .chamea-story-values-grid article>span{color:#f1d9e4!important}
 #main .chamea-story-values .chamea-story-section-head h2 em{color:#fff1f6!important}
+
+/* Footer headings: high-contrast white across every page (not About values). */
+footer .footer-grid h3,footer .footer-grid h3 a,html.chamea-pattern-on footer .footer-grid h3{color:#fffaf7!important;-webkit-text-fill-color:#fffaf7!important;text-shadow:none!important}
+footer .footer-grid a{color:#f1e6ec!important}
+footer .footer-grid h3::selection{color:#fff!important;background:#80526b}
