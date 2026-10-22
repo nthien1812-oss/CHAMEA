@@ -1309,3 +1309,11 @@ body > .journal-toc-float.journal-toc-flip .journal-toc-popover{left:auto!import
 #main>.builder-block .builder-copy{margin-top:0;margin-bottom:0}
 #main>.builder-block .builder-copy> :last-child{margin-bottom:0!important}
 @media(max-width:700px){#main>.builder-block:not([data-home-block="hero"]):not(.type-community){padding-top:20px!important;padding-bottom:20px!important}}
+
+/* Four balanced collection cards across desktop, tablet and mobile. */
+#main .collection-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,25px);align-items:start}
+#main .collection-card{min-width:0}
+#main .collection-card img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:#f5eee9}
+#main .collection-card h2{font-size:clamp(20px,2vw,29px);line-height:1.2;overflow-wrap:break-word}
+@media(max-width:1050px){#main .collection-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#main .collection-cards{grid-template-columns:1fr;gap:28px}#main .collection-card img{aspect-ratio:4/3}}
