@@ -14,7 +14,7 @@ export default function StorefrontPage() {
       <dialog id="zoom" aria-label="Phóng to ảnh sản phẩm" />
       <div id="toast" role="status" aria-live="polite" />
       <noscript>Vui lòng bật JavaScript để xem website CHAMÉA.</noscript>
-      <Script src="/app.js" strategy="afterInteractive" />
+      <Script src="/app.js?v=chamea-collections-20261023" strategy="afterInteractive" />
     </>
   );
 }
