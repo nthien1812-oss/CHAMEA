@@ -1690,3 +1690,10 @@ footer :is(a.btn,button.btn):focus-visible{
 @media(max-width:900px){
  #main .journal-hero:has(h1)+.journal-layout>.journal-sidebar{margin-top:0!important}
 }
+
+/* Align every blog headline with the left accent border of Quick Summary. */
+@media(min-width:901px){
+ #main .journal-hero{padding-left:0!important;padding-right:0!important;max-width:1180px!important}
+ #main .journal-hero h1,#main .journal-hero .eyebrow,#main .journal-hero .journal-meta{margin-left:0!important;text-align:left!important}
+ #main .journal-main>.journal-article>h1{margin-left:0!important;text-align:left!important}
+}
