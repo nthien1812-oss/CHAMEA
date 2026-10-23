@@ -1673,3 +1673,20 @@ footer :is(a.btn,button.btn):focus-visible{
    margin-top:10px!important;
  }
 }
+
+/* Unified blog header: legacy three articles use a separate hero above the sidebar.
+   On desktop visually align the featured sidebar with the headline, not the summary. */
+@media(min-width:901px){
+ #main .journal-hero:has(h1){padding-bottom:18px!important}
+ #main .journal-hero:has(h1)+.journal-layout{
+   padding-top:0!important;
+   position:relative;
+ }
+ #main .journal-hero:has(h1)+.journal-layout>.journal-sidebar{
+   margin-top:calc(-1 * clamp(125px, 12vw, 185px))!important;
+ }
+ #main .journal-hero:has(h1) h1{max-width:850px!important}
+}
+@media(max-width:900px){
+ #main .journal-hero:has(h1)+.journal-layout>.journal-sidebar{margin-top:0!important}
+}
