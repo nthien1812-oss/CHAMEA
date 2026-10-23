@@ -1553,3 +1553,11 @@ footer :is(a.btn,button.btn):focus-visible{
 #zoom .chamea-zoom-percent{min-width:50px;text-align:center;font-weight:700}
 #zoom .chamea-zoom-tools>span:last-child{color:#695962;margin-left:12px}
 @media(max-width:700px){#zoom:has(.chamea-deepzoom-stage){width:100vw!important;max-width:100vw!important;height:100dvh!important;max-height:100dvh!important;margin:0!important;border-radius:0!important;padding:10px!important}#zoom .chamea-deepzoom-stage{height:calc(100dvh - 155px)}#zoom .chamea-zoom-tools>span:last-child{width:100%;text-align:center;margin:0}}
+
+/* Hover-to-magnify product detail photos; modal click remains available. */
+@media(hover:hover) and (pointer:fine){
+ #gallery .gallery-main{overflow:hidden!important;cursor:zoom-in!important;position:relative!important}
+ #gallery .gallery-main img{transition:transform .16s ease-out!important;will-change:transform}
+ #gallery .gallery-main.chamea-inspect-active img{transition:none!important}
+ #gallery .gallery-main .zoom-label{pointer-events:none;z-index:2}
+}
