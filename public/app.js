@@ -193,7 +193,7 @@ function chameaJournalRelated(currentId){
 
 
 function chameaPromotionJournal(){
- const title="CHAMÉA mừng 20/10 – Giảm ngay 20% cho mọi thiết kế túi xách",summary="CHAMÉA chào mừng ngày Phụ nữ Việt Nam 20/10 với ưu đãi 20% toàn bộ sản phẩm và bốn thiết kế BlushTheory, HerRules, PastelCore, Souls.";
+ const title="CHAMÉA mừng 20/10 – Giảm ngay 20% cho mọi thiết kế túi xách",summary="CHAMÉA chào mừng ngày Phụ nữ Việt Nam 20/10 với chương trình giảm giá 20% toàn bộ sản phẩm. Bốn thiết kế nổi bật gồm BlushTheory, HerRules, PastelCore và Souls mang những phong cách riêng, từ ngọt ngào, thanh lịch đến hiện đại, cá tính. Đây là dịp lý tưởng để nàng làm mới phong cách hoặc lựa chọn một món quà tinh tế dành tặng người phụ nữ mình yêu thương.";
  const products=[
   ['BlushTheory','Ngọt ngào trong từng đường nét','Nếu nàng yêu thích phong cách nữ tính nhưng vẫn muốn tạo dấu ấn riêng, BlushTheory là một thiết kế đáng cân nhắc. Chiếc túi gây ấn tượng với phom dáng bo tròn mềm mại, phần thân chần bông tạo họa tiết uyển chuyển cùng quai xách ngắn được kết nối bằng chi tiết kim loại ánh vàng. Sắc hồng phấn nhẹ nhàng giúp tổng thể trở nên ngọt ngào mà không quá cầu kỳ. BlushTheory dễ dàng kết hợp cùng váy liền, chân váy ngắn hay những bộ trang phục mang gam màu trung tính, tạo nên vẻ ngoài trẻ trung và chỉn chu.','BlushTheory nổi bật với sắc hồng phấn dịu dàng, họa tiết chần bông mềm mại và chi tiết kim loại ánh vàng tinh tế.'],
   ['HerRules','Thanh lịch theo cách riêng','Không cần quá nhiều chi tiết nổi bật, HerRules vẫn tạo được sức hút nhờ sự kết hợp hài hòa giữa kiểu dáng hiện đại và những đường nét tinh tế. Thiết kế có dáng túi đeo vai thon dài, bề mặt trang trí bằng các đường may uốn lượn mềm mại. Phần quai xích ánh vàng trở thành điểm nhấn, mang đến vẻ ngoài vừa nữ tính vừa cá tính. HerRules đặc biệt phù hợp với những bộ trang phục thanh lịch như áo sơ mi, blazer, váy ôm hoặc quần jeans phối cùng áo kiểu. Chỉ với một chiếc túi, nàng đã có thể tạo thêm điểm nhấn cho tổng thể trang phục.','HerRules mang phom túi đeo vai thanh thoát, điểm nhấn là những đường may uốn lượn và quai xích kim loại ánh vàng sang trọng.'],
@@ -208,7 +208,7 @@ function chameaPromotionJournal(){
  ];
  const findProduct=name=>D.products.find(p=>String(p.family||'').toLowerCase().replace(/\\s/g,'')===name.toLowerCase()&&p.collection20==='20-10')||D.products.find(p=>String(p.family||'').toLowerCase().replace(/\\s/g,'')===name.toLowerCase());
  const linkProduct=name=>{const p=findProduct(name);return p?'/san-pham/'+p.id:'/qua-tang-20-10'};
- const photo=(name)=>{const p=findProduct(name);return p?asset((Array.isArray(p.gallery)&&p.gallery[0])||p.image):asset('20-10/blushtheory/01_ChinhDien.jpg')};
+ const originalPhotos={BlushTheory:'chamea-blog-4-blushtheory.png',HerRules:'chamea-blog-4-herrules.png',PastelCore:'chamea-blog-4-pastelcore.png',Souls:'chamea-blog-4-souls.png'}; const photo=name=>asset('/CHAMEA/assets/'+originalPhotos[name]);
  const productLink=name=>'<a class="journal-inline-product" href="'+linkProduct(name)+'">'+esc(name)+'</a>';
  const anchors=['uudai-2010','thiet-ke-2010',...products.map((_,i)=>'thiet-ke-'+(i+1)),'chon-tui-phu-hop','cau-hoi-thuong-gap','ket-nhanh'];
  const toc=[
@@ -237,7 +237,7 @@ function chameaPromotionJournal(){
  '<aside class="journal-product"><a href="/qua-tang-20-10"><img src="'+photo('PastelCore')+'" alt="Khám phá bộ sưu tập CHAMÉA 20/10"></a><div><span>QUÀ TẶNG 20/10</span><strong>Khám phá 4 thiết kế CHAMÉA</strong><a href="/qua-tang-20-10">Xem bộ sưu tập ↗</a></div></aside>';
  return '<div class="container journal-layout"><main class="journal-main"><article class="journal-article">'+
  '<h1>'+esc(title)+'</h1><div class="journal-quick"><strong>TÓM TẮT NHANH</strong><p>'+esc(summary)+'</p></div>'+
- '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;/CHAMEA/assets/b%C3%ACa.png&quot;)"><img src="/CHAMEA/assets/b%C3%ACa.png" alt="Bộ sưu tập túi xách CHAMÉA mừng ngày 20/10" loading="eager"></figure>'+
+ '<figure class="journal-cover journal-photo-stage" style="--journal-photo:url(&quot;/CHAMEA/assets/chamea-blog-4-cover.png&quot;)"><img src="/CHAMEA/assets/chamea-blog-4-cover.png" alt="Bộ sưu tập túi xách CHAMÉA mừng ngày 20/10" loading="eager"></figure>'+
  '<div class="journal-toc"><h2>Mục lục</h2>'+toc.map(t=>'<a class="'+(t[2]===1?'journal-toc-major':'journal-toc-sub')+'" href="#'+t[1]+'">'+esc(t[0])+'</a>').join('')+'</div>'+
  body+'</article><section class="journal-related"><h2>Bài viết liên quan</h2><div class="articles">'+related.map(a=>'<article class="article-card"><a href="/goc-chon-qua/'+a.id+'"><img src="'+asset(a.image)+'" loading="lazy" alt="'+esc(a.title)+'"><h3>'+esc(a.title)+'</h3></a><p>'+esc(a.summary)+'</p><a class="text-link" href="/goc-chon-qua/'+a.id+'">Đọc tiếp ↗</a></article>').join('')+'</div></section></main><aside class="journal-sidebar"><h2>Bài viết nổi bật</h2>'+related.map(a=>'<a href="/goc-chon-qua/'+a.id+'">'+esc(a.title)+'</a>').join('')+'<div class="journal-sidebar-collection"><span>CHAMÉA 20/10</span><h3>Một chiếc túi, một nét riêng</h3><a href="/qua-tang-20-10">Khám phá bộ sưu tập ↗</a></div></aside></div>';
 }
