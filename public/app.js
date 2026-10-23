@@ -333,11 +333,7 @@ function gift2010Journal(){
   node.replaceWith(frag);
  }
  body=holder.innerHTML;
- const featuredArticles=[
- {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
- {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
-].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
+ const featuredArticles=chameaJournalRelated(location.pathname.split('/').filter(Boolean).pop()).map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}));
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật</h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><span class="journal-featured-thumb"><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"></span><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
  const related=chameaJournalRelated('bi-kip-chon-qua-20-10');
  const productList=D.products.filter(p=>p.image).slice(0,8);
@@ -449,11 +445,7 @@ function handbags2026Journal(){
  });
  const toc=headings.map((x,i)=>'<a class="'+([0,1,7,11,16,17].includes(i)?'journal-toc-major':'journal-toc-sub')+'" href="#'+x[1]+'">'+esc(x[0])+'</a>').join('')+sourceSections.slice(17,22).map((x,i)=>'<a class="journal-toc-sub" href="#faq-'+(i+1)+'">5.'+(i+1)+'. '+esc(x.title)+'</a>').join('');
 
- const featuredArticles=[
- {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
- {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
-].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
+ const featuredArticles=chameaJournalRelated(location.pathname.split('/').filter(Boolean).pop()).map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}));
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật</h2>'+featuredArticles.map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><span class="journal-featured-thumb"><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"></span><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
  const related=chameaJournalRelated('top-5-mau-tui-xach-noi-bat-2026');
  const productList=entries.map(e=>get(e[1])).filter(Boolean);
@@ -552,11 +544,7 @@ function toteJournal(){
  const recommend=(label,items)=>`<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR'S PICKS</span><h2>${label}</h2></div><a href="/bo-suu-tap/tui-tote">Xem tất cả ↗</a></div><div class="journal-recommend-rail">${items.map(x=>`<a class="journal-mini-product" href="/san-pham/${x.id}"><span class="journal-mini-image"><img src="${asset(x.image)}" alt="${esc(x.name)}" loading="lazy">${hasDiscount(x)?'<em>−20%</em>':''}</span><span class="journal-mini-name">${esc(x.name)}</span><span class="journal-mini-price">${money(price(x))}</span><span class="journal-mini-link">Xem túi ↗</span></a>`).join('')}</div></section>`;
  body=body.replace('<h2 id="chon-tui">',recommend('Gợi ý sản phẩm từ CHAMÉA',recommended)+'<h2 id="chon-tui">');
  body=body.replace('<h2 id="faq">',recommend('Những thiết kế nàng có thể thích',recommended.slice().reverse())+'<h2 id="faq">');
- const featuredArticles=[
- {title:'TOP 5 mẫu túi tote đẹp và chất lượng đáng mua năm 2026',category:'Kiến thức thời trang',image:'chamea-tote-blog-cover-new.webp',href:'/goc-chon-qua/top-5-tui-tote-2026'},
- {title:'Bí kíp chọn quà ưng ý cho người thương 20/10: 7 gợi ý tinh tế gửi trọn yêu thương',category:'CHAMÉA Journal',image:'/CHAMEA/assets/blog-qua-tang-20-10/chamea-blog-20-10-cover-new.webp',href:'/goc-chon-qua/bi-kip-chon-qua-20-10'},
- {title:'Top 5 mẫu túi xách nổi bật 2026',category:'Kiến thức thời trang',image:'/CHAMEA/assets/blog-top-5-2026/01-anh-bia-chamea.png',href:'/goc-chon-qua/top-5-mau-tui-xach-noi-bat-2026'}
-].filter(x=>x.href!=='/goc-chon-qua/'+location.pathname.split('/').filter(Boolean).pop());
+ const featuredArticles=chameaJournalRelated(location.pathname.split('/').filter(Boolean).pop()).map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}));
  const featuredList=`<section class="journal-featured"><h2>Bài viết nổi bật</h2>${featuredArticles.map((x,i)=>`<a class="journal-featured-item" href="${x.href}"><span class="journal-featured-index">${i+1}</span><span class="journal-featured-thumb"><img src="${asset(x.image)}" loading="lazy" alt="${esc(x.title)}"></span><span class="journal-featured-info"><strong>${esc(x.title)}</strong><small>${esc(x.category)}</small></span></a>`).join('')}</section>`;
  // Link every textual mention of a tote design to its actual product page, without nesting anchors.
  const productNames=['Allure','Heritage','Iconic','Muse','Velvet'];
