@@ -678,3 +678,27 @@ document.addEventListener('click',event=>{if(!pickingText)return;const el=event.
  zoom.addEventListener('close',()=>{scale=1;x=0;y=0;pointers.clear()});
  new MutationObserver(()=>{if(zoom.open&&photo()){scale=1;x=0;y=0;pointers.clear();update()}}).observe(zoom,{childList:true});
 })();
+
+
+/* Desktop image inspection directly on the main product photograph. */
+(()=> {
+ const media=window.matchMedia('(hover:hover) and (pointer:fine)');
+ const reset=box=>{if(!box)return;box.classList.remove('chamea-inspect-active');const im=box.querySelector('img');if(im){im.style.transform='';im.style.transformOrigin=''}};
+ document.addEventListener('pointermove',e=>{
+  if(!media.matches)return;
+  const box=e.target.closest?.('#gallery .gallery-main');
+  if(!box)return;
+  const im=box.querySelector('img');if(!im)return;
+  const b=box.getBoundingClientRect();
+  const px=Math.max(0,Math.min(100,(e.clientX-b.left)/b.width*100));
+  const py=Math.max(0,Math.min(100,(e.clientY-b.top)/b.height*100));
+  box.classList.add('chamea-inspect-active');
+  im.style.transformOrigin=px+'% '+py+'%';
+  im.style.transform='scale(2)';
+ },{passive:true});
+ document.addEventListener('pointerout',e=>{
+  const box=e.target.closest?.('#gallery .gallery-main');
+  if(box&&!box.contains(e.relatedTarget))reset(box);
+ });
+ document.addEventListener('focusout',e=>{const box=e.target.closest?.('#gallery .gallery-main');if(box)reset(box)});
+})();
