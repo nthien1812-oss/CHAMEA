@@ -1789,3 +1789,9 @@ html.chamea-pattern-on #main .builder-block.type-articles::before,
 html.chamea-pattern-on #main .builder-block.type-quiz::before,
 html.chamea-pattern-on.chamea-inner-page #main::before,
 html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
+
+/* Clickable hotspot precisely over the CTA printed inside the homepage hero artwork. */
+#main [data-home-block="hero"] .chamea-hero-click-region{position:relative;width:100%;line-height:0}
+#main [data-home-block="hero"] .chamea-hero-click-region picture{display:block}
+#main [data-home-block="hero"] .chamea-hero-image-cta{position:absolute;display:block;left:6.4%;top:72.5%;width:35%;height:13%;z-index:3;cursor:pointer;border-radius:999px;touch-action:manipulation}
+#main [data-home-block="hero"] .chamea-hero-image-cta:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 5px #84233c}
