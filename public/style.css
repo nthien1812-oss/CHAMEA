@@ -1666,3 +1666,10 @@ footer :is(a.btn,button.btn):focus-visible{
  #main .journal-hero{padding:20px 18px!important}
  #main .journal-main>.journal-article>h1{margin-bottom:18px!important}
 }
+
+/* Align featured-articles panel visually with the first line of the article title. */
+@media(min-width:901px){
+ #main .journal-layout:has(.journal-main .journal-article>h1)>.journal-sidebar{
+   margin-top:10px!important;
+ }
+}
