@@ -1780,3 +1780,12 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .type-community .chamea-friends-rail{margin-bottom:0!important;padding-bottom:0!important}
 #main .type-community{padding-bottom:18px!important}
 @media(max-width:700px){#main .type-community .chamea-friends-track{padding-top:20px!important;padding-bottom:12px!important}#main .type-community{padding-bottom:12px!important}}
+
+/* Slightly deepen the CHAMÉA monogram on light page backgrounds only.
+   Footer watermark intentionally retains its existing opacity. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before,
+html.chamea-pattern-on.chamea-inner-page #main::before,
+html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
