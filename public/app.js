@@ -622,7 +622,7 @@ document.addEventListener('click',e=>{
  if(action==='filters')openPanel('Lọc & sắp xếp',`<form data-form="filters" class="panel-filters">${filterFields()}<button class="btn" type="submit">Xem kết quả</button><button class="text-link" data-action="reset-filters" type="button">Xóa bộ lọc</button></form>`);
  if(action==='reset-filters'){go(location.pathname,false);toast('Đã xóa bộ lọc.')}
  if(action==='gallery'){galleryIndex=Number(b.dataset.index);$('#gallery').innerHTML=gallery(product(id));$(`[data-action="gallery"][data-index="${galleryIndex}"]`).focus({preventScroll:true})}
- if(action==='zoom'){const p=product(id),labels=['Chính diện','Nghiêng trái','Mặt sau','Cận chi tiết','Hộp quà'],collage=!Array.isArray(p.gallery)&&String(p.gallery||'').endsWith('-views.webp'),sources=Array.isArray(p.gallery)?p.gallery.filter(Boolean):collage?[p.gallery,p.gallery,p.gallery]:[p.gallery||p.image],src=sources[Math.min(galleryIndex,sources.length-1)]||p.image,pos=collage?['0%','50%','100%'][Math.min(galleryIndex,2)]:'center';$('#zoom').innerHTML='<div class="panel-head"><p>'+esc(p.name)+' · '+labels[Math.min(galleryIndex,2)]+'</p><button class="panel-close" data-action="close" aria-label="Đóng ảnh">×</button></div><img class="gallery-zoom" src="'+asset(src)+'" style="object-position:'+pos+' center" alt="'+labels[Math.min(galleryIndex,2)]+' '+esc(p.name)+'">';$('#zoom').showModal();document.body.style.overflow='hidden'}
+ if(action==='zoom'){const p=product(id),labels=['Chính diện','Nghiêng trái','Mặt sau','Cận chi tiết','Hộp quà'],collage=!Array.isArray(p.gallery)&&String(p.gallery||'').endsWith('-views.webp'),sources=Array.isArray(p.gallery)?p.gallery.filter(Boolean):collage?[p.gallery,p.gallery,p.gallery]:[p.gallery||p.image],src=sources[Math.min(galleryIndex,sources.length-1)]||p.image,pos=collage?['0%','50%','100%'][Math.min(galleryIndex,2)]:'center';$('#zoom').innerHTML='<div class="panel-head"><p>'+esc(p.name)+' · '+labels[Math.min(galleryIndex,2)]+'</p><button class="panel-close" data-action="close" aria-label="Đóng ảnh">×</button></div><div class="chamea-deepzoom-stage" aria-label="Ảnh phóng to, kéo để xem chi tiết"><img class="gallery-zoom chamea-deepzoom-image" draggable="false" src="'+asset(src)+'" style="object-position:'+pos+' center" alt="'+labels[Math.min(galleryIndex,2)]+' '+esc(p.name)+'"></div><div class="chamea-zoom-tools"><button type="button" class="chamea-zoom-minus" aria-label="Thu nhỏ">−</button><span class="chamea-zoom-percent">100%</span><button type="button" class="chamea-zoom-plus" aria-label="Phóng to">+</button><button type="button" class="chamea-zoom-reset">Đặt lại</button><span>Kéo để xem chi tiết · Chụm hai ngón để zoom</span></div>';$('#zoom').showModal();document.body.style.overflow='hidden'}
  if(action==='color')toast('Đã chọn màu '+product(location.pathname.split('/')[2]).color+'.');
  if(action==='product-plus'||action==='product-minus'){selectedQty=Math.max(1,Math.min(99,selectedQty+(action==='product-plus'?1:-1)));$('#product-qty').value=selectedQty}
  if(action==='add'||action==='buy'){addCart(id,selectedQty);if(action==='buy')go('/thanh-toan');else{cartPanel();toast('Đã thêm '+selectedQty+' túi vào giỏ hàng.')}}
@@ -655,4 +655,26 @@ const previewMode=['1','studio'].includes(new URLSearchParams(location.search).g
 let pickingText=false;
 if(previewMode){window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent)return;if(event.data?.type==='chamea-studio-preview'){window.EDITOR_DEFAULTS=event.data.editor;applyDesign();footer();render(false);applySiteExtras();return}if(event.data?.type==='chamea-preview'){D=event.data.data;pickingText=!!event.data.pick;applyDesign();footer();render(false)}});window.parent.postMessage({type:'chamea-preview-ready'},location.origin);
 document.addEventListener('click',event=>{if(!pickingText)return;const el=event.target.closest('h1,h2,h3,p,a,button,label,span');if(!el)return;const text=el.textContent.trim();if(!text||text.length>500)return;event.preventDefault();event.stopImmediatePropagation();window.parent.postMessage({type:'chamea-pick-text',text},location.origin)},true)}
+})();
+
+
+/* Product detail photo zoom: wheel, pinch, drag, double-click and toolbar. */
+(()=>{
+ const zoom=document.getElementById('zoom');if(!zoom)return;
+ let scale=1,x=0,y=0,startX=0,startY=0,initialDistance=0,initialScale=1;
+ const pointers=new Map();
+ const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+ const stage=()=>zoom.querySelector('.chamea-deepzoom-stage');
+ const photo=()=>zoom.querySelector('.chamea-deepzoom-image');
+ function update(){const el=photo(),box=stage();if(!el||!box)return;const limitX=(box.clientWidth*(scale-1))/2,limitY=(box.clientHeight*(scale-1))/2;x=clamp(x,-limitX,limitX);y=clamp(y,-limitY,limitY);el.style.transform='translate('+x+'px,'+y+'px) scale('+scale+')';zoom.querySelector('.chamea-zoom-percent').textContent=Math.round(scale*100)+'%';box.classList.toggle('is-zoomed',scale>1)}
+ function setScale(s){scale=clamp(s,1,5);if(scale===1){x=0;y=0}update()}
+ zoom.addEventListener('click',e=>{if(e.target.closest('.chamea-zoom-plus'))setScale(scale+.5);else if(e.target.closest('.chamea-zoom-minus'))setScale(scale-.5);else if(e.target.closest('.chamea-zoom-reset'))setScale(1)});
+ zoom.addEventListener('wheel',e=>{if(!e.target.closest('.chamea-deepzoom-stage'))return;e.preventDefault();setScale(scale+(e.deltaY<0?.25:-.25))},{passive:false});
+ zoom.addEventListener('dblclick',e=>{if(e.target.closest('.chamea-deepzoom-stage')){e.preventDefault();setScale(scale>1?1:2.5)}});
+ zoom.addEventListener('pointerdown',e=>{const box=e.target.closest('.chamea-deepzoom-stage');if(!box)return;box.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});startX=e.clientX-x;startY=e.clientY-y;if(pointers.size===2){const v=[...pointers.values()];initialDistance=Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y);initialScale=scale}});
+ zoom.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2){const v=[...pointers.values()];const d=Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y);if(initialDistance)setScale(initialScale*d/initialDistance)}else if(scale>1){x=e.clientX-startX;y=e.clientY-startY;update()}});
+ function pointerEnd(e){pointers.delete(e.pointerId);if(pointers.size===1){const v=[...pointers.values()][0];startX=v.x-x;startY=v.y-y}}
+ zoom.addEventListener('pointerup',pointerEnd);zoom.addEventListener('pointercancel',pointerEnd);
+ zoom.addEventListener('close',()=>{scale=1;x=0;y=0;pointers.clear()});
+ new MutationObserver(()=>{if(zoom.open&&photo()){scale=1;x=0;y=0;pointers.clear();update()}}).observe(zoom,{childList:true});
 })();
