@@ -1764,3 +1764,7 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .journal-article .quality-blog-cover{height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;padding:0!important;margin:18px 0 24px!important;background:transparent!important;overflow:hidden!important}
 #main .journal-article .quality-blog-cover::before,#main .journal-article .quality-blog-cover::after{display:none!important}
 #main .journal-article .quality-blog-cover img{display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;margin:0!important;background:transparent!important}
+
+/* Blog 5: show all four featured articles without an internal scrolling panel. */
+#main .journal-sidebar.quality-blog-sidebar{max-height:none!important;overflow:visible!important;scrollbar-width:auto!important}
+#main .quality-blog-sidebar .journal-featured{max-height:none!important;overflow:visible!important}
