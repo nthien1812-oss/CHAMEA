@@ -1636,3 +1636,33 @@ footer :is(a.btn,button.btn):focus-visible{
  #main .journal-hero h1{max-width:100%!important;margin:10px 0 12px!important}
  #main .journal-main>.journal-article>h1{margin:4px 0 20px!important}
 }
+
+/* Blog heading alignment matching article editorial column, not centered. */
+#main .journal-main>.journal-article>h1{
+  width:100%!important;
+  max-width:none!important;
+  margin:0 0 22px!important;
+  padding:0!important;
+  text-align:left!important;
+  text-wrap:balance!important;
+}
+#main .journal-hero{
+  width:100%!important;
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:25px clamp(22px,4vw,65px) 24px!important;
+  text-align:left!important;
+}
+#main .journal-hero h1{
+  max-width:920px!important;
+  margin:12px 0 18px!important;
+  text-align:left!important;
+}
+#main .journal-hero .eyebrow,#main .journal-hero .journal-meta{
+  text-align:left!important;
+  justify-content:flex-start!important;
+}
+@media(max-width:700px){
+ #main .journal-hero{padding:20px 18px!important}
+ #main .journal-main>.journal-article>h1{margin-bottom:18px!important}
+}
