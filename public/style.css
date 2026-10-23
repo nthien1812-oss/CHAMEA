@@ -1697,3 +1697,22 @@ footer :is(a.btn,button.btn):focus-visible{
  #main .journal-hero h1,#main .journal-hero .eyebrow,#main .journal-hero .journal-meta{margin-left:0!important;text-align:left!important}
  #main .journal-main>.journal-article>h1{margin-left:0!important;text-align:left!important}
 }
+
+/* Keep journal titles balanced without orphan words or awkward short final lines. */
+#main .journal-hero h1,#main .journal-main>.journal-article>h1{
+ text-wrap:pretty!important;
+ word-break:normal!important;
+ overflow-wrap:normal!important;
+ hyphens:none!important;
+ letter-spacing:-.012em!important;
+}
+@media(min-width:901px){
+ #main .journal-hero h1{max-width:760px!important}
+ #main .journal-main>.journal-article>h1{max-width:min(100%,760px)!important}
+}
+@media(min-width:701px) and (max-width:900px){
+ #main .journal-hero h1,#main .journal-main>.journal-article>h1{max-width:90%!important}
+}
+@media(max-width:700px){
+ #main .journal-hero h1,#main .journal-main>.journal-article>h1{max-width:100%!important;text-wrap:pretty!important}
+}
