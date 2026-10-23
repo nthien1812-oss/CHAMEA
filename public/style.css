@@ -1561,3 +1561,12 @@ footer :is(a.btn,button.btn):focus-visible{
  #gallery .gallery-main.chamea-inspect-active img{transition:none!important}
  #gallery .gallery-main .zoom-label{pointer-events:none;z-index:2}
 }
+
+/* Fourth journal article: consistent typography and unclipped promo/sidebar copy. */
+#main .journal-hero{width:min(100% - 40px,1160px);margin-inline:auto;text-align:center}
+#main .journal-hero h1{max-width:1050px;margin:0 auto 18px;text-wrap:balance;overflow-wrap:normal;word-break:normal;hyphens:none}
+#main .journal-product strong,#main .journal-product a,#main .journal-featured-info strong{word-break:normal!important;overflow-wrap:break-word!important;hyphens:none!important;letter-spacing:normal}
+#main .journal-product strong{display:block;line-height:1.45}
+#main .journal-featured-item{display:flex;align-items:center;gap:12px}
+#main .journal-featured-info{flex:1;min-width:0}
+@media(max-width:700px){#main .journal-hero{width:calc(100% - 32px)}#main .journal-hero h1{font-size:clamp(30px,8vw,43px);line-height:1.2}}
