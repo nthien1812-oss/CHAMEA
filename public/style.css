@@ -1570,3 +1570,19 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .journal-featured-item{display:flex;align-items:center;gap:12px}
 #main .journal-featured-info{flex:1;min-width:0}
 @media(max-width:700px){#main .journal-hero{width:calc(100% - 32px)}#main .journal-hero h1{font-size:clamp(30px,8vw,43px);line-height:1.2}}
+
+/* Blog article titles: restrained, consistent sizing across all journal posts. */
+#main .journal-article h1,
+#main .journal-hero h1{
+  font-size:clamp(30px,4.2vw,54px)!important;
+  line-height:1.2!important;
+  letter-spacing:-.018em;
+  overflow-wrap:break-word;
+  hyphens:none;
+}
+@media(max-width:1024px){
+ #main .journal-article h1,#main .journal-hero h1{font-size:clamp(29px,4.5vw,44px)!important}
+}
+@media(max-width:700px){
+ #main .journal-article h1,#main .journal-hero h1{font-size:clamp(26px,6.6vw,36px)!important;line-height:1.24!important}
+}
