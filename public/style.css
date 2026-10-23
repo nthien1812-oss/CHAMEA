@@ -1716,3 +1716,10 @@ footer :is(a.btn,button.btn):focus-visible{
 @media(max-width:700px){
  #main .journal-hero h1,#main .journal-main>.journal-article>h1{max-width:100%!important;text-wrap:pretty!important}
 }
+
+/* Balanced blog-card title wrapping across desktop, tablet and mobile. */
+#main .article-card h3{font-size:clamp(18px,1.55vw,22px);line-height:1.38;letter-spacing:-.015em;overflow-wrap:normal;word-break:normal;hyphens:none;text-wrap:balance;max-width:100%;}
+#main .article-card h3 a{color:inherit}
+#main .articles .article-card{min-width:0}
+@media(min-width:901px){#main .articles .article-card h3{font-size:clamp(17px,1.5vw,21px)}}
+@media(max-width:600px){#main .article-card h3{font-size:19px;line-height:1.42}}
