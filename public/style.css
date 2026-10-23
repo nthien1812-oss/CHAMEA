@@ -1773,3 +1773,10 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .journal-sidebar{max-height:none!important;overflow:visible!important}
 #main .journal-featured{max-height:none!important;overflow:visible!important}
 #main .journal-featured h2 span[aria-hidden="true"]{display:none!important}
+
+/* Homepage: tighten space beneath Tri kỉ CHAMÉA image carousel. */
+#main .type-community .chamea-friends-track{padding-top:24px!important;padding-bottom:14px!important}
+#main .type-community .chamea-friends{padding-bottom:0!important;margin-bottom:0!important}
+#main .type-community .chamea-friends-rail{margin-bottom:0!important;padding-bottom:0!important}
+#main .type-community{padding-bottom:18px!important}
+@media(max-width:700px){#main .type-community .chamea-friends-track{padding-top:20px!important;padding-bottom:12px!important}#main .type-community{padding-bottom:12px!important}}
