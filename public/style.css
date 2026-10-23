@@ -1738,3 +1738,21 @@ footer :is(a.btn,button.btn):focus-visible{
 @media (max-width:767px){
   #main .journal-hero h1,#main .journal-main>.journal-article>h1{width:100%!important;max-width:100%!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:none!important}
 }
+
+/* Blog section headings: do not balance lines into a narrow-looking block. */
+#main .journal-article h2,
+#main .journal-article h3,
+#main .journal-main .journal-article h2,
+#main .journal-main .journal-article h3{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  text-wrap:wrap!important;
+  text-align:left!important;
+  word-break:normal!important;
+  hyphens:none!important;
+}
+@media(min-width:768px){
+  #main .journal-article h2{font-size:clamp(27px,2.45vw,33px)!important;line-height:1.3!important}
+  #main .journal-article h3{font-size:clamp(21px,2vw,26px)!important}
+}
