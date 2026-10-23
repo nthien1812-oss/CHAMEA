@@ -200,15 +200,15 @@ function qualityBagJournal(){
  const captions=sections.filter(x=>x[2]);let photoIndex=2;
  const escText=s=>esc(s);
  const figures=(caption)=>'<figure class="journal-figure quality-blog-figure"><img loading="lazy" src="/CHAMEA/assets/image'+(photoIndex++)+'.png" alt="'+escText(caption)+'"><figcaption>'+escText(caption)+'</figcaption></figure>';
- const toc='<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+sections.map((x,i)=>'<a class="'+(/^[1-4]\\.\\d/.test(x[0])?'journal-toc-sub':'journal-toc-major')+'" href="#quality-'+i+'">'+escText(x[0])+'</a>').join('')+'</nav></div>';
- const faq=sections.filter(x=>/^3\\.[1-4]\\./.test(x[0]));
+ const toc='<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+sections.map((x,i)=>'<a class="'+(/^[1-4]\.\d/.test(x[0])?'journal-toc-sub':'journal-toc-major')+'" href="#quality-'+i+'">'+escText(x[0])+'</a>').join('')+'</nav></div>';
+ const faq=sections.filter(x=>/^3\.[1-4]\./.test(x[0]));
  const picks=D.products.filter(p=>['lune','nina','vera','mila','perle'].includes(String(p.family||'').toLowerCase())).filter((p,i,a)=>a.findIndex(x=>x.family===p.family)===i).slice(0,5);
  const recommend='<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>Gợi ý sản phẩm từ CHAMÉA</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+picks.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img loading="lazy" src="'+asset(p.image)+'" alt="'+esc(p.name)+'"></span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
  const main=sections.map((item,i)=>{
-  if(/^3\\.[1-4]\\./.test(item[0]))return '';
-  const isSub=/^[1-4]\\.\\d/.test(item[0]);
+  if(/^3\.[1-4]\./.test(item[0]))return '';
+  const isSub=/^[1-4]\.\d/.test(item[0]);
   const heading='<h'+(isSub?'3':'2')+' id="quality-'+i+'">'+escText(item[0])+'</h'+(isSub?'3':'2')+'>';
-  const paragraphs=item[1].split('\\n').filter(Boolean).map(t=>'<p>'+escText(t)+'</p>').join('');
+  const paragraphs=item[1].split('\n').filter(Boolean).map(t=>'<p>'+escText(t)+'</p>').join('');
   const faqHtml=item[0].startsWith('3. Câu hỏi')?'<div class="journal-faq-list">'+faq.map((q,j)=>'<details class="journal-faq-item" '+(j===0?'open':'')+'><summary><span>'+escText(q[0])+'</span><span class="journal-faq-sign" aria-hidden="true"></span></summary><div class="journal-faq-answer"><p>'+escText(q[1])+'</p></div></details>').join('')+'</div>':'';
   return '<section class="journal-section">'+heading+paragraphs+(item[2]?figures(item[2]):'')+(item[3]?'<p>'+escText(item[3])+'</p>':'')+(item[0].startsWith('2. Những điều')?recommend:'')+faqHtml+'</section>';
  }).join('');
