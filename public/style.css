@@ -1768,3 +1768,8 @@ footer :is(a.btn,button.btn):focus-visible{
 /* Blog 5: show all four featured articles without an internal scrolling panel. */
 #main .journal-sidebar.quality-blog-sidebar{max-height:none!important;overflow:visible!important;scrollbar-width:auto!important}
 #main .quality-blog-sidebar .journal-featured{max-height:none!important;overflow:visible!important}
+
+/* Featured article lists across all journal pages: no clipped items or nested scroll. */
+#main .journal-sidebar{max-height:none!important;overflow:visible!important}
+#main .journal-featured{max-height:none!important;overflow:visible!important}
+#main .journal-featured h2 span[aria-hidden="true"]{display:none!important}
