@@ -1514,3 +1514,12 @@ footer :is(a.btn,button.btn):focus-visible{
  #panel :is(a.btn,button.btn),
  footer :is(a.btn,button.btn){transition:none!important;transform:none!important}
 }
+
+/* Center the solitary third category card (Túi tote) on mobile as well. */
+@media(max-width:700px){
+ #main .categories:has(> .category:nth-child(3):last-child)> .category:last-child{
+  grid-column:1 / -1;
+  width:calc((100% - 12px)/2);
+  justify-self:center;
+ }
+}
