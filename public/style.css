@@ -1728,3 +1728,13 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .articles .article-card h3{width:100%!important;max-width:none!important;text-wrap:pretty!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:none!important;letter-spacing:-.02em!important;}
 @media(min-width:901px){#main .articles .article-card h3{font-size:clamp(19px,1.7vw,23px)!important;line-height:1.32!important;}}
 @media(min-width:601px) and (max-width:900px){#main .articles .article-card h3{font-size:20px!important;line-height:1.38!important;}}
+
+/* Journal title width fix — use the full editorial heading area on desktop. */
+@media (min-width: 768px){
+  #main .journal-hero:has(h1){max-width:1180px!important;width:calc(100% - 48px)!important}
+  #main .journal-hero h1{width:100%!important;max-width:none!important;font-size:clamp(30px,3vw,38px)!important;text-wrap:pretty!important}
+  #main .journal-main>.journal-article>h1{width:100%!important;max-width:none!important;font-size:clamp(30px,3vw,38px)!important;text-wrap:pretty!important}
+}
+@media (max-width:767px){
+  #main .journal-hero h1,#main .journal-main>.journal-article>h1{width:100%!important;max-width:100%!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:none!important}
+}
