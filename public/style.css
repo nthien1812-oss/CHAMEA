@@ -1607,32 +1607,32 @@ footer :is(a.btn,button.btn):focus-visible{
  }
 }
 
-/* Align and balance headline layouts on all four journal articles. */
+/* Blog headings: editorial left alignment, same as established CHAMÉA blog layout. */
 #main .journal-hero{
-  width:min(100% - 48px,1120px)!important;
-  max-width:1120px!important;
+  width:100%!important;
+  max-width:1540px!important;
   margin:0 auto!important;
-  padding:32px 0 26px!important;
-  text-align:center!important;
+  padding:clamp(24px,3vw,38px) clamp(22px,5vw,76px) 24px!important;
+  text-align:left!important;
 }
 #main .journal-hero h1{
-  max-width:850px!important;
-  margin:12px auto 16px!important;
-  text-align:center!important;
+  max-width:980px!important;
+  margin:12px 0 16px!important;
+  text-align:left!important;
   text-wrap:balance!important;
 }
 #main .journal-hero .eyebrow,#main .journal-hero .journal-meta{
-  text-align:center!important;
-  justify-content:center!important;
+  text-align:left!important;
+  justify-content:flex-start!important;
 }
 #main .journal-main>.journal-article>h1{
-  max-width:850px!important;
-  margin:4px auto 26px!important;
-  text-align:center!important;
+  max-width:100%!important;
+  margin:4px 0 24px!important;
+  text-align:left!important;
   text-wrap:balance!important;
 }
 @media(max-width:700px){
- #main .journal-hero{width:calc(100% - 32px)!important;padding:22px 0 18px!important}
- #main .journal-hero h1{max-width:100%!important;margin:10px auto 12px!important}
- #main .journal-main>.journal-article>h1{max-width:100%!important;margin:4px auto 20px!important}
+ #main .journal-hero{padding:20px 18px 18px!important}
+ #main .journal-hero h1{max-width:100%!important;margin:10px 0 12px!important}
+ #main .journal-main>.journal-article>h1{margin:4px 0 20px!important}
 }
