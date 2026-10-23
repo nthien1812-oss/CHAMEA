@@ -1723,3 +1723,8 @@ footer :is(a.btn,button.btn):focus-visible{
 #main .articles .article-card{min-width:0}
 @media(min-width:901px){#main .articles .article-card h3{font-size:clamp(17px,1.5vw,21px)}}
 @media(max-width:600px){#main .article-card h3{font-size:19px;line-height:1.42}}
+
+/* Blog listing: use the full image/card width for headlines, avoiding artificially narrow balanced lines. */
+#main .articles .article-card h3{width:100%!important;max-width:none!important;text-wrap:pretty!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:none!important;letter-spacing:-.02em!important;}
+@media(min-width:901px){#main .articles .article-card h3{font-size:clamp(19px,1.7vw,23px)!important;line-height:1.32!important;}}
+@media(min-width:601px) and (max-width:900px){#main .articles .article-card h3{font-size:20px!important;line-height:1.38!important;}}
