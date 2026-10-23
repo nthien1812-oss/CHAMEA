@@ -610,11 +610,10 @@ document.addEventListener('click',e=>{
    ${link('/ve-chamea','Về CHAMÉA','')}
    <details class="mobile-nav-group"><summary>Túi xách <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/tui-xach','Tất cả túi xách','')}${nested(shapes.map(s=>['/tui-xach?dang='+encodeURIComponent(s),s]))}</div></details>
    <details class="mobile-nav-group"><summary>Bộ sưu tập <span class="mobile-nav-chevron" aria-hidden="true"></span></summary><div class="mobile-nav-children">${link('/bo-suu-tap','Tất cả bộ sưu tập','')}${nested(collections)}</div></details>
-   ${link('/qua-tang-20-10','Quà tặng 20/10','')}
+   ${link('/qua-tang-20-10','CHAMÉA 20/10','')}
    ${link('/goi-y-chon-qua','Gợi ý chọn quà','')}
    ${link('/goc-chon-qua','Blog','')}
    ${link('/lien-he','Liên hệ','')}
-   ${link('/yeu-thich','Túi yêu thích','')}
   </nav>`);
  }
  if(action==='search'){openPanel('Tìm chiếc túi của bạn',`<form class="panel-search" data-form="search"><label class="sr-only" for="search-input">Tên, dáng hoặc màu túi</label><input id="search-input" name="q" type="search" placeholder="Tên, dáng hoặc màu túi…" autocomplete="off"><button aria-label="Tìm kiếm">${icon('search')}</button></form><div id="search-results" aria-live="polite"></div>`);showSearch();$('#search-input').focus()}
