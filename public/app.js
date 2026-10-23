@@ -26,7 +26,7 @@ function campaignLanding(){
   </div>
   <div class="container chamea-2010-gift-editorial">
    <div class="chamea-2010-gift-copy"><p class="eyebrow">THE ART OF GIFTING · CHAMÉA 20/10</p><h2>Không chỉ là một chiếc túi. Mà là lời thương được trao.</h2><p>Từ Blush Theory dịu dàng đến Souls thanh lịch, mỗi thiết kế đều mang một câu chuyện riêng. Chọn chiếc túi phù hợp với cá tính người nhận và dành tặng một khoảnh khắc đáng nhớ.</p><a href="/goi-y-chon-qua" class="btn outline">Gợi ý chọn quà ↗</a></div>
-   <a href="/san-pham/${souls?.id||featured[0]?.id||''}" class="chamea-2010-gift-image"><img src="${asset(souls?.gallery?.[4]||featured[0]?.image||'')}" alt="CHAMÉA Souls và hộp quà 20/10" loading="lazy"></a>
+   <div class="chamea-2010-gift-image"><img src="${asset(souls?.gallery?.[4]||featured[0]?.image||'')}" alt="CHAMÉA Souls và hộp quà 20/10" loading="lazy"></div>
   </div>
  </section>`;
 }
