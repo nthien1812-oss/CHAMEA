@@ -221,7 +221,10 @@ function chameaPromotionJournal(){
  ];
  const related=chameaJournalRelated('chamea-mung-20-10-uu-dai-20').filter(x=>x.id!=='chamea-mung-20-10-uu-dai-20').slice(0,3);
  const f=(name,caption)=>'<figure class="journal-figure"><a class="journal-photo-stage" href="'+linkProduct(name)+'" style="--journal-photo:url(&quot;'+photo(name)+'&quot;)"><img src="'+photo(name)+'" loading="lazy" alt="Túi CHAMÉA '+esc(name)+'"></a><figcaption>'+esc(caption)+'</figcaption></figure>';
- const picks=D.products.filter(p=>['lune','nina','vera','mila','perle'].includes(String(p.family||'').toLowerCase())).filter((p,i,arr)=>arr.findIndex(x=>String(x.family).toLowerCase()===String(p.family).toLowerCase())===i).slice(0,5);
+ const campaignFamilies=['Blush Theory','Her Rules','Pastel Core','Souls'];
+ const campaignPicks=campaignFamilies.map(f=>D.products.find(p=>p.family===f&&p.collection20==='20-10')).filter(Boolean);
+ const regularPicks=D.products.filter(p=>['lune','nina','vera','mila','perle'].includes(String(p.family||'').toLowerCase())).filter((p,i,arr)=>arr.findIndex(x=>String(x.family).toLowerCase()===String(p.family).toLowerCase())===i);
+ const picks=[...campaignPicks,...regularPicks].slice(0,9);
  const recommend='<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>Gợi ý sản phẩm từ CHAMÉA</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+picks.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'+(hasDiscount(p)?'<em>−20%</em>':'')+'</span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
  const body='<h2 id="'+anchors[0]+'">1. Ưu đãi 20/10 – Món quà đặc biệt từ CHAMÉA</h2>'+
  '<p>Không phải món quà nào cũng cần cầu kỳ để trở nên đáng nhớ. Đôi khi, một chiếc túi xách được lựa chọn đúng với sở thích và phong cách cũng đủ thể hiện sự quan tâm dành cho người nhận.</p>'+
