@@ -1795,3 +1795,8 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #main [data-home-block="hero"] .chamea-hero-click-region picture{display:block}
 #main [data-home-block="hero"] .chamea-hero-image-cta{position:absolute;display:block;left:6.4%;top:72.5%;width:35%;height:13%;z-index:3;cursor:pointer;border-radius:999px;touch-action:manipulation}
 #main [data-home-block="hero"] .chamea-hero-image-cta:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 5px #84233c}
+
+/* Mobile homepage banner uses a portrait image; place the clickable area on its bottom CTA. */
+@media(max-width:700px){
+ #main [data-home-block="hero"] .chamea-hero-image-cta{left:19%;top:87%;width:62%;height:8%;border-radius:999px}
+}
