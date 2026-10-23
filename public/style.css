@@ -1561,10 +1561,3 @@ footer :is(a.btn,button.btn):focus-visible{
  #gallery .gallery-main.chamea-inspect-active img{transition:none!important}
  #gallery .gallery-main .zoom-label{pointer-events:none;z-index:2}
 }
-
-/* Product zoom only on explicit icon press; no automatic image magnification. */
-#gallery .gallery-main.chamea-gallery-static{position:relative!important;display:block!important;cursor:default!important;overflow:hidden!important}
-#gallery .gallery-main.chamea-gallery-static>img{transform:none!important;transform-origin:center!important;transition:none!important}
-#gallery .chamea-zoom-trigger{position:absolute;right:14px;bottom:14px;z-index:5;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:9px 15px;border:1px solid rgba(60,37,53,.3);border-radius:6px;background:rgba(255,251,248,.95);color:#3c2535!important;-webkit-text-fill-color:#3c2535!important;box-shadow:0 3px 12px rgba(60,37,53,.12);cursor:zoom-in;font:600 13px Montserrat,Arial,sans-serif;transition:background-color .2s,color .2s,transform .2s}
-#gallery .chamea-zoom-trigger:hover,#gallery .chamea-zoom-trigger:focus-visible{background:#70465d!important;color:#fff!important;-webkit-text-fill-color:#fff!important;transform:translateY(-2px)}
-@media(max-width:700px){#gallery .chamea-zoom-trigger{right:10px;bottom:10px}}
