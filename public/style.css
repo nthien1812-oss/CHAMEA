@@ -1478,3 +1478,39 @@ footer .chamea-footer-brand .footer-logo.footer-official{
 
 /* Center the final (Túi tote) card when the category grid has three cards. */
 @media(min-width:701px){#main .categories:has(> .category:nth-child(3):last-child)> .category:last-child{grid-column:1 / -1;width:calc((100% - 28px)/2);justify-self:center}}
+
+/* Consistent accessible hover and focus states for clickable CTA surfaces. */
+:root{--chamea-cta-hover:#70465d;--chamea-cta-light:#fffaf5}
+#main :is(a.btn,button.btn,.hero-actions .btn,.builder-block .btn,.chamea-story-button,.quiz-nav button,.quiz-shell .btn,.product-bottom>a,.text-link),
+#panel :is(a.btn,button.btn),
+footer :is(a.btn,button.btn){
+  transition:background-color .23s ease,color .23s ease,border-color .23s ease,box-shadow .23s ease,transform .23s ease;
+}
+@media(hover:hover){
+ #main :is(a.btn,button.btn,.hero-actions .btn,.builder-block .btn,.chamea-story-button,.quiz-nav button,.quiz-shell .btn):not(:disabled):hover,
+ #panel :is(a.btn,button.btn):not(:disabled):hover,
+ footer :is(a.btn,button.btn):not(:disabled):hover{
+   background-color:var(--chamea-cta-hover)!important;
+   border-color:var(--chamea-cta-hover)!important;
+   color:var(--chamea-cta-light)!important;
+   -webkit-text-fill-color:var(--chamea-cta-light)!important;
+   box-shadow:0 7px 17px rgba(60,37,53,.18)!important;
+   transform:translateY(-2px);
+ }
+ #main :is(a.btn,button.btn,.hero-actions .btn,.builder-block .btn,.chamea-story-button,.quiz-nav button,.quiz-shell .btn):not(:disabled):hover *,
+ #panel :is(a.btn,button.btn):not(:disabled):hover *,
+ footer :is(a.btn,button.btn):not(:disabled):hover *{
+   color:inherit!important;-webkit-text-fill-color:inherit!important;
+ }
+ #main :is(.product-bottom>a,.text-link):hover{color:#823c60!important;-webkit-text-fill-color:#823c60!important;text-decoration-color:currentColor!important}
+}
+#main :is(a.btn,button.btn,.chamea-story-button):focus-visible,
+#panel :is(a.btn,button.btn):focus-visible,
+footer :is(a.btn,button.btn):focus-visible{
+ outline:2px solid #b9926d!important;outline-offset:3px!important;
+}
+@media(prefers-reduced-motion:reduce){
+ #main :is(a.btn,button.btn,.chamea-story-button),
+ #panel :is(a.btn,button.btn),
+ footer :is(a.btn,button.btn){transition:none!important;transform:none!important}
+}
