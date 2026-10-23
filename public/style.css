@@ -1606,3 +1606,33 @@ footer :is(a.btn,button.btn):focus-visible{
    line-height:1.25!important;
  }
 }
+
+/* Align and balance headline layouts on all four journal articles. */
+#main .journal-hero{
+  width:min(100% - 48px,1120px)!important;
+  max-width:1120px!important;
+  margin:0 auto!important;
+  padding:32px 0 26px!important;
+  text-align:center!important;
+}
+#main .journal-hero h1{
+  max-width:850px!important;
+  margin:12px auto 16px!important;
+  text-align:center!important;
+  text-wrap:balance!important;
+}
+#main .journal-hero .eyebrow,#main .journal-hero .journal-meta{
+  text-align:center!important;
+  justify-content:center!important;
+}
+#main .journal-main>.journal-article>h1{
+  max-width:850px!important;
+  margin:4px auto 26px!important;
+  text-align:center!important;
+  text-wrap:balance!important;
+}
+@media(max-width:700px){
+ #main .journal-hero{width:calc(100% - 32px)!important;padding:22px 0 18px!important}
+ #main .journal-hero h1{max-width:100%!important;margin:10px auto 12px!important}
+ #main .journal-main>.journal-article>h1{max-width:100%!important;margin:4px auto 20px!important}
+}
