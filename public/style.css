@@ -1523,3 +1523,20 @@ footer :is(a.btn,button.btn):focus-visible{
   justify-self:center;
  }
 }
+
+/* Consistent 2+1 category tile layout on phones and iPads (portrait/landscape).
+   Use nth-child rather than :has() for older iOS Safari compatibility. */
+@media (max-width:1199px){
+ #main .builder-block.type-categories .categories{
+   display:grid!important;
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+   gap:12px!important;
+ }
+ #main .builder-block.type-categories .categories > .category:nth-child(3):last-child{
+   grid-column:1 / -1!important;
+   width:calc(50% - 6px)!important;
+   max-width:none!important;
+   justify-self:center!important;
+   margin-inline:auto!important;
+ }
+}
