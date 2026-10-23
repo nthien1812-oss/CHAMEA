@@ -1756,3 +1756,11 @@ footer :is(a.btn,button.btn):focus-visible{
   #main .journal-article h2{font-size:clamp(27px,2.45vw,33px)!important;line-height:1.3!important}
   #main .journal-article h3{font-size:clamp(21px,2vw,26px)!important}
 }
+
+/* Blog 5 only: eliminate artificial image letterboxing and extra top/bottom whitespace. */
+#main .journal-article .quality-blog-figure{margin:18px 0 22px;padding:0;background:transparent;line-height:normal}
+#main .journal-article .quality-blog-figure img{display:block;width:100%;max-width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;background:transparent;margin:0 auto;border:0}
+#main .journal-article .quality-blog-figure figcaption{margin:9px auto 0}
+#main .journal-article .quality-blog-cover{height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;padding:0!important;margin:18px 0 24px!important;background:transparent!important;overflow:hidden!important}
+#main .journal-article .quality-blog-cover::before,#main .journal-article .quality-blog-cover::after{display:none!important}
+#main .journal-article .quality-blog-cover img{display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;margin:0!important;background:transparent!important}
