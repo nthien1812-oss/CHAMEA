@@ -1985,3 +1985,11 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header .menu-toggle svg{width:21px!important;height:21px!important}
 }
 @media(max-width:370px){#header .head-top{padding-left:5px!important;padding-right:5px!important}#header .head-tools>.icon-btn{min-width:26px!important;width:26px!important}#header .menu-toggle{flex-basis:29px!important;width:29px!important;min-width:29px!important;margin-left:1px!important}#header .logo-link{max-width:calc(100% - 205px)!important}#header .logo-symbol{width:19px!important;height:19px!important;flex-basis:19px!important}#header .logo-word{font-size:12px!important}}
+
+/* Final responsive header alignment: hamburger always far left on phone and iPad. */
+@media(max-width:1180px){
+ #header .head-top{display:flex!important;justify-content:space-between!important;align-items:center!important;position:relative!important}
+ #header .menu-toggle{order:0!important;position:relative!important;left:auto!important;right:auto!important;grid-column:auto!important;margin:0!important;flex:0 0 36px!important;width:36px!important;min-width:36px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+ #header .head-tools{order:2!important;margin-left:auto!important;display:flex!important;align-items:center!important}
+ #header .logo-link{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;order:1!important}
+}
