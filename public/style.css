@@ -1924,5 +1924,14 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #panel .chamea-favorite-panel-item button{border:0;background:none;color:#815c70;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px 0;font-size:12px}
 #panel .chamea-favorite-panel-items+.panel-actions{margin-top:22px}
 
-/* Prevent the clipped hover-dropdown outline appearing below desktop nav. Primary links still open the full catalog and collections pages. */
-@media(min-width:701px){#header .nav li>.submenu,#header .nav li:hover>.submenu,#header .nav li:focus-within>.submenu{display:none!important}}
+
+/* Desktop dropdowns: retain hover menus and prevent their content from being clipped. */
+@media(min-width:701px){
+ #header,#header nav,#header .nav,#header .nav>li{overflow:visible!important}
+ #header{position:relative;z-index:200}
+ #header .nav>li{position:relative}
+ #header .nav>li>.submenu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:225px;width:max-content;max-width:min(320px,90vw);padding:12px 10px;background:#fefbfd;border:1px solid #e2d7d2;border-radius:0 0 10px 10px;box-shadow:0 14px 28px rgba(60,37,53,.14);z-index:250}
+ #header .nav>li:hover>.submenu,#header .nav>li:focus-within>.submenu{display:block!important}
+ #header .nav>li>.submenu a{display:block;padding:9px 12px;white-space:normal;line-height:1.5;border:0;border-radius:5px;color:#3c2535;text-decoration:none;font-size:12px;letter-spacing:0}
+ #header .nav>li>.submenu a:hover,#header .nav>li>.submenu a:focus-visible{background:#f5edf1}
+}
