@@ -1809,3 +1809,11 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   #header nav, .nav-wrap{max-width:100%;overflow-x:auto;scrollbar-width:none;}
   #header nav::-webkit-scrollbar,.nav-wrap::-webkit-scrollbar{display:none;}
 }
+
+/* Prevent orphaned words in the header slogan on tablet and landscape devices. */
+@media (min-width:701px) and (max-width:1366px){
+  #header .head-note{white-space:nowrap!important;max-width:none!important;width:max-content!important;flex:0 1 auto!important;font-size:clamp(8px,.85vw,10px)!important;letter-spacing:.06em!important;}
+}
+@media (min-width:701px) and (max-width:980px){
+  #header .head-note{display:none!important;}
+}
