@@ -1904,3 +1904,9 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 .chamea-account-sidebar nav .chamea-account-contact-row>span{min-width:0}
 .chamea-account-sidebar nav .chamea-account-contact-value{font-size:12px;color:#6f5966;text-align:right;overflow-wrap:anywhere}
 @media(max-width:400px){.chamea-account-sidebar nav .chamea-account-contact-row{grid-template-columns:19px minmax(0,1fr);row-gap:5px}.chamea-account-sidebar nav .chamea-account-contact-value{grid-column:2;text-align:left}}
+
+/* Compact contact-only footer column */
+#footer .chamea-footer-contact{display:grid;gap:15px;margin-top:20px}
+#footer .chamea-footer-contact p{display:grid;gap:4px;margin:0;line-height:1.5}
+#footer .chamea-footer-contact strong{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;opacity:.72}
+#footer .chamea-footer-contact span{font-size:13px;overflow-wrap:anywhere}
