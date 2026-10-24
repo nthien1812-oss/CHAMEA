@@ -154,7 +154,7 @@ function about(){
  </div>
  <div class="chamea-story-manifesto container" id="chamea-triet-ly">
   <span class="chamea-story-kicker">01 / ĐIỀU CHÚNG TÔI TIN</span>
-  <p>Mỗi chiếc túi có thể mang một dấu ấn riêng: <em>thể hiện phong cách của người mang, hoặc thay lời quan tâm gửi đến người được tặng.</em></p>
+  <p>Một chiếc túi, hai ý nghĩa: <em>dấu ấn phong cách riêng và lời quan tâm chân thành gửi đến người được tặng.</em></p>
   <span class="chamea-story-manifesto-sign">CHAMÉA — MỘT CHIẾC TÚI. MỘT NÉT RIÊNG.</span>
  </div>
  <section class="chamea-story-chapter container" aria-labelledby="chamea-story-why">
