@@ -58,6 +58,16 @@ let cart=Array.isArray(rawCart)?rawCart.filter(x=>x&&product(x.id)&&Number.isInt
 let favs=Array.isArray(rawFav)?rawFav.filter(id=>product(id)):[];
 let order=null,selectedQty=1,galleryIndex=0,quizStep=0,quizResult=false,quizAnswers={},toastTimer,panelFocus;
 const icons={search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>',bag:'<path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>',menu:'<path d="M3 6h18M3 12h18M3 18h18"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',filter:'<path d="M3 6h18M6 12h12M9 18h6"/>',photo:'<rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/>'};
+Object.assign(icons,{
+ 'package-open':'<path d="M3 8.5 12 4l9 4.5v10L12 23 3 18.5v-10Z"/><path d="m3 8.5 9 4.5 9-4.5M12 13v10M7.5 6.2l9 4.5"/>',
+ 'map-pin':'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+ 'user-round':'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+ 'list-ordered':'<path d="M9 6h12M9 12h12M9 18h12M3 5h1v4M3 9h3M3 15h2l-2 3h3"/>',
+ 'message-square-star':'<path d="M21 11.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3l4 3 4-3h3a2 2 0 0 0 2-2v-2"/><path d="m14 10 1.2-2.6L16.5 10l2.8.4-2 2 .5 2.8-2.6-1.4-2.5 1.4.5-2.8-2-2Z"/>',
+ 'mail':'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+ 'globe':'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-5 5-5 13 0 18M12 3c5 5 5 13 0 18"/>',
+ 'lock-keyhole':'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1"/>'
+});
 const icon=n=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icons[n]||icons.arrow}</svg>`;
 const link=(url,label,cls='btn')=>`<a href="${url}" class="${cls}">${label}</a>`;
 const count=()=>cart.reduce((s,x)=>s+x.qty,0);
