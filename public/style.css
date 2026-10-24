@@ -1872,3 +1872,8 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #panel .chamea-account-drawer .chamea-account-links button{border:0;background:transparent;text-align:left;font-size:13px;color:#806d77;cursor:pointer;padding:0}
 #panel .chamea-account-drawer .chamea-account-links strong{color:#3c2535}
 #panel .chamea-account-disclaimer{font-size:11px;line-height:1.6;color:#8b7881;margin-top:18px}
+
+/* Fix account drawer heading and description running together. */
+#panel .chamea-account-drawer .chamea-account-popover-title{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:8px!important;padding-bottom:18px!important;margin-bottom:24px!important}
+#panel .chamea-account-drawer .chamea-account-popover-title strong{display:block!important;width:100%;line-height:1.35!important;font-size:22px!important;letter-spacing:0!important;white-space:normal!important}
+#panel .chamea-account-drawer .chamea-account-popover-title span{display:block!important;width:100%;margin:0!important;line-height:1.6!important;font-size:13px!important;white-space:normal!important}
