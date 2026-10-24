@@ -1993,3 +1993,18 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header .head-tools{order:2!important;margin-left:auto!important;display:flex!important;align-items:center!important}
  #header .logo-link{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;order:1!important}
 }
+
+/* Phone header: give right-hand actions breathing room without crowding centered brand. */
+@media(max-width:700px){
+ #header .head-tools{gap:clamp(2px,0.8vw,5px)!important;margin-left:auto!important}
+ #header .head-tools>.icon-btn{width:clamp(30px,8vw,35px)!important;min-width:clamp(30px,8vw,35px)!important;padding:0 3px!important}
+ #header .head-tools>.icon-btn svg{width:18px!important;height:18px!important}
+ #header .logo-link{max-width:calc(100% - 220px)!important}
+}
+@media(max-width:380px){
+ #header .head-top{padding-left:6px!important;padding-right:6px!important}
+ #header .head-tools{gap:2px!important}
+ #header .head-tools>.icon-btn{width:29px!important;min-width:29px!important;padding:0 2px!important}
+ #header .head-tools>.icon-btn svg{width:17px!important;height:17px!important}
+ #header .logo-link{max-width:calc(100% - 195px)!important}
+}
