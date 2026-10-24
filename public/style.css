@@ -1913,3 +1913,13 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 
 /* Saved demo order history */
 .chamea-account-order-results{display:grid;gap:14px}.chamea-account-order-card{background:#fff;border:1px solid #eee6eb;border-radius:14px;padding:18px 20px;box-shadow:0 2px 6px #00000008}.chamea-account-order-card[hidden]{display:none!important}.chamea-account-order-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.chamea-account-order-top strong{font-size:14px}.chamea-account-order-top span{color:#80566b;font-size:12px}.chamea-account-order-card>small{display:block;color:#8d7f88;margin:7px 0 12px}.chamea-account-order-product{display:flex;align-items:center;gap:13px;padding:12px 0;border-top:1px solid #f1ecf0}.chamea-account-order-product img{width:62px;height:70px;object-fit:cover;border-radius:7px;background:#f7f3f5}.chamea-account-order-product div{flex:1;min-width:0}.chamea-account-order-product strong{font-size:13px}.chamea-account-order-product p{font-size:12px;color:#847581;margin:5px 0 0}.chamea-account-order-product>span{font-size:12px;white-space:nowrap}.chamea-account-order-total{display:flex;justify-content:flex-end;gap:16px;border-top:1px solid #f1ecf0;padding-top:13px;font-size:13px}.chamea-account-demo-note{font-size:12px;color:#897b84}
+
+/* Favorites drawer uses the same slide-out layout as the cart. */
+#panel .chamea-favorite-panel-items{display:grid;gap:0;margin-top:8px}
+#panel .chamea-favorite-panel-item{display:grid;grid-template-columns:90px minmax(0,1fr);gap:15px;padding:18px 0;border-bottom:1px solid #e9dfe4;align-items:start}
+#panel .chamea-favorite-panel-item img{display:block;width:90px;height:105px;object-fit:cover;border-radius:8px;background:#f7f1f4}
+#panel .chamea-favorite-panel-name{display:block;color:#3c2535;text-decoration:none;font-weight:600;font-size:14px;line-height:1.5}
+#panel .chamea-favorite-panel-item p{font-size:12px;color:#8d7c87;margin:5px 0}
+#panel .chamea-favorite-panel-item .price{display:block;margin:6px 0}
+#panel .chamea-favorite-panel-item button{border:0;background:none;color:#815c70;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px 0;font-size:12px}
+#panel .chamea-favorite-panel-items+.panel-actions{margin-top:22px}
