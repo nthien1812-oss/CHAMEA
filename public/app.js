@@ -630,7 +630,13 @@ function go(url,scroll=true){closePanel();const target=url.startsWith('/CHAMEA/'
 function toast(msg){clearTimeout(toastTimer);$('#toast').textContent=msg;$('#toast').classList.add('show');toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),4200)}
 function openPanel(title,html,wide=false){panelFocus=document.activeElement;const panel=$('#panel');panel.classList.toggle('wide-panel',wide);panel.innerHTML=`<div class="panel-head"><h2 id="panel-title">${title}</h2><button class="panel-close" data-action="close" aria-label="Đóng">×</button></div>${html}`;if(!panel.open)panel.showModal();document.body.style.overflow='hidden'}
 function closePanel(){if($('#panel').open)$('#panel').close();if($('#zoom').open)$('#zoom').close();document.body.style.overflow=''}
+const DEMO_ACCOUNTS_KEY='chamea-demo-accounts-v1',DEMO_SESSION_KEY='chamea-demo-session-v1';
+function demoAccounts(){try{return JSON.parse(localStorage.getItem(DEMO_ACCOUNTS_KEY)||'{}')}catch{return {}}}
+function demoSession(){try{return JSON.parse(sessionStorage.getItem(DEMO_SESSION_KEY)||'null')}catch{return null}}
+async function demoHash(password,salt){const bytes=new TextEncoder().encode(salt+':'+password);const hash=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(hash),x=>x.toString(16).padStart(2,'0')).join('')}
+function demoProfile(){const s=demoSession();if(!s)return accountPanel('login');const name=String(s.name||'Khách hàng').replace(/[&<>"']/g,'');const email=String(s.email||'').replace(/[&<>"']/g,'');openPanel('Tài khoản',`<div class="chamea-account-drawer"><div class="chamea-account-popover-title"><span>Xin chào, ${name}!</span></div><p><strong>Hồ sơ cá nhân</strong></p><p>Họ tên: ${name}</p><p>Email: ${email}</p><p class="chamea-account-disclaimer">Tài khoản demo chỉ hoạt động trên trình duyệt này. Đơn hàng và địa chỉ chưa được liên kết.</p><button class="chamea-account-submit" data-action="account-logout">Đăng xuất</button></div>`)}
 function accountPanel(tab='login'){
+ if(tab==='login'&&demoSession())return demoProfile();
  const title=tab==='register'?'TẠO TÀI KHOẢN':tab==='forgot'?'KHÔI PHỤC MẬT KHẨU':'ĐĂNG NHẬP TÀI KHOẢN';
  const intro=tab==='login'?'Nhập email và mật khẩu của bạn:':tab==='register'?'Thông tin đăng ký tài khoản:':'Nhập email để khôi phục mật khẩu:';
  const fields=tab==='register'?'<input name="name" autocomplete="name" placeholder="Họ và tên" aria-label="Họ và tên" required>':'';
@@ -638,7 +644,7 @@ function accountPanel(tab='login'){
  const password=tab==='forgot'?'':'<input name="password" type="password" autocomplete="off" placeholder="Mật khẩu" aria-label="Mật khẩu" minlength="8" required>';
  const confirm=tab==='register'?'<input name="confirm" type="password" autocomplete="off" placeholder="Xác nhận mật khẩu" aria-label="Xác nhận mật khẩu" minlength="8" required>':'';
  const button=tab==='register'?'TẠO TÀI KHOẢN':tab==='forgot'?'KHÔI PHỤC MẬT KHẨU':'ĐĂNG NHẬP';
- const html=`<div class="chamea-account-popover-title"><span>${intro}</span></div><form data-form="account-demo" class="chamea-account-form">${fields}${email}${password}${confirm}<button class="chamea-account-submit" type="submit">${button}</button></form><p class="chamea-account-disclaimer">Bản xem trước giao diện, chưa kết nối tài khoản. Không nhập mật khẩu thật.</p><div class="chamea-account-links">${tab!=='register'?'<button type="button" data-action="account-register">Khách hàng mới? <strong>Tạo tài khoản</strong></button>':'<button type="button" data-action="account-login">Đã có tài khoản? <strong>Đăng nhập</strong></button>'}${tab==='login'?'<button type="button" data-action="account-forgot">Quên mật khẩu? <strong>Khôi phục mật khẩu</strong></button>':tab==='forgot'?'<button type="button" data-action="account-login">← Quay lại đăng nhập</button>':''}</div>`;
+ const html=`<div class="chamea-account-popover-title"><span>${intro}</span></div><form data-form="account-demo" class="chamea-account-form">${fields}${email}${password}${confirm}<button class="chamea-account-submit" type="submit">${button}</button></form><p class="chamea-account-disclaimer">Tài khoản demo chỉ dùng trên trình duyệt này. Không sử dụng mật khẩu thật.</p><div class="chamea-account-links">${tab!=='register'?'<button type="button" data-action="account-register">Khách hàng mới? <strong>Tạo tài khoản</strong></button>':'<button type="button" data-action="account-login">Đã có tài khoản? <strong>Đăng nhập</strong></button>'}${tab==='login'?'<button type="button" data-action="account-forgot">Quên mật khẩu? <strong>Khôi phục mật khẩu</strong></button>':tab==='forgot'?'<button type="button" data-action="account-login">← Quay lại đăng nhập</button>':''}</div>`;
  openPanel(tab==='register'?'Tạo tài khoản':tab==='forgot'?'Khôi phục mật khẩu':'Tài khoản',`<div class="chamea-account-drawer">${html}</div>`);
 }
 function closeAccountPopover(){document.getElementById('chamea-account-popover')?.remove();document.querySelector('#header .account-trigger')?.setAttribute('aria-expanded','false')}
@@ -701,6 +707,7 @@ document.addEventListener('click',e=>{
  }
  if(action==='search'){openPanel('Tìm chiếc túi của bạn',`<form class="panel-search" data-form="search"><label class="sr-only" for="search-input">Tên, dáng hoặc màu túi</label><input id="search-input" name="q" type="search" placeholder="Tên, dáng hoặc màu túi…" autocomplete="off"><button aria-label="Tìm kiếm">${icon('search')}</button></form><div id="search-results" aria-live="polite"></div>`);showSearch();$('#search-input').focus()}
  if(action==='account'){accountPanel();return}
+ if(action==='account-logout'){sessionStorage.removeItem(DEMO_SESSION_KEY);accountPanel('login');toast('Đã đăng xuất tài khoản demo.');return}
  if(action==='account-login'||action==='account-register'||action==='account-forgot'){accountPanel(action==='account-register'?'register':action==='account-forgot'?'forgot':'login');return}
  if(action==='close')closePanel();if(action==='cart')cartPanel();
  if(action==='fav'){favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];persist('chamea-favs-v1',favs);header();$$(`[data-action="fav"][data-id="${id}"]`).forEach(el=>{el.setAttribute('aria-pressed',String(favs.includes(id)));el.setAttribute('aria-label',(favs.includes(id)?'Bỏ ':'Thêm ')+product(id).name+(favs.includes(id)?' khỏi':' vào')+' yêu thích')});if(location.pathname==='/yeu-thich'&&!favs.includes(id))render(false);toast(favs.includes(id)?'Đã lưu túi vào danh sách yêu thích.':'Đã bỏ túi khỏi danh sách yêu thích.')}
@@ -722,7 +729,20 @@ document.addEventListener('click',e=>{
 document.addEventListener('input',e=>{if(e.target.id==='search-input')showSearch(e.target.value)});
 document.addEventListener('change',e=>{const el=e.target;if(el.name==='payment'){$('#qr-details').hidden=el.value!=='qr'}if(el.id==='product-qty'){selectedQty=Math.max(1,Math.min(99,Math.floor(Number(el.value)||1)));el.value=selectedQty}if(el.dataset.cartQty){const item=cart.find(x=>x.id===el.dataset.cartQty);if(item){item.qty=Math.max(1,Math.min(99,Math.floor(Number(el.value)||1)));updateCart()}}if(el.dataset.filter&&!el.closest('dialog')){const q=new URLSearchParams(location.search);el.value?q.set(el.dataset.filter,el.value):q.delete(el.dataset.filter);go(location.pathname+(q.toString()?'?'+q:''),false)}});
 document.addEventListener('submit',e=>{const form=e.target,type=form.dataset.form;if(!type)return;e.preventDefault();if(!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));
- if(type==='account-demo'){toast('Chức năng tài khoản chưa kết nối máy chủ. Không có thông tin nào được gửi hoặc lưu.');form.reset();return}
+ if(type==='account-demo'){
+  const mode=form.querySelector('input[name="confirm"]')?'register':form.querySelector('input[name="password"]')?'login':'forgot';
+  const email=String(data.email||'').trim().toLowerCase(),password=String(data.password||'');
+  (async()=>{try{const accounts=demoAccounts();if(mode==='register'){
+   if(accounts[email]){toast('Email này đã được đăng ký trên trình duyệt.');return}
+   if(password!==String(data.confirm||'')){toast('Mật khẩu xác nhận không khớp.');return}
+   const salt=crypto.randomUUID();accounts[email]={name:String(data.name||'').trim().slice(0,80),salt,hash:await demoHash(password,salt)};
+   localStorage.setItem(DEMO_ACCOUNTS_KEY,JSON.stringify(accounts));sessionStorage.setItem(DEMO_SESSION_KEY,JSON.stringify({email,name:accounts[email].name}));demoProfile();toast('Đã tạo tài khoản demo thành công.');
+  }else if(mode==='login'){
+   const account=accounts[email];if(!account||account.hash!==await demoHash(password,account.salt)){toast('Email hoặc mật khẩu demo không đúng.');return}
+   sessionStorage.setItem(DEMO_SESSION_KEY,JSON.stringify({email,name:account.name}));demoProfile();toast('Đăng nhập demo thành công.');
+  }else{toast(accounts[email]?'Tài khoản demo này đã tồn tại. Hãy đăng nhập hoặc đăng ký lại nếu quên mật khẩu.':'Không tìm thấy tài khoản demo với email này.');}
+  }catch(err){toast('Không thể lưu tài khoản demo trên trình duyệt này.')}})();return}
+
  if(type==='product-review'){const id=form.dataset.productId;if(!D.products.some(p=>p.id===id))return;const rating=Number(data.rating),name=String(data.name||'').trim().slice(0,45),message=String(data.text||'').trim().slice(0,800);if(!Number.isInteger(rating)||rating<1||rating>5||!name||message.length<10)return;const current=Array.isArray(productReviews[id])?productReviews[id]:[];productReviews[id]=[{rating,name,text:message,date:new Date().toLocaleDateString('vi-VN')},...current].slice(0,30);try{localStorage.setItem(REVIEW_KEY,JSON.stringify(productReviews));render(false);toast('Đã lưu đánh giá trên trình duyệt này.')}catch(err){toast('Không thể lưu đánh giá trên trình duyệt này.')}return}
  if(type==='search')go('/tui-xach?q='+encodeURIComponent(data.q));
  if(type==='filters'){const q=new URLSearchParams(location.search);for(const [key,value] of Object.entries(data)){value?q.set(key,value):q.delete(key)}go(location.pathname+'?'+q.toString(),false)}
