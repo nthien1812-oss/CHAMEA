@@ -1935,3 +1935,19 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header .nav>li>.submenu a{display:block;padding:9px 12px;white-space:normal;line-height:1.5;border:0;border-radius:5px;color:#3c2535;text-decoration:none;font-size:12px;letter-spacing:0}
  #header .nav>li>.submenu a:hover,#header .nav>li>.submenu a:focus-visible{background:#f5edf1}
 }
+
+/* Portrait phones: prevent logo and account/search/cart icons colliding or shrinking. */
+@media(max-width:700px){
+ #header .head-top{display:grid!important;grid-template-columns:36px minmax(0,1fr) auto!important;align-items:center!important;column-gap:8px!important;width:100%;max-width:100%;height:68px!important;min-height:68px;padding:0 12px!important}
+ #header .menu-toggle{display:flex!important;grid-column:1;grid-row:1;align-items:center;justify-content:center;min-width:36px;width:36px;height:40px;padding:0}
+ #header .head-note{display:none!important}
+ #header .logo-link{position:static!important;grid-column:2;grid-row:1;transform:none!important;justify-self:center!important;display:flex!important;align-items:center;justify-content:center;gap:5px;max-width:100%;min-width:0;width:auto;white-space:nowrap}
+ #header .logo-symbol{width:25px!important;height:25px!important;flex:0 0 25px}
+ #header .logo-word{font-size:clamp(13px,3.7vw,18px)!important;letter-spacing:.06em!important;white-space:nowrap}
+ #header .head-tools{grid-column:3;grid-row:1;display:flex!important;align-items:center;gap:1px!important;flex:none;min-width:0}
+ #header .head-tools>.icon-btn{display:flex!important;align-items:center;justify-content:center;width:32px!important;min-width:32px!important;height:40px;min-height:40px;padding:0 2px!important}
+ #header .head-tools>.favorite-head{display:none!important}
+ #header .head-tools>.icon-btn svg{width:18px!important;height:18px!important;flex-shrink:0}
+ #header .head-tools .count{font-size:9px;padding-left:1px}
+}
+@media(max-width:350px){#header .head-top{grid-template-columns:32px minmax(0,1fr) auto!important;gap:3px!important;padding:0 7px!important}#header .logo-word{font-size:13px!important}#header .head-tools>.icon-btn{width:29px!important;min-width:29px!important}}
