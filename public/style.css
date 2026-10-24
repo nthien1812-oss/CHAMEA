@@ -1923,3 +1923,6 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #panel .chamea-favorite-panel-item .price{display:block;margin:6px 0}
 #panel .chamea-favorite-panel-item button{border:0;background:none;color:#815c70;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px 0;font-size:12px}
 #panel .chamea-favorite-panel-items+.panel-actions{margin-top:22px}
+
+/* Prevent the clipped hover-dropdown outline appearing below desktop nav. Primary links still open the full catalog and collections pages. */
+@media(min-width:701px){#header .nav li>.submenu,#header .nav li:hover>.submenu,#header .nav li:focus-within>.submenu{display:none!important}}
