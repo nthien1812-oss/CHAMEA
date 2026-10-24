@@ -1971,3 +1971,17 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header>nav{display:none!important}
  #header .head-tools .icon-btn{min-width:32px!important}
 }
+
+/* Mobile header: right-side hamburger at every phone/tablet width; show favorites heart. */
+@media(max-width:1180px){
+ #header .head-top{position:relative!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:0!important;padding-left:10px!important;padding-right:10px!important}
+ #header .head-note{display:none!important}
+ #header .logo-link{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;max-width:calc(100% - 235px)!important;white-space:nowrap!important;z-index:1!important}
+ #header .head-tools{display:flex!important;align-items:center!important;gap:0!important;margin-left:auto!important;order:1!important;flex:none!important;z-index:2!important}
+ #header .head-tools>.icon-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:29px!important;width:29px!important;min-height:40px!important;height:40px!important;padding:0 1px!important}
+ #header .head-tools>.favorite-head{display:inline-flex!important}
+ #header .head-tools>.icon-btn svg{width:17px!important;height:17px!important}
+ #header .menu-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;position:relative!important;left:auto!important;right:auto!important;grid-column:auto!important;order:2!important;flex:0 0 34px!important;width:34px!important;min-width:34px!important;height:40px!important;margin:0 0 0 3px!important;padding:0!important;z-index:2!important}
+ #header .menu-toggle svg{width:21px!important;height:21px!important}
+}
+@media(max-width:370px){#header .head-top{padding-left:5px!important;padding-right:5px!important}#header .head-tools>.icon-btn{min-width:26px!important;width:26px!important}#header .menu-toggle{flex-basis:29px!important;width:29px!important;min-width:29px!important;margin-left:1px!important}#header .logo-link{max-width:calc(100% - 205px)!important}#header .logo-symbol{width:19px!important;height:19px!important;flex-basis:19px!important}#header .logo-word{font-size:12px!important}}
