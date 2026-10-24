@@ -1800,3 +1800,12 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 @media(max-width:700px){
  #main [data-home-block="hero"] .chamea-hero-image-cta{left:19%;top:87%;width:62%;height:8%;border-radius:999px}
 }
+
+/* Keep navigation labels on one line on tablets and landscape phones. */
+@media (min-width:701px) and (max-width:1366px){
+  #header .nav, #header nav .nav, .nav{flex-wrap:nowrap!important;gap:clamp(8px,1.5vw,22px)!important;padding-left:10px!important;padding-right:10px!important;}
+  #header .nav>li, .nav>li{flex:0 0 auto;min-width:0;}
+  #header .nav>li>a, .nav>li>a{white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;font-size:clamp(10px,1.05vw,13px)!important;letter-spacing:.02em!important;}
+  #header nav, .nav-wrap{max-width:100%;overflow-x:auto;scrollbar-width:none;}
+  #header nav::-webkit-scrollbar,.nav-wrap::-webkit-scrollbar{display:none;}
+}
