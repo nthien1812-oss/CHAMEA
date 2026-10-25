@@ -2008,3 +2008,6 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header .head-tools>.icon-btn svg{width:17px!important;height:17px!important}
  #header .logo-link{max-width:calc(100% - 195px)!important}
 }
+
+/* Blog article sidebar: remove redundant CHAMÉA promotional tile across all articles. */
+.journal-sidebar .journal-sidebar-collection{display:none!important}
