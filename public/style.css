@@ -2095,3 +2095,21 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   animation:chamea-chat-widget-wiggle 2.2s ease-in-out infinite !important;
  }
 }
+
+/* Phone + iPad: account sits beside the left hamburger, not among right actions. */
+@media(max-width:1180px){
+ #header .head-top{position:relative!important}
+ #header .head-tools{position:static!important}
+ #header .head-tools>.account-trigger{
+  position:absolute!important;left:50px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  width:36px!important;min-width:36px!important;height:40px!important;
+  margin:0!important;padding:0!important;z-index:4!important;
+ }
+ #header .head-tools>.account-trigger svg{width:19px!important;height:19px!important}
+ #header .head-tools>.chamea-account-popover{right:8px!important;left:auto!important}
+}
+@media(max-width:380px){
+ #header .head-tools>.account-trigger{left:39px!important;width:32px!important;min-width:32px!important}
+ #header .head-tools>.account-trigger svg{width:17px!important;height:17px!important}
+}
