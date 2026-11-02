@@ -607,7 +607,7 @@ function route(){const path=(location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'').r
 /* Homepage-only CHAMÉA consultation chat: local, rule-based demo. */
 function chameaChatbot(){
  const existing=document.getElementById('chamea-chatbot');
- const homePath=location.pathname.replace(/^\\/CHAMEA(?=\\/|$)/,'').replace(/\\/$/,'')||'/';
+ const homePath=location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'').replace(/\/$/,'')||'/';
  if(homePath!=='/'){existing?.remove();return}
  if(existing)return;
  const host=document.createElement('aside');host.id='chamea-chatbot';host.className='chamea-chatbot';
