@@ -612,22 +612,25 @@ function chameaChatbot(){
  host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Bạn đang tìm túi xách, chọn quà hay cần hỗ trợ đặt hàng?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động theo thông tin mẫu trên website, không kết nối nhân viên trực tiếp.</p></section>`;
  document.body.appendChild(host);
  const launcher=host.querySelector('.chamea-chat-launcher'),win=host.querySelector('.chamea-chat-window'),messages=host.querySelector('.chamea-chat-messages');
- // Drive the automatic wiggle directly, independent of stylesheet animation caching.
+ // Animate the entire fixed widget so button hover and nested transforms cannot cancel the movement.
  const orbit=host.querySelector('.chamea-chat-orbit');
- if(typeof orbit.animate==='function'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+ const motionAllowed=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(motionAllowed){
   launcher.style.setProperty('animation','none','important');
   orbit.style.setProperty('animation','none','important');
-  launcher.animate([
-   {transform:'translateX(0) rotate(0deg)',offset:0},
-   {transform:'translateX(0) rotate(0deg)',offset:.32},
-   {transform:'translateX(-4px) rotate(-16deg)',offset:.38},
-   {transform:'translateX(4px) rotate(16deg)',offset:.44},
-   {transform:'translateX(-4px) rotate(-13deg)',offset:.50},
-   {transform:'translateX(3px) rotate(10deg)',offset:.56},
-   {transform:'translateX(0) rotate(0deg)',offset:.63},
-   {transform:'translateX(0) rotate(0deg)',offset:1}
-  ],{duration:2400,iterations:Infinity,easing:'ease-in-out'});
-  orbit.animate([{transform:'scale(1)',offset:0},{transform:'scale(1.12)',offset:.44},{transform:'scale(1)',offset:.63},{transform:'scale(1)',offset:1}],{duration:2400,iterations:Infinity});
+  host.classList.add('chamea-chat-auto-active');
+  if(typeof host.animate==='function'){
+   host.animate([
+    {transform:'translate3d(0,0,0) rotate(0deg)',offset:0},
+    {transform:'translate3d(0,0,0) rotate(0deg)',offset:.24},
+    {transform:'translate3d(-7px,-2px,0) rotate(-13deg)',offset:.32},
+    {transform:'translate3d(7px,-2px,0) rotate(13deg)',offset:.40},
+    {transform:'translate3d(-6px,-2px,0) rotate(-11deg)',offset:.48},
+    {transform:'translate3d(5px,-2px,0) rotate(9deg)',offset:.56},
+    {transform:'translate3d(0,0,0) rotate(0deg)',offset:.64},
+    {transform:'translate3d(0,0,0) rotate(0deg)',offset:1}
+   ],{duration:2200,iterations:Infinity,easing:'ease-in-out'});
+  }
  }
  const toggle=open=>{win.hidden=!open;launcher.setAttribute('aria-expanded',String(open));if(open)host.querySelector('.chamea-chat-form input').focus()};
  launcher.addEventListener('click',()=>toggle(win.hidden));host.querySelector('.chamea-chat-close').addEventListener('click',()=>toggle(false));
