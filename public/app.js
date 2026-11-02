@@ -615,7 +615,63 @@ function chameaChatbot(){
  const toggle=open=>{win.hidden=!open;launcher.setAttribute('aria-expanded',String(open));if(open)host.querySelector('.chamea-chat-form input').focus()};
  launcher.addEventListener('click',()=>toggle(win.hidden));host.querySelector('.chamea-chat-close').addEventListener('click',()=>toggle(false));
  const say=(message,who='bot',url='',label='')=>{const p=document.createElement('p');p.className='chamea-chat-bubble '+who;p.textContent=message;if(url){const a=document.createElement('a');a.href=url;a.textContent=label;p.appendChild(document.createElement('br'));p.appendChild(a)}messages.appendChild(p);messages.scrollTop=messages.scrollHeight};
- const answer=(input,topic='')=>{const q=String(input).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');if(topic==='gift'||/qua|tang|nguoi yeu|ban gai|me|vo/.test(q))say('Bạn có thể chọn quà theo người nhận, sở thích và ngân sách tại đây.','bot','/goi-y-chon-qua','Bắt đầu chọn quà →');else if(topic==='order'||/don hang|giao hang|van chuyen|thanh toan|kiem tra don/.test(q))say('Bạn có thể xem các đơn hàng demo đã đặt trong tài khoản. Đơn mẫu không được xử lý hoặc giao thực tế.','bot','/tai-khoan/orders','Xem lịch sử đơn hàng →');else if(topic==='contact'||/lien he|zalo|hotline|so dien thoai|tu van vien/.test(q))say('Hotline/Zalo: 0386.933.508 · Email: chamea@gmail.com.','bot','/lien-he','Trang liên hệ →');else if(topic==='bags'||/tui|gia|mau|bo suu tap|san pham/.test(q))say('Khám phá các thiết kế CHAMÉA và lọc theo kiểu dáng, màu sắc, bộ sưu tập.','bot','/tui-xach','Xem túi xách →');else say('Mình có thể hỗ trợ gợi ý túi, chọn quà, thông tin đơn demo hoặc liên hệ CHAMÉA. Bạn thử chọn một chủ đề bên dưới nhé.')};
+
+ // Lightweight conversational recommender: reads the actual live catalog, no external API.
+ const chatState={budget:null,color:'',shape:'',use:'',recipient:'',family:'',last:[],turns:0};
+ const normalize=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
+ const contains=(q,phrases)=>phrases.some(s=>q.includes(normalize(s)));
+ const price=n=>Number(n||0).toLocaleString('vi-VN')+' đ';
+ const chatProducts=()=>Array.isArray(D.products)?D.products:[];
+ const findPrice=q=>{let m=q.match(/(?:duoi|toi da|khong qua|tam|khoang|ngan sach|gia|duoi muc)\s*(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan|dong)?/);if(!m)m=q.match(/(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan)(?:\s|$)/);if(!m)return null;let v=parseFloat(m[1].replace(',','.'));let unit=m[2]||'';if(unit==='trieu'||unit==='tr')v*=1000000;else if(unit==='k'||unit==='nghin'||unit==='ngan')v*=1000;else if(v<100)v*=1000000;return v>=100000&&v<=100000000?v:null};
+ const chooseMatches=()=>{
+  let products=chatProducts().filter(p=>p&&p.id&&p.name);
+  const strict=products.filter(p=>(!chatState.budget||Number(p.price)<=chatState.budget)&&(!chatState.color||normalize(p.color).includes(chatState.color))&&(!chatState.shape||normalize(p.shape).includes(chatState.shape))&&(!chatState.family||normalize(p.family).includes(chatState.family)));
+  if(strict.length)return {items:strict,relaxed:false};
+  products=products.filter(p=>(!chatState.budget||Number(p.price)<=chatState.budget)&&(!chatState.shape||normalize(p.shape).includes(chatState.shape)));
+  return {items:products,relaxed:true};
+ };
+ const showMatches=()=>{
+  const result=chooseMatches();let items=result.items;
+  if(chatState.use){const use=normalize(chatState.use);items=items.slice().sort((a,b)=>Number((b.uses||[]).some(x=>normalize(x).includes(use)))-Number((a.uses||[]).some(x=>normalize(x).includes(use))))}
+  const seen=new Set();items=items.filter(p=>{const key=p.family||p.id;if(seen.has(key))return false;seen.add(key);return true}).slice(0,3);
+  if(!items.length){say('Mình chưa tìm thấy mẫu phù hợp trong danh sách sản phẩm hiện tại. Bạn thử đổi ngân sách hoặc kiểu dáng nhé.','bot','/tui-xach','Xem toàn bộ túi xách →');return}
+  say(result.relaxed?'Chưa có mẫu khớp tất cả tiêu chí. Đây là vài thiết kế gần nhất trong danh mục CHAMÉA:':'Mình tìm được những mẫu này trong danh mục CHAMÉA:');
+  items.forEach(p=>say(p.name+' · '+price(p.price)+' · '+(p.shape||'Túi xách')+(p.color?' · '+p.color:''),'bot','/san-pham/'+encodeURIComponent(p.id),'Xem thiết kế →'));
+  chatState.last=items.map(p=>p.id);
+  say('Bạn thích mẫu nào? Có thể hỏi thêm về chất liệu, kích thước, màu sắc hoặc nói ngân sách để mình lọc tiếp.');
+ };
+ const answer=(input,topic='')=>{
+  const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
+  if(contains(q,['xin chao','hello','hi ','chao shop','chao ban'])&&!topic){say('CHAMÉA xin chào bạn! Bạn muốn chọn túi cho bản thân hay làm quà? Mình có thể tư vấn theo màu sắc, kiểu dáng và ngân sách.');return}
+  if(contains(q,['cam on','thank you','thanks'])){say('CHAMÉA rất vui được hỗ trợ bạn! Nếu cần so sánh các mẫu túi, cứ nhắn mình nhé.');return}
+  if(topic==='contact'||contains(q,['lien he','zalo','hotline','so dien thoai','nhan vien','email'])){say('Bạn có thể liên hệ CHAMÉA qua Hotline/Zalo 0386.933.508 hoặc email chamea@gmail.com.','bot','/lien-he','Xem trang liên hệ →');return}
+  if(topic==='order'||contains(q,['don hang','kiem tra don','lich su don','da dat','huy don','theo doi don'])){say('Bạn vào Tài khoản → Lịch sử đơn hàng để xem đơn demo. Đơn demo chỉ mang tính minh họa, không được giao thực tế.','bot','/tai-khoan/orders','Xem lịch sử đơn hàng →');return}
+  if(contains(q,['doi tra','bao hanh','phi ship','phi van chuyen','thanh toan','cod','giao bao lau'])){say('Thông tin giao hàng, đổi trả và thanh toán được trình bày trong chính sách CHAMÉA. Mình chưa có dữ liệu để xác nhận phí hoặc thời gian giao hàng cụ thể.','bot','/lien-he','Liên hệ để xác nhận →');return}
+  if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
+  const budget=findPrice(q);if(budget)chatState.budget=budget;
+  const colors=['hong','do','den','trang','kem','be','nau','tim','xanh','xam','ghi','vang'];for(const color of colors)if(new RegExp('(?:^|\\s)'+color+'(?:\\s|$)').test(q))chatState.color=color;
+  const shapes=[['tote','tote'],['deo vai','deo vai'],['xach tay','xach tay'],['deo cheo','deo cheo'],['hobo','hobo']];for(const [term,value] of shapes)if(q.includes(term))chatState.shape=value;
+  for(const family of [...new Set(chatProducts().map(p=>p.family).filter(Boolean))])if(q.includes(normalize(family)))chatState.family=normalize(family);
+  for(const use of ['di lam','di choi','hen ho','di hoc','du tiec'])if(q.includes(use))chatState.use=use;
+  if(contains(q,['tang me','cho me','tang vo','cho vo','ban gai','nguoi yeu','tang chi','tang em']))chatState.recipient='nguoi than';
+  const named=chatProducts().find(p=>q.includes(normalize(p.name))||q.includes(normalize(p.id).replace(/-/g,' ')));
+  const detail=contains(q,['chat lieu','lam bang gi','kich thuoc','nang bao nhieu','bao quan','kem theo','phu kien','co may mau']);
+  const selected=named||chatProducts().find(p=>p.id===chatState.last[0]);
+  if(detail&&selected){
+   const d=selected.details||{};const pieces=[];
+   if(contains(q,['chat lieu','lam bang gi']))pieces.push(d.body||selected.desc||'Chưa có mô tả chất liệu');
+   if(q.includes('kich thuoc'))pieces.push(d.size?'Kích thước: '+d.size:'Chưa cập nhật kích thước');
+   if(q.includes('nang bao nhieu'))pieces.push(d.weight?'Khối lượng: '+d.weight:'Chưa cập nhật khối lượng');
+   if(q.includes('bao quan'))pieces.push(d.care||'Xem hướng dẫn bảo quản tại trang sản phẩm');
+   if(contains(q,['kem theo','phu kien']))pieces.push(d.included||'Xem phụ kiện đi kèm tại trang sản phẩm');
+   if(q.includes('co may mau'))pieces.push('Màu hiện có: '+[...new Set(chatProducts().filter(p=>p.family===selected.family).map(p=>p.color).filter(Boolean))].join(', '));
+   say((pieces.length?pieces.join('\n'):selected.desc||'Bạn có thể xem chi tiết tại trang sản phẩm.'),'bot','/san-pham/'+encodeURIComponent(selected.id),'Xem chi tiết '+selected.family+' →');return
+  }
+  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua'])){say('Để chọn quà phù hợp, bạn cho mình biết người nhận, ngân sách dự kiến và màu sắc họ thích nhé. Mình sẽ gợi ý mẫu trong danh mục hiện có.','bot','/goi-y-chon-qua','Hoặc thử công cụ chọn quà →');if(!budget&&!chatState.color)return}
+  if(named&&!detail){chatState.last=[named.id];say(named.name+' hiện được giới thiệu với giá '+price(named.price)+'. '+(named.desc||''),'bot','/san-pham/'+encodeURIComponent(named.id),'Xem sản phẩm →');return}
+  if(topic==='bags'||budget||chatState.color||chatState.shape||chatState.family||chatState.use||contains(q,['tu van','goi y','tui','san pham','mau nao','re nhat','gia bao nhieu','bao nhieu tien','bo suu tap','so sanh','co mau','con mau'])){showMatches();return}
+  say('Mình chưa hiểu rõ ý bạn. Bạn có thể hỏi như “Túi đeo vai màu hồng dưới 800k”, “Túi Vera làm từ gì?” hoặc “Gợi ý quà tặng mẹ”. Mình sẽ dựa trên danh mục CHAMÉA để trả lời.');
+ };
  host.querySelectorAll('[data-chat-topic]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.textContent.trim(),'user');answer('',btn.dataset.chatTopic)}));
  const chatForm=host.querySelector('.chamea-chat-form');const sendChat=()=>{const input=chatForm.querySelector('input');const value=input.value.trim();if(!value){input.focus();return}say(value,'user');input.value='';answer(value)};chatForm.addEventListener('submit',e=>{e.preventDefault();e.stopPropagation();sendChat()});chatForm.querySelector('button[type="submit"]').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();sendChat()});
  host.addEventListener('click',e=>{const a=e.target.closest('a[href^="/"]');if(!a)return;e.preventDefault();go(a.getAttribute('href'))});
