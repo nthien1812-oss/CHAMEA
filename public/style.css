@@ -2023,26 +2023,30 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 @media(max-width:700px){.chamea-chat-launcher{width:46px;height:46px;border-width:3px}.chamea-chat-orbit svg{width:20px;height:20px}.chamea-chat-orbit small{font-size:7px}.chamea-chat-window{bottom:58px}}
 
 
-/* CHAMÉA chat launcher: gently shakes on its own, without hover. */
-.chamea-chat-launcher{
-  animation:chamea-chat-auto-wiggle 4.8s ease-in-out infinite !important;
-  transform-origin:50% 65%;
+/* Visible automatic chat attention animation; no pointer interaction required. */
+.chamea-chatbot .chamea-chat-launcher{
+  animation:chamea-chat-visible-shake 2.7s linear infinite !important;
+  transform-origin:50% 60%;
+  will-change:transform;
 }
-.chamea-chat-orbit{
-  animation:none;
+.chamea-chatbot .chamea-chat-orbit{
+  animation:chamea-chat-inner-bounce 2.7s linear infinite !important;
+  transform-origin:center center;
 }
-@keyframes chamea-chat-auto-wiggle{
-  0%,67%,100%{transform:rotate(0deg)}
-  70%{transform:rotate(-11deg)}
-  73%{transform:rotate(11deg)}
-  76%{transform:rotate(-9deg)}
-  79%{transform:rotate(7deg)}
-  82%{transform:rotate(-4deg)}
-  85%{transform:rotate(0deg)}
+@keyframes chamea-chat-visible-shake{
+  0%,30%,60%,100%{transform:translateX(0) rotate(0deg)}
+  34%{transform:translateX(-3px) rotate(-14deg)}
+  39%{transform:translateX(3px) rotate(14deg)}
+  44%{transform:translateX(-3px) rotate(-12deg)}
+  49%{transform:translateX(3px) rotate(10deg)}
+  54%{transform:translateX(-1px) rotate(-5deg)}
 }
-.chamea-chat-launcher:hover{
-  animation-play-state:running;
+@keyframes chamea-chat-inner-bounce{
+  0%,30%,60%,100%{transform:scale(1)}
+  40%{transform:scale(1.12)}
+  50%{transform:scale(0.96)}
 }
 @media(prefers-reduced-motion:reduce){
-  .chamea-chat-launcher{animation:none !important}
+ .chamea-chatbot .chamea-chat-launcher,
+ .chamea-chatbot .chamea-chat-orbit{animation:none !important;will-change:auto}
 }
