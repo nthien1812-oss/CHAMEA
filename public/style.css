@@ -2050,3 +2050,19 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  .chamea-chatbot .chamea-chat-launcher,
  .chamea-chatbot .chamea-chat-orbit{animation:none !important;will-change:auto}
 }
+
+/* Outer-widget animation fallback: unaffected by launcher hover rules. */
+.chamea-chatbot.chamea-chat-auto-active{
+ transform-origin:50% 50%;
+ animation:chamea-chat-widget-wiggle 2.2s ease-in-out infinite;
+}
+@keyframes chamea-chat-widget-wiggle{
+ 0%,24%,64%,100%{transform:translateX(0) rotate(0)}
+ 32%{transform:translateX(-7px) rotate(-13deg)}
+ 40%{transform:translateX(7px) rotate(13deg)}
+ 48%{transform:translateX(-6px) rotate(-11deg)}
+ 56%{transform:translateX(5px) rotate(9deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ .chamea-chatbot.chamea-chat-auto-active{animation:none}
+}
