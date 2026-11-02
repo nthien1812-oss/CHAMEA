@@ -612,14 +612,27 @@ function chameaChatbot(){
  host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Bạn đang tìm túi xách, chọn quà hay cần hỗ trợ đặt hàng?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động theo thông tin mẫu trên website, không kết nối nhân viên trực tiếp.</p></section>`;
  document.body.appendChild(host);
  const launcher=host.querySelector('.chamea-chat-launcher'),win=host.querySelector('.chamea-chat-window'),messages=host.querySelector('.chamea-chat-messages');
- // Only the closed chat launcher wiggles. The chat panel itself stays perfectly still.
+ // Animate only the button, never its parent (which also contains the chat window).
  const orbit=host.querySelector('.chamea-chat-orbit');
- host.classList.remove('chamea-chat-auto-active');
- launcher.classList.add('chamea-chat-auto-active');
+ launcher.style.setProperty('animation','none','important');
+ orbit.style.setProperty('animation','none','important');
+ let wiggle=null;
+ if(typeof launcher.animate==='function'){
+  wiggle=launcher.animate([
+   {transform:'translateX(0px) rotate(0deg)',offset:0},
+   {transform:'translateX(0px) rotate(0deg)',offset:.22},
+   {transform:'translateX(-7px) rotate(-15deg)',offset:.30},
+   {transform:'translateX(7px) rotate(15deg)',offset:.38},
+   {transform:'translateX(-6px) rotate(-12deg)',offset:.46},
+   {transform:'translateX(5px) rotate(10deg)',offset:.54},
+   {transform:'translateX(0px) rotate(0deg)',offset:.62},
+   {transform:'translateX(0px) rotate(0deg)',offset:1}
+  ],{duration:2200,iterations:Infinity,easing:'ease-in-out'});
+ }
  const toggle=open=>{
   win.hidden=!open;
   launcher.setAttribute('aria-expanded',String(open));
-  launcher.classList.toggle('chamea-chat-auto-active',!open);
+  if(wiggle){if(open)wiggle.cancel();else wiggle.play();}
   if(open)host.querySelector('.chamea-chat-form input').focus();
  };
  launcher.addEventListener('click',()=>toggle(win.hidden));host.querySelector('.chamea-chat-close').addEventListener('click',()=>toggle(false));
