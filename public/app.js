@@ -684,7 +684,7 @@ function chameaChatbot(){
   if(contains(q,['giao hang','phi ship','phi van chuyen','van chuyen','ship','bao lau nhan','giao bao lau']))return 'shipping';
   if(contains(q,['thanh toan','chuyen khoan','cod','quet qr','tra tien']))return 'payment';
   if(contains(q,['huong dan mua','dat hang the nao','cach mua hang','mua nhu the nao']))return 'purchase';
-  if(isMaterial(q)||isPrice(q)||isColors(q)||isComparison(q)||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi','kich thuoc','bao nhieu cm','nang bao nhieu','trong luong','bao quan','ve sinh','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau','gia bao nhieu','bao nhieu mau','co giam gia','khuyen mai']))return 'detail';
+  if(isMaterial(q)||isPrice(q)||isColors(q)||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi','kich thuoc','bao nhieu cm','nang bao nhieu','trong luong','bao quan','ve sinh','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau','gia bao nhieu','bao nhieu mau','co giam gia','khuyen mai']))return 'detail';
   if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua']))return 'gift';
   if(topic==='bags'||contains(q,['tu van tui','goi y tui','tim tui','tui nao','tui xach','san pham','re nhat','bo suu tap','so sanh tui','di lam','di choi','hen ho','tote','deo vai','deo cheo','xach tay']))return 'browse';
   return 'unknown';
@@ -712,12 +712,21 @@ function chameaChatbot(){
   const use=['di lam','di choi','hen ho','di hoc','du tiec'].find(s=>q.includes(s))||'';
   const budget=findPrice(q);
   // Product detail questions never inherit a stale color/family filter from unrelated browsing.
+  if(isComparison(q)){
+   const namedFamilies=families.filter(f=>phrase(q,f)).slice(0,2);
+   if(namedFamilies.length===2){
+    const pair=namedFamilies.map(f=>catalog.find(p=>p.family===f)).filter(Boolean);
+    if(pair.length===2){say(pair.map(p=>p.family+': '+price(p.price)+'; '+(p.shape||'chưa rõ kiểu dáng')+'; '+(p.color||'chưa rõ màu')).join('\n')+'\nBạn ưu tiên kiểu dáng hay ngân sách để mình tư vấn sát hơn?');return}
+   }
+   say('Bạn muốn so sánh hai mẫu nào ạ? Ví dụ: “Vera và Nina khác nhau thế nào?”');return
+  }
   if(intent==='detail'){
    const selected=relevantProduct(q,catalog,family,mentioned);
    if(!selected){say('Bạn muốn hỏi thông tin của mẫu nào ạ? Ví dụ: “Vera làm từ gì?” hoặc “Lune giá bao nhiêu?”');return}
    chatState.last=[selected.id];
    const d=selected.details||{}, parts=[];
-   if(isMaterial(q)||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi']))parts.push(d.body?'Chất liệu '+selected.family+': '+d.body+'.':'CHAMÉA chưa cập nhật thông tin chất liệu cho mẫu này.');
+   if(isMaterial(q)&&!hasAny(q,['co bong da','bong troc','de bong','ben khong','do ben','da co ben','co de hu'])||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi']))parts.push(d.body?'Chất liệu '+selected.family+': '+d.body+'.':'CHAMÉA chưa cập nhật thông tin chất liệu cho mẫu này.');
+   if(hasAny(q,['co bong da','bong troc','de bong','ben khong','do ben','da co ben','co de hu']))parts.push('Mình chưa có thông tin kiểm chứng về độ bền hoặc khả năng bong tróc của '+selected.family+'. Bạn nên hỏi trực tiếp CHAMÉA trước khi quyết định mua.');
    if(contains(q,['kich thuoc','bao nhieu cm']))parts.push(d.size?'Kích thước: '+d.size+'.':'Chưa cập nhật kích thước.');
    if(contains(q,['nang bao nhieu','trong luong']))parts.push(d.weight?'Trọng lượng: '+d.weight+'.':'Chưa cập nhật trọng lượng.');
    if(contains(q,['bao quan','ve sinh']))parts.push(d.care||'Bạn có thể xem cách bảo quản tại trang sản phẩm.');
@@ -734,14 +743,6 @@ function chameaChatbot(){
    if(recipient)chatState.recipient=recipient;
    if(chatState.budget||chatState.color){say('Mình gợi ý vài mẫu có trong danh mục'+(chatState.recipient?' để tặng '+chatState.recipient:'')+' nhé.');showMatches();return}
    say('Bạn định tặng ai và ngân sách khoảng bao nhiêu ạ? Mình sẽ lọc những mẫu phù hợp thay vì giới thiệu ngẫu nhiên.','bot','/goi-y-chon-qua','Thử gợi ý chọn quà →');return
-  }
-  if(isComparison(q)){
-   const namedFamilies=families.filter(f=>phrase(q,f)).slice(0,2);
-   if(namedFamilies.length===2){
-    const pair=namedFamilies.map(f=>catalog.find(p=>p.family===f)).filter(Boolean);
-    if(pair.length===2){say(pair.map(p=>p.family+': '+price(p.price)+'; '+(p.shape||'kiểu túi chưa cập nhật')+'; '+(p.color||'chưa rõ màu')).join('\n')+'\nBạn ưu tiên kiểu dáng hay ngân sách để mình giúp chọn sát hơn?');return}
-   }
-   say('Bạn muốn so sánh hai mẫu nào ạ? Ví dụ: “Vera và Nina khác nhau thế nào?”');return
   }
   if(mentioned&&intent==='unknown'){
    chatState.last=[mentioned.id];
