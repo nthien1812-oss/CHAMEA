@@ -2021,3 +2021,28 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 .chamea-chat-orbit small{font-size:8px}
 .chamea-chat-window{bottom:66px}
 @media(max-width:700px){.chamea-chat-launcher{width:46px;height:46px;border-width:3px}.chamea-chat-orbit svg{width:20px;height:20px}.chamea-chat-orbit small{font-size:7px}.chamea-chat-window{bottom:58px}}
+
+
+/* CHAMÉA chat launcher: gently shakes on its own, without hover. */
+.chamea-chat-launcher{
+  animation:chamea-chat-auto-wiggle 4.8s ease-in-out infinite !important;
+  transform-origin:50% 65%;
+}
+.chamea-chat-orbit{
+  animation:none;
+}
+@keyframes chamea-chat-auto-wiggle{
+  0%,67%,100%{transform:rotate(0deg)}
+  70%{transform:rotate(-11deg)}
+  73%{transform:rotate(11deg)}
+  76%{transform:rotate(-9deg)}
+  79%{transform:rotate(7deg)}
+  82%{transform:rotate(-4deg)}
+  85%{transform:rotate(0deg)}
+}
+.chamea-chat-launcher:hover{
+  animation-play-state:running;
+}
+@media(prefers-reduced-motion:reduce){
+  .chamea-chat-launcher{animation:none !important}
+}
