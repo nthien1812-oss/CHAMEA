@@ -2076,3 +2076,22 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   animation:chamea-chat-widget-wiggle 2.2s ease-in-out infinite !important;
  }
 }
+
+/* Shake the launcher ONLY while the chat is closed; never move the panel. */
+.chamea-chatbot{animation:none !important;transform:none !important}
+.chamea-chatbot .chamea-chat-launcher{animation:none !important;transform:none}
+.chamea-chatbot .chamea-chat-orbit{animation:none !important}
+.chamea-chatbot .chamea-chat-launcher.chamea-chat-auto-active{
+ animation:chamea-chat-widget-wiggle 2.2s ease-in-out infinite !important;
+ transform-origin:50% 60%;
+}
+.chamea-chatbot .chamea-chat-launcher[aria-expanded="true"],
+.chamea-chatbot .chamea-chat-launcher[aria-expanded="true"]:hover{
+ animation:none !important;
+ transform:none !important;
+}
+@media(prefers-reduced-motion:reduce){
+ .chamea-chatbot .chamea-chat-launcher.chamea-chat-auto-active{
+  animation:chamea-chat-widget-wiggle 2.2s ease-in-out infinite !important;
+ }
+}
