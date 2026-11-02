@@ -614,8 +614,8 @@ function chameaChatbot(){
  const launcher=host.querySelector('.chamea-chat-launcher'),win=host.querySelector('.chamea-chat-window'),messages=host.querySelector('.chamea-chat-messages');
  // Animate the entire fixed widget so button hover and nested transforms cannot cancel the movement.
  const orbit=host.querySelector('.chamea-chat-orbit');
- const motionAllowed=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(motionAllowed){
+ // The visitor explicitly expects this contact button to animate without hover.
+ {
   launcher.style.setProperty('animation','none','important');
   orbit.style.setProperty('animation','none','important');
   host.classList.add('chamea-chat-auto-active');
