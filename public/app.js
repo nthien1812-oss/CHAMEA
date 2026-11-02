@@ -640,47 +640,69 @@ function chameaChatbot(){
   chatState.last=items.map(p=>p.id);
   say('Bạn thích mẫu nào? Có thể hỏi thêm về chất liệu, kích thước, màu sắc hoặc nói ngân sách để mình lọc tiếp.');
  };
+
+ const chatIntent=(q,topic)=>{
+  if(topic==='contact'||contains(q,['lien he','zalo','hotline','so dien thoai','nhan vien','email','dia chi','cua hang']))return 'contact';
+  if(topic==='order'||contains(q,['don hang','kiem tra don','lich su don','da dat','huy don','theo doi don','ma don']))return 'order';
+  if(contains(q,['bao hanh','loi san pham','hong khoa','dut quai','rach da','sua tui']))return 'warranty';
+  if(contains(q,['doi tra','tra hang','hoan tien','doi hang','doi size']))return 'returns';
+  if(contains(q,['giao hang','phi ship','phi van chuyen','van chuyen','ship','bao lau nhan','giao bao lau']))return 'shipping';
+  if(contains(q,['thanh toan','chuyen khoan','cod','quet qr','tra tien']))return 'payment';
+  if(contains(q,['huong dan mua','dat hang the nao','cach mua hang','mua nhu the nao']))return 'purchase';
+  if(contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi','kich thuoc','bao nhieu cm','nang bao nhieu','trong luong','bao quan','ve sinh','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau','gia bao nhieu','bao nhieu mau','co giam gia','khuyen mai']))return 'detail';
+  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua']))return 'gift';
+  if(topic==='bags'||contains(q,['tu van tui','goi y tui','tim tui','tui nao','tui xach','san pham','re nhat','bo suu tap','so sanh tui','di lam','di choi','hen ho','tote','deo vai','deo cheo','xach tay']))return 'browse';
+  return 'unknown';
+ };
  const answer=(input,topic='')=>{
   const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
-  if(contains(q,['xin chao','hello','hi ','chao shop','chao ban'])&&!topic){say('CHAMÉA xin chào bạn! Bạn muốn chọn túi cho bản thân hay làm quà? Mình có thể tư vấn theo màu sắc, kiểu dáng và ngân sách.');return}
-  if(contains(q,['cam on','thank you','thanks'])){say('CHAMÉA rất vui được hỗ trợ bạn! Nếu cần so sánh các mẫu túi, cứ nhắn mình nhé.');return}
-  // Answer service questions before considering any remembered shopping filters.
-  if(topic==='contact'||contains(q,['lien he','zalo','hotline','so dien thoai','nhan vien','email','dia chi','cua hang'])){say('Bạn có thể liên hệ CHAMÉA qua Hotline/Zalo 0386.933.508 hoặc email chamea@gmail.com. Địa chỉ: Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội.','bot','/lien-he','Xem trang liên hệ →');return}
-  if(topic==='order'||contains(q,['don hang','kiem tra don','lich su don','da dat','huy don','theo doi don','ma don'])){say('Để xem đơn hàng, bạn mở Tài khoản → Lịch sử đơn hàng. Hiện đơn trên website là đơn demo, chưa phải đơn được xử lý và giao thực tế.','bot','/tai-khoan/orders','Xem lịch sử đơn hàng →');return}
-  if(contains(q,['bao hanh','loi san pham','hong khoa','dut quai','rach da','sua tui'])){
-   say('Về bảo hành: mình chưa thấy chính sách bảo hành riêng được công bố trên website, nên chưa thể xác nhận thời hạn hoặc điều kiện bảo hành. Bạn hãy liên hệ CHAMÉA để được kiểm tra theo từng trường hợp nhé. Hotline/Zalo: 0386.933.508.','bot','/lien-he','Hỏi CHAMÉA về bảo hành →');return
-  }
-  if(contains(q,['doi tra','tra hang','hoan tien','doi hang','doi size'])){say('CHAMÉA có trang chính sách đổi trả. Bạn xem điều kiện áp dụng tại đây; nếu cần xác nhận một trường hợp cụ thể, hãy liên hệ cửa hàng nhé.','bot','/chinh-sach/doi-tra','Xem chính sách đổi trả →');return}
-  if(contains(q,['giao hang','phi ship','phi van chuyen','van chuyen','ship','bao lau nhan','giao bao lau'])){say('Bạn có thể xem chính sách giao hàng của CHAMÉA. Phí và thời gian giao cụ thể cần được xác nhận theo địa chỉ nhận hàng.','bot','/chinh-sach/giao-hang','Xem chính sách giao hàng →');return}
-  if(contains(q,['thanh toan','chuyen khoan','cod','quet qr','tra tien'])){say('Thông tin phương thức thanh toán được trình bày tại trang chính sách thanh toán của CHAMÉA.','bot','/chinh-sach/thanh-toan','Xem phương thức thanh toán →');return}
-  if(contains(q,['huong dan mua','dat hang the nao','cach mua hang','mua nhu the nao'])){say('Bạn có thể chọn túi, thêm vào giỏ hàng rồi làm theo hướng dẫn mua hàng trên website.','bot','/chinh-sach/huong-dan-mua-hang','Xem hướng dẫn mua hàng →');return}
   if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
-  const budget=findPrice(q);if(budget)chatState.budget=budget;
-  const colors=['hong','do','den','trang','kem','be','nau','tim','xanh','xam','ghi','vang'];for(const color of colors)if(new RegExp('(?:^|\\s)'+color+'(?:\\s|$)').test(q))chatState.color=color;
-  const shapes=[['tote','tote'],['deo vai','deo vai'],['xach tay','xach tay'],['deo cheo','deo cheo'],['hobo','hobo']];for(const [term,value] of shapes)if(q.includes(term))chatState.shape=value;
-  for(const family of [...new Set(chatProducts().map(p=>p.family).filter(Boolean))])if(q.includes(normalize(family)))chatState.family=normalize(family);
-  for(const use of ['di lam','di choi','hen ho','di hoc','du tiec'])if(q.includes(use))chatState.use=use;
-  if(contains(q,['tang me','cho me','tang vo','cho vo','ban gai','nguoi yeu','tang chi','tang em']))chatState.recipient='nguoi than';
-  const familyMention=[...new Set(chatProducts().map(p=>p.family).filter(Boolean))].find(f=>new RegExp('(?:^|\\s)'+normalize(f).replace(/[.*+?^$\{\}()|[\]\\]/g,'\\$&')+'(?:\\s|$)').test(q));
-  const named=chatProducts().find(p=>q.includes(normalize(p.name))||q.includes(normalize(p.id).replace(/-/g,' ')));
-  const detail=contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','kich thuoc','nang bao nhieu','bao quan','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao']);
-  const selected=named||(familyMention?chatProducts().find(p=>normalize(p.family)===normalize(familyMention)&&(chatState.color?normalize(p.color).includes(chatState.color):true))||chatProducts().find(p=>normalize(p.family)===normalize(familyMention)):null)||chatProducts().find(p=>p.id===chatState.last[0]);
-  if(detail){
-   if(!selected){say('Bạn đang muốn hỏi chất liệu hoặc thông số của mẫu túi nào ạ? Bạn có thể nhắn tên mẫu như Vera, Nina hoặc Lune để mình tra đúng thông tin.');return}
+  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban)[ !.]*$/.test(q)){say('CHAMÉA xin chào! Bạn muốn chọn túi, tìm quà hay hỏi về sản phẩm nào ạ?');return}
+  if(contains(q,['cam on','thank you','thanks'])){say('Rất vui được hỗ trợ bạn! Bạn cần thêm thông tin gì cứ nhắn nhé.');return}
+  const intent=chatIntent(q,topic);
+  if(intent==='contact'){say('Hotline/Zalo CHAMÉA: 0386.933.508. Email: chamea@gmail.com. Địa chỉ: Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội.','bot','/lien-he','Liên hệ CHAMÉA →');return}
+  if(intent==='order'){say('Bạn có thể kiểm tra đơn tại Tài khoản → Lịch sử đơn hàng. Lưu ý đơn hàng trên website hiện là dữ liệu demo, không phải đơn được giao thực tế.','bot','/tai-khoan/orders','Xem lịch sử đơn hàng →');return}
+  if(intent==='warranty'){say('Hiện website chưa công bố chính sách bảo hành riêng nên mình chưa thể xác nhận thời hạn hay điều kiện bảo hành. Bạn có thể hỏi trực tiếp CHAMÉA qua Zalo/Hotline 0386.933.508 nhé.','bot','/lien-he','Hỏi về bảo hành →');return}
+  if(intent==='returns'){say('Bạn xem điều kiện đổi trả trong chính sách CHAMÉA nhé. Mình không muốn xác nhận một trường hợp cụ thể khi chưa có đủ thông tin.','bot','/chinh-sach/doi-tra','Xem chính sách đổi trả →');return}
+  if(intent==='shipping'){say('Phí và thời gian giao hàng phụ thuộc địa chỉ nhận. Bạn có thể xem chính sách giao hàng; nếu cần thời gian chính xác, hãy liên hệ CHAMÉA.','bot','/chinh-sach/giao-hang','Xem chính sách giao hàng →');return}
+  if(intent==='payment'){say('Bạn có thể xem các hình thức thanh toán trên trang chính sách thanh toán CHAMÉA.','bot','/chinh-sach/thanh-toan','Xem chính sách thanh toán →');return}
+  if(intent==='purchase'){say('Bạn chọn sản phẩm, chọn màu và số lượng, sau đó thêm vào giỏ hoặc mua ngay để tiếp tục thanh toán.','bot','/chinh-sach/huong-dan-mua-hang','Hướng dẫn mua hàng →');return}
+  const catalog=chatProducts();
+  const families=[...new Set(catalog.map(p=>p.family).filter(Boolean))];
+  const family=families.find(f=>q.split(/[^a-z0-9]+/).includes(normalize(f)))||'';
+  const mentioned=catalog.find(p=>q.includes(normalize(p.name))||q.includes(normalize(p.id).replace(/-/g,' ')));
+  const colors=['hong','do','den','trang','kem','be','nau','tim','xanh','xam','ghi','vang'];
+  const color=colors.find(s=>new RegExp('(?:^|\\s)'+s+'(?:\\s|$)').test(q))||'';
+  const shape=[['tote','tote'],['deo vai','deo vai'],['xach tay','xach tay'],['deo cheo','deo cheo'],['hobo','hobo']].find(x=>q.includes(x[0]));
+  const use=['di lam','di choi','hen ho','di hoc','du tiec'].find(s=>q.includes(s))||'';
+  const budget=findPrice(q);
+  // Product detail questions never inherit a stale color/family filter from unrelated browsing.
+  if(intent==='detail'){
+   const selected=mentioned||(family?catalog.find(p=>normalize(p.family)===normalize(family)):null)||catalog.find(p=>p.id===chatState.last[0]);
+   if(!selected){say('Bạn muốn hỏi thông tin của mẫu nào ạ? Ví dụ: “Vera làm từ gì?” hoặc “Lune giá bao nhiêu?”');return}
    chatState.last=[selected.id];
-   const d=selected.details||{};const pieces=[];
-   if(contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu']))pieces.push(d.body?'Chất liệu '+selected.family+': '+d.body+'.':'Mình chưa có thông tin chất liệu được xác nhận cho '+selected.family+'.');
-   if(q.includes('kich thuoc'))pieces.push(d.size?'Kích thước: '+d.size:'Chưa cập nhật kích thước');
-   if(q.includes('nang bao nhieu'))pieces.push(d.weight?'Khối lượng: '+d.weight:'Chưa cập nhật khối lượng');
-   if(q.includes('bao quan'))pieces.push(d.care||'Xem hướng dẫn bảo quản tại trang sản phẩm');
-   if(contains(q,['kem theo','phu kien']))pieces.push(d.included||'Xem phụ kiện đi kèm tại trang sản phẩm');
-   if(contains(q,['co may mau','nhung mau nao','co mau gi','mau sac nao']))pieces.push('Màu hiện có: '+[...new Set(chatProducts().filter(p=>p.family===selected.family).map(p=>p.color).filter(Boolean))].join(', '));
-   say(pieces.join('\n')||selected.desc||'Bạn có thể xem chi tiết tại trang sản phẩm.','bot','/san-pham/'+encodeURIComponent(selected.id),'Xem chi tiết '+selected.family+' →');return
+   const d=selected.details||{}, parts=[];
+   if(contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi']))parts.push(d.body?'Chất liệu '+selected.family+': '+d.body+'.':'CHAMÉA chưa cập nhật thông tin chất liệu cho mẫu này.');
+   if(contains(q,['kich thuoc','bao nhieu cm']))parts.push(d.size?'Kích thước: '+d.size+'.':'Chưa cập nhật kích thước.');
+   if(contains(q,['nang bao nhieu','trong luong']))parts.push(d.weight?'Trọng lượng: '+d.weight+'.':'Chưa cập nhật trọng lượng.');
+   if(contains(q,['bao quan','ve sinh']))parts.push(d.care||'Bạn có thể xem cách bảo quản tại trang sản phẩm.');
+   if(contains(q,['kem theo','phu kien']))parts.push(d.included||'Chưa cập nhật phụ kiện đi kèm.');
+   if(contains(q,['co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu mau']))parts.push('Các màu của '+selected.family+': '+[...new Set(catalog.filter(p=>p.family===selected.family).map(p=>p.color).filter(Boolean))].join(', ')+'.');
+   if(contains(q,['bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau']))parts.push('Giá '+selected.name+': '+price(selected.price)+'.'+(selected.priceStatus==='estimated'?' Đây là giá tham khảo trên website.':''));
+   if(contains(q,['co giam gia','khuyen mai']))parts.push('Ưu đãi hiện tại vui lòng xem tại trang sản phẩm để biết giá hiển thị mới nhất.');
+   say(parts.join('\n')||'Bạn có thể xem mô tả và thông số của '+selected.family+' trên trang sản phẩm.','bot','/san-pham/'+encodeURIComponent(selected.id),'Xem '+selected.family+' →');return
   }
-  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua'])){say('Để chọn quà phù hợp, bạn cho mình biết người nhận, ngân sách dự kiến và màu sắc họ thích nhé. Mình sẽ gợi ý mẫu trong danh mục hiện có.','bot','/goi-y-chon-qua','Hoặc thử công cụ chọn quà →');if(!budget&&!chatState.color)return}
-  if(named&&!detail){chatState.last=[named.id];say(named.name+' hiện được giới thiệu với giá '+price(named.price)+'. '+(named.desc||''),'bot','/san-pham/'+encodeURIComponent(named.id),'Xem sản phẩm →');return}
-  if(topic==='bags'||budget||Boolean(chatState.color&&contains(q,['mau','cung mau','mau do','mau nay']))||Boolean(chatState.shape&&contains(q,['dang','kieu','loai']))||Boolean(chatState.family&&contains(q,['mau','gia','tui']))||contains(q,['tu van tui','goi y tui','tim tui','tui nao','tui xach','san pham','mau nao','re nhat','gia bao nhieu','bao nhieu tien','bo suu tap','so sanh tui','co mau','con mau','di lam','di choi','hen ho','tote','deo vai','deo cheo','xach tay'])){showMatches();return}
-  say('Mình chưa hiểu rõ ý bạn. Bạn có thể hỏi như “Túi đeo vai màu hồng dưới 800k”, “Túi Vera làm từ gì?” hoặc “Gợi ý quà tặng mẹ”. Mình sẽ dựa trên danh mục CHAMÉA để trả lời.');
+  if(intent==='gift'){say('Bạn định tặng ai và dự kiến ngân sách bao nhiêu ạ? Mình sẽ gợi ý mẫu túi phù hợp từ danh mục CHAMÉA.','bot','/goi-y-chon-qua','Gợi ý chọn quà →');return}
+  if(intent==='browse'||budget||color||shape||family||use){
+   if(budget)chatState.budget=budget;
+   if(color)chatState.color=color;
+   if(shape)chatState.shape=shape[1];
+   if(family)chatState.family=normalize(family);
+   if(use)chatState.use=use;
+   if(mentioned){chatState.last=[mentioned.id];say(mentioned.name+': '+price(mentioned.price)+'. '+(mentioned.desc||''),'bot','/san-pham/'+encodeURIComponent(mentioned.id),'Xem sản phẩm →');return}
+   showMatches();return
+  }
+  say('Mình chưa xác định rõ bạn muốn hỏi về sản phẩm, chính sách hay đặt hàng. Bạn có thể nói cụ thể hơn một chút không ạ? Ví dụ: “Vera làm từ gì?”, “Có bảo hành không?” hoặc “Tìm túi dưới 800k”.');
  };
  host.querySelectorAll('[data-chat-topic]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.textContent.trim(),'user');answer('',btn.dataset.chatTopic)}));
  const chatForm=host.querySelector('.chamea-chat-form');const sendChat=()=>{const input=chatForm.querySelector('input');const value=input.value.trim();if(!value){input.focus();return}say(value,'user');input.value='';answer(value)};chatForm.addEventListener('submit',e=>{e.preventDefault();e.stopPropagation();sendChat()});chatForm.querySelector('button[type="submit"]').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();sendChat()});
