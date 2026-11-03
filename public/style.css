@@ -2142,7 +2142,7 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 /* CHAMÉA 20/10 — collection film between product grid and gifting editorial */
 .chamea-2010-feature-video{
   width:100%;
-  background:#3b2637;
+  background:#f4e7e4;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -2156,7 +2156,7 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   height:auto;
   max-height:calc(100vh - 100px);
   object-fit:contain;
-  background:#3b2637;
+  background:#f4e7e4;
 }
 @media(max-width:767px){
   .chamea-2010-feature-video{padding:20px 12px 28px}
