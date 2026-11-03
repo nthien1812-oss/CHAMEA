@@ -2137,3 +2137,28 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #main .chamea-blog-banner-wrap>.chamea-blog-banner[hidden]{display:none!important}
 #main .chamea-blog-banner-wrap.loaded>.page-head{display:none!important}
 #main .chamea-blog-banner-wrap:not(.loaded)>.page-head{display:block}
+
+
+/* CHAMÉA 20/10 — collection film between product grid and gifting editorial */
+.chamea-2010-feature-video{
+  width:100%;
+  background:#3b2637;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 24px 44px;
+  box-sizing:border-box;
+}
+.chamea-2010-feature-player{
+  display:block;
+  width:min(900px,100%);
+  aspect-ratio:16/9;
+  height:auto;
+  max-height:calc(100vh - 100px);
+  object-fit:contain;
+  background:#3b2637;
+}
+@media(max-width:767px){
+  .chamea-2010-feature-video{padding:20px 12px 28px}
+  .chamea-2010-feature-player{max-height:none}
+}
