@@ -24,6 +24,12 @@ function campaignLanding(){
    <div class="chamea-2010-shop-grid chamea-2010-standard-cards">${featured.map(p=>card(p)).join('')}</div>
    <p class="chamea-2010-price-note">Giá niêm yết là mức đề xuất tham khảo; ưu đãi 20% áp dụng khi chương trình đang bật. Cửa hàng sẽ xác nhận trước khi bán chính thức.</p>
   </div>
+  <div class="chamea-2010-feature-video" aria-label="Video giới thiệu bộ sưu tập CHAMÉA 20/10">
+   <video class="chamea-2010-feature-player" autoplay muted loop playsinline controls preload="metadata" aria-label="Video giới thiệu túi xách CHAMÉA">
+    <source src="/CHAMEA/assets/chamea-2010-showcase.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+   </video>
+  </div>
   <div class="container chamea-2010-gift-editorial">
    <div class="chamea-2010-gift-copy"><p class="eyebrow">THE ART OF GIFTING · CHAMÉA 20/10</p><h2>Không chỉ là một chiếc túi. Mà là lời thương được trao.</h2><p>Từ Blush Theory dịu dàng đến Souls thanh lịch, mỗi thiết kế đều mang một câu chuyện riêng. Chọn chiếc túi phù hợp với cá tính người nhận và dành tặng một khoảnh khắc đáng nhớ.</p><a href="/goi-y-chon-qua" class="btn outline">Gợi ý chọn quà ↗</a></div>
    <div class="chamea-2010-gift-image"><img src="${asset(souls?.gallery?.[4]||featured[0]?.image||'')}" alt="CHAMÉA Souls và hộp quà 20/10" loading="lazy"></div>
