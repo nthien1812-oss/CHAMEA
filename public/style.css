@@ -2130,3 +2130,10 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   object-fit:contain!important;
  }
 }
+
+/* Blog cover: use the supplied editorial banner once its asset is available. */
+#main .chamea-blog-banner-wrap{width:100%;background:#f5eee9}
+#main .chamea-blog-banner-wrap>.chamea-blog-banner{display:block;width:100%;height:auto;aspect-ratio:8/3;object-fit:contain}
+#main .chamea-blog-banner-wrap>.chamea-blog-banner[hidden]{display:none!important}
+#main .chamea-blog-banner-wrap.loaded>.page-head{display:none!important}
+#main .chamea-blog-banner-wrap:not(.loaded)>.page-head{display:block}
