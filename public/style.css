@@ -2113,3 +2113,20 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #header .head-tools>.account-trigger{left:39px!important;width:32px!important;min-width:32px!important}
  #header .head-tools>.account-trigger svg{width:17px!important;height:17px!important}
 }
+
+/* Collection hero: show the complete campaign image (handles, tops and bottoms).
+   Overrides the older cover crop for Sugar, Steel, Tote and 20/10. */
+#main .collection-head .chamea-collection-cover-v2{
+ object-fit:contain!important;
+ object-position:center center!important;
+ background:#f4eee7!important;
+ height:clamp(310px,32vw,470px)!important;
+}
+@media(max-width:650px){
+ #main .collection-head .chamea-collection-cover-v2{
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:16 / 10;
+  object-fit:contain!important;
+ }
+}
