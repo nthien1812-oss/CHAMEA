@@ -2193,3 +2193,88 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #main .chamea-home-carousel-cta{position:absolute;z-index:2;left:9%;top:76.1%;width:29.5%;height:12.3%;display:block;cursor:pointer;background:transparent;border-radius:100px;outline-offset:2px}
 #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{left:9.8%;top:72%;width:25%;height:12.1%}
 #main .chamea-home-carousel-cta:focus-visible{outline:3px solid #6f173e}
+
+
+/* CHAMÉA unified sitewide watermark 2026-11
+   The same official, subtle monogram fills content backgrounds.
+   Full-bleed photographs, product images, videos and navigation remain clear. */
+html.chamea-pattern-on {
+ --chamea-watermark: url("./assets/chamea-logo-line-pattern.svg?v=unified-sitewide-20261107");
+ --chamea-watermark-size: 205px 205px;
+}
+/* Inner pages use one continuous motif behind transparent content. */
+html.chamea-pattern-on.chamea-inner-page #main{
+ position:relative;
+ isolation:isolate;
+}
+html.chamea-pattern-on.chamea-inner-page #main::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:0!important;
+ background-image:var(--chamea-watermark)!important;
+ background-repeat:repeat!important;
+ background-size:var(--chamea-watermark-size)!important;
+ background-position:0 0!important;
+ opacity:.20!important;
+ pointer-events:none;
+}
+html.chamea-pattern-on.chamea-inner-page #main > *{
+ position:relative;
+ z-index:1;
+}
+/* Fill previously unpatterned homepage content blocks without touching imagery. */
+html.chamea-pattern-on #main .builder-block.type-products,
+html.chamea-pattern-on #main .builder-block.type-collections,
+html.chamea-pattern-on #main .builder-block.type-community{
+ position:relative;
+ isolation:isolate;
+}
+html.chamea-pattern-on #main .builder-block.type-products::before,
+html.chamea-pattern-on #main .builder-block.type-collections::before,
+html.chamea-pattern-on #main .builder-block.type-community::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:0;
+ background-image:var(--chamea-watermark)!important;
+ background-size:var(--chamea-watermark-size)!important;
+ background-repeat:repeat!important;
+ opacity:.20!important;
+ pointer-events:none;
+}
+html.chamea-pattern-on #main .builder-block.type-products > *,
+html.chamea-pattern-on #main .builder-block.type-collections > *,
+html.chamea-pattern-on #main .builder-block.type-community > *{
+ position:relative;
+ z-index:1;
+}
+/* Opaque editorial backgrounds need their own motif because they hide the page layer. */
+html.chamea-pattern-on #main .page-head,
+html.chamea-pattern-on #main .chamea-2010-shop-products,
+html.chamea-pattern-on #main .chamea-2010-gift-copy,
+html.chamea-pattern-on #main .chamea-collection-spotlight,
+html.chamea-pattern-on #main .consult{
+ background-image:var(--chamea-watermark);
+ background-repeat:repeat;
+ background-size:var(--chamea-watermark-size);
+ background-position:0 0;
+}
+/* Dark footer retains the stronger, consistent branded watermark. */
+html.chamea-pattern-on footer::before{
+ background-image:var(--chamea-watermark)!important;
+ background-size:var(--chamea-watermark-size)!important;
+ opacity:.40!important;
+}
+/* The original patterned sections all use the same scale/opacity. */
+html.chamea-pattern-on #main .builder-block.type-categories::before,
+html.chamea-pattern-on #main .builder-block.type-story::before,
+html.chamea-pattern-on #main .builder-block.type-articles::before,
+html.chamea-pattern-on #main .builder-block.type-quiz::before{
+ background-image:var(--chamea-watermark)!important;
+ background-size:var(--chamea-watermark-size)!important;
+ opacity:.20!important;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on{--chamea-watermark-size:150px 150px}
+}
