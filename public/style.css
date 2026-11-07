@@ -2284,3 +2284,75 @@ html.chamea-pattern-on #main .chamea-2010-shop-products > *{
   background-size:150px 150px;
  }
 }
+
+/* CHAMÉA portrait homepage carousel mobile layout
+   Each original landscape banner is divided into its left and right halves,
+   then stacked without stretching, removing content, or changing the artwork. */
+#main .chamea-home-carousel-mobile{display:none}
+@media(max-width:700px){
+ #main .chamea-home-carousel{
+  aspect-ratio:800/1260;
+  background:#f6e5df;
+  touch-action:pan-y;
+ }
+ #main .chamea-home-carousel-slide>.chamea-home-carousel-image{display:none}
+ #main .chamea-home-carousel-mobile{
+  display:flex;
+  flex-direction:column;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+ }
+ #main .chamea-home-carousel-mobile-half{
+  position:relative;
+  width:100%;
+  height:50%;
+  overflow:hidden;
+  flex:none;
+ }
+ #main .chamea-home-carousel-mobile-half img{
+  display:block;
+  position:absolute;
+  top:0;
+  width:200%;
+  max-width:none;
+  height:100%;
+  object-fit:fill;
+  user-select:none;
+  pointer-events:none;
+ }
+ #main .chamea-home-carousel-mobile-half.first img{left:0}
+ #main .chamea-home-carousel-mobile-half.second img{right:0}
+ /* CTA hit area only over the unchanged printed Explore button in the top half. */
+ #main .chamea-home-carousel-cta{
+  left:18%;
+  top:37.6%;
+  width:61%;
+  height:7.1%;
+  border-radius:100px;
+ }
+ #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{
+  left:19%;
+  top:36.2%;
+  width:52%;
+  height:6.6%;
+ }
+ #main .chamea-home-carousel-arrow{
+  top:51%;
+  width:34px;
+  height:34px;
+  font-size:28px;
+ }
+ #main .chamea-home-carousel-dots{
+  bottom:12px;
+  gap:11px;
+  padding:7px 13px;
+ }
+ #main .chamea-home-carousel-dot{
+  width:9px;
+  height:9px;
+  min-width:9px;
+ }
+}
