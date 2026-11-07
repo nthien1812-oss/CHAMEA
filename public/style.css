@@ -2388,3 +2388,30 @@ html.chamea-pattern-on #main .chamea-2010-shop-products > *{
   min-width:9px;
  }
 }
+
+
+/* Portrait artwork for the four homepage banners on phones only.
+   Desktop artwork, swipe navigation and pagination remain unchanged. */
+@media (max-width:700px){
+ #main .chamea-home-carousel{aspect-ratio:941/1672;background:#f7e7e1}
+ #main .chamea-home-carousel-slide > .chamea-home-carousel-image,
+ #main .chamea-home-carousel-mobile{display:none!important}
+ #main .chamea-home-carousel-slide{
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:100% 100%;
+ }
+ #main .chamea-home-carousel-slide[data-slide="0"]{background-image:url("https://raw.githubusercontent.com/nthien1812-oss/CHAMEA/main/banner-mobile-20-10.png")}
+ #main .chamea-home-carousel-slide[data-slide="1"]{background-image:url("https://raw.githubusercontent.com/nthien1812-oss/CHAMEA/main/banner-mobile-tote.png")}
+ #main .chamea-home-carousel-slide[data-slide="2"]{background-image:url("https://raw.githubusercontent.com/nthien1812-oss/CHAMEA/main/banner-mobile-steel.png")}
+ #main .chamea-home-carousel-slide[data-slide="3"]{background-image:url("https://raw.githubusercontent.com/nthien1812-oss/CHAMEA/main/banner-mobile-sugar.png")}
+ #main .chamea-home-carousel-cta,
+ #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{
+  position:absolute;z-index:3;top:38%;bottom:auto;left:18%;width:64%;height:5.7%;
+  min-height:0;transform:none;background:transparent;border:0;box-shadow:none;
+  display:block;border-radius:999px;
+ }
+ #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{top:37%}
+ #main .chamea-home-carousel-cta::after{content:none}
+ #main .chamea-home-carousel-dots{bottom:7px}
+}
