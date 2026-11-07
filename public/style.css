@@ -2482,3 +2482,15 @@ html.chamea-pattern-on #main .chamea-film-wide > *{
   background-size:150px 150px;
  }
 }
+
+
+/* Homepage film: plum patterned breathing room above and below video */
+html.chamea-pattern-on #main .chamea-film-wide{
+ padding:36px 0!important;
+ box-sizing:border-box!important;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on #main .chamea-film-wide{
+  padding:20px 0!important;
+ }
+}
