@@ -2415,3 +2415,33 @@ html.chamea-pattern-on #main .chamea-2010-shop-products > *{
  #main .chamea-home-carousel-cta::after{content:none}
  #main .chamea-home-carousel-dots{bottom:7px}
 }
+
+/* CHAMÉA collections showcase video — neat plum surround, no side gaps */
+#main .chamea-collections-film{
+ width:100%;
+ padding:clamp(24px,3.6vw,50px) 20px;
+ background:#3c2535;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+#main .chamea-collections-film-inner{
+ width:min(100%,920px);
+ margin:auto;
+ overflow:hidden;
+ background:#3c2535;
+}
+#main .chamea-collections-film-player{
+ display:block;
+ width:100%;
+ height:auto;
+ aspect-ratio:16/9;
+ max-height:520px;
+ object-fit:contain;
+ background:#3c2535;
+}
+@media(max-width:700px){
+ #main .chamea-collections-film{padding:18px 12px}
+ #main .chamea-collections-film-inner{width:100%}
+ #main .chamea-collections-film-player{max-height:none}
+}
