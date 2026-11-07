@@ -2162,3 +2162,28 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
   .chamea-2010-feature-video{padding:20px 12px 28px}
   .chamea-2010-feature-player{max-height:none}
 }
+
+/* Homepage: four editorial banners, 7-second carousel */
+#main .chamea-home-carousel-section{width:100%;padding:0;margin:0;background:#f5e6e2}
+#main .chamea-home-carousel{position:relative;width:100%;overflow:hidden;aspect-ratio:2006/784;isolation:isolate;outline-offset:-4px}
+#main .chamea-home-carousel-track{position:relative;width:100%;height:100%}
+#main .chamea-home-carousel-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,visibility .55s ease;pointer-events:none}
+#main .chamea-home-carousel-slide.is-active{opacity:1;visibility:visible;pointer-events:auto;z-index:1}
+#main .chamea-home-carousel-link{display:block;width:100%;height:100%;cursor:pointer}
+#main .chamea-home-carousel-link img{display:block;width:100%;height:100%;object-fit:contain}
+#main .chamea-home-carousel-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.68);border-radius:50%!important;color:#642840;background:rgba(255,248,247,.82);font:400 35px/1 Georgia,serif;cursor:pointer;box-shadow:0 2px 12px #4f1f3820;transition:background .2s}
+#main .chamea-home-carousel-arrow:hover{background:#fff}
+#main .chamea-home-carousel-arrow.prev{left:16px}
+#main .chamea-home-carousel-arrow.next{right:16px}
+#main .chamea-home-carousel-dots{position:absolute;z-index:4;bottom:13px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:7px 14px;background:rgba(255,247,244,.72);border-radius:30px}
+#main .chamea-home-carousel-dot{width:9px;height:9px;min-width:9px;padding:0;border:0;border-radius:50%!important;background:#2d2427;opacity:.35;cursor:pointer;transition:opacity .2s,transform .2s}
+#main .chamea-home-carousel-dot.is-active{opacity:1;transform:scale(1.2)}
+#main .chamea-home-carousel-dot:focus-visible,#main .chamea-home-carousel-arrow:focus-visible{outline:2px solid #651f3a;outline-offset:3px}
+@media(max-width:700px){
+ #main .chamea-home-carousel-arrow{width:30px;height:30px;font-size:25px}
+ #main .chamea-home-carousel-arrow.prev{left:5px}
+ #main .chamea-home-carousel-arrow.next{right:5px}
+ #main .chamea-home-carousel-dots{bottom:5px;gap:9px;padding:5px 9px}
+ #main .chamea-home-carousel-dot{width:7px;height:7px;min-width:7px}
+}
+@media(prefers-reduced-motion:reduce){#main .chamea-home-carousel-slide{transition:none}}
