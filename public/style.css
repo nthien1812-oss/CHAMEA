@@ -2285,59 +2285,88 @@ html.chamea-pattern-on #main .chamea-2010-shop-products > *{
  }
 }
 
-/* CHAMÉA portrait homepage carousel mobile layout
-   Each original landscape banner is divided into its left and right halves,
-   then stacked without stretching, removing content, or changing the artwork. */
+/* Mobile CHAMÉA slider: full original artwork and enlarged product detail; no awkward split. */
 #main .chamea-home-carousel-mobile{display:none}
 @media(max-width:700px){
  #main .chamea-home-carousel{
-  aspect-ratio:800/1260;
-  background:#f6e5df;
+  aspect-ratio:4/5;
+  background:#f6e9e4;
   touch-action:pan-y;
  }
- #main .chamea-home-carousel-slide>.chamea-home-carousel-image{display:none}
+ #main .chamea-home-carousel-slide > .chamea-home-carousel-image{display:none}
  #main .chamea-home-carousel-mobile{
+  position:absolute;
   display:flex;
   flex-direction:column;
-  position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
+  padding:12px 12px 76px;
+  gap:10px;
   pointer-events:none;
  }
  #main .chamea-home-carousel-mobile-half{
   position:relative;
-  width:100%;
-  height:50%;
   overflow:hidden;
+  width:100%;
   flex:none;
+  background:#f9eee9;
+  border-radius:10px;
  }
- #main .chamea-home-carousel-mobile-half img{
-  display:block;
+ #main .chamea-home-carousel-mobile-half.first{
+  height:auto;
+  aspect-ratio:1600/630;
+ }
+ #main .chamea-home-carousel-mobile-half.first img{
   position:absolute;
-  top:0;
-  width:200%;
-  max-width:none;
+  inset:0;
+  width:100%;
   height:100%;
-  object-fit:fill;
-  user-select:none;
+  max-width:none;
+  object-fit:contain;
   pointer-events:none;
  }
- #main .chamea-home-carousel-mobile-half.first img{left:0}
- #main .chamea-home-carousel-mobile-half.second img{right:0}
- /* CTA hit area only over the unchanged printed Explore button in the top half. */
- #main .chamea-home-carousel-cta{
-  left:18%;
-  top:37.6%;
-  width:61%;
-  height:7.1%;
-  border-radius:100px;
+ #main .chamea-home-carousel-mobile-half.second{
+  flex:1;
+  min-height:0;
  }
+ #main .chamea-home-carousel-mobile-half.second img{
+  position:absolute;
+  width:200%;
+  height:100%;
+  max-width:none;
+  right:0;
+  top:0;
+  object-fit:cover;
+  pointer-events:none;
+ }
+ #main .chamea-home-carousel-cta,
  #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{
-  left:19%;
-  top:36.2%;
-  width:52%;
-  height:6.6%;
+  position:absolute;
+  z-index:3;
+  top:auto;
+  bottom:33px;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:34px;
+  min-height:34px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#64233e;
+  border:1px solid #b38b72;
+  box-shadow:0 3px 10px #50253a24;
+  text-decoration:none;
+ }
+ #main .chamea-home-carousel-cta::after{
+  content:"KHÁM PHÁ NGAY ↗";
+  color:#fff9f6;
+  font-family:Georgia,serif;
+  font-size:clamp(11px,3.3vw,15px);
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.03em;
+  white-space:nowrap;
  }
  #main .chamea-home-carousel-arrow{
   top:51%;
@@ -2345,10 +2374,13 @@ html.chamea-pattern-on #main .chamea-2010-shop-products > *{
   height:34px;
   font-size:28px;
  }
+ #main .chamea-home-carousel-arrow.prev{left:5px}
+ #main .chamea-home-carousel-arrow.next{right:5px}
  #main .chamea-home-carousel-dots{
-  bottom:12px;
+  bottom:7px;
   gap:11px;
-  padding:7px 13px;
+  padding:5px 12px;
+  background:transparent;
  }
  #main .chamea-home-carousel-dot{
   width:9px;
