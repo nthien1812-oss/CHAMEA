@@ -260,7 +260,7 @@ function qualityBagJournal(){
  const figures=(caption)=>'<figure class="journal-figure quality-blog-figure"><img loading="lazy" src="/CHAMEA/assets/image'+(photoIndex++)+'.png" alt="'+escText(caption)+'"><figcaption>'+escText(caption)+'</figcaption></figure>';
  const toc='<div class="journal-toc-float"><button type="button" class="journal-toc-toggle" data-action="journal-toc-toggle" aria-expanded="false" aria-controls="journal-toc-popover" aria-label="Mở mục lục">☷</button><nav id="journal-toc-popover" class="journal-toc journal-toc-popover" aria-label="Mục lục bài viết" hidden><div class="journal-toc-popover-head"><strong>Các nội dung chính</strong><button type="button" data-action="journal-toc-close" aria-label="Đóng mục lục">×</button></div>'+sections.map((x,i)=>'<a class="'+(/^[1-4]\.\d/.test(x[0])?'journal-toc-sub':'journal-toc-major')+'" href="#quality-'+i+'">'+escText(x[0])+'</a>').join('')+'</nav></div>';
  const faq=sections.filter(x=>/^3\.[1-4]\./.test(x[0]));
- const picks=D.products.filter(p=>['lune','nina','vera','mila','perle'].includes(String(p.family||'').toLowerCase())).filter((p,i,a)=>a.findIndex(x=>x.family===p.family)===i).slice(0,5);
+ const picks=['tote-heritage-burgundy','nina-hong-dat','mila-den','perle-den','lune-tim-man'].map(id=>D.products.find(p=>p.id===id)).filter(Boolean);
  const recommend='<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>Gợi ý sản phẩm từ CHAMÉA</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+picks.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img loading="lazy" src="'+asset(p.image)+'" alt="'+esc(p.name)+'"></span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
  const main=sections.map((item,i)=>{
   if(/^3\.[1-4]\./.test(item[0]))return '';
@@ -305,8 +305,7 @@ function chameaPromotionJournal(){
  const f=(name,caption)=>'<figure class="journal-figure"><a class="journal-photo-stage" href="'+linkProduct(name)+'" style="--journal-photo:url(&quot;'+photo(name)+'&quot;)"><img src="'+photo(name)+'" loading="lazy" alt="Túi CHAMÉA '+esc(name)+'"></a><figcaption>'+esc(caption)+'</figcaption></figure>';
  const campaignFamilies=['Blush Theory','Her Rules','Pastel Core','Souls'];
  const campaignPicks=campaignFamilies.map(f=>D.products.find(p=>p.family===f&&p.collection20==='20-10')).filter(Boolean);
- const regularPicks=D.products.filter(p=>['lune','nina','vera','mila','perle'].includes(String(p.family||'').toLowerCase())).filter((p,i,arr)=>arr.findIndex(x=>String(x.family).toLowerCase()===String(p.family).toLowerCase())===i);
- const picks=[...campaignPicks,...regularPicks].slice(0,9);
+ const picks=campaignPicks;
  const recommend='<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>Gợi ý sản phẩm từ CHAMÉA</h2></div><a href="/tui-xach">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+picks.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'+(hasDiscount(p)?'<em>−20%</em>':'')+'</span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
  const body='<h2 id="'+anchors[0]+'">1. Ưu đãi 20/10 – Món quà đặc biệt từ CHAMÉA</h2>'+
  '<p>Không phải món quà nào cũng cần cầu kỳ để trở nên đáng nhớ. Đôi khi, một chiếc túi xách được lựa chọn đúng với sở thích và phong cách cũng đủ thể hiện sự quan tâm dành cho người nhận.</p>'+
@@ -347,7 +346,7 @@ function gift2010Journal(){
  const root='/CHAMEA/assets/blog-qua-tang-20-10/';
  const get=n=>D.products.find(p=>p.id===n)||D.products.find(p=>p.id?.startsWith(n+'-'))||D.products.find(p=>p.name?.toLowerCase().includes(n));
  const entries=[['','','Lune'],['','','Nina'],['','','Vera'],['','','Mila'],['','','Perle']];
- const fallback=asset((D.products.find(p=>p.id==='lune')||D.products[0]).image);
+ const fallback=asset((D.products.find(p=>p.id==='blush-theory')||D.products[0]).image);
  const figure=(file,caption)=>'<figure class="journal-figure journal-photo-stage"><img loading="lazy" src="'+root+file+'" onerror="this.onerror=null;this.hidden=true" alt="'+esc(caption)+'"><figcaption>'+esc(caption)+'</figcaption></figure>';
  const normalize=s=>s.replace(/\s+/g,' ').trim();
  const renderPart=s=>{
@@ -394,7 +393,7 @@ function gift2010Journal(){
  const featuredArticles=chameaJournalRelated(location.pathname.split('/').filter(Boolean).pop()).map(x=>({title:x.title,category:'CHAMÉA Journal',image:x.image,href:'/goc-chon-qua/'+x.id}));
  const featuredList='<section class="journal-featured"><h2>Bài viết nổi bật</h2>'+featuredArticles.slice(0,2).map((x,i)=>'<a class="journal-featured-item" href="'+x.href+'"><span class="journal-featured-index">'+(i+1)+'</span><span class="journal-featured-thumb"><img src="'+asset(x.image)+'" loading="lazy" alt="'+esc(x.title)+'"></span><span class="journal-featured-info"><strong>'+esc(x.title)+'</strong><small>'+esc(x.category)+'</small></span></a>').join('')+'</section>';
  const related=chameaJournalRelated('bi-kip-chon-qua-20-10');
- const productList=D.products.filter(p=>p.image).slice(0,8);
+ const productList=['Blush Theory','Her Rules','Pastel Core','Souls'].map(f=>D.products.find(p=>p.family===f&&p.collection20==='20-10')).filter(Boolean);
  const recommend=(label,items)=>'<section class="journal-recommend"><div class="journal-recommend-head"><div><span>CHAMÉA EDITOR\'S PICKS</span><h2>'+label+'</h2></div><a href="/qua-tang-20-10">Xem tất cả ↗</a></div><div class="journal-recommend-rail">'+items.map(p=>'<a class="journal-mini-product" href="/san-pham/'+p.id+'"><span class="journal-mini-image"><img src="'+asset(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'+(hasDiscount(p)?'<em>−20%</em>':'')+'</span><span class="journal-mini-name">'+esc(p.name)+'</span><span class="journal-mini-price">'+money(price(p))+'</span><span class="journal-mini-link">Xem túi ↗</span></a>').join('')+'</div></section>';
 
  // Auto-link every product name mentioned in editorial copy, as in the tote article.
@@ -424,7 +423,7 @@ function gift2010Journal(){
  body=linkProductMentions(body);
  body=body.replace('<h3 id="nuoc-hoa">',recommend('Gợi ý sản phẩm từ CHAMÉA',productList)+'<h3 id="nuoc-hoa">');
  body=body.replace('<h2 id="trao-yeu-thuong">',recommend('Những thiết kế nàng có thể thích',productList.slice().reverse())+'<h2 id="trao-yeu-thuong">');
- const cover=get('lune');
+ const cover=get('blush-theory');
  const coverSrc=root+'chamea-blog-20-10-cover-new.webp';const coverFallback=cover?asset(cover.image):'';
  return '<div class="container journal-crumb"><a href="/">Trang chủ</a> / <a href="/goc-chon-qua">Blog</a> / Quà tặng 20/10</div>'+
  '<div class="container journal-hero"><p class="eyebrow">CHAMÉA JOURNAL · QUÀ TẶNG 20/10</p><h1>'+title+'</h1><div class="journal-meta"><span>Biên tập CHAMÉA</span><span>2026</span><span>8 phút đọc</span></div></div>'+
