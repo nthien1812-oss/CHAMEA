@@ -2187,3 +2187,9 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
  #main .chamea-home-carousel-dot{width:7px;height:7px;min-width:7px}
 }
 @media(prefers-reduced-motion:reduce){#main .chamea-home-carousel-slide{transition:none}}
+
+/* Only the printed 'Khám phá ngay' button is clickable; the rest is inert */
+#main .chamea-home-carousel-image{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+#main .chamea-home-carousel-cta{position:absolute;z-index:2;left:9%;top:76.1%;width:29.5%;height:12.3%;display:block;cursor:pointer;background:transparent;border-radius:100px;outline-offset:2px}
+#main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{left:9.8%;top:72%;width:25%;height:12.1%}
+#main .chamea-home-carousel-cta:focus-visible{outline:3px solid #6f173e}
