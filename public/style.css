@@ -2241,7 +2241,7 @@ html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values::before {
   background-repeat:repeat;
   background-position:0 0;
   background-size:205px 205px;
-  opacity:.20;
+  opacity:.25;
 }
 html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values > * {
   position:relative;
