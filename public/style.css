@@ -2210,10 +2210,17 @@ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-final
  content:"";
  position:absolute;
  inset:0;
- z-index:-1;
+ z-index:0;
  pointer-events:none;
  background:url("./assets/chamea-logo-line-pattern.svg?v=seamless6") 0 0 / 205px 205px repeat;
  opacity:.25;
+}
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-hero-copy > *,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-manifesto > *,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-collections > *,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-finale-copy > *{
+ position:relative;
+ z-index:1;
 }
 @media(max-width:700px){
  html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-hero-copy::before,
