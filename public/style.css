@@ -2223,3 +2223,32 @@ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-final
   background-size:150px 150px;
  }
 }
+
+
+/* About CHAMÉA values section: branded plum background motif */
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:url("./assets/chamea-logo-line-pattern.svg?v=seamless6");
+  background-repeat:repeat;
+  background-position:0 0;
+  background-size:205px 205px;
+  opacity:.20;
+}
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values > * {
+  position:relative;
+  z-index:1;
+}
+@media(max-width:700px) {
+  html.chamea-pattern-on.chamea-inner-page #main .chamea-story-values::before {
+    background-size:150px 150px;
+  }
+}
