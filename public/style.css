@@ -2193,3 +2193,33 @@ html.chamea-pattern-on .chamea-pattern{opacity:.39!important}
 #main .chamea-home-carousel-cta{position:absolute;z-index:2;left:9%;top:76.1%;width:29.5%;height:12.3%;display:block;cursor:pointer;background:transparent;border-radius:100px;outline-offset:2px}
 #main .chamea-home-carousel-slide:not([data-slide="0"]) .chamea-home-carousel-cta{left:9.8%;top:72%;width:25%;height:12.1%}
 #main .chamea-home-carousel-cta:focus-visible{outline:3px solid #6f173e}
+
+
+/* About CHAMÉA only: subtle existing logo-line pattern */
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-hero-copy,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-manifesto,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-collections,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-finale-copy{
+ position:relative;
+ isolation:isolate;
+}
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-hero-copy::before,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-manifesto::before,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-collections::before,
+html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-finale-copy::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ pointer-events:none;
+ background:url("./assets/chamea-logo-line-pattern.svg?v=seamless6") 0 0 / 205px 205px repeat;
+ opacity:.20;
+}
+@media(max-width:700px){
+ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-hero-copy::before,
+ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-manifesto::before,
+ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-collections::before,
+ html.chamea-pattern-on.chamea-inner-page #main .chamea-story .chamea-story-finale-copy::before{
+  background-size:150px 150px;
+ }
+}
