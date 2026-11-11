@@ -655,7 +655,7 @@ function chameaChatbot(){
  const existing=document.getElementById('chamea-chatbot');
  if(existing)return;
  const host=document.createElement('aside');host.id='chamea-chatbot';host.className='chamea-chatbot';
- host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Bạn đang tìm túi xách, chọn quà hay cần hỗ trợ đặt hàng?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động theo thông tin mẫu trên website, không kết nối nhân viên trực tiếp.</p></section>`;
+ host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Bạn đang tìm túi xách, chọn quà hay cần hỗ trợ đặt hàng?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động từ dữ liệu tham khảo; giá và chính sách cần được cửa hàng xác nhận.</p></section>`;
  document.body.appendChild(host);
  const launcher=host.querySelector('.chamea-chat-launcher'),win=host.querySelector('.chamea-chat-window'),messages=host.querySelector('.chamea-chat-messages');
  // Animate only the button, never its parent (which also contains the chat window).
@@ -809,8 +809,72 @@ function chameaChatbot(){
   }
   say('Mình chưa xác định rõ bạn muốn hỏi về sản phẩm, chính sách hay đặt hàng. Bạn có thể nói cụ thể hơn một chút không ạ? Ví dụ: “Vera làm từ gì?”, “Có bảo hành không?” hoặc “Tìm túi dưới 800k”.');
  };
- host.querySelectorAll('[data-chat-topic]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.textContent.trim(),'user');answer('',btn.dataset.chatTopic)}));
- const chatForm=host.querySelector('.chamea-chat-form');const sendChat=()=>{const input=chatForm.querySelector('input');const value=input.value.trim();if(!value){input.focus();return}say(value,'user');input.value='';answer(value)};chatForm.addEventListener('submit',e=>{e.preventDefault();e.stopPropagation();sendChat()});chatForm.querySelector('button[type="submit"]').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();sendChat()});
+
+ // Optional Gemini + RAG enhancement. The legacy local answer() is retained as a safe fallback.
+ const aiHistory=[];
+ let aiBusy=false;
+ const aiEndpoint=()=>String(D.aiChatEndpoint||'').trim();
+ const aiPrompts={
+  gift:'Mình muốn được tư vấn chọn túi làm quà tặng. Bạn hãy hỏi về người nhận và ngân sách nhé.',
+  bags:'Mình muốn tìm một mẫu túi xách phù hợp. Bạn có thể hỏi về nhu cầu và phong cách không?',
+  order:'Mình muốn biết cách xem trạng thái đơn hàng CHAMÉA.',
+  contact:'Cho mình thông tin liên hệ hỗ trợ CHAMÉA.'
+ };
+ const aiCards=products=>{
+  if(!Array.isArray(products)||!products.length)return;
+  const wrap=document.createElement('div');wrap.className='chamea-chat-ai-products';
+  products.slice(0,3).forEach(item=>{
+   const p=D.products.find(p=>p.id===item.id);
+   if(!p)return;
+   const a=document.createElement('a');a.className='chamea-chat-ai-product';
+   a.href='/san-pham/'+encodeURIComponent(p.id);
+   const img=document.createElement('img');img.src=asset(p.image);img.alt=p.name;img.loading='lazy';
+   const info=document.createElement('span');
+   const title=document.createElement('strong');title.textContent=p.name;
+   const subtitle=document.createElement('small');
+   subtitle.textContent=Number(p.price||0).toLocaleString('vi-VN')+'đ (giá tham khảo trước ưu đãi, nếu có)';
+   info.append(title,subtitle);a.append(img,info);wrap.append(a);
+  });
+  if(wrap.children.length){messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight}
+ };
+ const answerEnhanced=async(input,topic='')=>{
+  const endpoint=aiEndpoint();
+  if(!endpoint){answer(input,topic);return}
+  if(aiBusy){say('Mình đang xử lý tin nhắn trước, bạn chờ một chút nhé.');return}
+  if(!/^https:\/\//i.test(endpoint)){answer(input,topic);return}
+  const prompt=String(input||aiPrompts[topic]||'').trim();
+  if(!prompt){answer(input,topic);return}
+  aiBusy=true;
+  const typing=document.createElement('p');
+  typing.className='chamea-chat-bubble bot chamea-chat-ai-typing';
+  typing.textContent='CHAMÉA đang tìm mẫu phù hợp…';
+  messages.appendChild(typing);messages.scrollTop=messages.scrollHeight;
+  const abort=new AbortController();
+  const timeout=setTimeout(()=>abort.abort(),27000);
+  try{
+   const path=location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'');
+   const current=path.startsWith('/san-pham/')?decodeURIComponent(path.split('/')[2]||''):'';
+   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},signal:abort.signal,
+    body:JSON.stringify({message:prompt,history:aiHistory.slice(-8),productId:current})});
+   if(!response.ok)throw new Error('AI '+response.status);
+   const data=await response.json();
+   if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('Invalid response');
+   typing.remove();
+   say(data.reply);
+   aiCards(data.products);
+   aiHistory.push({role:'user',content:prompt},{role:'model',content:data.reply});
+   if(aiHistory.length>12)aiHistory.splice(0,aiHistory.length-12);
+  }catch(error){
+   typing.remove();
+   // Do not let backend outages break the existing, functional chatbot.
+   say('Trợ lý AI đang tạm gián đoạn, mình sẽ hỗ trợ bằng thông tin có sẵn trên website nhé.');
+   answer(input,topic);
+  }finally{
+   clearTimeout(timeout);aiBusy=false;
+  }
+ };
+ host.querySelectorAll('[data-chat-topic]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.textContent.trim(),'user');answerEnhanced('',btn.dataset.chatTopic)}));
+ const chatForm=host.querySelector('.chamea-chat-form');const sendChat=()=>{const input=chatForm.querySelector('input');const value=input.value.trim();if(!value){input.focus();return}say(value,'user');input.value='';answerEnhanced(value)};chatForm.addEventListener('submit',e=>{e.preventDefault();e.stopPropagation();sendChat()});chatForm.querySelector('button[type="submit"]').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();sendChat()});
  host.addEventListener('click',e=>{const a=e.target.closest('a[href^="/"]');if(!a)return;e.preventDefault();go(a.getAttribute('href'))});
 }
 function render(scroll=true){applyDesign();header();const [title,html]=route();const viewedPath=location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'');if(viewedPath.startsWith('/san-pham/')){const viewedProduct=product(viewedPath.split('/')[2]);if(viewedProduct)recordRecentlyViewed(viewedProduct.id)}document.title=title.startsWith('CHAMÉA –')?title:title+' | CHAMÉA';$('#main').innerHTML=html;document.querySelector('body > .journal-toc-float')?.remove();const floatingToc=$('#main .journal-toc-float');if(floatingToc)document.body.appendChild(floatingToc);if(!$('#main h1'))$('#main').insertAdjacentHTML('afterbegin',`<h1 class="sr-only">${esc(title)}</h1>`);applyOverrides();applySiteExtras();initChameaHomeCarousel();chameaChatbot();$('#main').classList.remove('page-enter');void $('#main').offsetWidth;$('#main').classList.add('page-enter');if(scroll){window.scrollTo(0,0);$('#main').focus({preventScroll:true})}}
