@@ -60,4 +60,18 @@ jobs:
           const third=await ask('mẹ thích thanh lịch',history);
           assert.ok(third.reply.length>25);
           console.log('Gift flow passed; final reply characters:',third.reply.length,'products:',third.products.length);
+          const teacher=await ask('Mình muốn mua túi tặng cô giáo',[]);
+          assert.match(teacher.reply,/cô giáo/i);
+          assert.match(teacher.reply,/bao nhiêu tiền|ngân sách/i);
+          assert.doesNotMatch(teacher.reply,/tặng ai|cho ai/i);
+          const teacherHistory=[{role:'user',content:'Mình muốn mua túi tặng cô giáo'},{role:'model',content:teacher.reply}];
+          const next=await ask('dưới 800k',teacherHistory);
+          assert.match(next.reply,/cô giáo/i);
+          assert.doesNotMatch(next.reply,/tặng ai|cho ai/i);
+          teacherHistory.push({role:'user',content:'dưới 800k'},{role:'model',content:next.reply});
+          const recommendation=await ask('cô ấy thích thanh lịch',teacherHistory);
+          assert.equal(typeof recommendation.reply,'string');
+          assert.ok(recommendation.reply.length>20);
+          assert.doesNotMatch(recommendation.reply,/tặng ai|cho ai/i);
+          console.log('Teacher gift flow passed:',teacher.reply.length,next.reply.length,recommendation.reply.length);
           NODE
