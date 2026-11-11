@@ -70,11 +70,16 @@ export function recipientFromText(input){
  // rather than repeating "Bạn định tặng ai?".
  const m=q.match(/\b(?:tang|qua cho|lam qua cho|mua tui cho|mua qua cho|chon qua cho)\s+(?:cho\s+)?([a-z]+(?:\s+[a-z]+){0,3})/);
  if(!m)return '';
- const stop=new Set(['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim']);
+ const stop=new Set(['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim','hay','hoi','ve','la','j','gi','nhe','a','nha','nua','bang']);
  const candidates=m[1].split(' ');
- const words=[];
- for(const w of candidates){if(stop.has(w)||/\d/.test(w))break;words.push(w);}
- return words.length?words.join(' '):'';
+ if(candidates[0]==='ban')return 'một người bạn'; // Never repeat accidental text such as "ban hay hoi ve".
+ // Avoid treating conversational filler as a person's name. For unfamiliar recipients,
+ // require a relationship/person noun rather than echoing arbitrary words after "tặng".
+ const relationHeads=new Set(['nguoi','co','thay','bac','di','chu','cau','anh','chi','em','ong','ba','me','bo','sep','dong']);
+ if(!relationHeads.has(candidates[0]))return '';
+ const extracted=[];
+ for(const w of candidates){if(stop.has(w)||/\d/.test(w))break;extracted.push(w);}
+ return extracted.length?extracted.join(' '):'';
 }
 export function giftProfile(question,history=[]){
  const previous=(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-6).map(x=>x.content);
