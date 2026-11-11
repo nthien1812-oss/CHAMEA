@@ -1,5 +1,6 @@
 /* Chỉ cập nhật dữ liệu đã xác nhận. Tên, giá và cách phối đồ dưới đây dành cho demo. */
 window.CHAMEA = {
+ aiChatEndpoint:'', // Set this to the deployed Vercel /api/chat URL after verifying backend; empty = current fallback chat.
  film:{src:"chamea-film.mp4",poster:"chamea-film-poster.jpg",title:"Một chiếc túi. Một nét riêng."},
  campaign:{enabled:true,discount:0.2,start:null,end:null,conditions:null},
  contact:{phone:'0386.933.508',email:'chamea.gmail.com',address:'Số 5 - Mỹ Đình 2 - Từ Liêm - Hà Nội',social:[]},shippingFee:null,
