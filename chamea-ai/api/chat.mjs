@@ -1,4 +1,4 @@
-import {catalog, retrieveKnowledge, retrieveProducts, safeProduct, giftProfile} from '../lib/rag.mjs';
+import {catalog, retrieveKnowledge, retrieveProducts, safeProduct, giftProfile, currentTurnKind, recipientFromText, budgetFrom} from '../lib/rag.mjs';
 
 const SITE='https://nthien1812-oss.github.io';
 const API='https://generativelanguage.googleapis.com/v1beta/models/';
@@ -39,6 +39,18 @@ function parseOutput(raw,possible){
 // Consultation should work when the visitor says only "mua túi tặng mẹ".
 // A brief clarification is cheaper and safer than recommending arbitrary products.
 function guidedGiftStep(question,history,items){
+ const kind=currentTurnKind(question);
+ // Only continue an earlier gift consultation when the latest message is a
+ // meaningful answer to the most recent gift-related question.
+ if(['greeting','thanks','goodbye','reset','support','product'].includes(kind))return null;
+ const recentAssistant=(Array.isArray(history)?history:[]).filter(h=>h.role==='model').at(-1)?.content||'';
+ const prompted=/bao nhiêu|ngân sách|phong cách|thanh lịch|tối giản|nổi bật|thích màu|kiểu dáng|mẫu phù hợp|tham khảo|linh hoạt|tặng ai|dành tặng ai/i.test(recentAssistant);
+ const currentNormalized=String(question).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').trim();
+ const briefAffirmative=/^(?:co|duoc|ok|oke|dong y|xem thu|tu van|gioi thieu|thoai mai|linh hoat|ban chon|ban tu van|khong biet|tuy ban|sao cung duoc)[ !.?,]*$/.test(currentNormalized);
+ const currentPreference=budgetFrom(question)!==null || !!recipientFromText(question)
+   || /\b(thanh lich|toi gian|nu tinh|ca tinh|don gian|nhe nhang|noi bat|tre trung|tote|deo vai|deo cheo|xach tay|mau hong|mau den|mau do|mau kem|di lam|di choi)\b/.test(currentNormalized)
+   || briefAffirmative;
+ if(kind!=='gift' && !(prompted&&currentPreference))return null;
  const profile=giftProfile(question,history);
  if(!profile.gift)return null;
  const q=String(question).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').trim();
@@ -78,6 +90,7 @@ async function generate(question,history,docs,products,match){
   'Giá estimated là giá tham khảo. Giá minh họa sau giảm 20% không phải giá được cửa hàng xác nhận. Trang hiện là demo: đơn và chính sách chưa nhất thiết có hiệu lực. Nêu lưu ý phù hợp khi khách hỏi.',
   'Đề xuất tối đa 3 sản phẩm trong danh sách đã truy xuất; nêu lý do gắn với ngân sách, kiểu dáng, màu sắc và nhu cầu. Nếu không có mẫu khớp hoàn toàn, hãy chia sẻ tế nhị, xin phép khách cân nhắc phương án gần nhất, tuyệt đối không giới thiệu một món vượt mức chi mà không nói rõ.',
   'Dựa vào các lượt chat trước, đừng hỏi lại thông tin khách đã cung cấp. Chỉ hỏi thêm tối đa một câu nếu thiếu thông tin cần thiết.',
+  'Ưu tiên ý định trong tin nhắn HIỆN TẠI. Nếu khách chào, cảm ơn, tạm biệt, đổi chủ đề hoặc hỏi về một mẫu khác, hãy trả lời đúng hành động mới; không lặp lại câu hỏi ngân sách hoặc lời tư vấn của lượt cũ. Ngữ cảnh cũ chỉ để hỗ trợ khi khách thật sự tiếp tục cùng chủ đề.',
   'Nếu giftConsultation.recipient đã có giá trị, người nhận quà ĐÃ ĐƯỢC khách nêu rõ: tuyệt đối không hỏi lại khách muốn tặng ai. Có thể là cô giáo, thầy giáo, đồng nghiệp, sếp, bạn bè, người thân hoặc người nhận khác.',
   'Khi khách chỉ nói một câu ngắn như mua túi tặng mẹ, hãy hiểu đó là lời nhờ tư vấn. Nếu chưa rõ ngân sách, hỏi ngân sách; sau khi biết ngân sách mới hỏi phong cách, rồi gợi ý dựa trên sở thích thật. Không đoán gu chỉ dựa vào người nhận hay tuổi. Luôn nhớ điều đã được khách cung cấp; nếu người nhận đã biết thì không hỏi lại hoặc chèn tên trong ngoặc.',
   'Không yêu cầu OTP, mật khẩu, thông tin thẻ, mã xác minh. Không khẳng định một giao dịch có thật hoặc tư vấn xử lý đơn thật khi không có bằng chứng.',
@@ -91,7 +104,8 @@ async function generate(question,history,docs,products,match){
   matchesCatalog:products.map(p=>safeProduct(p)),
   filters:match.filters,
   hasExactMatchingProducts:match.exact,
-  giftConsultation:giftProfile(question,history)
+  giftConsultation:currentTurnKind(question)==='gift'?giftProfile(question,history):null,
+  currentMessageIntent:currentTurnKind(question)
  };
  const r=await fetch(API+encodeURIComponent(model)+':generateContent',{
   method:'POST',
@@ -123,12 +137,26 @@ async function handler(req){
   const input=JSON.parse(raw);
   const question=typeof input.message==='string'?input.message.trim().slice(0,500):'';
   if(!question)return respond({error:'EMPTY_QUESTION'},400,origin);
-  const history=historyOf(input.history),items=await currentCatalog();
+  const history=historyOf(input.history);
+  const turnKind=currentTurnKind(question);
+  if(turnKind==='greeting'){
+   const greetedBefore=history.some(h=>h.role==='model'&&/xin chào|chào bạn/i.test(h.content));
+   const reply=greetedBefore
+    ?'Dạ, CHAMÉA đây ạ! 🌷 Bạn muốn mình hỗ trợ chọn túi, tìm quà hay giải đáp điều gì hôm nay?'
+    :history.length
+     ?'CHAMÉA chào bạn ạ! 🌷 Rất vui được tiếp tục trò chuyện cùng bạn. Mình có thể giúp gì cho bạn lúc này?'
+     :'CHAMÉA xin chào bạn! 🌷 Mình rất vui được đón tiếp bạn. Hôm nay bạn muốn tìm một chiếc túi, chọn quà hay tham khảo thiết kế nào ạ?';
+   return respond({reply,products:[],sources:[],intent:'greeting'},200,origin);
+  }
+  if(turnKind==='thanks')return respond({reply:'CHAMÉA rất vui được đồng hành cùng bạn! Khi cần thêm gợi ý hay thông tin về mẫu túi nào, bạn cứ nhắn mình nhé. 🌷',products:[],sources:[],intent:'thanks'},200,origin);
+  if(turnKind==='goodbye')return respond({reply:'CHAMÉA cảm ơn bạn đã ghé thăm. Chúc bạn một ngày thật nhiều niềm vui, hẹn gặp lại nhé! 🌷',products:[],sources:[],intent:'goodbye'},200,origin);
+  if(turnKind==='reset')return respond({reply:'Mình sẽ cùng bạn bắt đầu lại nhé. Bạn đang muốn tìm túi cho bản thân hay chọn một món quà dành tặng ai đó ạ?',products:[],sources:[],intent:'reset'},200,origin);
+  const items=await currentCatalog();
   const guided=guidedGiftStep(question,history,items);
   if(guided)return respond(guided,200,origin);
   const productId=typeof input.productId==='string'?input.productId.slice(0,90):'';
   const docs=retrieveKnowledge(question,4);
-  const match=retrieveProducts(question,history,productId,6,items);
+  const match=retrieveProducts(question,turnKind==='product'||turnKind==='support'?[]:history,productId,6,items);
   const answer=await generate(question,history,docs,match.products,match);
   if(!answer.reply)throw Error('EMPTY_REPLY');
   const products=answer.ids.map(id=>items.find(p=>p.id===id)).filter(Boolean).map(safeProduct);
