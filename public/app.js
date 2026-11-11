@@ -695,6 +695,15 @@ function chameaChatbot(){
    :'CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn một thiết kế phù hợp hay tìm món quà ý nghĩa ạ?';
  };
  const refreshGreeting=()=>{welcome.textContent=greetingReply()};
+ // Keep greetings conversational even in the middle of a consultation.
+ const isStandaloneGreeting=value=>/^(?:(?:xin )?chao(?: (?:ban|shop|chamea|em|anh|chi))?(?: (?:a|nha|nhe))?|(?:hi|hii|hello|hey|alo|a lo)(?: (?:shop|ban|chamea))?)$/.test(normalize(value).trim());
+ const conversationalGreeting=()=>{
+  const name=signedInGivenName();
+  const greetedBefore=aiHistory.some(h=>h.role==='model'&&/chào/i.test(h.content));
+  if(greetedBefore)return 'Dạ, CHAMÉA đây ạ! 🌷 Mình rất vui được tiếp tục trò chuyện cùng bạn. Bạn muốn mình hỗ trợ điều gì hôm nay?';
+  return 'Dạ, CHAMÉA chào '+(name||'bạn')+' ạ! 🌷 Rất vui được trò chuyện cùng bạn. Mình có thể hỗ trợ gì thêm cho bạn lúc này?';
+ };
+
  host.chameaRefreshGreeting=refreshGreeting;
  const toggle=open=>{
   win.hidden=!open;
@@ -780,7 +789,7 @@ function chameaChatbot(){
  const answer=(input,topic='')=>{
   const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
   if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
-  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban|chao chamea)[ !.?]*$/.test(q)){say(greetingReply());return}
+  if(isStandaloneGreeting(q)){say(conversationalGreeting());return}
   if(contains(q,['cam on','thank you','thanks'])){say('Rất vui được hỗ trợ bạn! Bạn cần thêm thông tin gì cứ nhắn nhé.');return}
   const intent=chatIntent(q,topic);
   if(intent==='contact'){say('Hotline/Zalo CHAMÉA: 0386.933.508. Email: chamea@gmail.com. Địa chỉ: Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội.','bot','/lien-he','Liên hệ CHAMÉA →');return}
@@ -866,7 +875,7 @@ function chameaChatbot(){
 
  // Optional Gemini + RAG enhancement. The legacy local answer() is retained as a safe fallback.
  const aiHistory=[];
- let aiBusy=false;
+ let aiBusy=false, aiRequestId=0, aiActiveAbort=null, aiActiveTyping=null, aiActivePrompt='';
  const aiEndpoint=()=>String(D.aiChatEndpoint||'').trim();
  const aiPrompts={
   gift:'Mình muốn được tư vấn chọn túi làm quà tặng. Bạn hãy hỏi về người nhận và ngân sách nhé.',
@@ -893,45 +902,66 @@ function chameaChatbot(){
  };
  const answerEnhanced=async(input,topic='')=>{
   const endpoint=aiEndpoint();
-  if(!endpoint){answer(input,topic);return}
-  if(aiBusy){say('Mình đang xử lý tin nhắn trước, bạn chờ một chút nhé.');return}
-  if(!/^https:\/\//i.test(endpoint)){answer(input,topic);return}
   const prompt=String(input||aiPrompts[topic]||'').trim();
   if(!prompt){answer(input,topic);return}
-  // Personalize ordinary greetings locally; never send the customer's account name to AI.
-  if(input&&/^(hi|hello|hey|chao|xin chao|chao shop|chao ban|chao chamea)[ !.?]*$/.test(normalize(prompt).trim())){
-   const response=greetingReply();say(response);
+  if(!endpoint||!/^https:\/\//i.test(endpoint)){answer(input,topic);return}
+  // Latest customer message takes priority. Abort an unfinished older request so
+  // its stale reply can never appear beneath the new message, including a greeting.
+  const requestId=++aiRequestId;
+  if(aiActiveAbort){
+   aiActiveAbort.abort();
+   if(aiActivePrompt)aiHistory.push({role:'user',content:aiActivePrompt});
+  }
+  if(aiActiveTyping)aiActiveTyping.remove();
+  aiActiveAbort=null;aiActiveTyping=null;aiActivePrompt='';
+  aiBusy=false;
+  // Greetings are immediate and personalized only from a signed-in local session;
+  // account names never travel to the Gemini API.
+  if(input&&isStandaloneGreeting(prompt)){
+   const response=conversationalGreeting();
+   say(response);
    aiHistory.push({role:'user',content:prompt},{role:'model',content:response});
    if(aiHistory.length>12)aiHistory.splice(0,aiHistory.length-12);
    return;
   }
-  aiBusy=true;
+  aiBusy=true;aiActivePrompt=prompt;
   const typing=document.createElement('p');
   typing.className='chamea-chat-bubble bot chamea-chat-ai-typing';
-  typing.textContent='CHAMÉA đang tìm mẫu phù hợp…';
+  typing.textContent='CHAMÉA đang tìm thông tin phù hợp…';
   messages.appendChild(typing);messages.scrollTop=messages.scrollHeight;
-  const abort=new AbortController();
+  aiActiveTyping=typing;
+  const abort=new AbortController();aiActiveAbort=abort;
   const timeout=setTimeout(()=>abort.abort(),27000);
   try{
    const path=location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'');
    const current=path.startsWith('/san-pham/')?decodeURIComponent(path.split('/')[2]||''):'';
    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},signal:abort.signal,
     body:JSON.stringify({message:prompt,history:aiHistory.slice(-8),productId:current})});
+   if(requestId!==aiRequestId)return;
    if(!response.ok)throw new Error('AI '+response.status);
    const data=await response.json();
+   if(requestId!==aiRequestId)return;
    if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('Invalid response');
    typing.remove();
    say(data.reply);
    aiCards(data.products);
-   aiHistory.push({role:'user',content:prompt},{role:'model',content:data.reply});
-   if(aiHistory.length>12)aiHistory.splice(0,aiHistory.length-12);
+   if(data.intent==='reset'){
+    aiHistory.length=0;
+    Object.assign(chatState,{budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[]});
+   }else{
+    aiHistory.push({role:'user',content:prompt},{role:'model',content:data.reply});
+    if(aiHistory.length>12)aiHistory.splice(0,aiHistory.length-12);
+   }
   }catch(error){
-   typing.remove();
-   // Do not let backend outages break the existing, functional chatbot.
-   say('Trợ lý AI đang tạm gián đoạn, mình sẽ hỗ trợ bằng thông tin có sẵn trên website nhé.');
+   if(requestId!==aiRequestId)return;
+   // Keep a working local assistant if Gemini cannot answer.
+   say('Trợ lý AI đang tạm gián đoạn. CHAMÉA sẽ hỗ trợ bạn bằng thông tin có sẵn trên website nhé.');
    answer(input,topic);
   }finally{
-   clearTimeout(timeout);aiBusy=false;
+   clearTimeout(timeout);typing.remove();
+   if(requestId===aiRequestId){
+    aiBusy=false;aiActiveAbort=null;aiActiveTyping=null;aiActivePrompt='';
+   }
   }
  };
  host.querySelectorAll('[data-chat-topic]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.textContent.trim(),'user');answerEnhanced('',btn.dataset.chatTopic)}));
