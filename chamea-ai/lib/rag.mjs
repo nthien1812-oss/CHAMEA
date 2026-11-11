@@ -43,6 +43,21 @@ function findExplicitFamily(q,all){
 function pickColor(q){
  return COLORS.find(c=>has(q,c))||'';
 }
+// Recognise brief Vietnamese gift requests and carry the recipient across short follow-ups.
+const giftWords=/\b(tang|qua tang|qua cho|chon qua|mua qua|mua tui cho|tim tui cho|tui tang|tui cho)\b/;
+export function giftProfile(question,history=[]){
+ const recent=(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-6).map(x=>x.content).join(' ');
+ const combined=normalize(recent+' '+question);
+ const gift=giftWords.test(combined) || /\b(cho me|cho ma|tang me|tang ma|tang vo|tang ban gai)\b/.test(combined);
+ const recipient=/\b(me|ma|mom|mama)\b/.test(combined)?'mẹ':/\b(bo|ba|cha)\b/.test(combined)?'bố':/\b(vo)\b/.test(combined)?'vợ':/\b(ban gai|nguoi yeu)\b/.test(combined)?'bạn gái':/\b(chi gai|chi)\b/.test(combined)?'chị':/\b(ban than)\b/.test(combined)?'bạn thân':'';
+ const budget=budgetFrom(question)||budgetFrom(recent);
+ const style=[['thanh lich','thanh lịch'],['toi gian','tối giản'],['nu tinh','nữ tính'],['nhe nhang','nhẹ nhàng'],['don gian','đơn giản'],['ca tinh','cá tính'],['noi bat','nổi bật'],['tre trung','trẻ trung']].find(x=>has(combined,x[0]))?.[1]||'';
+ const shape=['tote','deo vai','deo cheo','xach tay'].find(x=>has(combined,x))||'';
+ const color=pickColor(combined);
+ const use=['di lam','di choi','di hoc','hen ho','du tiec','hang ngay','di cho'].find(x=>has(combined,x))||'';
+ return {gift,recipient,budget,style,shape,color,use};
+}
+
 function productScore(p,q,tokens,filters,ctxId){
  const hay=normalize([p.name,p.family,p.color,p.shape,p.desc,...(p.styles||[]),...(p.uses||[])].join(' '));
  let score=0;
@@ -54,12 +69,13 @@ function productScore(p,q,tokens,filters,ctxId){
  if(filters.color && has(p.color,filters.color))score+=7;
  if(filters.shape && has(p.shape,filters.shape))score+=7;
  if(filters.use && (p.uses||[]).some(u=>has(u,filters.use)))score+=6;
- if(filters.budget && Number(p.price)*0.8<=filters.budget)score+=4;
+ if(filters.budget && Number(p.price)<=filters.budget)score+=4;
+ if(filters.style&&(p.styles||[]).some(x=>has(x,filters.style)||has(filters.style,x)))score+=10;
  return score;
 }
 export function retrieveProducts(question,history=[],ctxId='',limit=6,list=catalog){
  const q=normalize(question);
- const recent=history.filter(x=>x.role==='user').slice(-2).map(x=>x.content).join(' ');
+ const recent=history.filter(x=>x.role==='user').slice(-6).map(x=>x.content).join(' ');
  const combined=normalize(recent+' '+question);
  const family=findExplicitFamily(combined,list);
  const color=pickColor(combined);
@@ -67,9 +83,10 @@ export function retrieveProducts(question,history=[],ctxId='',limit=6,list=catal
  const budget=budgetFrom(question)||budgetFrom(recent);
  const shape=['tote','deo vai','deo cheo','xach tay'].find(x=>has(combined,x))||'';
  const use=['di lam','di choi','di hoc','hen ho','du tiec'].find(x=>has(combined,x))||'';
- const filters={budget,color:negative?null:color,excludeColor:negative?.[1]||null,shape,use,family};
+ const style=giftProfile(question,history).style;
+ const filters={budget,color:negative?null:color,excludeColor:negative?.[1]||null,shape,use,style,family};
  const all=list.filter(p=>p?.id&&p.name);
- const strict=all.filter(p=>(!budget||Number(p.price)*.8<=budget)&&(!filters.color||has(p.color,filters.color))&&(!filters.excludeColor||!has(p.color,filters.excludeColor))&&(!shape||has(p.shape,shape))&&(!family||normalize(p.family)===normalize(family)));
+ const strict=all.filter(p=>(!budget||Number(p.price)<=budget)&&(!filters.color||has(p.color,filters.color))&&(!filters.excludeColor||!has(p.color,filters.excludeColor))&&(!shape||has(p.shape,shape))&&(!family||normalize(p.family)===normalize(family)));
  const exact=strict.length>0;
  const pool=exact?strict:all.filter(p=>!filters.excludeColor||!has(p.color,filters.excludeColor));
  const tokens=words(combined);
@@ -77,7 +94,7 @@ export function retrieveProducts(question,history=[],ctxId='',limit=6,list=catal
  const named=Boolean(family||ctxId||all.some(p=>has(q,p.name)));
  const dedup=new Set();
  const picks=ranked.filter(({p})=>{if(!named && dedup.has(p.family))return false;dedup.add(p.family);return true}).slice(0,limit).map(x=>x.p);
- return {products:picks,filters,exact,hasConstraints:!!(budget||color||shape||family||use)};
+ return {products:picks,filters,exact,hasConstraints:!!(budget||color||shape||family||use||style)};
 }
 export function safeProduct(p,discount=.2){
  const p0=Number(p.price||0),sale=Math.round(p0*(1-discount));
