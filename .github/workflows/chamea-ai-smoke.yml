@@ -1,0 +1,43 @@
+name: Smoke test public CHAMÉA Gemini chatbot
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/chamea-ai-smoke.yml"
+permissions:
+  contents: read
+jobs:
+  test-public-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify unauthenticated Production health and a real Gemini conversation
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          const base='https://chamea-ai.vercel.app/api/chat';
+          const health=await fetch(base,{redirect:'manual'});
+          console.log('Unauthenticated GET HTTP:',health.status);
+          assert.equal(health.status,200,'Public API health must respond without Vercel login');
+          const h=await health.json();
+          assert.equal(h.status,'ready');
+          assert.ok(h.catalogCount>=20);
+          const origin='https://nthien1812-oss.github.io';
+          const response=await fetch(base,{
+            method:'POST',
+            redirect:'manual',
+            headers:{'Origin':origin,'Content-Type':'application/json'},
+            body:JSON.stringify({
+              message:'Mình đang tìm túi màu hồng, ngân sách khoảng 800k, bạn gợi ý mẫu nào?',
+              history:[]
+            })
+          });
+          console.log('Public Gemini POST HTTP:',response.status);
+          assert.equal(response.headers.get('access-control-allow-origin'),origin);
+          const reply=await response.json();
+          if(!response.ok)console.log('Safe API error code:',reply.error||'unknown');
+          assert.equal(response.status,200);
+          assert.ok(typeof reply.reply==='string'&&reply.reply.length>25,'Real Gemini text is required');
+          assert.ok(Array.isArray(reply.products));
+          console.log('Gemini reply received, characters:',reply.reply.length,'products:',reply.products.length);
+          NODE
