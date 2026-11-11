@@ -686,7 +686,7 @@ function chameaChatbot(){
  const say=(message,who='bot',url='',label='')=>{const p=document.createElement('p');p.className='chamea-chat-bubble '+who;p.textContent=message;if(url){const a=document.createElement('a');a.href=url;a.textContent=label;p.appendChild(document.createElement('br'));p.appendChild(a)}messages.appendChild(p);messages.scrollTop=messages.scrollHeight};
 
  // Lightweight conversational recommender: reads the actual live catalog, no external API.
- const chatState={budget:null,color:'',shape:'',use:'',recipient:'',family:'',last:[],turns:0};
+ const chatState={budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[],turns:0};
  const normalize=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
  const contains=(q,phrases)=>phrases.some(s=>q.includes(normalize(s)));
  const price=n=>Number(n||0).toLocaleString('vi-VN')+' đ';
@@ -701,7 +701,7 @@ function chameaChatbot(){
  };
  const showMatches=()=>{
   const result=chooseMatches();let items=result.items;
-  if(chatState.use){const use=normalize(chatState.use);items=items.slice().sort((a,b)=>Number((b.uses||[]).some(x=>normalize(x).includes(use)))-Number((a.uses||[]).some(x=>normalize(x).includes(use))))}
+  if(chatState.use||chatState.style){const use=normalize(chatState.use),style=normalize(chatState.style);const score=p=>Number(!!use&&(p.uses||[]).some(x=>normalize(x).includes(use)))*3+Number(!!style&&(p.styles||[]).some(x=>normalize(x).includes(style)||style.includes(normalize(x))))*5;items=items.slice().sort((a,b)=>score(b)-score(a))}
   const seen=new Set();items=items.filter(p=>{const key=p.family||p.id;if(seen.has(key))return false;seen.add(key);return true}).slice(0,3);
   if(!items.length){say('Mình chưa tìm thấy mẫu phù hợp trong danh sách sản phẩm hiện tại. Bạn thử đổi ngân sách hoặc kiểu dáng nhé.','bot','/tui-xach','Xem toàn bộ túi xách →');return}
   say(result.relaxed?'Chưa có mẫu khớp tất cả tiêu chí. Đây là vài thiết kế gần nhất trong danh mục CHAMÉA:':'Mình tìm được những mẫu này trong danh mục CHAMÉA:');
@@ -732,13 +732,13 @@ function chameaChatbot(){
   if(contains(q,['thanh toan','chuyen khoan','cod','quet qr','tra tien']))return 'payment';
   if(contains(q,['huong dan mua','dat hang the nao','cach mua hang','mua nhu the nao']))return 'purchase';
   if(isMaterial(q)||isPrice(q)||isColors(q)||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi','kich thuoc','bao nhieu cm','nang bao nhieu','trong luong','bao quan','ve sinh','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau','gia bao nhieu','bao nhieu mau','co giam gia','khuyen mai']))return 'detail';
-  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua']))return 'gift';
+  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua','mua tui tang','tui tang','tang me','tang ma','tang cho me','tang vo','tang ban gai','cho me','tui cho me'])||(chatState.turns>1&&['me','ma','vo','ban gai'].includes(q)))return 'gift';
   if(topic==='bags'||contains(q,['tu van tui','goi y tui','tim tui','tui nao','tui xach','san pham','re nhat','bo suu tap','so sanh tui','di lam','di choi','hen ho','tote','deo vai','deo cheo','xach tay']))return 'browse';
   return 'unknown';
  };
  const answer=(input,topic='')=>{
   const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
-  if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
+  if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
   if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban)[ !.]*$/.test(q)){say('CHAMÉA xin chào! Bạn muốn chọn túi, tìm quà hay hỏi về sản phẩm nào ạ?');return}
   if(contains(q,['cam on','thank you','thanks'])){say('Rất vui được hỗ trợ bạn! Bạn cần thêm thông tin gì cứ nhắn nhé.');return}
   const intent=chatIntent(q,topic);
@@ -758,6 +758,7 @@ function chameaChatbot(){
   const shape=[['tote','tote'],['deo vai','deo vai'],['xach tay','xach tay'],['deo cheo','deo cheo'],['hobo','hobo']].find(x=>q.includes(x[0]));
   const use=['di lam','di choi','hen ho','di hoc','du tiec'].find(s=>q.includes(s))||'';
   const budget=findPrice(q);
+  const style=['thanh lich','toi gian','nu tinh','ca tinh','noi bat','nhe nhang','don gian'].find(x=>phrase(q,x))||'';
   // Product detail questions never inherit a stale color/family filter from unrelated browsing.
   if(isComparison(q)){
    const namedFamilies=families.filter(f=>phrase(q,f)).slice(0,2);
@@ -783,13 +784,18 @@ function chameaChatbot(){
    if(contains(q,['co giam gia','khuyen mai']))parts.push('Ưu đãi hiện tại vui lòng xem tại trang sản phẩm để biết giá hiển thị mới nhất.');
    say(parts.join('\n')||'Mình chưa có đủ dữ liệu để kết luận chính xác về '+selected.family+'. Bạn có thể xem thông tin sản phẩm hoặc hỏi CHAMÉA trực tiếp.','bot','/san-pham/'+encodeURIComponent(selected.id),'Xem '+selected.family+' →');return
   }
-  if(intent==='gift'){
+  if(intent==='gift'||(chatState.recipient&&intent==='unknown'&&(budget||color||style||use||shape||contains(q,['khong biet','tuy ban','ban chon'])))){
    if(budget)chatState.budget=budget;
    if(color)chatState.color=color;
-   const recipient=hasAny(q,['me','cho me','tang me'])?'mẹ':hasAny(q,['ban gai','nguoi yeu'])?'bạn gái':hasAny(q,['vo','cho vo'])?'vợ':hasAny(q,['chi','em gai'])?'người thân':'';
+   if(shape)chatState.shape=shape[1];
+   if(use)chatState.use=use;
+   if(style)chatState.style=style;
+   const recipient=hasAny(q,['me','ma','cho me','tang me'])?'mẹ':hasAny(q,['ban gai','nguoi yeu'])?'bạn gái':hasAny(q,['vo','cho vo'])?'vợ':hasAny(q,['chi','em gai'])?'người thân':'';
    if(recipient)chatState.recipient=recipient;
-   if(chatState.budget||chatState.color){say('Mình gợi ý vài mẫu có trong danh mục'+(chatState.recipient?' để tặng '+chatState.recipient:'')+' nhé.');showMatches();return}
-   say('Bạn định tặng ai và ngân sách khoảng bao nhiêu ạ? Mình sẽ lọc những mẫu phù hợp thay vì giới thiệu ngẫu nhiên.','bot','/goi-y-chon-qua','Thử gợi ý chọn quà →');return
+   if(!chatState.recipient){say('CHAMÉA rất vui được giúp bạn chọn quà! Bạn định tặng ai ạ?');return}
+   if(!chatState.budget){say('Dạ, CHAMÉA rất vui được giúp bạn chọn túi tặng '+chatState.recipient+'! 🌷 Bạn dự định dành khoảng bao nhiêu tiền cho món quà ạ?');return}
+   if(!chatState.style&&!chatState.color&&!chatState.shape&&!chatState.use&&!contains(q,['khong biet','tuy ban','ban chon'])){say('Với ngân sách khoảng '+price(chatState.budget)+', '+(chatState.recipient==='mẹ'?'mẹ bạn':'người nhận')+' thích phong cách thanh lịch, đơn giản hay nổi bật hơn ạ?');return}
+   say('Mình sẽ gợi ý một vài mẫu trong danh mục CHAMÉA phù hợp nhu cầu tặng '+chatState.recipient+' nhé.');showMatches();return
   }
   if(mentioned&&intent==='unknown'){
    chatState.last=[mentioned.id];
