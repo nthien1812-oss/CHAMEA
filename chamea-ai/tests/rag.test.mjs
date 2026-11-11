@@ -147,3 +147,45 @@ test('API teacher-gifting first turn asks about budget, never recipient again',a
   }
  }finally{if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;}
 });
+
+test('polished consultation for 500k never implies a matching bag exists without evidence',async()=>{
+ const old=process.env.GEMINI_API_KEY;process.env.GEMINI_API_KEY='mock';
+ const ask=async (message,history,id)=>{
+  const req=new Request('https://mock.vercel.app/api/chat',{
+   method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':id},
+   body:JSON.stringify({message,history})
+  });
+  const r=await handler.fetch(req);return {status:r.status,...await r.json()};
+ };
+ try{
+  assert.equal(budgetFrom('500'),500000);
+  assert.equal(budgetFrom('Ngân sách 500'),500000);
+  const a=await ask('Mình muốn mua túi tặng cô giáo',[],'luxury-a');
+  assert.equal(a.status,200);assert.match(a.reply,/cô giáo/i);assert.match(a.reply,/bao nhiêu/i);
+  const h=[{role:'user',content:'Mình muốn mua túi tặng cô giáo'},{role:'model',content:a.reply}];
+  const b=await ask('500',h,'luxury-b');
+  assert.equal(b.status,200);assert.equal(b.needsMoreInfo,true);
+  assert.match(b.reply,/500\.000đ/);assert.match(b.reply,/chưa có thiết kế/i);
+  assert.doesNotMatch(b.reply,/đã có thể lọc|lọc túi|người bạn muốn tặng|ban hay hoi ve/i);
+  assert.equal(b.products.length,0);
+  assert.doesNotMatch(b.reply,/ngân sách thấp|giá rẻ/i);
+ }finally{if(old===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=old}
+});
+test('random recipient phrase is not repeated as a person',()=>{
+ assert.equal(recipientFromText('Tôi muốn mua túi tặng bạn hay hỏi về'),'một người bạn');
+ assert.equal(recipientFromText('Bạn hay hỏi về là gì'),'');
+ const hist=[{role:'user',content:'Muốn tặng cô giáo'},{role:'model',content:'Bạn dự định dành bao nhiêu?'},{role:'user',content:'500k'}];
+ const p=giftProfile('Bạn hay hỏi về là gì',hist);
+ assert.equal(p.recipient,'cô giáo');
+ assert.equal(p.budget,500000);
+});
+test('storefront chat greeting is conditional on existing demo session and avoids transmitting a name',async()=>{
+ const {readFile}=await import('node:fs/promises');
+ const source=await readFile(new URL('../../public/app.js',import.meta.url),'utf8');
+ assert.match(source,/const signedInGivenName=\(\)=>/);
+ assert.match(source,/const session=demoSession\(\)/);
+ assert.match(source,/const account=demoAccounts\(\)\[session\.email\]/);
+ assert.match(source,/if\(!session\|\|typeof session\.email!=='string'\)return ''/);
+ assert.match(source,/welcome\.textContent=greetingReply\(\)/);
+ assert.match(source,/body:JSON\.stringify\(\{message:prompt,history:aiHistory\.slice\(-8\),productId:current\}\)/);
+});
