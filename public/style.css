@@ -2509,8 +2509,8 @@ html.chamea-pattern-on #main .chamea-film-wide{
 /* CHAMÉA concierge contact icon */
 .chamea-chat-launcher .chamea-concierge-icon{
  display:block;
- width:31px;
- height:31px;
+ width:35px;
+ height:35px;
  overflow:visible;
  filter:drop-shadow(0 1px 1px rgba(0,0,0,.08));
 }
@@ -2524,6 +2524,6 @@ html.chamea-pattern-on #main .chamea-film-wide{
  color:#fff8f4;
 }
 @media(max-width:700px){
- .chamea-chat-launcher .chamea-concierge-icon{width:26px;height:26px}
+ .chamea-chat-launcher .chamea-concierge-icon{width:29px;height:29px}
  .chamea-chat-launcher .chamea-chat-orbit small{font-size:7px}
 }
