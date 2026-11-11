@@ -81,4 +81,19 @@ jobs:
           assert.doesNotMatch(politeBudget.reply,/đã có thể lọc|lọc túi|ban hay hoi ve|người bạn muốn tặng/i);
           assert.equal(politeBudget.products.length,0);
           console.log('Polished 500k reply passed:',politeBudget.reply.length);
+          const interrupted=[{role:'user',content:'t muốn mua túi tặng mẹ'},{role:'model',content:first.reply}];
+          const greeting=await ask('CHÀO',interrupted);
+          assert.match(greeting.reply,/chào/i);
+          assert.doesNotMatch(greeting.reply,/ngân sách|bao nhiêu|dành khoảng/i);
+          assert.notEqual(greeting.reply,first.reply);
+          assert.deepEqual(greeting.products,[]);
+          const secondGreeting=await ask('Xin chào shop',[...interrupted,{role:'user',content:'CHÀO'},{role:'model',content:greeting.reply}]);
+          assert.match(secondGreeting.reply,/CHAMÉA|chào/i);
+          assert.notEqual(secondGreeting.reply,greeting.reply);
+          const thanked=await ask('Cảm ơn',interrupted);
+          assert.doesNotMatch(thanked.reply,/ngân sách|bao nhiêu/i);
+          const changedTopic=await ask('Mẫu Nina làm bằng chất liệu gì?',interrupted);
+          assert.ok(changedTopic.reply.length>25);
+          assert.notEqual(changedTopic.reply,first.reply);
+          console.log('Greeting and changed-topic smoke test passed.');
           NODE
