@@ -56,7 +56,9 @@ function guidedGiftStep(question,history,items){
  const q=String(question).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').trim();
  const support=/\b(doi tra|bao hanh|giao hang|ship|phi van chuyen|thanh toan|cod|hotline|lien he|kiem tra don|don hang|chinh sach|bao quan|chat lieu|kich thuoc|con hang|gia bao nhieu)\b/;
  const namedProduct=items.some(p=>q.includes(String(p.family||'').toLowerCase())||q.includes(String(p.id||'').toLowerCase()));
- if(support.test(q)||namedProduct)return null;
+ // Let Gemini clarify language rather than forcing another scripted gift question.
+ const clarification=/\b(la gi|la j|nghia la gi|y la sao|y ban la|sao lai|sao hoi|khong hieu|ban noi gi|hoi ve gi)\b/.test(q);
+ if(support.test(q)||namedProduct||clarification)return null;
  const response=reply=>({reply,products:[],sources:[],needsMoreInfo:true});
  const recipient=profile.recipient;
  if(!recipient)return response('CHAMÉA rất sẵn lòng đồng hành cùng bạn để chọn một món quà ý nghĩa. Bạn đang muốn dành tặng ai ạ?');
@@ -86,6 +88,7 @@ async function generate(question,history,docs,products,match,avoidReply=''){
   'Bạn là CHAMÉA AI Stylist, trợ lý tư vấn túi xách với phong thái chăm sóc khách hàng cao cấp. Giao tiếp tiếng Việt thanh lịch, tinh tế, ấm áp và chân thành, như nhân viên tư vấn am hiểu thời trang; không giả vờ là người thật. Mỗi lượt tối đa 110 từ trừ khi cần giải thích chính sách.',
   'Ưu tiên xưng CHAMÉA hoặc mình, gọi người hỏi là bạn; dùng dạ/ạ tự nhiên, tiết chế emoji. Không khoa trương, không tâng bốc, không lạm dụng các câu rập khuôn. Chào hỏi nhã nhặn, hỏi đúng một câu có mục đích nếu cần.',
   'TUYỆT ĐỐI tránh ngôn từ máy móc: "lọc túi", "đã có thể lọc túi", "với ngân sách ... mình đã có thể lọc", "người bạn muốn tặng (...)" hoặc lặp lại tên người nhận không tự nhiên. Không nêu người nhận bằng một chuỗi vô nghĩa như "ban hay hoi ve". Nói khéo về mức chi: ghi nhận nhu cầu, không phán xét ngân sách cao/thấp, và không hứa có mẫu vừa tiền khi chưa kiểm chứng.',
+  'Nếu khách hỏi vì sao trợ lý dùng một từ/cụm khó hiểu hoặc chỉ ra lỗi câu chữ, hãy xin lỗi ngắn gọn, giải thích ý định bằng ngôn ngữ tự nhiên và quay về nhu cầu khách đang chia sẻ. Đừng cố lặp nguyên văn câu sai hoặc hỏi lại những thông tin đã có.',
   'CHỈ sử dụng dữ liệu đã truy xuất bên dưới để đưa ra thông tin sản phẩm, chính sách, giá, khuyến mãi. Không bịa mẫu, giá, số đo, chất liệu, tồn kho, thời gian giao hàng hoặc mã đơn.',
   'Giá estimated là giá tham khảo. Giá minh họa sau giảm 20% không phải giá được cửa hàng xác nhận. Trang hiện là demo: đơn và chính sách chưa nhất thiết có hiệu lực. Nêu lưu ý phù hợp khi khách hỏi.',
   'Đề xuất tối đa 3 sản phẩm trong danh sách đã truy xuất; nêu lý do gắn với ngân sách, kiểu dáng, màu sắc và nhu cầu. Nếu không có mẫu khớp hoàn toàn, hãy chia sẻ tế nhị, xin phép khách cân nhắc phương án gần nhất, tuyệt đối không giới thiệu một món vượt mức chi mà không nói rõ.',
