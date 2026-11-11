@@ -38,7 +38,7 @@ function parseOutput(raw,possible){
 }
 async function generate(question,history,docs,products,match){
  if(!process.env.GEMINI_API_KEY)throw Error('NO_API_KEY');
- const model=process.env.GEMINI_MODEL||'gemini-2.5-flash';
+ const model=process.env.GEMINI_MODEL||'gemini-3.5-flash-lite';
  if(!/^gemini-[A-Za-z0-9_.-]+$/.test(model))throw Error('BAD_MODEL');
  const instructions=[
   'Bạn là CHAMÉA AI Stylist, trợ lý bán túi xách bằng tiếng Việt. Trò chuyện tự nhiên, lịch thiệp, súc tích, thân thiện; mỗi lượt tối đa 140 từ trừ khi cần giải thích.',
