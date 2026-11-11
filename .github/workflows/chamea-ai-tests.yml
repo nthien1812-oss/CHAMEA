@@ -13,6 +13,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Check storefront JavaScript syntax
+        run: |
+          node --check public/app.js
+          node --check public/data.js
       - name: Syntax check and RAG tests
         working-directory: chamea-ai
         run: |
