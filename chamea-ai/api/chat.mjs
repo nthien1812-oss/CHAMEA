@@ -97,8 +97,10 @@ async function handler(req){
   const products=answer.ids.map(id=>items.find(p=>p.id===id)).filter(Boolean).map(safeProduct);
   return respond({reply:answer.reply,products,sources:docs.filter(d=>d.id!=='demo').slice(0,3).map(d=>({title:d.title,url:d.source}))},200,origin);
  }catch(e){
-  // Avoid leaking secrets and raw provider responses.
-  return respond({error:'AI_TEMPORARILY_UNAVAILABLE',message:'Trợ lý AI đang tạm gián đoạn. Bạn có thể thử lại hoặc liên hệ CHAMÉA.'},502,origin);
+  // Report only sanitized error categories: never log customer text or provider credentials.
+  const code=String(e?.message||'').startsWith('GEMINI_HTTP_')?String(e.message):'AI_TEMPORARILY_UNAVAILABLE';
+  console.warn('CHAMEA_AI_ERROR',code);
+  return respond({error:code,message:'Trợ lý AI đang tạm gián đoạn. Bạn có thể thử lại hoặc liên hệ CHAMÉA.'},502,origin);
  }
 }
 
