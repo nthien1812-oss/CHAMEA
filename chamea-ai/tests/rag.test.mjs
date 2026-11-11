@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct} from '../lib/rag.mjs';
+import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct,giftProfile} from '../lib/rag.mjs';
 import handler from '../api/chat.mjs';
 test('knowledge and catalog are present',()=>{
  assert.ok(catalog.length>=20);
@@ -58,5 +58,45 @@ test('Gemini output product ids are validated against retrieved catalog',async()
  }finally{
   globalThis.fetch=oldFetch;
   if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;
+ }
+});
+
+test('brief gift inquiry understands recipient and progressively gathers preferences',()=>{
+ const first=giftProfile('T muốn mua túi tặng mẹ',[]);
+ assert.equal(first.gift,true);assert.equal(first.recipient,'mẹ');assert.equal(first.budget,null);
+ const history=[{role:'user',content:'T muốn mua túi tặng mẹ'},{role:'model',content:'Bạn dự định dành bao nhiêu?'},{role:'user',content:'Dưới 800k'}];
+ const second=giftProfile('Mẹ thích phong cách thanh lịch',history);
+ assert.equal(second.gift,true);assert.equal(second.recipient,'mẹ');assert.equal(second.budget,800000);assert.equal(second.style,'thanh lịch');
+ const matches=retrieveProducts('Mẹ thích phong cách thanh lịch',history,'',6);
+ assert.ok(matches.products.length>0);
+ assert.ok(matches.products.every(p=>p.price<=800000),'Do not count unconfirmed discounts toward a stated budget');
+});
+test('short gift chat asks budget first, style next, then calls Gemini with context',async()=>{
+ const originalKey=process.env.GEMINI_API_KEY,originalFetch=globalThis.fetch;
+ process.env.GEMINI_API_KEY='mock-test-key';
+ let geminiCalls=0;
+ globalThis.fetch=async url=>{
+  if(String(url).includes('/products.json'))return new Response(JSON.stringify(catalog),{status:200});
+  geminiCalls++;
+  return new Response(JSON.stringify({candidates:[{content:{parts:[{text:JSON.stringify({reply:'Mẫu túi này phù hợp với phong cách thanh lịch của mẹ bạn.',productIds:[]})}]}}]}),{status:200});
+ };
+ const ask=async(message,history,ip)=>{
+  const request=new Request('https://example.vercel.app/api/chat',{method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':ip},body:JSON.stringify({message,history})});
+  const response=await handler.fetch(request);
+  return {status:response.status,...await response.json()};
+ };
+ try{
+  const first=await ask('t muốn mua túi tặng mẹ',[],'gift-unit-client-a');
+  assert.equal(first.status,200);assert.match(first.reply,/mẹ/i);assert.match(first.reply,/bao nhiêu tiền/i);
+  assert.equal(first.products.length,0);assert.equal(geminiCalls,0);
+  const history=[{role:'user',content:'t muốn mua túi tặng mẹ'},{role:'model',content:first.reply}];
+  const second=await ask('dưới 800k',history,'gift-unit-client-b');
+  assert.equal(second.status,200);assert.match(second.reply,/phong cách/i);assert.equal(second.products.length,0);assert.equal(geminiCalls,0);
+  history.push({role:'user',content:'dưới 800k'},{role:'model',content:second.reply});
+  const third=await ask('mẹ thích thanh lịch',history,'gift-unit-client-c');
+  assert.equal(third.status,200);assert.match(third.reply,/thanh lịch/i);assert.equal(geminiCalls,1);
+ }finally{
+  globalThis.fetch=originalFetch;
+  if(originalKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=originalKey;
  }
 });
