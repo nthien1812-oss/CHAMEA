@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct,giftProfile,recipientFromText} from '../lib/rag.mjs';
+import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct,giftProfile,recipientFromText,currentTurnKind} from '../lib/rag.mjs';
 import handler from '../api/chat.mjs';
 test('knowledge and catalog are present',()=>{
  assert.ok(catalog.length>=20);
@@ -188,4 +188,112 @@ test('storefront chat greeting is conditional on existing demo session and avoid
  assert.match(source,/if\(!session\|\|typeof session\.email!=='string'\)return ''/);
  assert.match(source,/welcome\.textContent=greetingReply\(\)/);
  assert.match(source,/body:JSON\.stringify\(\{message:prompt,history:aiHistory\.slice\(-8\),productId:current\}\)/);
+});
+
+
+test('current-message intent takes priority over old gift context',()=>{
+ for(const q of ['CHÀO','chào shop','Xin chào','Hi','Hello','Alo','chào bạn ạ'])assert.equal(currentTurnKind(q),'greeting',q);
+ for(const q of ['Cảm ơn','thank you','Thanks'])assert.equal(currentTurnKind(q),'thanks',q);
+ for(const q of ['Tạm biệt','Bye'])assert.equal(currentTurnKind(q),'goodbye',q);
+ for(const q of ['Bắt đầu lại','xóa lọc'])assert.equal(currentTurnKind(q),'reset',q);
+ assert.equal(currentTurnKind('Mẫu Nina làm bằng gì?'),'product');
+ assert.equal(currentTurnKind('Cho hỏi chính sách đổi trả?'),'support');
+ assert.equal(currentTurnKind('Mình muốn tìm túi đi làm'),'product');
+ assert.equal(currentTurnKind('Mình muốn tặng cô giáo'),'gift');
+});
+test('standalone greeting interrupts an earlier gift consultation without copying the budget prompt',async()=>{
+ const oldKey=process.env.GEMINI_API_KEY,previousFetch=globalThis.fetch;
+ process.env.GEMINI_API_KEY='unit-test-key';
+ let calls=0;
+ globalThis.fetch=async()=>{calls++;throw Error('Gemini should never be called for standalone greeting')};
+ const hist=[{role:'user',content:'T muốn mua túi tặng mẹ'},{role:'model',content:'Bạn dự định dành khoảng bao nhiêu cho món quà này ạ?'}];
+ const ask=async(message,history,ip)=>{
+  const req=new Request('https://localhost/api/chat',{method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':ip},body:JSON.stringify({message,history})});
+  const res=await handler.fetch(req);
+  return {status:res.status,...await res.json()};
+ };
+ try{
+  const first=await ask('CHÀO',hist,'social-greeting-1');
+  assert.equal(first.status,200);
+  assert.equal(first.intent,'greeting');
+  assert.match(first.reply,/chào/i);
+  assert.doesNotMatch(first.reply,/ngân sách|bao nhiêu|dành khoảng/i);
+  assert.notEqual(first.reply,hist.at(-1).content);
+  assert.deepEqual(first.products,[]);
+  const second=await ask('Xin chào shop',[...hist,{role:'user',content:'CHÀO'},{role:'model',content:first.reply}],'social-greeting-2');
+  assert.equal(second.intent,'greeting');
+  assert.notEqual(second.reply,first.reply,'Repeated greetings should not be an exact duplicate');
+  const thanks=await ask('Cảm ơn',hist,'social-thanks');
+  assert.equal(thanks.intent,'thanks');
+  assert.doesNotMatch(thanks.reply,/ngân sách|bao nhiêu/i);
+  const bye=await ask('Tạm biệt',hist,'social-bye');
+  assert.equal(bye.intent,'goodbye');
+  const reset=await ask('Bắt đầu lại',hist,'social-reset');
+  assert.equal(reset.intent,'reset');
+  assert.equal(calls,0);
+ }finally{
+  globalThis.fetch=previousFetch;
+  if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;
+ }
+});
+test('a new product or policy question overrides the previous gift budget flow',async()=>{
+ const oldKey=process.env.GEMINI_API_KEY,previousFetch=globalThis.fetch;
+ process.env.GEMINI_API_KEY='unit-test-key';
+ let modelCalls=0;
+ const contexts=[];
+ globalThis.fetch=async(url,opts)=>{
+  if(String(url).includes('generativelanguage')){
+   modelCalls++;
+   const req=JSON.parse(opts.body);
+   const prompt=JSON.parse(req.contents[0].parts[0].text);
+   contexts.push(prompt);
+   const content=JSON.stringify({reply:prompt.currentMessageIntent==='support'?'Thông tin đổi trả cần cửa hàng xác nhận.':'Mình có thể tư vấn chi tiết mẫu Nina.',productIds:[]});
+   return new Response(JSON.stringify({candidates:[{content:{parts:[{text:content}]}}]}),{status:200});
+  }
+  return new Response(JSON.stringify(catalog),{status:200});
+ };
+ const hist=[{role:'user',content:'T muốn mua túi tặng mẹ'},{role:'model',content:'Bạn dự định dành khoảng bao nhiêu cho món quà này ạ?'}];
+ const ask=async(msg,ip)=>{
+  const req=new Request('https://localhost/api/chat',{method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':ip},body:JSON.stringify({message:msg,history:hist})});
+  const res=await handler.fetch(req);
+  return {status:res.status,...await res.json()};
+ };
+ try{
+  const product=await ask('Mẫu Nina làm bằng gì?','new-topic-product');
+  assert.equal(product.status,200);assert.match(product.reply,/Nina/);
+  const support=await ask('Cho hỏi chính sách đổi trả?','new-topic-policy');
+  assert.equal(support.status,200);assert.match(support.reply,/đổi trả/);
+  assert.equal(modelCalls,2);
+  assert.deepEqual(contexts.map(x=>x.currentMessageIntent),['product','support']);
+  assert.ok(contexts.every(x=>x.giftConsultation===null));
+ }finally{
+  globalThis.fetch=previousFetch;
+  if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;
+ }
+});
+test('different customer question cannot receive a verbatim copy of previous Gemini reply',async()=>{
+ const oldKey=process.env.GEMINI_API_KEY,oldFetch=globalThis.fetch;
+ process.env.GEMINI_API_KEY='unit-test-key';
+ let calls=0;
+ globalThis.fetch=async(url)=>{
+  if(String(url).includes('generativelanguage')){
+   calls++;
+   const text=JSON.stringify({reply:calls===1?'Bạn dự định dành khoảng bao nhiêu cho món quà ạ?':'Mẫu Nina có một số chi tiết được mô tả trong danh mục; bạn có thể xem trang sản phẩm để biết thêm.',productIds:[]});
+   return new Response(JSON.stringify({candidates:[{content:{parts:[{text}]}}]}),{status:200});
+  }
+  return new Response(JSON.stringify(catalog),{status:200});
+ };
+ try{
+  const history=[{role:'user',content:'Tôi muốn mua túi tặng mẹ'},{role:'model',content:'Bạn dự định dành khoảng bao nhiêu cho món quà ạ?'}];
+  const req=new Request('https://localhost/api/chat',{method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':'retry-stale-reply'},body:JSON.stringify({message:'Nina làm bằng chất liệu gì?',history})});
+  const res=await handler.fetch(req);
+  const out=await res.json();
+  assert.equal(res.status,200);
+  assert.equal(calls,2);
+  assert.match(out.reply,/Nina/);
+  assert.doesNotMatch(out.reply,/dành khoảng bao nhiêu/i);
+ }finally{
+  globalThis.fetch=oldFetch;
+  if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;
+ }
 });
