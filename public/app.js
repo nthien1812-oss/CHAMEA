@@ -655,7 +655,7 @@ function chameaChatbot(){
  const existing=document.getElementById('chamea-chatbot');
  if(existing)return;
  const host=document.createElement('aside');host.id='chamea-chatbot';host.className='chamea-chatbot';
- host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Bạn đang tìm túi xách, chọn quà hay cần hỗ trợ đặt hàng?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động từ dữ liệu tham khảo; giá và chính sách cần được cửa hàng xác nhận.</p></section>`;
+ host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn túi xách hay tìm một món quà ý nghĩa ạ?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động từ dữ liệu tham khảo; giá và chính sách cần được cửa hàng xác nhận.</p></section>`;
  document.body.appendChild(host);
  if(D.aiChatEndpoint){const note=host.querySelector('.chamea-chat-disclaimer');if(note)note.textContent='Khi dùng trợ lý Gemini, nội dung chat được gửi tới dịch vụ Google để tạo phản hồi. Không nhập mật khẩu, OTP hoặc dữ liệu nhạy cảm. Giá và chính sách cần được xác nhận.';}
  const launcher=host.querySelector('.chamea-chat-launcher'),win=host.querySelector('.chamea-chat-window'),messages=host.querySelector('.chamea-chat-messages');
@@ -676,11 +676,29 @@ function chameaChatbot(){
    {transform:'translateX(0px) rotate(0deg)',offset:1}
   ],{duration:2200,iterations:Infinity,easing:'ease-in-out'});
  }
+ // Demo account is a local session, not verified customer authentication.
+ // Personalization is only shown in this browser and is never sent to Gemini.
+ const signedInGivenName=()=>{
+  const session=demoSession();
+  if(!session||typeof session.email!=='string')return '';
+  const account=demoAccounts()[session.email];
+  if(!account)return '';
+  const fullName=String(account.name||session.name||'').trim().slice(0,80);
+  if(!fullName)return '';
+  return fullName.split(/\s+/).filter(Boolean).slice(-1)[0]||'';
+ };
+ const welcome=messages.querySelector('.chamea-chat-bubble.bot');
+ const refreshGreeting=()=>{
+  const givenName=signedInGivenName();
+  welcome.textContent=givenName
+   ?'CHAMÉA xin chào '+givenName+'! Rất vui được đón tiếp bạn. Hôm nay CHAMÉA có thể giúp bạn lựa chọn một thiết kế phù hợp hay một món quà ý nghĩa ạ?'
+   :'CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn túi xách hay tìm một món quà ý nghĩa ạ?';
+ };
  const toggle=open=>{
   win.hidden=!open;
   launcher.setAttribute('aria-expanded',String(open));
   if(wiggle){if(open)wiggle.cancel();else wiggle.play();}
-  if(open)host.querySelector('.chamea-chat-form input').focus();
+  if(open){refreshGreeting();host.querySelector('.chamea-chat-form input').focus();}
  };
  launcher.addEventListener('click',()=>toggle(win.hidden));host.querySelector('.chamea-chat-close').addEventListener('click',()=>toggle(false));
  const say=(message,who='bot',url='',label='')=>{const p=document.createElement('p');p.className='chamea-chat-bubble '+who;p.textContent=message;if(url){const a=document.createElement('a');a.href=url;a.textContent=label;p.appendChild(document.createElement('br'));p.appendChild(a)}messages.appendChild(p);messages.scrollTop=messages.scrollHeight};
@@ -703,7 +721,7 @@ function chameaChatbot(){
   const result=chooseMatches();let items=result.items;
   if(chatState.use||chatState.style){const use=normalize(chatState.use),style=normalize(chatState.style);const score=p=>Number(!!use&&(p.uses||[]).some(x=>normalize(x).includes(use)))*3+Number(!!style&&(p.styles||[]).some(x=>normalize(x).includes(style)||style.includes(normalize(x))))*5;items=items.slice().sort((a,b)=>score(b)-score(a))}
   const seen=new Set();items=items.filter(p=>{const key=p.family||p.id;if(seen.has(key))return false;seen.add(key);return true}).slice(0,3);
-  if(!items.length){say('Mình chưa tìm thấy mẫu phù hợp trong danh sách sản phẩm hiện tại. Bạn thử đổi ngân sách hoặc kiểu dáng nhé.','bot','/tui-xach','Xem toàn bộ túi xách →');return}
+  if(!items.length){say('CHAMÉA đã ghi nhận sở thích của bạn. Hiện chưa có thiết kế đáp ứng trọn vẹn mức chi và kiểu dáng mong muốn; nếu bạn có thể linh hoạt một chút, mình rất sẵn lòng giới thiệu những lựa chọn gần nhất nhé.','bot','/tui-xach','Khám phá các thiết kế →');return}
   say(result.relaxed?'Chưa có mẫu khớp tất cả tiêu chí. Đây là vài thiết kế gần nhất trong danh mục CHAMÉA:':'Mình tìm được những mẫu này trong danh mục CHAMÉA:');
   items.forEach(p=>say(p.name+' · '+price(p.price)+' · '+(p.shape||'Túi xách')+(p.color?' · '+p.color:''),'bot','/san-pham/'+encodeURIComponent(p.id),'Xem thiết kế →'));
   chatState.last=items.map(p=>p.id);
@@ -736,9 +754,12 @@ function chameaChatbot(){
   if(found)return found[1];
   const match=q.match(/(?:^| )(?:tang|lam qua cho|mua tui cho|mua qua cho|chon qua cho) (?:cho )?([a-z]+(?: [a-z]+){0,3})/);
   if(!match)return '';
-  const stop=['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim'];
+  const stop=['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim','hay','hoi','ve','la','gi','j','nhe'];
+  const words=match[1].split(' ');
+  if(words[0]==='ban')return 'một người bạn';
+  if(!['nguoi','co','thay','bac','di','chu','cau','anh','chi','em','ong','ba','me','bo','sep','dong'].includes(words[0]))return '';
   const tokens=[];
-  for(const word of match[1].split(' ')){if(stop.includes(word))break;tokens.push(word)}
+  for(const word of words){if(stop.includes(word))break;tokens.push(word)}
   return tokens.join(' ');
  };
  const chatIntent=(q,topic)=>{
@@ -757,7 +778,7 @@ function chameaChatbot(){
  const answer=(input,topic='')=>{
   const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
   if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
-  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban)[ !.]*$/.test(q)){say('CHAMÉA xin chào! Bạn muốn chọn túi, tìm quà hay hỏi về sản phẩm nào ạ?');return}
+  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban)[ !.]*$/.test(q)){say('CHAMÉA rất vui được đón tiếp bạn. Bạn đang tìm một chiếc túi cho mình hay một món quà thật ý nghĩa ạ?');return}
   if(contains(q,['cam on','thank you','thanks'])){say('Rất vui được hỗ trợ bạn! Bạn cần thêm thông tin gì cứ nhắn nhé.');return}
   const intent=chatIntent(q,topic);
   if(intent==='contact'){say('Hotline/Zalo CHAMÉA: 0386.933.508. Email: chamea@gmail.com. Địa chỉ: Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội.','bot','/lien-he','Liên hệ CHAMÉA →');return}
@@ -810,10 +831,16 @@ function chameaChatbot(){
    if(style)chatState.style=style;
    const recipient=extractGiftRecipient(q);
    if(recipient)chatState.recipient=recipient;
-   if(!chatState.recipient){say('CHAMÉA rất vui được giúp bạn chọn quà! Bạn định tặng ai ạ?');return}
-   if(!chatState.budget){say('Dạ, CHAMÉA rất vui được giúp bạn chọn túi tặng '+chatState.recipient+'! 🌷 Bạn dự định dành khoảng bao nhiêu tiền cho món quà ạ?');return}
-   if(!chatState.style&&!chatState.color&&!chatState.shape&&!chatState.use&&!contains(q,['khong biet','tuy ban','ban chon'])){say('Với ngân sách khoảng '+price(chatState.budget)+', '+(chatState.recipient==='mẹ'?'mẹ bạn':'người nhận')+' thích phong cách thanh lịch, đơn giản hay nổi bật hơn ạ?');return}
-   say('Mình sẽ gợi ý một vài mẫu trong danh mục CHAMÉA phù hợp nhu cầu tặng '+chatState.recipient+' nhé.');showMatches();return
+   if(!chatState.recipient){say('CHAMÉA rất sẵn lòng cùng bạn lựa chọn một món quà ý nghĩa. Bạn dự định dành tặng ai ạ?');return}
+   if(!chatState.budget){say('Một chiếc túi dành tặng '+chatState.recipient+' sẽ là món quà thật ý nghĩa. Bạn dự định dành khoảng bao nhiêu cho món quà này để CHAMÉA tư vấn sát hơn ạ?');return}
+   const hasInBudget=chatProducts().some(p=>Number(p.price)>0&&Number(p.price)<=chatState.budget);
+   if(!hasInBudget&&!contains(q,['linh hoat','dong y','duoc','xem thu','co the'])){
+    say('CHAMÉA cảm ơn bạn đã chia sẻ mức chi dự kiến. Hiện chưa có thiết kế với giá tham khảo trong khoảng '+price(chatState.budget)+'. Nếu bạn có thể linh hoạt, mình rất sẵn lòng giới thiệu những lựa chọn phù hợp để tặng '+chatState.recipient+'. Bạn muốn tham khảo thử không ạ?');return;
+   }
+   if(!chatState.style&&!chatState.color&&!chatState.shape&&!chatState.use&&!contains(q,['khong biet','tuy ban','ban chon','linh hoat','dong y','duoc','xem thu'])){
+    say('Cảm ơn bạn đã chia sẻ mức chi dự kiến. '+(chatState.recipient==='mẹ'?'Mẹ bạn':chatState.recipient)+' thường yêu thích phong cách thanh lịch, tối giản hay một chút nổi bật ạ?');return;
+   }
+   say('CHAMÉA xin phép giới thiệu một vài thiết kế phù hợp với sở thích bạn vừa chia sẻ nhé.');showMatches();return
   }
   if(mentioned&&intent==='unknown'){
    chatState.last=[mentioned.id];
