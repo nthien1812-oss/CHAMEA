@@ -43,14 +43,45 @@ function findExplicitFamily(q,all){
 function pickColor(q){
  return COLORS.find(c=>has(q,c))||'';
 }
-// Recognise brief Vietnamese gift requests and carry the recipient across short follow-ups.
-const giftWords=/\b(tang|qua tang|qua cho|chon qua|mua qua|mua tui cho|tim tui cho|tui tang|tui cho)\b/;
+// Recognise real gift recipients in Vietnamese (with or without diacritics).
+// Extract from the newest turn first, then inherit previously stated recipients.
+const giftWords=/\b(tang|qua tang|qua cho|chon qua|mua qua|mua tui cho|tim tui cho|tui tang|tui cho|chuan bi qua|lam qua|mua qua cho)\b/;
+const RECIPIENT_ALIASES=[
+ [['co giao','co chu nhiem','co day hoc','co day','co gia su','co day kem'],'cô giáo'],
+ [['thay giao','thay chu nhiem','thay day hoc','thay day','thay gia su'],'thầy giáo'],
+ [['thay co','giao vien','nguoi day'],'thầy/cô giáo'],
+ [['me chong'],'mẹ chồng'],[['me vo'],'mẹ vợ'],
+ [['me','ma','mom','mama'],'mẹ'],[['bo','ba ruot','cha'],'bố'],
+ [['chi gai'],'chị gái'],[['em gai'],'em gái'],[['anh trai'],'anh trai'],[['em trai'],'em trai'],
+ [['ba ngoai'],'bà ngoại'],[['ba noi'],'bà nội'],[['ong ngoai'],'ông ngoại'],[['ong noi'],'ông nội'],
+ [['nguoi yeu','ban gai'],'bạn gái'],[['ban trai'],'bạn trai'],
+ [['vo'],'vợ'],[['chong'],'chồng'],
+ [['sep nu','sep'],'sếp'],[['dong nghiep'],'đồng nghiệp'],[['quan ly'],'quản lý'],
+ [['ban than'],'bạn thân'],[['ban cung lop','ban hoc'],'bạn học'],
+ [['co hang xom'],'cô hàng xóm'],[['di','co ruot'],'cô/dì'],[['bac gai'],'bác gái'],
+ [['ban be','mot nguoi ban','nguoi ban'],'bạn bè']
+];
+export function recipientFromText(input){
+ const q=normalize(input);
+ for(const [aliases,recipient] of RECIPIENT_ALIASES){
+  if(aliases.some(a=>has(q,a)))return recipient;
+ }
+ // For a previously unseen relationship, still recognise the object of "tặng"
+ // rather than repeating "Bạn định tặng ai?".
+ const m=q.match(/\b(?:tang|qua cho|lam qua cho|mua tui cho|mua qua cho|chon qua cho)\s+(?:cho\s+)?([a-z]+(?:\s+[a-z]+){0,3})/);
+ if(!m)return '';
+ const stop=new Set(['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim']);
+ const candidates=m[1].split(' ');
+ const words=[];
+ for(const w of candidates){if(stop.has(w)||/\d/.test(w))break;words.push(w);}
+ return words.length?words.join(' '):'';
+}
 export function giftProfile(question,history=[]){
- const recent=(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-6).map(x=>x.content).join(' ');
- const combined=normalize(recent+' '+question);
- const gift=giftWords.test(combined) || /\b(cho me|cho ma|tang me|tang ma|tang vo|tang ban gai)\b/.test(combined);
- const recipient=/\b(me|ma|mom|mama)\b/.test(combined)?'mẹ':/\b(bo|ba|cha)\b/.test(combined)?'bố':/\b(vo)\b/.test(combined)?'vợ':/\b(ban gai|nguoi yeu)\b/.test(combined)?'bạn gái':/\b(chi gai|chi)\b/.test(combined)?'chị':/\b(ban than)\b/.test(combined)?'bạn thân':'';
- const budget=budgetFrom(question)||budgetFrom(recent);
+ const previous=(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-6).map(x=>x.content);
+ const combined=normalize(previous.join(' ')+' '+question);
+ const recipient=[question,...previous.slice().reverse()].map(recipientFromText).find(Boolean)||'';
+ const gift=giftWords.test(combined);
+ const budget=budgetFrom(question)||budgetFrom(previous.slice().reverse().join(' '));
  const style=[['thanh lich','thanh lịch'],['toi gian','tối giản'],['nu tinh','nữ tính'],['nhe nhang','nhẹ nhàng'],['don gian','đơn giản'],['ca tinh','cá tính'],['noi bat','nổi bật'],['tre trung','trẻ trung']].find(x=>has(combined,x[0]))?.[1]||'';
  const shape=['tote','deo vai','deo cheo','xach tay'].find(x=>has(combined,x))||'';
  const color=pickColor(combined);
