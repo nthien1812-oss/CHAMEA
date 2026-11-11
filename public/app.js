@@ -653,7 +653,7 @@ function route(){const path=(location.pathname.replace(/^\/CHAMEA(?=\/|$)/,'').r
 /* Homepage-only CHAMÉA consultation chat: local, rule-based demo. */
 function chameaChatbot(){
  const existing=document.getElementById('chamea-chatbot');
- if(existing)return;
+ if(existing){existing.chameaRefreshGreeting?.();return;}
  const host=document.createElement('aside');host.id='chamea-chatbot';host.className='chamea-chatbot';
  host.innerHTML=`<button type="button" class="chamea-chat-launcher" aria-label="Mở trợ lý tư vấn CHAMÉA" aria-expanded="false"><span class="chamea-chat-orbit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg><small>Liên hệ</small></span></button><section class="chamea-chat-window" hidden aria-label="Tư vấn CHAMÉA"><header><div><strong>CHAMÉA</strong><small>Trợ lý tư vấn tự động</small></div><button type="button" class="chamea-chat-close" aria-label="Đóng tư vấn">×</button></header><div class="chamea-chat-messages" role="log" aria-live="polite"><p class="chamea-chat-bubble bot">CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn túi xách hay tìm một món quà ý nghĩa ạ?</p></div><div class="chamea-chat-quick"><button type="button" data-chat-topic="gift">🎁 Gợi ý chọn quà</button><button type="button" data-chat-topic="bags">👜 Xem túi xách</button><button type="button" data-chat-topic="order">📦 Đơn hàng</button><button type="button" data-chat-topic="contact">☎ Liên hệ</button></div><form class="chamea-chat-form"><input aria-label="Nhập câu hỏi" placeholder="Nhập câu hỏi của bạn…" maxlength="300" required><button type="submit" aria-label="Gửi tin nhắn">➤</button></form><p class="chamea-chat-disclaimer">Tư vấn tự động từ dữ liệu tham khảo; giá và chính sách cần được cửa hàng xác nhận.</p></section>`;
  document.body.appendChild(host);
@@ -695,6 +695,7 @@ function chameaChatbot(){
    :'CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn một thiết kế phù hợp hay tìm món quà ý nghĩa ạ?';
  };
  const refreshGreeting=()=>{welcome.textContent=greetingReply()};
+ host.chameaRefreshGreeting=refreshGreeting;
  const toggle=open=>{
   win.hidden=!open;
   launcher.setAttribute('aria-expanded',String(open));
