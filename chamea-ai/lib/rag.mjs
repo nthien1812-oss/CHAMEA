@@ -88,7 +88,7 @@ export function recipientFromText(input){
 export function currentTurnKind(message){
  const q=normalize(message);
  if(!q)return 'empty';
- if(/^(?:xin chao|chao|chao ban|chao shop|chao chamea|chao em|chao a|hi|hii|hello|hey|alo|a lo|good morning|chao buoi sang|chao buoi chieu|chao buoi toi|hello shop)(?: nhe| nha| a| em)?$/.test(q))return 'greeting';
+ if(/^(?:(?:xin )?chao(?: (?:ban|shop|chamea|em|anh|chi|moi nguoi))?(?: (?:nhe|nha|a|em))?|(?:hi|hii|hello|hey|alo|a lo)(?: (?:shop|ban|chamea))?|good morning|chao buoi sang|chao buoi chieu|chao buoi toi)$/.test(q))return 'greeting';
  if(/^(?:cam on|cam on ban|cam on shop|cam on nhe|cam on nha|thanks|thank you|thank you so much|tks|thank u|da cam on|oke cam on|ok cam on)$/.test(q))return 'thanks';
  if(/^(?:tam biet|hen gap lai|bye|bye bye|goodbye|chao tam biet|hen gap|bai bai)$/.test(q))return 'goodbye';
  if(/^(?:bat dau lai|tu van lai|lam lai|xoa loc|bo loc|doi chu de|lam moi cuoc tro chuyen)$/.test(q))return 'reset';
