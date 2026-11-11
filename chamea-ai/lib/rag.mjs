@@ -93,6 +93,7 @@ export function currentTurnKind(message){
  if(/^(?:tam biet|hen gap lai|bye|bye bye|goodbye|chao tam biet|hen gap|bai bai)$/.test(q))return 'goodbye';
  if(/^(?:bat dau lai|tu van lai|lam lai|xoa loc|bo loc|doi chu de|lam moi cuoc tro chuyen)$/.test(q))return 'reset';
  if(/\b(doi tra|bao hanh|giao hang|phi ship|ship|phi van chuyen|thanh toan|cod|chuyen khoan|hotline|lien he|so dien thoai|email|dia chi|kiem tra don|don hang|chinh sach|bao quan|ve sinh|doi hang|hoan tien|phieu bao hanh|thoi gian giao)\b/.test(q))return 'support';
+ if(/\b(khong tang nua|khong muon tang nua|thoi khong tang|mua cho minh|mua tui cho minh|mua tui cho ban than|tui cho ban than)\b/.test(q))return 'product';
  if(giftWords.test(q))return 'gift';
  if(/\b(so sanh|khac nhau|chat lieu|lam bang gi|kich thuoc|trong luong|co mau|mau sac|san pham|bo suu tap|mau tui|kieu tui|tui nao|tim tui|chon tui|tu van tui|mua tui|muon tui|tui xach|tote|deo vai|deo cheo|xach tay|bao nhieu tien|gia bao nhieu|gia mau|xem tui|cho xem|mau nao|co nhung mau nao|gia cua)\b/.test(q))return 'product';
  return 'other';
