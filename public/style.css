@@ -2520,8 +2520,8 @@ html.chamea-pattern-on #main .chamea-film-wide{
 .chamea-chat-launcher .chamea-concierge-icon{
  display:block;
  flex:none;
- width:32px;
- height:32px;
+ width:36px;
+ height:36px;
  overflow:visible;
  filter:none;
 }
@@ -2542,6 +2542,6 @@ html.chamea-pattern-on #main .chamea-film-wide{
  white-space:nowrap;
 }
 @media(max-width:700px){
- .chamea-chat-launcher .chamea-concierge-icon{width:28px;height:28px}
+ .chamea-chat-launcher .chamea-concierge-icon{width:31px;height:31px}
  .chamea-chat-launcher .chamea-chat-orbit .chamea-chat-label{font-size:7px}
 }
