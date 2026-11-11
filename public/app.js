@@ -723,6 +723,24 @@ function chameaChatbot(){
   if(family)return catalog.find(p=>normalize(p.family)===normalize(family))||null;
   return catalog.find(p=>p.id===chatState.last[0])||null;
  };
+ // Match the gift recipient the customer already mentioned, not only family members.
+ const extractGiftRecipient=q=>{
+  const entries=[
+   ['co giao','cô giáo'],['co chu nhiem','cô giáo'],['thay giao','thầy giáo'],['thay chu nhiem','thầy giáo'],['giao vien','giáo viên'],
+   ['me chong','mẹ chồng'],['me vo','mẹ vợ'],['me','mẹ'],['ma','mẹ'],['bo','bố'],['ba ruot','bố'],
+   ['chi gai','chị gái'],['em gai','em gái'],['ba ngoai','bà ngoại'],['ba noi','bà nội'],['ban gai','bạn gái'],['nguoi yeu','bạn gái'],
+   ['ban trai','bạn trai'],['vo','vợ'],['chong','chồng'],['dong nghiep','đồng nghiệp'],['sep','sếp'],['quan ly','quản lý'],
+   ['ban than','bạn thân'],['ban cung lop','bạn học'],['co hang xom','cô hàng xóm'],['bac gai','bác gái'],['di','dì']
+  ];
+  const found=entries.find(([term])=>phrase(q,term));
+  if(found)return found[1];
+  const match=q.match(/(?:^| )(?:tang|lam qua cho|mua tui cho|mua qua cho|chon qua cho) (?:cho )?([a-z]+(?: [a-z]+){0,3})/);
+  if(!match)return '';
+  const stop=['qua','tui','xach','mua','tang','cho','vao','nhan','dip','de','voi','ngan','sach','gia','khoang','tam','duoi','tren','bao','nhieu','muon','tim'];
+  const tokens=[];
+  for(const word of match[1].split(' ')){if(stop.includes(word))break;tokens.push(word)}
+  return tokens.join(' ');
+ };
  const chatIntent=(q,topic)=>{
   if(topic==='contact'||contains(q,['lien he','zalo','hotline','so dien thoai','nhan vien','email','dia chi','cua hang']))return 'contact';
   if(topic==='order'||contains(q,['don hang','kiem tra don','lich su don','da dat','huy don','theo doi don','ma don']))return 'order';
@@ -732,7 +750,7 @@ function chameaChatbot(){
   if(contains(q,['thanh toan','chuyen khoan','cod','quet qr','tra tien']))return 'payment';
   if(contains(q,['huong dan mua','dat hang the nao','cach mua hang','mua nhu the nao']))return 'purchase';
   if(isMaterial(q)||isPrice(q)||isColors(q)||contains(q,['chat lieu','lam bang gi','lam tu gi','lam tu chat lieu gi','bang chat lieu gi','da gi','da that','da pu','vat lieu','vai gi','kich thuoc','bao nhieu cm','nang bao nhieu','trong luong','bao quan','ve sinh','kem theo','phu kien','co may mau','nhung mau nao','co mau gi','mau sac nao','bao nhieu tien','gia bao nhieu','gia cua','gia tui','gia mau','gia bao nhieu','bao nhieu mau','co giam gia','khuyen mai']))return 'detail';
-  if(topic==='gift'||contains(q,['chon qua','goi y qua','tang qua','mua qua','mua tui tang','tui tang','tang me','tang ma','tang cho me','tang vo','tang ban gai','cho me','tui cho me'])||(chatState.turns>1&&['me','ma','vo','ban gai'].includes(q)))return 'gift';
+  if(topic==='gift'||phrase(q,'tang')||contains(q,['chon qua','goi y qua','tang qua','mua qua','mua tui tang','tui tang','mua tui cho','mua qua cho','qua cho','tang me','tang ma','tang cho me','tang vo','tang ban gai','cho me','tui cho me'])||(chatState.turns>1&&['me','ma','vo','ban gai','co giao','thay giao'].includes(q)))return 'gift';
   if(topic==='bags'||contains(q,['tu van tui','goi y tui','tim tui','tui nao','tui xach','san pham','re nhat','bo suu tap','so sanh tui','di lam','di choi','hen ho','tote','deo vai','deo cheo','xach tay']))return 'browse';
   return 'unknown';
  };
@@ -790,7 +808,7 @@ function chameaChatbot(){
    if(shape)chatState.shape=shape[1];
    if(use)chatState.use=use;
    if(style)chatState.style=style;
-   const recipient=hasAny(q,['me','ma','cho me','tang me'])?'mẹ':hasAny(q,['ban gai','nguoi yeu'])?'bạn gái':hasAny(q,['vo','cho vo'])?'vợ':hasAny(q,['chi','em gai'])?'người thân':'';
+   const recipient=extractGiftRecipient(q);
    if(recipient)chatState.recipient=recipient;
    if(!chatState.recipient){say('CHAMÉA rất vui được giúp bạn chọn quà! Bạn định tặng ai ạ?');return}
    if(!chatState.budget){say('Dạ, CHAMÉA rất vui được giúp bạn chọn túi tặng '+chatState.recipient+'! 🌷 Bạn dự định dành khoảng bao nhiêu tiền cho món quà ạ?');return}
