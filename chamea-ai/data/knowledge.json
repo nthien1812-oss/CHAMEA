@@ -1,0 +1,236 @@
+[
+  {
+    "id": "brand",
+    "title": "Về thương hiệu CHAMÉA",
+    "category": "brand",
+    "keywords": [
+      "thương hiệu",
+      "chamea",
+      "giới thiệu",
+      "triết lý",
+      "phong cách",
+      "quà tặng"
+    ],
+    "source": "/ve-chamea",
+    "text": "CHAMÉA là thương hiệu túi xách dành cho phụ nữ hiện đại. Triết lý: chiếc túi không chỉ thể hiện phong cách cá nhân mà còn là món quà gửi gắm sự quan tâm và trân trọng. Các nhóm sản phẩm của website gồm CHAMÉA Sugar, Steel, Tote và bộ sưu tập 20/10."
+  },
+  {
+    "id": "products",
+    "title": "Danh mục, bộ lọc và thông tin sản phẩm",
+    "category": "catalog",
+    "keywords": [
+      "túi",
+      "giá",
+      "màu",
+      "mẫu",
+      "hình",
+      "chất liệu",
+      "kích thước",
+      "bộ sưu tập"
+    ],
+    "source": "/tui-xach",
+    "text": "Lấy tên mẫu, màu, kiểu dáng, giá, mô tả, các thông số và ảnh từ danh mục sản phẩm hiện tại. Giá, chất liệu, khối lượng, kích thước của một số thiết kế là giá trị ước tính/đề xuất; phải nói rõ điều này. Ưu đãi 20% là chiến dịch demo khi được bật trên website; không khẳng định giảm giá thực tế nếu chưa xác minh."
+  },
+  {
+    "id": "collections",
+    "title": "Các bộ sưu tập CHAMÉA",
+    "category": "catalog",
+    "keywords": [
+      "sugar",
+      "steel",
+      "tote",
+      "20/10",
+      "bst",
+      "bộ sưu tập"
+    ],
+    "source": "/bo-suu-tap",
+    "text": "CHAMÉA Sugar: nhóm túi nữ tính, nhẹ nhàng. CHAMÉA Steel: nhóm túi cá tính, hiện đại. CHAMÉA Tote: thiết kế tote cho công việc và sinh hoạt. Bộ sưu tập 20/10 gồm Blush Theory, Her Rules, Pastel Core và Souls. Đề xuất dựa trên sản phẩm tồn tại trong danh mục; không tự tạo mã sản phẩm."
+  },
+  {
+    "id": "gift",
+    "title": "Tư vấn chọn quà",
+    "category": "advice",
+    "keywords": [
+      "quà",
+      "mẹ",
+      "bạn gái",
+      "người yêu",
+      "chị",
+      "vợ",
+      "20/10",
+      "sinh nhật",
+      "tặng"
+    ],
+    "source": "/goi-y-chon-qua",
+    "text": "Hỏi 1–2 câu ngắn khi cần biết ngân sách, phong cách, màu yêu thích, dịp sử dụng và người nhận. Gợi ý 1–3 mẫu thật dựa vào nhu cầu, giải thích lý do hợp và ưu/nhược. Không suy diễn sở thích chỉ từ tuổi hoặc giới. Nếu thiếu lựa chọn phù hợp, nói thẳng và xin phép nới tiêu chí."
+  },
+  {
+    "id": "care",
+    "title": "Bảo quản túi",
+    "category": "support",
+    "keywords": [
+      "bảo quản",
+      "vệ sinh",
+      "lau",
+      "da",
+      "nước",
+      "bụi",
+      "vết bẩn",
+      "bong"
+    ],
+    "source": "/tui-xach",
+    "text": "Thông tin bảo quản phải lấy từ tab Bảo quản của đúng mẫu túi. Hướng dẫn chung: lau nhẹ bằng khăn mềm, tránh ngâm nước và hóa chất mạnh, tránh nắng gắt và cất nơi khô thoáng. Không khẳng định độ bền, khả năng chống nước hoặc da thật nếu danh mục không ghi rõ."
+  },
+  {
+    "id": "checkout",
+    "title": "Giỏ hàng và mua hàng – đang thử nghiệm",
+    "category": "policy",
+    "keywords": [
+      "đặt hàng",
+      "mua ngay",
+      "giỏ hàng",
+      "thanh toán",
+      "mua túi",
+      "đơn"
+    ],
+    "source": "/chinh-sach/huong-dan-mua-hang",
+    "text": "Website hiện vận hành chế độ demo: thêm vào giỏ, Mua ngay và hoàn tất checkout KHÔNG có nghĩa cửa hàng đã nhận đơn thật, xác nhận tồn kho hoặc chuẩn bị giao. Hãy liên hệ cửa hàng xác nhận mẫu, màu, giá, phí giao hàng, phương thức thanh toán trước khi trả tiền. Không hỏi OTP hoặc mật khẩu."
+  },
+  {
+    "id": "orders",
+    "title": "Theo dõi đơn hàng",
+    "category": "policy",
+    "keywords": [
+      "đơn hàng",
+      "kiểm tra đơn",
+      "lịch sử đơn",
+      "hủy đơn",
+      "mã đơn",
+      "theo dõi"
+    ],
+    "source": "/tai-khoan",
+    "text": "Lịch sử đơn trong tài khoản là dữ liệu demo lưu trên thiết bị. Chatbot không có quyền truy cập đơn hàng thật, mã vận đơn hay tồn kho. Không hứa đã nhận đơn hoặc giao đơn. Hướng dẫn liên hệ CHAMÉA để xác minh đơn thật."
+  },
+  {
+    "id": "shipping",
+    "title": "Giao hàng – chính sách đề xuất, chưa xác nhận",
+    "category": "policy",
+    "keywords": [
+      "ship",
+      "phí ship",
+      "phí giao",
+      "vận chuyển",
+      "giao hàng",
+      "bao lâu",
+      "toàn quốc"
+    ],
+    "source": "/chinh-sach/giao-hang",
+    "text": "Trang chính sách hiện mô tả CHỈ LÀ ĐỀ XUẤT, không phải cam kết: xử lý 1–2 ngày, Hà Nội 1–3 ngày, tỉnh khác 3–5 ngày, vùng xa 5–7 ngày; phí dự kiến Hà Nội 25.000đ, tỉnh khác 35.000đ, miễn phí từ 1 triệu sau giảm. Checkout chưa tính phí chính thức. Không báo các số này là mức phí/thời gian đã chốt. Khách phải hỏi cửa hàng xác nhận."
+  },
+  {
+    "id": "returns",
+    "title": "Đổi trả – chính sách đề xuất, chưa xác nhận",
+    "category": "policy",
+    "keywords": [
+      "đổi trả",
+      "trả hàng",
+      "đổi hàng",
+      "hoàn tiền",
+      "lỗi",
+      "bị hỏng"
+    ],
+    "source": "/chinh-sach/doi-tra",
+    "text": "Trang chính sách chỉ mô tả phương án đề xuất: báo lỗi/đổi trả trong 7 ngày, lưu ảnh/video và hóa đơn, chờ cửa hàng chấp thuận; hoàn tiền đề xuất 5–7 ngày làm việc. KHÔNG hứa rằng chính sách 7 ngày đã có hiệu lực; cần liên hệ xác nhận trường hợp cụ thể. Tuân thủ quyền người tiêu dùng theo luật."
+  },
+  {
+    "id": "payment",
+    "title": "Thanh toán và an toàn",
+    "category": "policy",
+    "keywords": [
+      "thanh toán",
+      "cod",
+      "chuyển khoản",
+      "qr",
+      "ngân hàng",
+      "ví điện tử",
+      "trả tiền"
+    ],
+    "source": "/chinh-sach/thanh-toan",
+    "text": "Giao diện demo hiển thị COD và QR/chuyển khoản, nhưng chưa xác nhận phương thức thực tế. Không cung cấp tài khoản nhận tiền giả định; chỉ dùng thông tin được CHAMÉA xác nhận chính thức. Không yêu cầu mã OTP, PIN, mật khẩu hoặc ảnh thẻ. Số tiền cuối cùng phải được cửa hàng xác nhận."
+  },
+  {
+    "id": "warranty",
+    "title": "Bảo hành",
+    "category": "policy",
+    "keywords": [
+      "bảo hành",
+      "khóa hỏng",
+      "bong da",
+      "đứt quai",
+      "sửa túi"
+    ],
+    "source": "/lien-he",
+    "text": "CHAMÉA hiện chưa công bố chính sách bảo hành chính thức. Không tự hứa bảo hành 6 hoặc 12 tháng; hướng dẫn khách liên hệ cửa hàng để được xác nhận."
+  },
+  {
+    "id": "contact",
+    "title": "Liên hệ hỗ trợ CHAMÉA",
+    "category": "support",
+    "keywords": [
+      "liên hệ",
+      "hotline",
+      "zalo",
+      "số điện thoại",
+      "email",
+      "địa chỉ",
+      "nhân viên"
+    ],
+    "source": "/lien-he",
+    "text": "Theo thông tin công bố trên website: Hotline/Zalo 0386.933.508; email chamea@gmail.com; địa chỉ Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội. Đây là dữ liệu hiển thị trên website, nên khuyên khách xác minh trước khi giao dịch thực tế."
+  },
+  {
+    "id": "privacy",
+    "title": "Quyền riêng tư và chatbot Gemini",
+    "category": "policy",
+    "keywords": [
+      "riêng tư",
+      "dữ liệu",
+      "bảo mật",
+      "lịch sử chat",
+      "gemini",
+      "ai"
+    ],
+    "source": "/chinh-sach/bao-mat",
+    "text": "Giỏ hàng, yêu thích và lịch sử xem có thể lưu trong trình duyệt. Khi chatbot AI được kích hoạt, nội dung khách gửi sẽ được chuyển tới backend CHAMÉA và dịch vụ Google Gemini để tạo phản hồi. Không gửi số thẻ, mật khẩu, OTP, dữ liệu nhạy cảm hoặc thông tin người khác. Chatbot không cần thông tin cá nhân để tư vấn túi."
+  },
+  {
+    "id": "blogs",
+    "title": "Góc chọn quà và tư vấn theo bài viết",
+    "category": "advice",
+    "keywords": [
+      "blog",
+      "kiến thức",
+      "chọn quà",
+      "chọn túi",
+      "xu hướng",
+      "phối đồ"
+    ],
+    "source": "/goc-chon-qua",
+    "text": "Các bài hướng dẫn tập trung chọn túi dựa trên phong cách, hoàn cảnh sử dụng, số tiền phù hợp, kiểm tra chất liệu, kích thước và điều kiện mua trước khi quyết định. Những nhận xét về gu thẩm mỹ là gợi ý, không phải cam kết sản phẩm thực tế."
+  },
+  {
+    "id": "demo",
+    "title": "Thông báo quan trọng – website demo",
+    "category": "policy",
+    "keywords": [
+      "thật không",
+      "có mua được",
+      "có bán",
+      "tồn kho",
+      "chốt đơn",
+      "thực tế"
+    ],
+    "source": "/",
+    "text": "CHAMÉA hiện là website giới thiệu/trải nghiệm; nhiều thông số, chính sách và khuyến mãi là đề xuất hoặc minh họa. Không khẳng định đơn đã được ghi nhận, còn hàng, giá chốt, giao hàng, áp dụng ưu đãi thật hoặc dịch vụ bảo hành đã có. Cần cửa hàng xác nhận trước giao dịch."
+  }
+]
