@@ -44,7 +44,10 @@ function guidedGiftStep(question,history,items){
  // meaningful answer to the most recent gift-related question.
  if(['greeting','thanks','goodbye','reset','support','product'].includes(kind))return null;
  const recentAssistant=(Array.isArray(history)?history:[]).filter(h=>h.role==='model').at(-1)?.content||'';
- const prompted=/bao nhiêu|ngân sách|phong cách|thanh lịch|tối giản|nổi bật|thích màu|kiểu dáng|mẫu phù hợp|tham khảo|linh hoạt|tặng ai|dành tặng ai/i.test(recentAssistant);
+ const previousCustomer=(Array.isArray(history)?history:[]).filter(h=>h.role==='user').at(-1)?.content||'';
+ const previousKind=currentTurnKind(previousCustomer);
+ if(kind!=='gift'&&['greeting','thanks','goodbye','reset','support','product'].includes(previousKind))return null;
+ const prompted=/bao nhiêu|ngân sách|phong cách|thanh lịch|tối giản|nổi bật|thích màu|kiểu dáng|mẫu phù hợp|linh hoạt|muốn tham khảo thử|tặng ai|dành tặng ai/i.test(recentAssistant);
  const currentNormalized=String(question).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').trim();
  const briefAffirmative=/^(?:co|duoc|ok|oke|dong y|xem thu|tu van|gioi thieu|thoai mai|linh hoat|ban chon|ban tu van|khong biet|tuy ban|sao cung duoc)[ !.?,]*$/.test(currentNormalized);
  const currentPreference=budgetFrom(question)!==null || !!recipientFromText(question)
