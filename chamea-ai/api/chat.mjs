@@ -54,7 +54,7 @@ async function generate(question,history,docs,products,match){
   question,
   recentConversation:history,
   knowledge:docs.map(d=>({title:d.title,text:d.text,source:d.source})),
-  matchesCatalog:products.map(safeProduct),
+  matchesCatalog:products.map(p=>safeProduct(p)),
   filters:match.filters,
   hasExactMatchingProducts:match.exact
  };
@@ -73,7 +73,7 @@ async function generate(question,history,docs,products,match){
  if(!raw)throw Error('EMPTY_GEMINI');
  return parseOutput(raw,products);
 }
-export default async function handler(req){
+async function handler(req){
  const origin=req.headers.get('origin')||'';
  if(req.method==='GET')return respond({service:'CHAMÉA AI',status:process.env.GEMINI_API_KEY?'ready':'needs_api_key',catalogCount:catalog.length},200,origin);
  if(req.method==='OPTIONS')return new Response(null,{status:permitted(origin)?204:403,headers:headers(origin)});
@@ -101,3 +101,5 @@ export default async function handler(req){
   return respond({error:'AI_TEMPORARILY_UNAVAILABLE',message:'Trợ lý AI đang tạm gián đoạn. Bạn có thể thử lại hoặc liên hệ CHAMÉA.'},502,origin);
  }
 }
+
+export default {fetch:handler};
