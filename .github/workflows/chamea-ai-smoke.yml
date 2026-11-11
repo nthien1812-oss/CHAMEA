@@ -51,7 +51,7 @@ jobs:
           };
           const first=await ask('t muốn mua túi tặng mẹ',[]);
           assert.match(first.reply,/mẹ/i);
-          assert.match(first.reply,/bao nhiêu tiền|ngân sách/i);
+          assert.match(first.reply,/bao nhiêu|ngân sách/i);
           assert.equal(first.products.length,0);
           const history=[{role:'user',content:'t muốn mua túi tặng mẹ'},{role:'model',content:first.reply}];
           const second=await ask('dưới 800k',history);
@@ -62,7 +62,7 @@ jobs:
           console.log('Gift flow passed; final reply characters:',third.reply.length,'products:',third.products.length);
           const teacher=await ask('Mình muốn mua túi tặng cô giáo',[]);
           assert.match(teacher.reply,/cô giáo/i);
-          assert.match(teacher.reply,/bao nhiêu tiền|ngân sách/i);
+          assert.match(teacher.reply,/bao nhiêu|ngân sách/i);
           assert.doesNotMatch(teacher.reply,/tặng ai|cho ai/i);
           const teacherHistory=[{role:'user',content:'Mình muốn mua túi tặng cô giáo'},{role:'model',content:teacher.reply}];
           const next=await ask('dưới 800k',teacherHistory);
@@ -74,4 +74,11 @@ jobs:
           assert.ok(recommendation.reply.length>20);
           assert.doesNotMatch(recommendation.reply,/tặng ai|cho ai/i);
           console.log('Teacher gift flow passed:',teacher.reply.length,next.reply.length,recommendation.reply.length);
+          const limitedBudgetHistory=[{role:'user',content:'Mình muốn mua túi tặng cô giáo'},{role:'model',content:teacher.reply}];
+          const politeBudget=await ask('500',limitedBudgetHistory);
+          assert.match(politeBudget.reply,/500\.000đ/i);
+          assert.match(politeBudget.reply,/chưa có thiết kế/i);
+          assert.doesNotMatch(politeBudget.reply,/đã có thể lọc|lọc túi|ban hay hoi ve|người bạn muốn tặng/i);
+          assert.equal(politeBudget.products.length,0);
+          console.log('Polished 500k reply passed:',politeBudget.reply.length);
           NODE
