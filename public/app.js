@@ -688,12 +688,13 @@ function chameaChatbot(){
   return fullName.split(/\s+/).filter(Boolean).slice(-1)[0]||'';
  };
  const welcome=messages.querySelector('.chamea-chat-bubble.bot');
- const refreshGreeting=()=>{
+ const greetingReply=()=>{
   const givenName=signedInGivenName();
-  welcome.textContent=givenName
-   ?'CHAMÉA xin chào '+givenName+'! Rất vui được đón tiếp bạn. Hôm nay CHAMÉA có thể giúp bạn lựa chọn một thiết kế phù hợp hay một món quà ý nghĩa ạ?'
-   :'CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn túi xách hay tìm một món quà ý nghĩa ạ?';
+  return givenName
+   ?'CHAMÉA xin chào '+givenName+'! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn một thiết kế phù hợp hay tìm món quà ý nghĩa ạ?'
+   :'CHAMÉA xin chào! Rất vui được đón tiếp bạn. Hôm nay mình có thể giúp bạn chọn một thiết kế phù hợp hay tìm món quà ý nghĩa ạ?';
  };
+ const refreshGreeting=()=>{welcome.textContent=greetingReply()};
  const toggle=open=>{
   win.hidden=!open;
   launcher.setAttribute('aria-expanded',String(open));
@@ -709,7 +710,7 @@ function chameaChatbot(){
  const contains=(q,phrases)=>phrases.some(s=>q.includes(normalize(s)));
  const price=n=>Number(n||0).toLocaleString('vi-VN')+' đ';
  const chatProducts=()=>Array.isArray(D.products)?D.products:[];
- const findPrice=q=>{let m=q.match(/(?:duoi|toi da|khong qua|tam|khoang|ngan sach|gia|duoi muc)\s*(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan|dong)?/);if(!m)m=q.match(/(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan)(?:\s|$)/);if(!m)return null;let v=parseFloat(m[1].replace(',','.'));let unit=m[2]||'';if(unit==='trieu'||unit==='tr')v*=1000000;else if(unit==='k'||unit==='nghin'||unit==='ngan')v*=1000;else if(v<100)v*=1000000;return v>=100000&&v<=100000000?v:null};
+ const findPrice=q=>{let m=q.match(/(?:duoi|toi da|khong qua|tam|khoang|ngan sach|gia|duoi muc)\s*(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan|dong)?/);if(!m)m=q.match(/(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan)(?:\s|$)/);if(!m)m=q.match(/^(\d{3,7})$/);if(!m)return null;let v=parseFloat(m[1].replace(',','.'));let unit=m[2]||'';if(unit==='trieu'||unit==='tr')v*=1000000;else if(unit==='k'||unit==='nghin'||unit==='ngan')v*=1000;else if(v<100)v*=1000000;else if(v<10000)v*=1000;return v>=100000&&v<=100000000?v:null};
  const chooseMatches=()=>{
   let products=chatProducts().filter(p=>p&&p.id&&p.name);
   const strict=products.filter(p=>(!chatState.budget||Number(p.price)<=chatState.budget)&&(!chatState.color||normalize(p.color).includes(chatState.color))&&(!chatState.shape||normalize(p.shape).includes(chatState.shape))&&(!chatState.family||normalize(p.family).includes(chatState.family)));
@@ -778,7 +779,7 @@ function chameaChatbot(){
  const answer=(input,topic='')=>{
   const q=normalize(input).replace(/\s+/g,' ').trim();chatState.turns++;
   if(contains(q,['xoa loc','bo loc','lam lai','tu van lai','bat dau lai'])){Object.assign(chatState,{budget:null,color:'',shape:'',use:'',style:'',recipient:'',family:'',last:[]});say('Mình đã bỏ các tiêu chí trước đó. Bạn muốn tìm túi theo màu, kiểu dáng hay ngân sách?');return}
-  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban)[ !.]*$/.test(q)){say('CHAMÉA rất vui được đón tiếp bạn. Bạn đang tìm một chiếc túi cho mình hay một món quà thật ý nghĩa ạ?');return}
+  if(/^(hi|hello|hey|chao|xin chao|chao shop|chao ban|chao chamea)[ !.?]*$/.test(q)){say(greetingReply());return}
   if(contains(q,['cam on','thank you','thanks'])){say('Rất vui được hỗ trợ bạn! Bạn cần thêm thông tin gì cứ nhắn nhé.');return}
   const intent=chatIntent(q,topic);
   if(intent==='contact'){say('Hotline/Zalo CHAMÉA: 0386.933.508. Email: chamea@gmail.com. Địa chỉ: Số 5, Mỹ Đình 2, Từ Liêm, Hà Nội.','bot','/lien-he','Liên hệ CHAMÉA →');return}
@@ -896,6 +897,13 @@ function chameaChatbot(){
   if(!/^https:\/\//i.test(endpoint)){answer(input,topic);return}
   const prompt=String(input||aiPrompts[topic]||'').trim();
   if(!prompt){answer(input,topic);return}
+  // Personalize ordinary greetings locally; never send the customer's account name to AI.
+  if(input&&/^(hi|hello|hey|chao|xin chao|chao shop|chao ban|chao chamea)[ !.?]*$/.test(normalize(prompt).trim())){
+   const response=greetingReply();say(response);
+   aiHistory.push({role:'user',content:prompt},{role:'model',content:response});
+   if(aiHistory.length>12)aiHistory.splice(0,aiHistory.length-12);
+   return;
+  }
   aiBusy=true;
   const typing=document.createElement('p');
   typing.className='chamea-chat-bubble bot chamea-chat-ai-typing';
