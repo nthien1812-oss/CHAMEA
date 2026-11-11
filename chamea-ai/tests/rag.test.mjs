@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct,giftProfile} from '../lib/rag.mjs';
+import {catalog,documents,budgetFrom,retrieveKnowledge,retrieveProducts,safeProduct,giftProfile,recipientFromText} from '../lib/rag.mjs';
 import handler from '../api/chat.mjs';
 test('knowledge and catalog are present',()=>{
  assert.ok(catalog.length>=20);
@@ -99,4 +99,51 @@ test('short gift chat asks budget first, style next, then calls Gemini with cont
   globalThis.fetch=originalFetch;
   if(originalKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=originalKey;
  }
+});
+
+test('recognizes named gift recipients instead of asking who the gift is for',()=>{
+ const fixtures=[
+  ['T muốn mua túi tặng cô giáo','cô giáo'],
+  ['tôi muốn mua túi để tặng cô chủ nhiệm','cô giáo'],
+  ['Mình muốn mua túi cho cô giáo nhân ngày 20/11','cô giáo'],
+  ['Mình muốn tặng thầy giáo','thầy giáo'],
+  ['Tôi muốn mua quà tặng đồng nghiệp','đồng nghiệp'],
+  ['Cho mình chọn quà tặng sếp','sếp'],
+  ['Mình muốn mua túi tặng chị gái','chị gái'],
+  ['T muốn mua túi tặng mẹ','mẹ'],
+  ['Tôi muốn tặng người hướng dẫn','nguoi huong dan']
+ ];
+ for(const [question,expected] of fixtures){
+  const profile=giftProfile(question,[]);
+  assert.equal(profile.gift,true,question);
+  assert.equal(profile.recipient,expected,question);
+ }
+});
+test('gift recipient persists from teacher request through short follow-ups',()=>{
+ const first=giftProfile('Tặng cô giáo',[]);
+ assert.equal(first.recipient,'cô giáo');
+ const history=[
+  {role:'user',content:'Tặng cô giáo'},
+  {role:'model',content:'Bạn dự định dành bao nhiêu tiền?'},
+  {role:'user',content:'800k'},
+  {role:'model',content:'Cô giáo thường thích phong cách nào?'}
+ ];
+ const last=giftProfile('đơn giản',history);
+ assert.equal(last.recipient,'cô giáo');
+ assert.equal(last.budget,800000);
+ assert.equal(last.style,'đơn giản');
+});
+test('API teacher-gifting first turn asks about budget, never recipient again',async()=>{
+ const oldKey=process.env.GEMINI_API_KEY;
+ process.env.GEMINI_API_KEY='mock-test-key';
+ try{
+  for(const message of ['Mình muốn tặng cô giáo','T muốn mua túi tặng cô giáo','Mua túi cho cô giáo','Tặng đồng nghiệp']){
+   const req=new Request('https://example.vercel.app/api/chat',{method:'POST',headers:{origin:'https://nthien1812-oss.github.io','content-type':'application/json','x-forwarded-for':'test-teacher-'+message.length+'-'+message.charCodeAt(0)},body:JSON.stringify({message,history:[]})});
+   const res=await handler.fetch(req),out=await res.json();
+   assert.equal(res.status,200,message);
+   assert.equal(out.needsMoreInfo,true,message);
+   assert.match(out.reply,/bao nhiêu tiền|ngân sách/i,message);
+   assert.doesNotMatch(out.reply,/tặng ai|cho ai/i,message);
+  }
+ }finally{if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;}
 });
