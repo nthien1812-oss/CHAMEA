@@ -40,4 +40,24 @@ jobs:
           assert.ok(typeof reply.reply==='string'&&reply.reply.length>25,'Real Gemini text is required');
           assert.ok(Array.isArray(reply.products));
           console.log('Gemini reply received, characters:',reply.reply.length,'products:',reply.products.length);
+          const ask=async(message,history)=>{
+            const r=await fetch(base,{method:'POST',redirect:'manual',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({message,history})});
+            const value=await r.json();
+            console.log('Gift consultation HTTP:',r.status,'needsMoreInfo:',Boolean(value.needsMoreInfo));
+            if(!r.ok)console.log('Safe API error:',value.error||'unknown');
+            assert.equal(r.status,200);
+            assert.equal(r.headers.get('access-control-allow-origin'),origin);
+            return value;
+          };
+          const first=await ask('t muốn mua túi tặng mẹ',[]);
+          assert.match(first.reply,/mẹ/i);
+          assert.match(first.reply,/bao nhiêu tiền|ngân sách/i);
+          assert.equal(first.products.length,0);
+          const history=[{role:'user',content:'t muốn mua túi tặng mẹ'},{role:'model',content:first.reply}];
+          const second=await ask('dưới 800k',history);
+          assert.match(second.reply,/phong cách|thích/i);
+          history.push({role:'user',content:'dưới 800k'},{role:'model',content:second.reply});
+          const third=await ask('mẹ thích thanh lịch',history);
+          assert.ok(third.reply.length>25);
+          console.log('Gift flow passed; final reply characters:',third.reply.length,'products:',third.products.length);
           NODE
