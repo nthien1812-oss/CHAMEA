@@ -14,6 +14,8 @@ export function budgetFrom(text){
  const q=normalize(text);
  let m=q.match(/(?:duoi|khong qua|toi da|tam|khoang|ngan sach|gia|chi|toi|tu)\s*(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan|dong)?\b/);
  if(!m)m=q.match(/(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin|ngan)\b/);
+ // A visitor may answer the budget question with only "500" (meaning 500k).
+ if(!m)m=q.match(/^(\d{3,7})(?:\s*(k|tr|trieu|nghin|ngan))?$/);
  if(!m)return null;
  let n=Number(m[1].replace(',','.')),unit=m[2]||'';
  if(unit==='trieu'||unit==='tr')n*=1e6;
