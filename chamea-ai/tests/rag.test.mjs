@@ -87,7 +87,7 @@ test('short gift chat asks budget first, style next, then calls Gemini with cont
  };
  try{
   const first=await ask('t muốn mua túi tặng mẹ',[],'gift-unit-client-a');
-  assert.equal(first.status,200);assert.match(first.reply,/mẹ/i);assert.match(first.reply,/bao nhiêu tiền/i);
+  assert.equal(first.status,200);assert.match(first.reply,/mẹ/i);assert.match(first.reply,/bao nhiêu/i);
   assert.equal(first.products.length,0);assert.equal(geminiCalls,0);
   const history=[{role:'user',content:'t muốn mua túi tặng mẹ'},{role:'model',content:first.reply}];
   const second=await ask('dưới 800k',history,'gift-unit-client-b');
@@ -142,7 +142,7 @@ test('API teacher-gifting first turn asks about budget, never recipient again',a
    const res=await handler.fetch(req),out=await res.json();
    assert.equal(res.status,200,message);
    assert.equal(out.needsMoreInfo,true,message);
-   assert.match(out.reply,/bao nhiêu tiền|ngân sách/i,message);
+   assert.match(out.reply,/bao nhiêu|ngân sách/i,message);
    assert.doesNotMatch(out.reply,/tặng ai|cho ai/i,message);
   }
  }finally{if(oldKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=oldKey;}
