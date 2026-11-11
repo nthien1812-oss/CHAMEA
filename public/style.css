@@ -2506,24 +2506,26 @@ html.chamea-pattern-on #main .chamea-film-wide{
 .chamea-chat-ai-product small{font-size:10px;line-height:1.4;color:#745c68}
 .chamea-chat-ai-typing{opacity:.8;font-style:italic}
 
-/* CHAMÉA concierge contact icon */
+/* CHAMÉA contact control: minimal handbag, comfortably centered */
+.chamea-chat-launcher .chamea-chat-orbit{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ height:100%;
+ gap:0;
+}
 .chamea-chat-launcher .chamea-concierge-icon{
  display:block;
- width:35px;
- height:35px;
+ flex:none;
+ width:29px;
+ height:29px;
  overflow:visible;
- filter:drop-shadow(0 1px 1px rgba(0,0,0,.08));
+ filter:none;
 }
 .chamea-chat-launcher .chamea-concierge-outline{stroke:#fff9f4}
-.chamea-chat-launcher .chamea-concierge-sparkle{fill:#dcc09a}
-.chamea-chat-launcher .chamea-chat-orbit{gap:1px}
-.chamea-chat-launcher .chamea-chat-orbit small{
- font-size:8px;
- font-weight:600;
- letter-spacing:.055em;
- color:#fff8f4;
-}
+.chamea-chat-launcher .chamea-concierge-sparkle{fill:#dec49b}
+.chamea-chat-launcher .chamea-chat-orbit small{display:none!important}
 @media(max-width:700px){
- .chamea-chat-launcher .chamea-concierge-icon{width:29px;height:29px}
- .chamea-chat-launcher .chamea-chat-orbit small{font-size:7px}
+ .chamea-chat-launcher .chamea-concierge-icon{width:25px;height:25px}
 }
