@@ -83,12 +83,29 @@ export function recipientFromText(input){
  for(const w of candidates){if(stop.has(w)||/\d/.test(w))break;extracted.push(w);}
  return extracted.length?extracted.join(' '):'';
 }
+// Classify the current customer message BEFORE using conversation memory.
+// This stops old gift questions from hijacking a greeting, new product request or policy question.
+export function currentTurnKind(message){
+ const q=normalize(message);
+ if(!q)return 'empty';
+ if(/^(?:xin chao|chao|chao ban|chao shop|chao chamea|chao em|chao a|hi|hii|hello|hey|alo|a lo|good morning|chao buoi sang|chao buoi chieu|chao buoi toi|hello shop)(?: nhe| nha| a| em)?$/.test(q))return 'greeting';
+ if(/^(?:cam on|cam on ban|cam on shop|cam on nhe|cam on nha|thanks|thank you|thank you so much|tks|thank u|da cam on|oke cam on|ok cam on)$/.test(q))return 'thanks';
+ if(/^(?:tam biet|hen gap lai|bye|bye bye|goodbye|chao tam biet|hen gap|bai bai)$/.test(q))return 'goodbye';
+ if(/^(?:bat dau lai|tu van lai|lam lai|xoa loc|bo loc|doi chu de|lam moi cuoc tro chuyen)$/.test(q))return 'reset';
+ if(/\b(doi tra|bao hanh|giao hang|phi ship|ship|phi van chuyen|thanh toan|cod|chuyen khoan|hotline|lien he|so dien thoai|email|dia chi|kiem tra don|don hang|chinh sach|bao quan|ve sinh|doi hang|hoan tien|phieu bao hanh|thoi gian giao)\b/.test(q))return 'support';
+ if(giftWords.test(q))return 'gift';
+ if(/\b(so sanh|khac nhau|chat lieu|lam bang gi|kich thuoc|trong luong|co mau|mau sac|san pham|bo suu tap|mau tui|kieu tui|tui nao|tim tui|chon tui|tu van tui|mua tui|muon tui|tui xach|tote|deo vai|deo cheo|xach tay|bao nhieu tien|gia bao nhieu|gia mau|xem tui|cho xem|mau nao|co nhung mau nao|gia cua)\b/.test(q))return 'product';
+ return 'other';
+}
 export function giftProfile(question,history=[]){
- const previous=(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-6).map(x=>x.content);
- const combined=normalize(previous.join(' ')+' '+question);
+ const userTurns=[...(Array.isArray(history)?history:[]).filter(x=>x.role==='user').slice(-8).map(x=>x.content),question];
+ const lastGiftIndex=userTurns.findLastIndex(x=>giftWords.test(normalize(x)));
+ const active=lastGiftIndex>=0?userTurns.slice(lastGiftIndex):[question];
+ const previous=active.slice(0,-1);
+ const combined=normalize(active.join(' '));
  const recipient=[question,...previous.slice().reverse()].map(recipientFromText).find(Boolean)||'';
  const gift=giftWords.test(combined);
- const budget=budgetFrom(question)||budgetFrom(previous.slice().reverse().join(' '));
+ const budget=budgetFrom(question)||previous.slice().reverse().map(budgetFrom).find(x=>x!==null)||null;
  const style=[['thanh lich','thanh lịch'],['toi gian','tối giản'],['nu tinh','nữ tính'],['nhe nhang','nhẹ nhàng'],['don gian','đơn giản'],['ca tinh','cá tính'],['noi bat','nổi bật'],['tre trung','trẻ trung']].find(x=>has(combined,x[0]))?.[1]||'';
  const shape=['tote','deo vai','deo cheo','xach tay'].find(x=>has(combined,x))||'';
  const color=pickColor(combined);
